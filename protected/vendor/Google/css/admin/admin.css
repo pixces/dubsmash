@@ -1,0 +1,118 @@
+@charset "utf-8";
+
+body {
+    font-size: 12px;
+    font-family: Arial, Tahoma;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+
+
+/*-------- LOGIN PAGE ------------------------------------------- */
+#login-bg {
+    background: url(../../images/admin/login_bg.jpg) no-repeat top center;
+}
+
+#login-holder {
+    margin: 0px auto 0 auto;
+    width: 508px;
+}
+
+#loginbox {
+    background: url(../../images/admin/loginbox_bg.png) no-repeat;
+    font-size: 12px;
+    height: 212px;
+    line-height: 12px;
+    padding-top: 60px;
+    position: relative;
+    width: 508px;
+}
+
+#login-inner td {
+    padding: 0 0 6px 0;
+}
+
+#login-inner {
+    color: #161616;
+    font-family: Tahoma;
+    font-size: 13px;
+    line-height: 12px;
+    margin: 0 auto;
+    width: 310px;
+}
+
+#login-inner th{
+    vertical-align: top;
+    padding: 0 0 6px 0;
+    text-align: left;
+    width: 95px;
+}
+
+#login-inner label {
+    color: #161616;
+    cursor: pointer;
+    font-family: Tahoma;
+    line-height: 12px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.required{
+    color: #FF0000;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+input[type="checkbox"] {
+    width: 13px;
+    height: 13px;
+    margin: 0px 5px 5px 0px;
+}
+
+.rememberMe label{
+    display: inline-block;
+}
+
+#login-inner .errorMessage{
+    color: #FF0000;
+    padding-bottom: 10px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+
+/* only for login box */
+#login-inner input[type="text"],
+#login-inner input[type="password"] {
+    background: url(../../images/admin/inp_login.gif) no-repeat;
+    border: none;
+    color: #ffffff;
+    font-size: 16px;
+    height: 28px;
+    padding: 6px 6px 0 10px;
+    width: 204px;
+}
+
+#login-inner input[type="text"]:focus,
+#login-inner input[type="password"]:focus {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(236, 231, 224, 0.60);
+    outline: 0 none;
+}
+
+#logo-login {
+    height: 35px;
+    margin: 145px 0 0 15px;
+}
+
+#login-inner input[type="submit"] {
+    background: url(../../images/admin/submit_login.gif) no-repeat;
+    border: none;
+    cursor: pointer;
+    display: block;
+    height: 29px;
+    text-indent: -3000px;
+    width: 73px;
+}
+
+#login-inner input[type="submit"]:hover {
+    background: url(../../images/admin/submit_login.gif) no-repeat 0 -29px;
+}

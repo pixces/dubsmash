@@ -1,0 +1,367 @@
+@media screen and (min-width: 300px) and (max-width: 767px){
+	.CH-SocialIcons{ 
+		display:none;
+	}
+	.CH-MainMenu{
+		float:right;
+		/*padding:0 10px 10px 0;*/
+	}
+	.CH-Navigation{
+		padding:0;	
+	}
+	.CH-MainMenu #CH-MobileMenu{
+		float:right;
+		display:block;
+		margin:0 10px 2px 0;
+	}
+	.CH-MainMenu ul{
+		display:none;
+		/*position:absolute;
+		top:67px;
+		right:10px;*/
+		clear:both;
+		background:#EE243D;
+		background:#EE243D;
+		z-index:99999;
+		width:100%;
+		color:#FFF5E8;
+		margin:2px 0 10px 0;
+	}
+	.CH-MainMenu{
+		width:100%;
+		max-width:inherit;
+	}
+	.CH-MainMenu ul li{
+		float:none;
+		border-bottom:1px solid #28394E;
+		margin:0;
+	}
+	.CH-MainMenu ul li a{
+		color:#fff5e9;
+		line-height:30px;
+	}
+	.CH-MainMenu ul li a.active,
+	.CH-MainMenu ul li a:hover{	
+		-webkit-border-radius:0px;
+		-moz-border-radius:0px;
+		border-radius:0px;
+		background:#FFF5E8;
+		color:#EE243D;
+	}
+	/*.CH-MainMenu:hover ul{
+		display:block;
+	}*/
+	.CH-VideoCarouselContent .CH-VideoCarouselIcon{
+		margin:0 auto;
+	}
+	.CH-VideoCarouselContent .CH-VideoCarouselHead,
+	.CH-VideoCarouselContent p,
+	.CH-WorkshopDate,
+	.CH-ClientLogo .CH-Links ul,
+	.CH-ClientLogo .CH-CopyRight,
+	.CH-ClientLogo .CH-ClientLogoBlk ul{
+		text-align:center;
+	}
+	.CH-CompetitionTimeline .CH-TimelineContent{
+		float:none;
+		width:100%;
+		background:none;
+		padding:0 0 5px;
+		margin:20px 0 0 0;
+	}
+	.CH-CompetitionTimeline .CH-TimelineRules{
+		width:100%;
+		float:none;
+		margin-bottom:20px;
+	}
+	.CH-SubmissionsFormContainer .CH-HorizontalForm .CH-FormGroupSubmit .CH-Terms input{
+		display:inline-block;
+		float:none;
+		margin-bottom:0;
+	}
+	.CH-TimelineRulesImage{
+		display:none;
+	}
+	.CH-TimelineRules .CH-Phase1,
+	.CH-TimelineRules .CH-Phase2,
+	.CH-TimelineRules .CH-Phase3{
+		position:relative;
+		width:100%;
+		left:auto;
+		right:auto;
+		top:auto;
+		padding:0;
+		background:#fff5e9;
+		padding:10px;
+		margin:15px 0 0 0;
+		-webkit-border-radius:10px;
+		-moz-border-radius:10px;
+		border-radius:10px;
+	}
+	.CH-TimeLine{
+		background:#ee243d url("../images/timeline-icon2.png") no-repeat 20px bottom;
+		padding-bottom:70px;
+	}
+	.CH-MobileDisplay{
+		display:block;
+		text-align:center;
+		padding:0 20px;
+	}
+	.CH-MobileDisplay .CH-MobileText span{
+		display:block;
+	}
+	.CH-MobileDisplay .CH-MobileText .CH-Head{
+		font-size:36px;
+		color:#eb2842;
+		text-transform:uppercase;
+		text-align:center;
+		font-family: 'Phosphate-Solid';
+		line-height:35px;
+		margin-top:25px;
+	}
+	.CH-MobileDisplay .CH-MobileText .CH-SubHead{
+		font-size:22px;
+		color:#fff5e9;
+		text-align:center;
+		text-transform:uppercase;
+		margin-top:10px;
+		line-height:25px;
+		font-family: 'Phosphate-Solid';
+	}
+	.CH-SubmissionsFormContainer .CH-SubmissionsTextContainer{
+		visibility:visible;
+		margin-bottom:25px;
+		display:block;
+	}
+	.CH-SubmissionsFormContainer .CH-SubmissionsTextContainer .CH-SubHead{
+		color:#333366;
+	}
+	.CH-ClientLogo .CH-SocialIcons{
+		display:block;
+		float:none;
+		margin:0 20px;
+		width:auto;
+		border-bottom:1px solid #666666;
+		border-top:1px solid #666666;
+		min-height:inherit;
+		padding:20px 0;
+		margin-bottom:20px;
+	}
+	.CH-ClientLogo .CH-SocialIcons ul{
+		margin:0 auto;
+		overflow:hidden;
+		text-align:center;
+		width:220px;
+		margin:0 auto;
+		font-size:17px;
+		color:#f7eee3;
+		text-transform:uppercase;
+		float:none;
+		top:auto;
+	}
+	.CH-ClientLogo .CH-SocialIcons ul li.sharetext{
+		width:auto;
+		line-height:26px;
+		margin-right:20px;
+	}
+	.overlay-content {
+        width:96%;
+        margin:0 2%;
+        left:0;
+    }
+	.CH-SubmissionsVideo{
+		margin-bottom:-125px !important;
+		position:relative;
+	}
+	.CH-SubmissionsContent .CH-SubmissionsText{
+		overflow:initial;
+	}
+	.CH-SubmissionsVideoImage{
+		top:25px;
+	}
+	.CH-SubmissionsTextContainer{
+		display:none;
+	}
+	.CH-SubmitButton{
+		min-height:inherit;
+		width:auto;
+		margin:0 15px 15px;
+	}
+	.CH-SubmitButton a{
+		width:350px;
+		margin:0 auto 10px;
+		float:none;
+		right:auto;
+		display:block;
+	}
+	.CH-Disclaimer,
+	.CH-FormGroupSubmit{
+		right:auto;
+		width:auto;
+		float:none;
+		max-width:inherit;
+		margin-left:15px;
+	}
+	.CH-GalleryBG, .CH-FaqBG, .CH-RulesBG{
+		margin-top:20px;
+	}
+	.CH-GalleryContent .CH-GalleryIcon,
+	.CH-FaqContent .CH-FaqIcon,
+	.CH-RulesContent .CH-RulesIcon{
+		margin:0 auto;
+	}
+	.CH-GalleryContent .CH-GalleryHead,
+	.CH-FaqContent .CH-FaqHead,
+	.CH-RulesContent .CH-RulesHead{
+		text-align:center;
+	}
+	.CH-GalleryList,
+	.CH-FaqList,
+	.CH-RulesList{
+		text-align:center;
+	}
+	.CH-RulesList{
+		text-align:left;
+	}
+	#ytvideo, #ytvideo2, #ytvideo3, #ytvideo4,
+	div.ytplayerright{
+		width:100%;	
+		height:300px!important;	
+	}
+	div.ytplayerright{
+		height:250px!important;
+	}
+	div.yt_holder ul.videoytright{
+		height:inherit;
+	}
+	.CH-WorkshopDate .CH-WorkshopCity div,
+	#CH-VideoCarousel .CH-VideoCarouselItem .CH-Description,
+	.CH-WorkshopDate .CH-WorkshopCity,
+	.CH-WorkshopDate .CH-WorkshopCity div,
+	.CH-TimelineContent .CH-Head,
+	.CH-TimelineContent .CH-Description{
+		text-align:center;
+	}
+	.CH-GalleryList .CH-GalleryImage, 
+	.CH-GalleryList .CH-GalleryImage img{
+		margin:0 auto;
+	}
+}
+@media screen and (min-width: 985px) and (max-width: 1020px){
+	.CH-SubmissionsVideo{
+		width:470px;
+	}
+	.CH-SubmissionsTextContainer{
+		width:44%;	
+	}
+}
+@media screen and (min-width: 900px) and (max-width: 984px){
+	.CH-SubmissionsVideo{
+		width:440px;
+	}
+	.CH-SubmissionsTextContainer{
+		width:44%;	
+	}
+	.CH-WorkshopDate .CH-WorkshopCity,
+	.CH-WorkshopDate .CH-WorkshopCity div{
+		text-align:center;
+	}
+}
+@media screen and (min-width: 768px) and (max-width: 899px){
+	.CH-SubmissionsVideo{
+		width:355px;
+	}
+	.CH-WorkshopDate .CH-WorkshopCity,
+	.CH-WorkshopDate .CH-WorkshopCity div{
+		text-align:center;
+	}
+}
+@media screen and (min-width: 460px) and (max-width: 767px){
+	.CH-SubmissionsVideoBlk{
+		width:400px;
+		margin:0 auto;
+	}
+	.CH-SubmissionsVideo{
+		width:400px;
+		margin:0;
+	}
+	.CH-SubmissionsContent .CH-SubmissionsForm{
+		padding:85px 0 20px;
+	}
+	.CH-SubmissionsFormContainer .CH-HorizontalForm,
+	.CH-SubmissionsTextContainer{
+		float:none;
+		padding:0 20px;
+		width:auto;
+	}
+	.CH-SubmissionsTextContainer{
+		visibility:hidden;
+	}
+}
+@media screen and (min-width: 300px) and (max-width: 459px){
+	.CH-SubmissionsVideoBlk{
+		width:300px;
+		margin:0 auto;
+	}
+	.CH-SubmissionsVideo{
+		width:300px;
+		margin:0;
+	}
+	.CH-SubmissionsContent .CH-SubmissionsForm{
+		padding:90px 0 20px;
+	}
+	.CH-SubmissionsFormContainer .CH-HorizontalForm,
+	.CH-SubmissionsTextContainer{
+		float:none;
+		padding:0 20px;
+		width:auto;
+	}
+	.CH-SubmissionsTextContainer{
+		visibility:hidden;
+	}
+	.CH-SubmissionsFormContainer .CH-HorizontalForm .CH-FormGroup,
+	.CH-SubmissionsFormContainer .CH-HorizontalForm .CH-FormGroupSubmit .CH-Terms,
+	.CH-SubmissionsFormContainer .CH-HorizontalForm .CH-FormGroupSubmit .CH-FormSubmit{
+		width:100%;
+		float:none;
+		margin-left:0;
+	}
+	
+	.CH-SubmissionsFormContainer .CH-HorizontalForm .CH-FormGroupSubmit .CH-Terms,
+	.CH-SubmissionsFormContainer .CH-HorizontalForm .CH-FormGroupSubmit .CH-FormSubmit{
+		text-align:center;	
+	}
+	.CH-SubmissionsFormContainer .CH-HorizontalForm .CH-FormGroupSubmit .CH-Terms span{
+		margin-bottom:10px;
+		margin-left:0;
+	}
+	.CH-SubmissionsFormContainer .CH-HorizontalForm .CH-FormGroupSubmit .CH-FormSubmit input{
+		float:none;
+		margin-top:10px;
+	}
+}
+@media screen and (min-width: 768px) and (max-width: 835px){
+	.CH-TimelineRules .CH-Phase2{
+		left:58%;
+		top:40%;
+	}
+	.CH-TimelineRules .CH-Phase1{
+		left:0;
+	}
+}
+@media screen and (min-width: 300px) and (max-width: 340px){
+	div.yt_holder ul.videoytright li a img{
+		display:none;	
+	}
+	div.yt_holder ul.videoytright li a{
+		padding:25px 5px 0;	
+	}
+	div.yt_holder .videoytright p{
+		margin:0 5px -14px;
+	}
+}
+@media screen and (min-width: 300px) and (max-width: 375px){
+	.CH-SubmitButton a{
+		width:290px;
+	}
+}
