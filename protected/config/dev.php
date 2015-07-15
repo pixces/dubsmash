@@ -15,7 +15,7 @@ return CMap::mergeArray(
                 'connectionString' => 'mysql:host=localhost;dbname=dubfest',
                 'emulatePrepare' => true,
                 'username' => 'root',
-                'password' => 'admin',
+                'password' => 'root',
                 'charset' => 'utf8',
                 'enableParamLogging' => true,
             ),
@@ -33,7 +33,6 @@ return CMap::mergeArray(
                 ),
             ),
             'GoogleApis' => array(
-
                 'class' => 'ext.GoogleApis.GoogleApis',
                 // See http://code.google.com/p/google-api-php-client/wiki/OAuth2
                 'clientId' => '656601197353-or2q63gk1mv9no5i00qcap50rhgivqrb.apps.googleusercontent.com',
@@ -51,27 +50,28 @@ return CMap::mergeArray(
             ),
         ),
         'params' => array(
-            's3AccessKey' => "AKIAI4PTFQAGUMKSMN3Q",
-            's3SecretKey' => "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",
-            's3Bucket' => "cnkugc",
-            //youtube playlist configuration
-            'YT_PlayList' => array(
-                'maxSize' => 50,
-                'isCache' => true,
-                'cacheLifetime' => 86400,
-                'cachePath' => dirname(__FILE__)."/../runtime/cache/",
-                'apiKey' => 'AIzaSyA4iw6xE5VRXg5c7s7JFcmlTO65gQIMjnE',
-            ),
-            'YT_Faq_PlayListID' => array(
-                'PL548A047B9D0B4A7C'
-            ),
             'GOOGLE' => array(
-                'CLIENT_ID' => '656601197353-or2q63gk1mv9no5i00qcap50rhgivqrb.apps.googleusercontent.com',
-                'SECRET'    => 'OGQLKC6MON_Whhag-0SuHp8Z',
-                'DEVELOPER_KEY'=> 'AIzaSyAPSmKJjeV0vD4_b4teGIWzLVdiPHfxzWE',
-                'CALLBACK_URL' => 'http://localhost/comedyhunt/authenticate/',
+                'CLIENT_ID'     => '656601197353-or2q63gk1mv9no5i00qcap50rhgivqrb.apps.googleusercontent.com',
+                'SECRET'        => 'OGQLKC6MON_Whhag-0SuHp8Z',
+                'DEVELOPER_KEY' => 'AIzaSyAPSmKJjeV0vD4_b4teGIWzLVdiPHfxzWE',
+                'CALLBACK_URL'  => 'http://localhost/comedyhunt/authenticate/',
             ),
+            'FACEBOOK' => array(
 
+            ),
+            'awsS3' => array(
+                'BUCKET'        => '/p2-data/p2-slice',
+                'USER'          => 's3slice',
+                'PASSWORD'      => 'M359Mc9GR2',
+                'ACCESS_KET'    => 'AKIAJH5ZGO6NVLVOUS4A',
+                'ACCESS_SECRET' => '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',
+            ),
+            'contentCategory' => array(
+                'ACTION'        =>'action',
+                'SONGS'         =>'songs',
+                'HUMOR'         =>'humor',
+                'DRAMA'         =>'drama'
+            ),
         ),
     )
 );

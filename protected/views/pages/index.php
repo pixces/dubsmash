@@ -1,227 +1,419 @@
-<!-- Submissions Starts Here -->
-<div class="CH-Submissions">
-    <div class="CH-SubmissionsContent">
-        <div class="CH-SubmissionsText">
-            <div class="CH-SubmissionsVideoBlk">
-                <div class="CH-SubmissionsVideo transition">
-                    <div class="CH-SubmissionsVideoImage"><img src="images/video-image1.png"/></div>
-                    <div class="CH-SubmissionsVideoPlay">
-                        <a href="javascript:void(0)" data-showpopup="3" class="show-popup mainVideo"><span><img
-                                    src="images/video-play-icon.png"/></span></a>
-                    </div>
-                </div>
-            </div>
-            <div class="CH-SubmissionsTextContainer">
-                <?php if ($auth && $submission) { ?>
-				<div class="CH-Head acenter">Thank you for <br/>your submission</div>
-                <?php } else { ?>
-				<div>
-					<div class="CH-SubHead">Your Route to Stardom</div>
-					<div class="CH-Text no-margin">
-						<ul>
-							<li>Set up your own YouTube channel</li>
-							<li>Shoot your Entry Video, which should be under 3 minutes</li>
-							<li>Upload your Entry Video on to your YouTube channel, with the title in this format: "Comedy Hunt – entry video title"</li>
-							<li>Read the terms and conditions on this page</li>
-							<li>Click on the check box, press the Submit button, follow the steps after that & and keep checking this channel and our social handles for updates!</li>
-							<li>Contestants can participate in the hunt as individuals or as a team</li>
-							<li>Entry videos can be in any language. However, subtitles must be added to videos that are in languages other than English or Hindi. Last Date for entries is 26th July 2015</li>
-						</ul>
-					</div>
-				</div>
-                <?php } ?>
+<div class="container header-body">
+    <header>
+        <div class="row lilita tagLn">
+            <div class="col-md-12 text-center">Be funny, Be mad, Be cool.</br>Show your many sides,<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/gif.gif" />
             </div>
         </div>
-        <div class="CH-SubmissionsContentBG"></div>
-        <div class="CH-SubmissionsForm">
-            <div class="CH-SubmissionsFormContainer">
-                <div class="CH-SubmissionsTextContainer">
-					<?php if ($auth && $submission) { ?>
-					<div class="CH-Head acenter">Thank you for <br/>your submission</div>
-					<?php } else { ?>
-					<div>
-						<div class="CH-SubHead">Your Route to Stardom</div>
-						<div class="CH-Text no-margin">
-							<ul>
-								<li>Set up your own YouTube channel</li>
-							<li>Shoot your Entry Video, which should be under 3 minutes</li>
-							<li>Upload your Entry Video on to your YouTube channel, with the title in this format: "Comedy Hunt – entry video title"</li>
-							<li>Read the terms and conditions on this page</li>
-							<li>Click on the check box, press the Submit button, follow the steps after that & and keep checking this channel and our social handles for updates!</li>
-							<li>Contestants can participate in the hunt as individuals or as a team</li>
-							<li>Entry videos can be in any language. However, subtitles must be added to videos that are in languages other than English or Hindi. Last Date for entries is 26th July 2015</li>
-							</ul>
-						</div>
-					</div>
-					<?php } ?>
+        <div class="row PrtcptNwMoble text-center lilita">
+            <div class="topVdesHdr clr1">Submissions open</div>
+            <div class="glryLoad UpldBtn  pointer">Participate Now</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3 prtcptSctnCntr lilita">
+                <div class="prtcptSctn">
+                    <div class="prtcptSctnCont">
+                        <span class="fntSctn1"><img class="iPhnImage" src="<?php echo Yii::app()->request->baseUrl; ?>/images/prtcptMbl.png"/>Come be a part of the country's biggest dubfest and get a chance to <span class="fntSctn2">win an iPhone 6!</span></span>
+                    </div>
+                    <div class="prcptBtn">Participate Now</div>
                 </div>
-				<div class="CH-SubmitButton">
-					<div>
-                        <?php if (!$auth){ ?>
-						<a href="<?=Yii::app()->baseUrl."/pages/authenticate?media=youtube"; ?>" class="authenticate">Submit your video NOW</a>
-                        <?php } else if ($auth && !$submission) { ?>
-						<a class="show-popup" data-showpopup="2" href="<?=Yii::app()->baseUrl."/pages/videos?media=youtube"; ?>">Select your video</a>
-                        <?php } else { ?>
-						<div class="no-margin "><a href="<?=Yii::app()->createUrl('/'); ?>">Submit another video</a></div>
-                        <?php } ?>
-					</div>
-                    <?php if (!$auth){ ?>
-					<div class="CH-FormGroupSubmit">
-						<div><input type="checkbox" class="termscheckbox" />I agree to the <a href="<?=Yii::app()->createAbsoluteUrl('/site/page/?view=rules'); ?>" target="_blank">terms and conditions</a></div>
-						<div class="errorterms">You must agree to the terms and conditions before register.</div>
-					</div>
-                    <?php } ?>
-					<div class="CH-Disclaimer"><span>Disclaimer:</span> This data is collected by OML, and stored at OML's 3rd party servers for contest administration purpose only, and will not be used for any other purpose</div>
-					
-				</div>
+                <div class="text-center clr1 bntrl">#Bnatural #Dubfest</div>
+            </div>
+            <div class="col-xs-5 videoThb">
+                <div><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/vdoImg2.png"/></div>
+                <div class="row VdoeThumSngram">
+                    <div class="col-sm-3 MinvdoThmb">
+                        <div class="PlayIcn3"></div>
+                        <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/thmb1a.png"/></div>
+                    <div class="col-sm-3 MinvdoThmb">
+                        <div class="PlayIcn3"></div>
+                        <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/thmb2a.png"/></div>
+                    <div class="col-sm-3 MinvdoThmb">
+                        <div class="PlayIcn3"></div>
+                        <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/thmb3a.png"/></div>
+                    <div class="col-sm-3 MinvdoThmb">
+                        <div class="PlayIcn3"></div>
+                        <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/thmb4a.png"/></div>
+
+                </div>
+            </div>
+            <div class="col-xs-4 Mndit">
+                <!--<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/mnditImg.png" />-->
+            </div>
+    </header>
+</div>
+<div class="row wtchTVCMobile">
+    <div class="topVdesHdr clr1 lilita"><img class="iPhnImage" src="<?php echo Yii::app()->request->baseUrl; ?>/images/wtchTvcIcn.png"/>Watch Now</div>
+</div>
+
+<div class="topVdesdsgn"></div>
+<!---TopvideoSliderStart--->
+<div class="container-fluid topVdes">
+<div class="container">
+<!---TopvideoSliderHeaderStart--->
+<div class="row topVdesHdr lilita">
+    <div class="col-md-3 pull-left"><span class="clr2">Top</span> <span class="clr3">Videos</span></div>
+    <div class="col-md-3 text-right pull-right topVdescnt">showing 4/12</div>
+</div>
+<!---TopvideoSliderHeaderEnd--->
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+<!-- Indicators -->
+<ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+    <li data-target="#myCarousel" data-slide-to="3"></li>
+</ol>
+
+<!-- Wrapper for slides -->
+<div class="carousel-inner" role="listbox">
+<!---TopvideoSliderrowStart--->
+<div class="item active" style="width:100%;background:#fff;">
+    <!---TopvideosingleSliderstart--->
+    <div class="col-md-3 glryVdoSctn">
+        <div class="PlayIcn2"></div>
+        <div class="nxtsliders">
+            <div class="PlayIcn1"></div>
+            <div class="vdoethmb"><img class="img-responsive" src="<?php echo Yii::app()->request->baseUrl; ?>/images/thumb-1.png"/></div>
+            <div class="row vdoethmbDtls">
+                <div class="col-md-5 glryvdeoTy">Humour</div>
+                <div class="col-md-4 pull-right">
+                    <div class="vdeoFcbk pull-left"></div>
+                    <div class="vdeolike pull-left"></div>
+                    <div class="vdeovwCunt pull-left">60</div>
+                </div>
+            </div>
+            <div class="row vdoethmbTxt">
+                <div class="col-md-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+            </div>
         </div>
     </div>
-</div>
-<!-- Submissions Ends Here -->
-
-<!-- Contest Entries Starts Here -->
-<div class="CH-ContestEntries CH-HomeFaq">
-	<div class="CH-ContestEntriesContent">
-		<div class="CH-ContestEntriesContentIcon"><img src="images/gallery-image-blue.png"/></div>
-		<div class="CH-ContestEntriesContentHead">Contest Entries</div>
-		<!-- dynamic playlist start -->
-		<?php if ($aVideoList[0]) {
-            $objVideo = $aVideoList[0];
-		?>
-		<div class="CH-FaqList">
-			<!-- Needed for the youtube player example 3 -->
-			<div class="youtubeplayer">
-				<div class="yt_holder yt_holder_right">
-					<div id="ytContestEntries" class="ytvideo"></div>
-					<!--Up and Down arrow -->
-					<div class="you_up"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/up_arrow.png" alt="+ Slide" title="HIDE" /></div>
-					<div class="you_down"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/down_arrow.png" alt="- Slide" title="SHOW" /></div>
-					<!-- END  -->
-					<div class="youplayer ytplayerright">
-						<ul class="videoyou videoytright scroll-pane">
-							<?php
-							if ( $objVideo->get_videos() !=null ) {
-								foreach ($objVideo->get_videos() as $yKey => $yValue) {
-									echo '<li><p>' . $yValue['title'] . '</p><a class="ContestEntriesThumb" href="http://www.youtube.com/watch?v=' . $yValue['videoid'] . '">' . $yValue['description'] . '</a></li>';
-								}
-							}else{
-								echo '<li>Sorry, no video\'s found</li>';
-							}
-							?>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<!-- END youtube player -->
-		</div>
-		<?php } ?>
-		<!-- dynamic playlist ends -->
-		
-		<div class="CH-HomeEmbedList">
-			<iframe width="560" height="315" src="https://www.youtube.com/embed/lIsIOsXkID4?list=PLX19kCCkfm1pR0fml9KXZzur6FVU5BiFO" frameborder="0" allowfullscreen></iframe>
-		</div>
-	</div>
-</div>
-<!-- Contest Entries Ends Here -->
-
-<!-- Videos Carousel Starts Here -->
-<div class="CH-VideoCarousel">
-    <div class="CH-VideoCarouselBG"></div>
-    <div class="CH-VideoCarouselContent">
-        <div class="CH-VideoCarouselIcon"><img src="images/inspired-videos-icon.png"/></div>
-        <div class="CH-VideoCarouselHead">Need a little inspiration?</div>
-        <p>Our judges all earned their comedy credentials, one video at a time. Watch the masters at work.</p>
-
-        <div class="CH-VideoCarouselBlk no-padding">
-            <!--div id="CH-VideoCarousel">
-                <?php if ($gallery){
-                    foreach($gallery as $video){ ?>
-
-                <div class="CH-VideoCarouselItem">
-                    <div class="CH-Video">
-                        <div class="CH-VideoThumb"><img src="<?=$video->thumb_image; ?>"/></div>
-                        <div class="CH-VideoThumbPlay">
-                            <a href="javascript:void(0)" data-showpopup="1" class="show-popup" data-videoTitle="<?=$video->title; ?>" data-videoURL="<?=$video->media_id; ?>"><img src="images/video-thumb-play.png"/></a>
-                        </div>
-                    </div>
-                    <div class="CH-Description"><?=$video->title; ?></div>
+    <!---TopvideosingleSliderEnd--->
+    <!---TopvideosingleSliderstart--->
+    <div class="col-md-3 glryVdoSctn">
+        <div class="certifyIcn"></div>
+        <div class="nxtsliders">
+            <div class="PlayIcn1"></div>
+            <div class="vdoethmb"><img class="img-responsive" src="<?php echo Yii::app()->request->baseUrl; ?>/images/thumb-1.png"/></div>
+            <div class="row vdoethmbDtls">
+                <div class="col-md-5 glryvdeoTy">Humour</div>
+                <div class="col-md-4 pull-right">
+                    <div class="vdeoFcbk pull-left"></div>
+                    <div class="vdeolike pull-left"></div>
+                    <div class="vdeovwCunt pull-left">60</div>
                 </div>
-                <?php } } ?>
-            </div-->
-
-			<!-- dynamic playlist start -->
-            <?php if ($aVideoList[1]) {
-                $objVideo = $aVideoList[1];
-			?>
-			<div class="CH-FaqList">
-				<!-- Needed for the youtube player example 3 -->
-				<div class="youtubeplayer">
-					<div class="yt_holder yt_holder_right">
-						<div id="ytvideo4"></div>
-						<!--Up and Down arrow -->
-						<div class="you_up"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/up_arrow.png" alt="+ Slide" title="HIDE" /></div>
-						<div class="you_down"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/down_arrow.png" alt="- Slide" title="SHOW" /></div>
-						<!-- END  -->
-						<div class="youplayer ytplayerright">
-							<ul class="videoyou videoytright scroll-pane">
-								<?php
-								if ( $objVideo->get_videos() !=null ) {
-									foreach ($objVideo->get_videos() as $yKey => $yValue) {
-										echo '<li><p>' . $yValue['title'] . '</p><a class="videoThumb4" href="http://www.youtube.com/watch?v=' . $yValue['videoid'] . '">' . $yValue['description'] . '</a></li>';
-									}
-								}else{
-									echo '<li>Sorry, no video\'s found</li>';
-								}
-								?>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<!-- END youtube player -->
-			</div>
-			<?php } ?>
-			<!-- dynamic playlist ends -->
-			
-			<div class="CH-HomeEmbedList">
-				<iframe width="560" height="315" src="https://www.youtube.com/embed/lIsIOsXkID4?list=PLX19kCCkfm1pR0fml9KXZzur6FVU5BiFO" frameborder="0" allowfullscreen></iframe>
-			</div>
-			
-        </div>
-        <div class="CH-WorkshopDate">
-            <p>Want some Comedy coaching? The Comedy Hunt judges will be sharing their smarts with the new generation.
-                Learn some laugh-logic on these dates.</p>
-
-            <div class="CH-WorkshopCity">
-               <div>
-					<span>11th July</span>
-					<span class="CH-City">Mumbai</span>
-					<span class="CH-Register"><a href="https://docs.google.com/forms/d/1xPQyjneHxgteOdHhutO5zo38Hrq8SvdkshjKQF9s4Pw/viewform" target="_blank">Register</a></span>
-				</div>
-				<div>
-					<span>12th July</span>
-					<span class="CH-City">Delhi</span>
-					<span class="CH-Register"><a href="https://docs.google.com/forms/d/1xPQyjneHxgteOdHhutO5zo38Hrq8SvdkshjKQF9s4Pw/viewform" target="_blank">Register</a></span>
-				</div>
-				<div>
-					<span>13th July</span>
-					<span class="CH-City">Hyderabad</span>
-					<span class="CH-Register"><a href="https://docs.google.com/forms/d/1xPQyjneHxgteOdHhutO5zo38Hrq8SvdkshjKQF9s4Pw/viewform" target="_blank">Register</a></span>
-				</div>
-				<div>
-					<span>14th July</span>
-					<span class="CH-City">Bangalore</span>
-					<span class="CH-Register"><a href="https://docs.google.com/forms/d/1xPQyjneHxgteOdHhutO5zo38Hrq8SvdkshjKQF9s4Pw/viewform" target="_blank">Register</a></span>
-				</div>
+            </div>
+            <div class="row vdoethmbTxt">
+                <div class="col-md-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
             </div>
         </div>
-
-        <!-- Video Overlay Starts Here
-        <div class="CH-VideoOverlay">
-            <div class="CH-VideoClose"><img src="images/close-icon-black.png" /></div>
-            <div class="CH-VideoTitle"></div>
-            <div class="CH-VideoDescription"></div>
-        </div>
-        <!-- Video Overlay Ends Here -->
     </div>
+    <!---TopvideosingleSliderEnd--->
+    <!---TopvideosingleSliderstart--->
+    <div class="col-md-3 glryVdoSctn">
+        <div class="certifyIcn"></div>
+        <div class="nxtsliders">
+            <div class="PlayIcn1"></div>
+            <div class="vdoethmb"><img class="img-responsive" src="<?php echo Yii::app()->request->baseUrl; ?>/images/thumb-1.png"/></div>
+            <div class="row vdoethmbDtls">
+                <div class="col-md-5 glryvdeoTy">Humour</div>
+                <div class="col-md-4 pull-right">
+                    <div class="vdeoFcbk pull-left"></div>
+                    <div class="vdeolike pull-left"></div>
+                    <div class="vdeovwCunt pull-left">60</div>
+                </div>
+            </div>
+            <div class="row vdoethmbTxt">
+                <div class="col-md-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+            </div>
+        </div>
+    </div>
+    <!---TopvideosingleSliderEnd--->
+    <!---TopvideosingleSliderstart--->
+    <div class="col-md-3 glryVdoSctn">
+        <div class="nxtsliders">
+            <div class="PlayIcn1"></div>
+            <div class="vdoethmb"><img class="img-responsive" src="<?php echo Yii::app()->request->baseUrl; ?>/images/thumb-1.png"/></div>
+            <div class="row vdoethmbDtls">
+                <div class="col-md-5 glryvdeoTy">Humour</div>
+                <div class="col-md-4 pull-right">
+                    <div class="vdeoFcbk pull-left"></div>
+                    <div class="vdeolike pull-left"></div>
+                    <div class="vdeovwCunt pull-left">60</div>
+                </div>
+            </div>
+            <div class="row vdoethmbTxt">
+                <div class="col-md-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+            </div>
+        </div>
+    </div>
+    <!---TopvideosingleSliderEnd--->
 </div>
-<!-- Videos Carousel Ends Here -->
+<!---TopvideoSliderrowEnd--->
+
+<!---TopvideoSliderrowStart--->
+<div class="item" style="width:100%;background:#fff;  ">
+    <!---TopvideosingleSliderstart--->
+    <div class="col-md-3 glryVdoSctn">
+        <div class="certifyIcn"></div>
+        <div class="nxtsliders">
+            <div class="PlayIcn1"></div>
+            <div class="vdoethmb"><img class="img-responsive" src="<?php echo Yii::app()->request->baseUrl; ?>/images/thumb-1.png"/></div>
+            <div class="row vdoethmbDtls">
+                <div class="col-md-5 glryvdeoTy">Humour</div>
+                <div class="col-md-4 pull-right">
+                    <div class="vdeoFcbk pull-left"></div>
+                    <div class="vdeolike pull-left"></div>
+                    <div class="vdeovwCunt pull-left">60</div>
+                </div>
+            </div>
+            <div class="row vdoethmbTxt">
+                <div class="col-md-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+            </div>
+        </div>
+    </div>
+    <!---TopvideosingleSliderEnd--->
+    <!---TopvideosingleSliderstart--->
+    <div class="col-md-3 glryVdoSctn">
+        <div class="nxtsliders">
+            <div class="PlayIcn1"></div>
+            <div class="vdoethmb"><img class="img-responsive" src="<?php echo Yii::app()->request->baseUrl; ?>/images/thumb-1.png"/></div>
+            <div class="row vdoethmbDtls">
+                <div class="col-md-5 glryvdeoTy">Humour</div>
+                <div class="col-md-4 pull-right">
+                    <div class="vdeoFcbk pull-left"></div>
+                    <div class="vdeolike pull-left"></div>
+                    <div class="vdeovwCunt pull-left">60</div>
+                </div>
+            </div>
+            <div class="row vdoethmbTxt">
+                <div class="col-md-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+            </div>
+        </div>
+    </div>
+    <!---TopvideosingleSliderEnd--->
+    <!---TopvideosingleSliderstart--->
+    <div class="col-md-3 glryVdoSctn">
+        <div class="nxtsliders">
+            <div class="PlayIcn1"></div>
+            <div class="vdoethmb"><img class="img-responsive" src="<?php echo Yii::app()->request->baseUrl; ?>/images/thumb-1.png"/></div>
+            <div class="row vdoethmbDtls">
+                <div class="col-md-5 glryvdeoTy">Humour</div>
+                <div class="col-md-4 pull-right">
+                    <div class="vdeoFcbk pull-left"></div>
+                    <div class="vdeolike pull-left"></div>
+                    <div class="vdeovwCunt pull-left">60</div>
+                </div>
+            </div>
+            <div class="row vdoethmbTxt">
+                <div class="col-md-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+            </div>
+        </div>
+    </div>
+    <!---TopvideosingleSliderEnd--->
+    <!---TopvideosingleSliderstart--->
+    <div class="col-md-3 glryVdoSctn">
+        <div class="nxtsliders">
+            <div class="PlayIcn1"></div>
+            <div class="vdoethmb"><img class="img-responsive" src="<?php echo Yii::app()->request->baseUrl; ?>/images/thumb-1.png"/></div>
+            <div class="row vdoethmbDtls">
+                <div class="col-md-5 glryvdeoTy">Humour</div>
+                <div class="col-md-4 pull-right">
+                    <div class="vdeoFcbk pull-left"></div>
+                    <div class="vdeolike pull-left"></div>
+                    <div class="vdeovwCunt pull-left">60</div>
+                </div>
+            </div>
+            <div class="row vdoethmbTxt">
+                <div class="col-md-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+            </div>
+        </div>
+    </div>
+    <!---TopvideosingleSliderEnd--->
+</div>
+<!---TopvideoSliderrowEnd--->
+
+<!---TopvideoSliderrowStart--->
+<div class="item" style="width:100%;background:#fff;  ">
+    <!---TopvideosingleSliderstart--->
+    <div class="col-md-3 glryVdoSctn">
+        <div class="nxtsliders">
+            <div class="PlayIcn1"></div>
+            <div class="vdoethmb"><img class="img-responsive" src="<?php echo Yii::app()->request->baseUrl; ?>/images/thumb-1.png"/></div>
+            <div class="row vdoethmbDtls">
+                <div class="col-md-5 glryvdeoTy">Humour</div>
+                <div class="col-md-4 pull-right">
+                    <div class="vdeoFcbk pull-left"></div>
+                    <div class="vdeolike pull-left"></div>
+                    <div class="vdeovwCunt pull-left">60</div>
+                </div>
+            </div>
+            <div class="row vdoethmbTxt">
+                <div class="col-md-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+            </div>
+        </div>
+    </div>
+    <!---TopvideosingleSliderEnd--->
+    <!---TopvideosingleSliderstart--->
+    <div class="col-md-3 glryVdoSctn">
+        <div class="nxtsliders">
+            <div class="PlayIcn1"></div>
+            <div class="vdoethmb"><img class="img-responsive" src="<?php echo Yii::app()->request->baseUrl; ?>/images/thumb-1.png"/></div>
+            <div class="row vdoethmbDtls">
+                <div class="col-md-5 glryvdeoTy">Humour</div>
+                <div class="col-md-4 pull-right">
+                    <div class="vdeoFcbk pull-left"></div>
+                    <div class="vdeolike pull-left"></div>
+                    <div class="vdeovwCunt pull-left">60</div>
+                </div>
+            </div>
+            <div class="row vdoethmbTxt">
+                <div class="col-md-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+            </div>
+        </div>
+    </div>
+    <!---TopvideosingleSliderEnd--->
+    <!---TopvideosingleSliderstart--->
+    <div class="col-md-3 glryVdoSctn">
+        <div class="nxtsliders">
+            <div class="PlayIcn1"></div>
+            <div class="vdoethmb"><img class="img-responsive" src="<?php echo Yii::app()->request->baseUrl; ?>/images/thumb-1.png"/></div>
+            <div class="row vdoethmbDtls">
+                <div class="col-md-5 glryvdeoTy">Humour</div>
+                <div class="col-md-4 pull-right">
+                    <div class="vdeoFcbk pull-left"></div>
+                    <div class="vdeolike pull-left"></div>
+                    <div class="vdeovwCunt pull-left">60</div>
+                </div>
+            </div>
+            <div class="row vdoethmbTxt">
+                <div class="col-md-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+            </div>
+        </div>
+    </div>
+    <!---TopvideosingleSliderEnd--->
+    <!---TopvideosingleSliderstart--->
+    <div class="col-md-3 glryVdoSctn">
+        <div class="nxtsliders">
+            <div class="PlayIcn1"></div>
+            <div class="vdoethmb"><img class="img-responsive" src="<?php echo Yii::app()->request->baseUrl; ?>/images/thumb-1.png"/></div>
+            <div class="row vdoethmbDtls">
+                <div class="col-md-5 glryvdeoTy">Humour</div>
+                <div class="col-md-4 pull-right">
+                    <div class="vdeoFcbk pull-left"></div>
+                    <div class="vdeolike pull-left"></div>
+                    <div class="vdeovwCunt pull-left">60</div>
+                </div>
+            </div>
+            <div class="row vdoethmbTxt">
+                <div class="col-md-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+            </div>
+        </div>
+    </div>
+    <!---TopvideosingleSliderEnd--->
+</div>
+<!---TopvideoSliderrowEnd--->
+
+<!---TopvideoSliderrowStart--->
+<div class="item" style="width:100%; background:#fff; ">
+    <!---TopvideosingleSliderstart--->
+    <div class="col-md-3 glryVdoSctn">
+        <div class="nxtsliders">
+            <div class="PlayIcn1"></div>
+            <div class="vdoethmb"><img class="img-responsive" src="<?php echo Yii::app()->request->baseUrl; ?>/images/thumb-1.png"/></div>
+            <div class="row vdoethmbDtls">
+                <div class="col-md-5 glryvdeoTy">Humour</div>
+                <div class="col-md-4 pull-right">
+                    <div class="vdeoFcbk pull-left"></div>
+                    <div class="vdeolike pull-left"></div>
+                    <div class="vdeovwCunt pull-left">60</div>
+                </div>
+            </div>
+            <div class="row vdoethmbTxt">
+                <div class="col-md-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+            </div>
+        </div>
+    </div>
+    <!---TopvideosingleSliderEnd--->
+    <!---TopvideosingleSliderstart--->
+    <div class="col-md-3 glryVdoSctn">
+        <div class="nxtsliders">
+            <div class="PlayIcn1"></div>
+            <div class="vdoethmb"><img class="img-responsive" src="<?php echo Yii::app()->request->baseUrl; ?>/images/thumb-1.png"/></div>
+            <div class="row vdoethmbDtls">
+                <div class="col-md-5 glryvdeoTy">Humour</div>
+                <div class="col-md-4 pull-right">
+                    <div class="vdeoFcbk pull-left"></div>
+                    <div class="vdeolike pull-left"></div>
+                    <div class="vdeovwCunt pull-left">60</div>
+                </div>
+            </div>
+            <div class="row vdoethmbTxt">
+                <div class="col-md-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+            </div>
+        </div>
+    </div>
+    <!---TopvideosingleSliderEnd--->
+    <!---TopvideosingleSliderstart--->
+    <div class="col-md-3 glryVdoSctn">
+        <div class="nxtsliders">
+            <div class="PlayIcn1"></div>
+            <div class="vdoethmb"><img class="img-responsive" src="<?php echo Yii::app()->request->baseUrl; ?>/images/thumb-1.png"/></div>
+            <div class="row vdoethmbDtls">
+                <div class="col-md-5 glryvdeoTy">Humour</div>
+                <div class="col-md-4 pull-right">
+                    <div class="vdeoFcbk pull-left"></div>
+                    <div class="vdeolike pull-left"></div>
+                    <div class="vdeovwCunt pull-left">60</div>
+                </div>
+            </div>
+            <div class="row vdoethmbTxt">
+                <div class="col-md-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+            </div>
+        </div>
+    </div>
+    <!---TopvideosingleSliderEnd--->
+    <!---TopvideosingleSliderstart--->
+    <div class="col-md-3 glryVdoSctn">
+        <div class="nxtsliders">
+            <div class="PlayIcn1"></div>
+            <div class="vdoethmb"><img class="img-responsive" src="<?php echo Yii::app()->request->baseUrl; ?>/images/thumb-1.png"/></div>
+            <div class="row vdoethmbDtls">
+                <div class="col-md-5 glryvdeoTy">Humour</div>
+                <div class="col-md-4 pull-right">
+                    <div class="vdeoFcbk pull-left"></div>
+                    <div class="vdeolike pull-left"></div>
+                    <div class="vdeovwCunt pull-left">60</div>
+                </div>
+            </div>
+            <div class="row vdoethmbTxt">
+                <div class="col-md-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+            </div>
+        </div>
+    </div>
+    <!---TopvideosingleSliderEnd--->
+</div>
+<!---TopvideoSliderrowEnd--->
+
+</div>
+
+<!-- LeftandrightcontrolsStart-->
+<a class="left carousel-control" style="" href="#myCarousel" role="button" data-slide="prev">
+    <span class="glyphicon crslnxt"><i class="fa fa-angle-left clr2"></i></span>
+</a>
+<a class="right carousel-control cbp-binext" href="#myCarousel" role="button" data-slide="next">
+    <span class="glyphicon crslprv"><i class="fa fa-angle-right clr2"></i></span>
+</a>
+<!-- LeftandrightcontrolsEnd-->
+</div>
+<a href="<?=Yii::app()->createAbsoluteUrl('/gallery/'); ?>">
+    <div class="glryBtn lilita">View Gallery</div>
+</a>
+
+<div class="row lilita mblbtmTxt clr2">
+    <div class="col-md-5 pull-left">#Bnatural #Dubfest</div>
+    <div class="col-md-2 pull-right btmShrIcn Shricn"></div>
+</div>
+
+</div>
+</div>
+<!---TopvideoSliderEnd--->

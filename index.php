@@ -1,6 +1,6 @@
 <?php
 $domain = $_SERVER['SERVER_NAME'];
-$environment = ($domain == 'b2natural.local.com') ? 'dev' : 'production';
+$environment = ($domain == 'localhost') ? 'dev' : 'production';
 
 // change the following paths if necessary
 $yii=dirname(__FILE__).'/../yiiFramework/framework/yii.php';
