@@ -12,7 +12,7 @@ return CMap::mergeArray(
     array(
         'components' => array(
             'db' => array(
-                'connectionString' => 'mysql:host=localhost;dbname=comedyhunt3',
+                'connectionString' => 'mysql:host=localhost;dbname=dubfest',
                 'emulatePrepare' => true,
                 'username' => 'root',
                 'password' => 'admin',

@@ -1,2 +1,5 @@
-assests/
-nbproject/
+/nbproject/private/
+/assets/
+/nbproject/project.properties
+/nbproject/*
+/protected/runtime/*

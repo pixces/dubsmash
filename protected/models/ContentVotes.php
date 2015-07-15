@@ -1,25 +1,24 @@
 <?php
 
 /**
- * This is the model class for table "admin".
+ * This is the model class for table "content_votes".
  *
- * The followings are the available columns in table 'admin':
+ * The followings are the available columns in table 'content_votes':
  * @property integer $id
- * @property string $name
+ * @property string $date
+ * @property integer $content_id
+ * @property string $username
  * @property string $email
- * @property string $password
- * @property string $last_login_time
- * @property string $date_created
- * @property string $date_modified
+ * @property string $user_ip
  */
-class Admin extends CActiveRecord
+class ContentVotes extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'admin';
+		return 'content_votes';
 	}
 
 	/**
@@ -30,13 +29,14 @@ class Admin extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, email, password, date_created, date_modified', 'required'),
-			array('name, email', 'length', 'max'=>150),
-			array('password', 'length', 'max'=>50),
-			array('last_login_time', 'safe'),
+			array('date, content_id, username, email, user_ip', 'required'),
+			array('content_id', 'numerical', 'integerOnly'=>true),
+			array('username', 'length', 'max'=>256),
+			array('email', 'length', 'max'=>250),
+			array('user_ip', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, email, password, last_login_time, date_created, date_modified', 'safe', 'on'=>'search'),
+			array('id, date, content_id, username, email, user_ip', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,12 +58,11 @@ class Admin extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
+			'date' => 'Date',
+			'content_id' => 'Content',
+			'username' => 'Username',
 			'email' => 'Email',
-			'password' => 'Password',
-			'last_login_time' => 'Last Login Time',
-			'date_created' => 'Date Created',
-			'date_modified' => 'Date Modified',
+			'user_ip' => 'User Ip',
 		);
 	}
 
@@ -86,12 +85,11 @@ class Admin extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
+		$criteria->compare('date',$this->date,true);
+		$criteria->compare('content_id',$this->content_id);
+		$criteria->compare('username',$this->username,true);
 		$criteria->compare('email',$this->email,true);
-		$criteria->compare('password',$this->password,true);
-		$criteria->compare('last_login_time',$this->last_login_time,true);
-		$criteria->compare('date_created',$this->date_created,true);
-		$criteria->compare('date_modified',$this->date_modified,true);
+		$criteria->compare('user_ip',$this->user_ip,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -102,15 +100,10 @@ class Admin extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Admin the static model class
+	 * @return ContentVotes the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
 	}
-
-    public static function encrypt($string){
-        return md5($string);
-    }
-
 }
