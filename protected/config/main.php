@@ -19,7 +19,7 @@ return array(
         'ext.eoauth.lib.*',
         'ext.eauth.*',
         'ext.eauth.services.*',
-        'application.extensions.s3upload.*',
+        'application.extensions.s3upload.*',//S3 Bucket Plugin
     ),
     'modules' => array(
         'admin'
@@ -30,28 +30,7 @@ return array(
             // enable cookie-based authentication
             'allowAutoLogin' => true,
         ),
-        'eauth' => array(
-            'class' => 'ext.eauth.EAuth',
-            //'popup' => false,
-            'services' => array(
-                'google' => array(
-                    // register your app here: https://code.google.com/apis/console/
-                    'class' => 'GoogleOAuthService',
-                    'client_id' => '175405591801-md5i4q8l7ntlgn51thsj7lb8n3075sld.apps.googleusercontent.com',
-                    'client_secret' => 'HTiRs_Z9j0SMwoo3tFj5J9eK',
-                    'title' => 'Google (OAuth2)',
-                ),
-                'facebook' => array(
-                    // register your app here: https://developers.facebook.com/apps/
-                    'class' => 'FacebookOAuthService',
-                    'client_id' => '718458091615558',
-                    'client_secret' => '05b244a14eb132866106d7981141bdbe',
-                ),
-            ),
-        ),
-        'loid' => array(
-            'class' => 'ext.lightopenid.loid',
-        ),
+       
         // uncomment the following to enable URLs in path-format
         'urlManager' => array(
             'urlFormat' => 'path',
