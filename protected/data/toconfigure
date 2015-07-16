@@ -39,3 +39,18 @@
                     'client_secret' => '05b244a14eb132866106d7981141bdbe',
                 ),
 ##################################################################
+
+
+
+#################### Google ########################
+
+Set the Google Api credentials in main.php as below
+'google' => array(
+                    // register your app here: https://code.google.com/apis/console/
+                    'class' => 'GoogleOAuthService',
+                    'client_id' => '175405591801-md5i4q8l7ntlgn51thsj7lb8n3075sld.apps.googleusercontent.com',
+                    'client_secret' => 'HTiRs_Z9j0SMwoo3tFj5J9eK',
+                    'title' => 'Google (OAuth2)',
+                ),
+
+#############################################################################################################
