@@ -21,11 +21,20 @@ class PagesController extends Controller
      */
     protected $oYoutube = null;
 
+    public function actionIndex(){
+        $this->render('index');
+    }
+
+    public function actionTvc(){
+        $this->render('tvc');
+    }
+
+
     /**
      * This is the default 'index' action that is invoked
      * when an action is not explicitly requested by users.
      */
-    public function actionIndex()
+    public function actionIndex_old()
     {
 
         $model      = new SubmissionForm();

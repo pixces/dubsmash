@@ -1,159 +1,156 @@
-<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<title>Comedy Hunt</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-
-	<!-- Style Starts Here -->
-	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css' />
-	<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/vendor/owl.carousel.css" type='text/css' />
-	<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/vendor/owl.theme.css" type='text/css' />
-	<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/vendor/owl.transitions.css" type='text/css' />
-    <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/vendor/jquery.jscrollpane.css" type='text/css' />
-    <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/style.css" type='text/css' />
-    <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/media-queries.css" type='text/css' />
-	<!-- Style Ends Here -->
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/font-awesome.min.css">
+    <!-- link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap-glyphicons.css" -->
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.min.1.11.3.js"></script>
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.min.js"></script>
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/carousel.js"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/component.css"/>
+    <style>
+        .carousel-inner > .item > img,
+        .carousel-inner > .item > a > img {
+            width: 70%;
+            margin: auto;
+        }
+    </style>
+    <title></title>
 </head>
 <body>
-	<div class="CH-Wrapper">
+<div class="topShrIcn Shricn"></div>
+<div class="container bgAnmtn">
+    <div class="main">
+        <ul id="cbp-bislideshow" class="cbp-bislideshow">
+            <li><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/1.jpg" alt="image01"/></li>
+            <li><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/2.jpg" alt="image02"/></li>
+            <li><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/3.jpg" alt="image03"/></li>
+        </ul>
+    </div>
+    <div style="width:100%; display:none; height:1000px; background:red;"></div>
+</div>
+<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/modernizr.custom.js"></script>
+<!-- imagesLoaded jQuery plugin by @desandro : https://github.com/desandro/imagesloaded -->
+<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.imagesloaded.min.js"></script>
+<?php if ($this->pagename != 'gallery') { ?>
+<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/cbpBGSlideshow.min.js"></script>
+<?php } ?>
+<script>
+    $(function () {
+        cbpBGSlideshow.init();
+    });
+</script>
 
-		<!-- Navigation Starts Here -->
-		<div class="CH-NavWrapper">
-			<div class="CH-Navigation">
-				<!-- Main Menu Starts Here -->
-				<div class="CH-MainMenu">
-					<a id="CH-MobileMenu" href="javascript:void(0)"></a>
-					<ul>
-                        <li><a href="<?=Yii::app()->createAbsoluteUrl('/'); ?>" class="<?=($this->pagename == 'index') ? 'active ':''; ?> transition">Home</a></li>
-                        <!--<li><a href="<?=Yii::app()->createAbsoluteUrl('/gallery/'); ?>" class="<?=($this->pagename == 'gallery') ? 'active ':''; ?>transition">Gallery</a></li>
-                        <li><a href="<?=Yii::app()->createAbsoluteUrl('/site/faq/'); ?>" class="<?=($this->pagename == 'faq') ? 'active ':''; ?>transition">Faq's</a></li> -->
-                        <li class="no-border"><a href="<?=Yii::app()->createAbsoluteUrl('/site/page/?view=rules'); ?>" class="<?=($this->pagename == 'page') ? 'active ':''; ?>transition">Rules</a></li>
-					</ul>
-				</div>
-				<!-- Main Menu Ends Here -->
+<div id="bodyWrapper">
+<div class="container header">
+    <header>
+        <div class="row hdrSctn">
+            <div class="col-md-1 lilita pull-right itc">
+                <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/itcLogo.png"/>
+            </div>
+            <div class="col-md-1 lilita pull-right itcNtrlLogo">
+                <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/smdvcitcLogo.png"/>
+            </div>
+            <div class="col-md-4 lilita pull-right">
+                <div class="row">
+                    <div class="navbar">
+                        <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <div class="collapse navbar-collapse navHeaderCollapse">
+                            <ul class="nav navbar-nav navbar-right menu">
+                                <a href="<?=Yii::app()->createAbsoluteUrl('/'); ?>" class="navbar-link"><div class="col-md-4 navMenu text-center">Home</div></a>
+                                <a href="<?=Yii::app()->createAbsoluteUrl('/gallery/'); ?>" class="navbar-link"><div class="col-md-4 navMenu text-center">Gallery</div></a>
+                                <a href="<?=Yii::app()->createAbsoluteUrl('/watch-tvc/'); ?>" class="navbar-link"><div class="col-md-4 navMenu2 text-center">Watch TVC</div></a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-md-push-4 logo"><img class="text-center" src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo.png"/></div>
+        </div>
+    </header>
+</div>
+<!-- Content : Start //-->
+<?php echo $content; ?>
+<!-- Content : End //-->
+<div class="row footer">
+    <div class="container">
+        <div class="col-md-5">
+            <div class="cpyrght">Copyright 2015 at ITC B Natural. All Rights Reserved</div>
+        </div>
 
-				<!-- Social Icons Starts Here -->
-				<div class="CH-SocialIcons">
-					<ul>
-						<!--li class="googleplus"><a href="javascript:void(0)" class="transition"></a></li-->
-						<li class="facebook"><a href="https://www.facebook.com/ComedyHunt?fref=ts" target="_blank" class="transition"></a></li>
-						<li class="twitter"><a href="https://twitter.com/comedyhunt" target="_blank" class="transition"></a></li>
-					</ul>
-				</div>
-				<!-- Social Icons Ends Here -->
-			</div>
-		</div>
-		<!-- Navigation Ends Here -->
+        <div class="col-md-7 pull-right ScndrMenu">
+            <ul class="">
+                <li><a href="dubfestContact.html">Contact Us</a></li>
+                <li><a href="#">Privacy</a></li>
+                <li><a href="dubfestTerms.html">terms & conditions</a></li>
+                <li><a href="#">Contest terms & conditions</a></li>
+                <li><a href="#">ITC Portal</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div>
+<!---universalPoupupStart--->
+<div class="UnivrslPoupup hide">
+    <div class="">
+        <!--VideoPoupupContentStart--->
+        <div class="videoSctn hide">
+            <div class="univrslPoupClose"><i class="fa fa-times"></i></div>
+            <div class="row">
+                <div class="col-md-9">
+                    <h3 class="lilita clr2">Contact Us</h3>
+                </div>
+                <div class="col-md-12">
+                    <p>Morbi viverra mattis leo vitae faucibus. Sed vel quam pellentesque felis hendrerit mollis. Fusce elementum laoreet efficitur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames #Bnatural #Dubfest.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <img src="images/tst.jpg" style=" padding-bottom: 20px;width: 520px;" />
+                </div>
+                <div class="col-md-4 clr1">
+                    <div class="votNowFrm pull-left">
+                        <div class="col-xs-12 form-group">
+                            <label>Your Name*</label>
+                            <input class="form-control" type="text"/>
+                        </div>
+                        <div class="col-xs-12 form-group">
+                            <label>Your Email*</label>
+                            <input class="form-control" type="text"/>
+                        </div>
+                        <div class="col-xs-12 form-group">
+                            <div class="glryBtn glryLoad lilita clr4"><i class="fa fa-heart"></i>Vote Now</div>
+                        </div>
+                    </div>
+                    <div class="ShareSctn pull-left lilita" style="font-size:21px;">Share it On<img src="images/fbicn.png" /></div>
+                </div>
+            </div>
+        </div>
+        <!--VideoPoupupContentEnd--->
 
-        <!-- Content Starts -->
-        <?php echo $content; ?>
-        <!-- Content Ends -->
-
-		<!-- Client Logo Starts Here -->
-		<div class="CH-ClientLogo">
-			<div class="CH-ClientLogoBG"></div>
-			<div class="CH-ClientLogoBlk">
-            	<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/footer-logo.png" class="img-responsive" />
-				<!--ul>
-					<li><a href="javascript:void(0)"><img src="images/quikr-logo.png" /></a></li>
-					<li><a href="javascript:void(0)"><img src="images/micromax-logo.png" /></a></li>
-					<li><a href="javascript:void(0)"><img src="images/royal-challenge-logo.png" /></a></li>
-					<li><a href="javascript:void(0)"><img src="images/garnier-men-logo.png" /></a></li>
-					<li><a href="javascript:void(0)"><img src="images/5star-logo.png" /></a></li>
-					<li><a href="javascript:void(0)"><img src="images/sprite-logo.png" /></a></li>
-					<li><a href="javascript:void(0)"><img src="images/yoddly-logo.png" /></a></li>
-				</ul-->
-			</div>
-			<div class="CH-SocialIcons">
-				<ul>
-					<li class="sharetext">Follow Us</li>
-					<!--li class="googleplus"><a href="javascript:void(0)" class="transition"></a></li-->
-					<li class="facebook"><a href="https://www.facebook.com/ComedyHunt?fref=ts" target="_blank" class="transition"></a></li>
-					<li class="twitter"><a href="https://twitter.com/comedyhunt" target="_blank" class="transition"></a></li>
-				</ul>
-			</div>
-			<div class="CH-Links">
-				<ul>
-					<li><a href="https://youtube.com" target="_blank">Youtube</a></li>
-					<li><a href="<?=Yii::app()->createAbsoluteUrl('/site/page/?view=rules'); ?>" target="_blank">Terms &amp; Conditions</a></li>
-				</ul>
-				<div class="CH-CopyRight">&copy; copyright 2015. All rights reserved</div>
-			</div>
-		</div>
-		<!-- Client Logo Ends Here -->
-	</div>
-
-	<!-- Overlay Starts Here -->
-    <div class="overlay-wrapper"></div>
-
-    <div class="overlay-content popup1">
-    	<div class="close-btn"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/close-icon-black.png" /></div>
-		<div class="overlay-title"></div>
-		<div class="overlay-description">
-			<div class="modalVideo"></div>
-		</div>
-	</div>
-	
-	<div class="overlay-content popup2">
-    	<div class="close-btn"><img src="images/close-icon-black.png" /></div>
-		<div class="CH-YouTubeTitle">Your Videos</div>
-		<form id="YouTubeForm" novalidate name="YouTubeForm" action="<?=Yii::app()->createUrl('/pages/Save/'); ?>">
-			<div id="CH-YouTubeListContainer">
-				<div class="CH-YouTubeList">
-					<div class="scroll-pane">
-						
-					</div>
-				</div>
-			</div>
-			<div class="CH-YouTubeListFormGroup">
-				<label for="name">Your Name</label>
-				<input type="text" name="name" id="name" placeholder="Enter your name" />
-			</div>
-			<input type="hidden" class="YouTubeVideoID" id="YTVideoID" name="YTVideoID" value="" />
-			<input type="hidden" class="YouTubeVideoThumbURL" id="YTVideoThumbURL" name="YTVideoThumbURL" value=""  />
-			<input type="hidden" class="YouTubeVideoBigURL" id="YTVideoBigURL" name="YTVideoBigURL" value=""  />
-			<input type="hidden" class="YouTubeVideoTitle" id="YTVideoTitle" name="YTVideoTitle" value=""  />
-			<input type="hidden" class="YouTubeVideoDescription" id="YTVideoDescription" name="YTVideoDescription" value=""  />
-			<input type="hidden" class="YouTubeVideoChannelId" id="YTVideoChannelId" name="YTVideoChannelId" value=""  />
-			<input type="hidden" class="YouTubeVideoChannelTitle" id="YTVideoChannelTitle" name="YTVideoChannelTitle" value=""  />
-			<input type="submit" value="submit" class="CH-YouTubeVideoSubmit" />
-			<div class="CH-YouTubeNote">* Please make sure your video is authorized to the public.</div>
-		</form>
-	</div>
-	
-	<div class="overlay-content popup3">
-    	<div class="close-btn"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/close-icon-black.png" /></div>
-		<div class="overlayTitle">All you need to know about the Comedy Hunt</div>
-		<div class="overlay-description">
-			<div class="modalVideo1">
-				<iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLX19kCCkfm1q2-4Of5DynRQC-W4AZ-sCy" frameborder="0" allowfullscreen></iframe>
-			</div>
-		</div>
-	</div>
-    <!-- Overlay Ends Here -->
-
-	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/vendor/jquery-1.11.1.min.js"></script>
-	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/vendor/owl.carousel.min.js"></script>
-	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/vendor/jquery.mousewheel.js"></script>
-	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/vendor/jquery.jscrollpane.min.js"></script>
-	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/vendor/jquery.validate.min.js"></script>
-
-    <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/vendor/jquery.youtubeplaylist.js"></script>
-    <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/main.js"></script>
-	
-	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-	  ga('create', 'UA-3365665-9', 'auto');
-	  ga('send', 'pageview');
-
-	</script>
+        <!--ContctFormPoupupContentStart--->
+        <div class="cntct hide">
+            <div class="univrslPoupClose"><i class="fa fa-times"></i></div>
+            <form method="post" id="customForm">
+                <h3 class="lilita clr2">Contact Us</h3>
+                <label for="name">Name:*</label>
+                <input id="name" name="name" type="text">
+                <label for="name">Contact No:*</label>
+                <input id="mobile" name="mobile" type="text">
+                <label for="email">E-mail:*</label>
+                <input id="email" name="email" type="text">
+                <label for="message">Type your message here...</label>
+                <textarea id="message" name="message" cols="8" rows="5"></textarea>
+                <input id="send" name="send" type="submit" class="lilita" value="Submit">
+            </form>
+        </div>
+        <!--ContctFormPoupupContentEnd--->
+    </div>
+</div>
+<!---universalPoupupStart--->
 </body>
 </html>

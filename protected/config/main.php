@@ -58,10 +58,11 @@ return array(
         // uncomment the following to enable URLs in path-format
         'urlManager' => array(
             'urlFormat' => 'path',
-            'showScriptName' => false,
+            //'showScriptName' => false,
             'caseSensitive' => false,
             'rules' => array(
                 '/' => 'pages/index',
+                '/watch-tvc' => 'pages/tvc',
                 '/register' => '/pages/participateForm',
                 '/pages/index/<code:\w+>' => '/pages/index',
                 '/authenticate/?<code:\w+>' => '/pages/authenticate',
