@@ -1,8 +1,4 @@
 <?php
-//AWS access info
-if (!defined('awsAccessKey')) define('awsAccessKey', 'AKIAJH5ZGO6NVLVOUS4A');
-if (!defined('awsSecretKey'))
-        define('awsSecretKey', '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');
 
 class PagesController extends Controller
 {
@@ -518,13 +514,24 @@ class PagesController extends Controller
 
        // print_r($_FILES);exit;
         $aSocialNetworkInfo=[];
-        /**
-         * Facebook
-         */
+        
         if (isset(Yii::app()->session['eauth_profile'])) {
             
             $session = Yii::app()->session['eauth_profile'];
-            $socialNetworkUsername=Yii::app()->session['eauth_profile']['first_name'].' '.Yii::app()->session['eauth_profile']['last_name'];
+            /**
+         * Facebook
+         */
+            if(isset(Yii::app()->session['eauth_profile']['first_name'])){
+                $socialNetworkUsername=Yii::app()->session['eauth_profile']['first_name'].' '.Yii::app()->session['eauth_profile']['last_name'];
+            }
+            /**
+         * Google
+         */
+            else if(isset(Yii::app()->session['eauth_profile']['name'])){
+              $socialNetworkUsername=Yii::app()->session['eauth_profile']['name'];
+
+            }
+            
             $socialNetworkEmail=Yii::app()->session['eauth_profile']['email'];
             $aSocialNetworkInfo['name']=$socialNetworkUsername;
             $aSocialNetworkInfo['email']=$socialNetworkEmail;

@@ -72,7 +72,7 @@ class LoginController extends Controller{
                         $oParams->serviceName = "facebook";
                         $oParams->returnUrl   = Yii::app()->getBaseUrl(true).'/'.'site/login';
                         $oParams->cancelUrl   = $this->createAbsoluteUrl('site/login');
-                        $aResponseJson        = Utility::facebookUserAuthentication($oParams);
+                        $aResponseJson        = Utility::socialMediaUserAuthentication($oParams);
                         $aResonse             = json_decode($aResponseJson, true);
                         if ($aResonse['error'] == 1 && $aResonse['status']==false) {
                              $msg= $aResonse['message'];
@@ -80,7 +80,21 @@ class LoginController extends Controller{
                         }
                     }
                 case "google":
+                     if (!isset(Yii::app()->session['eauth_profile'])){
+                        $oParams              = new stdClass();
+                        $oParams->serviceName = "google";
+                        $oParams->returnUrl   = Yii::app()->getBaseUrl(true).'/'.'login/socialLogin?socialNetwork=google';
+                        $oParams->cancelUrl   = Yii::app()->getBaseUrl(true).'/'.'login/socialLogin?socialNetwork=google';
 
+                        //print_r($oParams);exit;
+
+                        $aResponseJson        = Utility::socialMediaUserAuthentication($oParams);
+                        $aResonse             = json_decode($aResponseJson, true);
+                        if ($aResonse['error'] == 1 && $aResonse['status']==false) {
+                             $msg= $aResonse['message'];
+                            throw new Exception($msg);
+                        }
+                    }
 
                 default:
 

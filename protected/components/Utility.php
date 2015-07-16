@@ -123,7 +123,7 @@ class Utility
         return stristr($parts['host'], 'youtube');
     }
 
-    public static function facebookUserAuthentication($oParams)
+    public static function socialMediaUserAuthentication($oParams)
     {
         $aResponse=['status'=>false,'message'=>'','error'=>0];
         $serviceName = $oParams->serviceName;

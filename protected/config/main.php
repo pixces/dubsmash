@@ -35,13 +35,10 @@ return array(
             //'popup' => false,
             'services' => array(
                 'google' => array(
-                    'class' => 'GoogleOpenIDService',
-                ),
-                'google-oauth' => array(
                     // register your app here: https://code.google.com/apis/console/
                     'class' => 'GoogleOAuthService',
-                    'client_id' => '',
-                    'client_secret' => '',
+                    'client_id' => '175405591801-md5i4q8l7ntlgn51thsj7lb8n3075sld.apps.googleusercontent.com',
+                    'client_secret' => 'HTiRs_Z9j0SMwoo3tFj5J9eK',
                     'title' => 'Google (OAuth2)',
                 ),
                 'facebook' => array(
