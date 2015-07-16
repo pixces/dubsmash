@@ -4,12 +4,18 @@
 	<link rel="stylesheet" href="css/bootstrap.css"/>
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<script src="js/jquery.min.1.11.3.js"></script>
-	<script src="Js/bootstrap.min.js"></script>
-	<script src="Js/carousel.js"></script>
-	<script type="text/javascript" src="js/validation.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/carousel.js"></script>
+        <script>
+            var submitUrl='<?php echo Yii::app()->createUrl("/register"); ?>';
+
+        </script>
+        <script type="text/javascript" src="js/validation.js"></script>
 	<script type="text/javascript" src="js/bootstrap-filestyle.min.js"></script>
-		<script>
+       
+	<script>
 	$( document ).ready(function() {
+            
 	// Iterate over each select element
 $('select').each(function () {
     // Cache the number of options
@@ -74,6 +80,11 @@ $('select').each(function () {
 });
 $(":file").filestyle({buttonName: "btn-primary"});
 	});
+
+        function send(){
+
+            alert("test");
+        }
 	</script>
 <title></title>
 </head>
@@ -97,14 +108,24 @@ Show your many sides,<img src="images/gif.gif" />
 </div>
 </div>
 
+<div class="row">
+<div class="col-md-12 thankYouCntr hide formResponse">
+<div class="row">
+<div class="col-sm-4"><img class="img-responsive" src="images/thankCrtn.png" /></div>
+<div class="col-sm-7 thankTxt lilita">Thank you for your submission!Your entry will be live after moderation.</br></br>
+<a href="dubfestGallery.html">Click here</a>to check out how others have fared!</div>
+</div>
+</div></div>
+
+
 <div class="row thankYouCntr Sbmtfrm row thankYouCntr Sbmtfrm">
 <div class="col-sm-7">
 <?php
     $form = $this->beginWidget('CActiveForm',
         array(
         'id' => 'customForm',
+         'action'=>'javascript:void(0);',
         'enableAjaxValidation' => false,
-        'method' => 'Post',
         'htmlOptions' => array('enctype' => 'multipart/form-data'),
     ));
     ?>
@@ -113,51 +134,54 @@ Show your many sides,<img src="images/gif.gif" />
 			<div class="col-xs-12 form-group">
 
                             <?php echo $form->labelEx($model,'username'); ?>
-                            <?php echo $form->textField($model,'username'); ?>
-                            <?php echo $form->error($model, 'username'); ?>
+                            <?php echo $form->textField($model,'username',array('value'=>isset($socialNetworkInfo['name']) ? $socialNetworkInfo['name'] : '','id'=>'name')); ?>
+                            <span id='nameInfo'></span>
 
 			</div>
 			<div class="col-xs-6 form-group">
                             <?php echo $form->labelEx($model, 'email'); ?>
-                            <?php echo $form->textField($model, 'email'); ?>
-                            <?php echo $form->error($model, 'email'); ?>
+                            <?php echo $form->textField($model, 'email',array('value'=>isset($socialNetworkInfo['email']) ? $socialNetworkInfo['email'] : '','id'=>'email')); ?>
+                            <span id='emailInfo'></span>
 			</div>
 			<div class="col-xs-6 form-group">
                             <?php echo $form->labelEx($model, 'mobile'); ?>
-                            <?php echo $form->textField($model, 'mobile'); ?>
-                            <?php echo $form->error($model, 'mobile'); ?>
+                            <?php echo $form->textField($model, 'mobile',array('id'=>'mobile')); ?>
+                            <span id='mobileInfo'></span>
 			</div>
 			<div class="col-xs-6 form-group">
                             <?php echo $form->labelEx($model, 'media_url'); ?>
-                            <?php echo $form->fileField($model, 'media_url',array('class'=>'filestyle','data-buttonName'=>"btn-primary")); ?>
-                            <?php echo $form->error($model, 'media_url'); ?>
+                            <?php echo $form->fileField($model, 'media_url',array('class'=>'filestyle','data-buttonName'=>"btn-primary",'id'=>'uploadvideo')); ?>
+                           <span id='uploadvideoInfo'></span>
 
 			</div>
 			<div class="col-xs-6 form-group">
                             <?php echo $form->labelEx($model, 'media_category'); ?>
                             <?php
                             echo CHtml::dropDownList('ParticipateForm[media_category]', array('All'=>'All'),
-                            $model->getAllCategories(), array('class'=>'GlrySlct','id'=>'selectbox1'));
+                            $model->getAllCategories(), array('class'=>'GlrySlct','id'=>'category'));
                             ?>
-                            <?php echo $form->error($model, 'media_category'); ?>
+                            <span id='categoryInfo'></span>
 			</div>
 			<div class="col-xs-12 form-group">
                             <?php echo $form->labelEx($model, 'media_title'); ?>
-                            <?php echo $form->textField($model, 'media_title'); ?>
-                            <?php echo $form->error($model, 'media_title'); ?>
+                            <?php echo $form->textField($model, 'media_title',array('id'=>'tittle')); ?>
+                            <span id='tittleInfo'></span>
+                            
 			</div>
 			<div class="col-xs-12 form-group">
                             <?php echo $form->labelEx($model, 'message'); ?>
                             <?php echo $form->textArea($model, 'message',array('id'=>'message','rows'=>"5",'cols'=>"8")); ?>
-                            <?php echo $form->error($model, 'message'); ?>
-
+                            <span id='messageInfo'></span>
 			</div>
 			<div class="col-xs-8 frmTerms">By choosing to participate in the B Natural Dubfest, you acknowledge that you have read & agreed to the
 			<a href="dubfestTerms.html">terms and conditions.</a>
 			</div>
 			<div class="col-xs-3 form-group pull-right text-center UpldBtnCntr">
                                  <?php echo CHtml::submitButton('Upload',array('class'=>'lilita glryLoad UpldBtn','id'=>'send')); ?>
-			</div>
+                            <span class='hide' id='ajax-loader-icon'>
+                                <h5> Please wait uploading...</h5>
+                            </span>
+                        </div>
 		</div>
 	 <?php $this->endWidget(); ?>
 

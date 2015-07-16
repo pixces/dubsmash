@@ -14,7 +14,7 @@
                     <div class="prtcptSctnCont">
                         <span class="fntSctn1"><img class="iPhnImage" src="<?php echo Yii::app()->request->baseUrl; ?>/images/prtcptMbl.png"/>Come be a part of the country's biggest dubfest and get a chance to <span class="fntSctn2">win an iPhone 6!</span></span>
                     </div>
-                    <div class="prcptBtn"><a href="/register">Participate Now</a></div>
+                    <div class="prcptBtn"><a href="/login">Participate Now</a></div>
                 </div>
                 <div class="text-center clr1 bntrl">#Bnatural #Dubfest</div>
             </div>

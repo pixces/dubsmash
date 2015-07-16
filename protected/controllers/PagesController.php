@@ -515,6 +515,22 @@ class PagesController extends Controller
      */
     public function actionParticipateForm()
     {
+
+       // print_r($_FILES);exit;
+        $aSocialNetworkInfo=[];
+        /**
+         * Facebook
+         */
+        if (isset(Yii::app()->session['eauth_profile'])) {
+            
+            $session = Yii::app()->session['eauth_profile'];
+            $socialNetworkUsername=Yii::app()->session['eauth_profile']['first_name'].' '.Yii::app()->session['eauth_profile']['last_name'];
+            $socialNetworkEmail=Yii::app()->session['eauth_profile']['email'];
+            $aSocialNetworkInfo['name']=$socialNetworkUsername;
+            $aSocialNetworkInfo['email']=$socialNetworkEmail;
+            unset(Yii::app()->session['eauth_profile']);
+
+        } 
         $bucketUpload=false;
         $model    = new ParticipateForm();
         if (isset($_POST['ParticipateForm'])) {
@@ -522,7 +538,7 @@ class PagesController extends Controller
             $model->attributes = $_POST['ParticipateForm'];
             
             $model->media_category=isset($_POST['ParticipateForm']['media_category']) ? $_POST['ParticipateForm']['media_category'] : 'All';
-
+            $model->media_url=$_FILES['ParticipateForm']['name']['media_url'];
             
             if ($model->validate()) {
 
@@ -585,16 +601,24 @@ class PagesController extends Controller
                 try {
                     if ($modelContent->save()) {
                         $transaction->commit();
-                    }else{
-                         CVarDumper::dump($modelContent->getErrors(), 56789, true);
+                        $aResponse=array('error'=>0,'message'=>'Successfully Registered');
+                        echo json_encode($aResponse);
                         Yii::app()->end();
+                    }else{
+                        $aResponse=array('error'=>0,'message'=>$modelContent->getErrors());
+                        echo json_encode($aResponse);
+                         //CVarDumper::dump($modelContent->getErrors(), 56789, true);
+                        exit;
                     }
                    
                     
                 } catch (Exception $e) {
                     $transaction->rollBack();
                     $msg = $e->getMessage();
-                    throw new Exception($msg);
+                    $aResponse=array('error'=>0,'message'=>$msg);
+                    echo json_encode($aResponse);
+                    exit;
+                   // throw new Exception($msg);
                 }
             }
         }
@@ -602,7 +626,17 @@ class PagesController extends Controller
         $this->render(
             $this->pagename, array(
             'model' => $model,
+            'socialNetworkInfo'=>$aSocialNetworkInfo
             )
         );
+    }
+
+    public function actionLoginOptions(){
+
+        $this->pagename = "//login/index";
+        $this->render(
+            $this->pagename
+        );
+
     }
 }

@@ -55,4 +55,55 @@ class LoginController extends Controller{
         Yii::app()->user->logout();
         $this->redirect(Yii::app()->homeUrl);
     }
+
+    /**
+     * Login Through Social Media 
+     */
+    public function actionSocialLogin()
+    {
+
+        $socialNetwork = Yii::app()->getRequest()->getParam('socialNetwork','');
+
+        if(isset( $socialNetwork )){
+            switch($socialNetwork){
+                case "facebook":
+                    if (!isset(Yii::app()->session['eauth_profile'])){
+                        $oParams              = new stdClass();
+                        $oParams->serviceName = "facebook";
+                        $oParams->returnUrl   = Yii::app()->getBaseUrl(true).'/'.'site/login';
+                        $oParams->cancelUrl   = $this->createAbsoluteUrl('site/login');
+                        $aResponseJson        = Utility::facebookUserAuthentication($oParams);
+                        $aResonse             = json_decode($aResponseJson, true);
+                        if ($aResonse['error'] == 1 && $aResonse['status']==false) {
+                             $msg= $aResonse['message'];
+                            throw new Exception($msg);
+                        }
+                    }
+                case "google":
+
+
+                default:
+
+                $this->redirect('/register');
+
+
+
+            }
+        }
+        
+    }
+
+    public function actionLoadRegsiterForm()
+    {
+
+        if (isset(Yii::app()->session['eauth_profile'])) {
+            $session = Yii::app()->session['eauth_profile'];
+            echo '<pre>';
+            print_r($session);
+            unset(Yii::app()->session['eauth_profile']);
+        } else {
+            $this->redirect('/site/register');
+        }
+    }
+
 } 

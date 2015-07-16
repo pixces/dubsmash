@@ -64,6 +64,7 @@ return array(
                 '/' => 'pages/index',
                 '/watch-tvc' => 'pages/tvc',
                 '/register' => '/pages/participateForm',
+                '/login'=>'/pages/loginOptions',
                 '/pages/index/<code:\w+>' => '/pages/index',
                 '/authenticate/?<code:\w+>' => '/pages/authenticate',
                 '/authenticate/' => '/pages/authenticate',
