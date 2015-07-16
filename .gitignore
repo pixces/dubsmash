@@ -2,6 +2,8 @@
 /nbproject/private/
 /nbproject/project.properties
 /nbproject/*
-/protected/runtime/*
-/uploads/*
+protected/runtime/
+uploads/
 protected/config/dev.php
+protected/config/production.php
+html/

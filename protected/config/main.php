@@ -66,13 +66,5 @@ return array(
     'params' => array(
         // this is used in contact page
         'adminEmail' => 'webmaster@example.com',
-        //youtube playlist configuration
-        'YT_PLAYLIST' => array(
-            'maxSize' => 50,
-            'isCache' => true,
-            'cacheLifetime' => 86400,
-            'cachePath' => dirname(__FILE__)."/../runtime/cache/",
-            'apiKey' => 'AIzaSyA4iw6xE5VRXg5c7s7JFcmlTO65gQIMjnE',
-        ),
     ),
 );
