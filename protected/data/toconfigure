@@ -11,3 +11,31 @@
 ),
 
 ########################################################
+
+
+################# Facebook App Creation Steps #################
+
+1. Create A App in Facebook Developer Account.
+2. Under Basic Setting Tab 
+
+        a Specify the display name
+        b Provide the App Domain [localhost does not work,so please a virtual host and specify the VH eg http://b2natural.local.com/
+        c Provide the Site Url Eg http://b2natural.local.com/
+        d Click Save.
+
+3.  Under Advanced Setting Tab 
+
+        a Enable Allow API Access to App Settings
+        b Provide Valid OAuth redirect URIs Eg http://b2natural.local.com/index.php/login/socialLogin?socialNetwork=facebook
+        c ClickSave Changes.
+
+4.   Provide the client_id and client_secret_key in main.php under config directory
+     as below
+
+        'facebook' => array(
+                    // register your app here: https://developers.facebook.com/apps/
+                    'class' => 'FacebookOAuthService',
+                    'client_id' => '718458091615558',
+                    'client_secret' => '05b244a14eb132866106d7981141bdbe',
+                ),
+##################################################################
