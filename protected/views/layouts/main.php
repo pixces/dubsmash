@@ -3,19 +3,13 @@
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/style.css"/>
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/font-awesome.min.css">
-    <!-- link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap-glyphicons.css" -->
+    <!--link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap-glyphicons.css" -->
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/component.css"/>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.min.1.11.3.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.min.js"></script>
-    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/carousel.js"></script>
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/component.css"/>
-    <style>
-        .carousel-inner > .item > img,
-        .carousel-inner > .item > a > img {
-            width: 70%;
-            margin: auto;
-        }
-    </style>
-    <title></title>
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/dubfest.js"></script>
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/modernizr.custom.js"></script>
+    <title>B Naturals Dubfest | powered by Sangram Singh</title>
 </head>
 <body>
 <div class="topShrIcn Shricn"></div>
@@ -29,28 +23,12 @@
     </div>
     <div style="width:100%; display:none; height:1000px; background:red;"></div>
 </div>
-<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/modernizr.custom.js"></script>
-<!-- imagesLoaded jQuery plugin by @desandro : https://github.com/desandro/imagesloaded -->
-<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.imagesloaded.min.js"></script>
-<?php if ($this->pagename != 'gallery') { ?>
-<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/cbpBGSlideshow.min.js"></script>
-<?php } ?>
-<script>
-    $(function () {
-        cbpBGSlideshow.init();
-    });
-</script>
-
 <div id="bodyWrapper">
 <div class="container header">
     <header>
         <div class="row hdrSctn">
-            <div class="col-md-1 lilita pull-right itc">
-                <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/itcLogo.png"/>
-            </div>
-            <div class="col-md-1 lilita pull-right itcNtrlLogo">
-                <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/smdvcitcLogo.png"/>
-            </div>
+            <div class="col-md-1 lilita pull-right itc"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/itcLogo.png"/></div>
+            <div class="col-md-1 lilita pull-right itcNtrlLogo"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/smdvcitcLogo.png"/></div>
             <div class="col-md-4 lilita pull-right">
                 <div class="row">
                     <div class="navbar">
@@ -74,26 +52,26 @@
     </header>
 </div>
 <!-- Content : Start //-->
-<?php echo $content; ?>
+    <?php echo $content; ?>
 <!-- Content : End //-->
 <div class="row footer">
     <div class="container">
         <div class="col-md-5">
             <div class="cpyrght">Copyright 2015 at ITC B Natural. All Rights Reserved</div>
         </div>
-
         <div class="col-md-7 pull-right ScndrMenu">
             <ul class="">
-                <li><a href="dubfestContact.html">Contact Us</a></li>
-                <li><a href="#">Privacy</a></li>
-                <li><a href="dubfestTerms.html">terms & conditions</a></li>
-                <li><a href="#">Contest terms & conditions</a></li>
-                <li><a href="#">ITC Portal</a></li>
+                <li><a href="<?=Yii::app()->createAbsoluteUrl('/'); ?>">Contact Us</a></li>
+                <li><a href="<?=Yii::app()->createAbsoluteUrl('/site/page?view=privacy-policy'); ?>">Privacy</a></li>
+                <li><a href="<?=Yii::app()->createAbsoluteUrl('/site/page?view=terms-conditions'); ?>">terms & conditions</a></li>
+                <li><a href="<?=Yii::app()->createAbsoluteUrl('/site/page?view=rules'); ?>">Contest terms & conditions</a></li>
+                <li><a href="<?=Yii::app()->createAbsoluteUrl('/'); ?>">ITC Portal</a></li>
             </ul>
         </div>
     </div>
 </div>
 </div>
+
 <!---universalPoupupStart--->
 <div class="UnivrslPoupup hide">
     <div class="">
@@ -152,5 +130,7 @@
     </div>
 </div>
 <!---universalPoupupStart--->
+
+<!-- load all custom JS -->
 </body>
 </html>

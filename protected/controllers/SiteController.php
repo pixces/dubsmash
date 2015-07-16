@@ -2,7 +2,7 @@
 
 class SiteController extends Controller
 {
-    //public $layout='//layouts/default';
+    public $layout='//layouts/static';
 
     /**
      * Declares class-based actions.
@@ -22,50 +22,6 @@ class SiteController extends Controller
             'page' => array(
                 'class' => 'CViewAction',
             ),
-        );
-    }
-
-    public function actionFaq()
-    {
-        //baisc youtube playlist params
-        $ytConfig = Yii::app()->params['YT_PlayList'];
-
-        $ytParams = array(
-            'api' => $ytConfig['apiKey'],
-            'max' => $ytConfig['maxSize'],
-            'cachexml' => $ytConfig['isCache'],
-            'cachelife' => $ytConfig['cacheLifetime'],
-            'xmlpath' => $ytConfig['cachePath'],
-            'start' => 1,
-            'descriptionlength' => 40,
-            'titlelength' => 20
-        );
-
-        $videoPlayList = array();
-
-        /* foreach(Yii::app()->params['YT_Faq_PlayListID'] as $id){
-          $obj = new CHPlaylist('playlist',$id,$ytParams);
-          array_push($videoPlayList, $obj->getInstance() );
-          } */
-
-        foreach (Yii::app()->params['YT_PlayListID']['faq'] as $sPlayListId) {
-            $obj = new CHPlaylist('playlist', $sPlayListId, $ytParams);
-            array_push($videoPlayList, $obj->getInstance());
-        }
-
-        //include the playlist js and css files
-        //Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/path/to/your/javascript/file',CClientScript::POS_END);
-        Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/vendor/youtubeplaylist.css');
-        Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/vendor/youtubeplaylist-right-with-thumbs.css');
-
-        $this->pagename = 'faq';
-        $this->render($this->pagename,
-            array(
-            //'video' => $video,
-            //'video2' => $video2,
-            'aVideoList' => $videoPlayList,
-            'pageName' => 'faq'
-            )
         );
     }
 
@@ -113,7 +69,6 @@ class SiteController extends Controller
 
     public function actionRegister()
     {
-
         $this->redirect('/site/login');
     }
 }

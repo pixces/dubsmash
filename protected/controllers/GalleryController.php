@@ -4,6 +4,9 @@ class GalleryController extends Controller
 {
     protected $gallerylimit = 50;
 
+    public $layout='//layouts/static';
+
+
     /**
      * @return array action filters
      */
