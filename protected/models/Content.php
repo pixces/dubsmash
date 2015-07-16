@@ -49,7 +49,7 @@ class Content extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('username, email, share_url, date_created, date_modified', 'required'),
+            array('username,email,share_url,', 'required'),
             array('is_ugc, vote', 'numerical', 'integerOnly' => true),
             array('username, channel_name', 'length', 'max' => 150),
             array('email, media_url, media_image, alternate_image, media_title, auth_profile_url',
@@ -63,7 +63,11 @@ class Content extends CActiveRecord
             array('auth_user_name, location', 'length', 'max' => 100),
             array('status', 'length', 'max' => 12),
             array('workflow_status', 'length', 'max' => 10),
-            array('message', 'safe'),
+            array('date_modified', 'default', 'value' => new CDbExpression('NOW()'),
+                'setOnEmpty' => false, 'on' => 'update'),
+            array('date_created,date_modified', 'default', 'value' => new CDbExpression('NOW()'),
+                'setOnEmpty' => false, 'on' => 'insert'),
+            array('message,', 'safe'),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
             array('id, username, email, mobile, media_url, media_alternate_url, media_id, media_image, alternate_image, channel_name, media_category, media_title, message, auth_source, auth_user_id, auth_user_name, auth_profile_url, location, is_ugc, share_url, vote, status, workflow_status, date_created, date_modified',
@@ -180,7 +184,6 @@ class Content extends CActiveRecord
 
     public function beforeSave()
     {
-
         if ($this->isNewRecord)
                 $this->date_created = new CDbExpression('NOW()');
 

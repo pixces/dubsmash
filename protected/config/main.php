@@ -19,6 +19,7 @@ return array(
         'ext.eoauth.lib.*',
         'ext.eauth.*',
         'ext.eauth.services.*',
+        'application.extensions.s3upload.*',
     ),
     'modules' => array(
         'admin'
@@ -61,6 +62,7 @@ return array(
             'caseSensitive' => false,
             'rules' => array(
                 '/' => 'pages/index',
+                '/register' => '/pages/participateForm',
                 '/pages/index/<code:\w+>' => '/pages/index',
                 '/authenticate/?<code:\w+>' => '/pages/authenticate',
                 '/authenticate/' => '/pages/authenticate',

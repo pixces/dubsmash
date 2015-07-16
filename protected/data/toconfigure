@@ -1,0 +1,13 @@
+############ Add S3 Credentials To Dev/Main.php as params
+
+'S3'=>array(
+    'awsAccessKey'=>'AKIAJH5ZGO6NVLVOUS4A',
+    'awsSecretKey'=>'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',
+    'bucket'=>'/p2-data/p2-slice/',
+),
+
+'UPLOAD'=>array(
+    'videodir'=>'/../uploads/',
+),
+
+########################################################

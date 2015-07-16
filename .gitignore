@@ -3,3 +3,5 @@
 /nbproject/project.properties
 /nbproject/*
 /protected/runtime/*
+/uploads/*
+/protected/config/dev.php

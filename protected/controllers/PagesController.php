@@ -1,4 +1,8 @@
 <?php
+//AWS access info
+if (!defined('awsAccessKey')) define('awsAccessKey', 'AKIAJH5ZGO6NVLVOUS4A');
+if (!defined('awsSecretKey'))
+        define('awsSecretKey', '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');
 
 class PagesController extends Controller
 {
@@ -23,9 +27,9 @@ class PagesController extends Controller
      */
     public function actionIndex()
     {
-       
-        $model = new SubmissionForm();
-        $auth = false;
+
+        $model      = new SubmissionForm();
+        $auth       = false;
         $submission = false;
 
         //fetch all the videos for the first page
@@ -62,15 +66,17 @@ class PagesController extends Controller
 
         //check if the user details are already set
         //then display the video link
-        if (isset(Yii::app()->session['auth'])){
-            $auth = isset(Yii::app()->session['auth']) ? Yii::app()->session['auth'] : false;
+        if (isset(Yii::app()->session['auth'])) {
+            $auth = isset(Yii::app()->session['auth']) ? Yii::app()->session['auth']
+                    : false;
         }
-        if (isset(Yii::app()->session['submission'])){
-            $submission = isset(Yii::app()->session['submission']) ? Yii::app()->session['submission'] : false;
+        if (isset(Yii::app()->session['submission'])) {
+            $submission = isset(Yii::app()->session['submission']) ? Yii::app()->session['submission']
+                    : false;
         }
 
         //when both are true reset the session
-        if ($auth && $submission){
+        if ($auth && $submission) {
             Yii::app()->session->remove('auth');
             Yii::app()->session->remove('submission');
         }
@@ -98,13 +104,13 @@ class PagesController extends Controller
         if (isset($_GET['code']) && !isset(Yii::app()->session['user_info'])) {
 
             $client->authenticate($_GET['code']);
-            $token = $client->getAccessToken();
+            $token   = $client->getAccessToken();
             $client->setAccessToken($token);
             $session = Yii::app()->session;
 
-            $session['auth_token']  = $client->getAccessToken();
+            $session['auth_token'] = $client->getAccessToken();
 
-            $plus = $this->getGooglePlus();
+            $plus         = $this->getGooglePlus();
             $user_profile = $plus->people->get('me');
 
             //parse and store the profile in session
@@ -125,23 +131,22 @@ class PagesController extends Controller
 
             Yii::app()->session['auth'] = true;
 
-            /*$this->redirect('/');*/			
-			echo "<script>setTimeout(function(){refreshParent();}, 500);  </script>";
-			echo "<script>function refreshParent(){ window.opener.location.reload(true); javascript:window.close();}</script>";
-			//echo "<script>window.opener.location = window.opener.window.location; alert(1);</script>";
+            /* $this->redirect('/'); */
+            echo "<script>setTimeout(function(){refreshParent();}, 500);  </script>";
+            echo "<script>function refreshParent(){ window.opener.location.reload(true); javascript:window.close();}</script>";
+            //echo "<script>window.opener.location = window.opener.window.location; alert(1);</script>";
             exit;
             Yii::app()->end();
-
         } else {
 
             //reset the session so as to do proper authentication
             Yii::app()->session->remove('auth');
             Yii::app()->session->remove('submission');
 
-            if (isset(Yii::app()->session['user_info'])){
+            if (isset(Yii::app()->session['user_info'])) {
                 Yii::app()->session->remove('user_info');
             }
-            
+
             $client->setScopes(array(
                 'https://www.googleapis.com/auth/youtube.readonly',
                 'https://www.googleapis.com/auth/plus.me',
@@ -257,9 +262,9 @@ class PagesController extends Controller
             $client_id     = Yii::app()->params['GOOGLE']['CLIENT_ID'];
             $client_secret = Yii::app()->params['GOOGLE']['SECRET'];
             $redirect_uri  = YII::app()->params['GOOGLE']['CALLBACK_URL'];
-            $developer_key  = YII::app()->params['GOOGLE']['DEVELOPER_KEY'];
+            $developer_key = YII::app()->params['GOOGLE']['DEVELOPER_KEY'];
             $this->oGoogle = new Google_Client();
-            $gg = $this->oGoogle;
+            $gg            = $this->oGoogle;
             $gg->setApplicationName('Comedy Hunt');
             $gg->setClientId($client_id);
             $gg->setClientSecret($client_secret);
@@ -448,7 +453,7 @@ class PagesController extends Controller
             $videoInfoArray[$videoObj->name] = $videoObj->value;
         }
 
-        $response=array('status'=>'','message'=>'');
+        $response = array('status' => '', 'message' => '');
         if (!empty($videoInfoArray)) {
             $contentModel                        = new Content();
             $contentModel->username              = $videoInfoArray['username'];
@@ -472,27 +477,123 @@ class PagesController extends Controller
             if ($contentModel->validate()) {
                 try {
                     if ($contentModel->save()) {
-                        $response['status']  = 'success';
-                        $response['message'] = 'Content added successfully';
+                        $response['status']               = 'success';
+                        $response['message']              = 'Content added successfully';
                         Yii::app()->session['submission'] = true;
                     }
                 } catch (Exception $e) {
-                    $response['status']  = 'fail';
-                    $response['message'] = $e->getMessage();
+                    $response['status']               = 'fail';
+                    $response['message']              = $e->getMessage();
                     Yii::app()->session['submission'] = false;
                 }
             } else {
-                $response['status']  = 'fail';
-                $response['message'] = $contentModel->getErrors();
+                $response['status']               = 'fail';
+                $response['message']              = $contentModel->getErrors();
                 Yii::app()->session['submission'] = false;
             }
-       } else {
-                $response['status']  = 'fail';
-                $response['message'] = 'Empty Response.';
-                Yii::app()->session['submission']= false;
-       }
+        } else {
+            $response['status']               = 'fail';
+            $response['message']              = 'Empty Response.';
+            Yii::app()->session['submission'] = false;
+        }
 
-       echo json_encode($response);
-       exit;
+        echo json_encode($response);
+        exit;
+    }
+
+    /**
+     * Action For Regsitration
+     */
+    public function actionParticipateForm()
+    {
+        $bucketUpload=false;
+        $model    = new ParticipateForm();
+        if (isset($_POST['ParticipateForm'])) {
+
+            $model->attributes = $_POST['ParticipateForm'];
+            
+            $model->media_category=isset($_POST['ParticipateForm']['media_category']) ? $_POST['ParticipateForm']['media_category'] : 'All';
+
+            
+            if ($model->validate()) {
+
+                $videoUploadPath=Yii::app()->basePath.Yii::app()->params['UPLOAD']['videodir'];
+
+                /*
+                 * Create The Directory if does not exist,remove in production.
+                 */
+                if (!file_exists($videoUploadPath)) {
+                    mkdir($videoUploadPath, 0777, true);
+                }
+
+                $model->media_url = CUploadedFile::getInstance($model,'media_url');
+
+                $uploadFile         = $videoUploadPath.$model->username.'_'.time().'_'.str_replace(' ','_', strtolower($model->media_url));
+
+                $model->media_url->saveAs($uploadFile);
+
+                $actual_image_name = time().'_'.baseName($uploadFile);
+
+                $fileSize = $model->media_url->getSize();
+
+                $fileType = $model->media_url->getType();
+
+
+                
+                /**
+                 * Upload File To S3 Bucket
+                 */
+                if($bucketUpload){
+                    
+                     $s3 = new S3(Yii::app()->params['S3']['awsAccessKey'], Yii::app()->params['S3']['awsSecretKey']);
+
+                    $s3bucketName=Yii::app()->params['S3']['bucket'];
+
+                    try{
+                         $s3->putObjectFile($uploadFile,$s3bucketName,$actual_image_name,S3::ACL_PUBLIC_READ);
+                    }
+                    catch(Exception $e){
+                        $msg = $e->getMessage();
+                        throw new Exception($msg);
+                    }
+
+                }
+               
+                /**
+                 * Save To Db: Content
+                 */
+                $modelContent=new Content;
+                $modelContent->username=$model->username;
+                $modelContent->email=$model->email;
+                $modelContent->share_url=$uploadFile;
+                $modelContent->message=$model->message;
+                $modelContent->media_title=$model->media_title;
+                $modelContent->media_category=$model->media_category;
+                $modelContent->mobile=$model->mobile;
+
+                $transaction = Yii::app()->db->beginTransaction();
+
+                try {
+                    if ($modelContent->save()) {
+                        $transaction->commit();
+                    }else{
+                         CVarDumper::dump($modelContent->getErrors(), 56789, true);
+                        Yii::app()->end();
+                    }
+                   
+                    
+                } catch (Exception $e) {
+                    $transaction->rollBack();
+                    $msg = $e->getMessage();
+                    throw new Exception($msg);
+                }
+            }
+        }
+        $this->pagename = "register";
+        $this->render(
+            $this->pagename, array(
+            'model' => $model,
+            )
+        );
     }
 }
