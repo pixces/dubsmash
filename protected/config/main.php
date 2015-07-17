@@ -34,7 +34,7 @@ return array(
         // uncomment the following to enable URLs in path-format
         'urlManager' => array(
             'urlFormat' => 'path',
-            //'showScriptName' => false,
+            'showScriptName' => false,
             'caseSensitive' => false,
             'rules' => array(
                 '/' => 'pages/index',

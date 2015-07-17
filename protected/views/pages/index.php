@@ -23,11 +23,15 @@
                         <div class="bntrl">Sign In <i class="fa fa-times pull-right pointer participatelgncls"></i>
                         </div>
                         <div class="sgnsclmdeaicncntr">
-                            <div class="sgnsclmdea sgnsclmdeagpls pointer"></div>
-                            <div class="sgnsclmdea sgnsclmdeafb pointer"></div>
+                            <div>
+                                <?php echo CHtml::link('',array('/login/socialLogin', 'socialNetwork' => 'google'),array('class'=>'sgnsclmdea sgnsclmdeagpls pointer')); ?>
+                            </div>
+                            <div class="">
+                               <?php echo CHtml::link('',array('/login/socialLogin', 'socialNetwork' => 'facebook'),array('class'=>'sgnsclmdea sgnsclmdeafb pointer')); ?>
+                            </div>
                         </div>
                         <div class="sgnscldvdr">OR</div>
-                        <div class="glryBtn"><a href="<?=Yii::app()->createAbsoluteUrl('/register/'); ?>">As Guest</a></div>
+                        <div class="glryBtn"><?php echo CHtml::link('As Guest',array('/login/socialLogin', 'socialNetwork' => 'guest')); ?></div>
                     </div>
 
 
