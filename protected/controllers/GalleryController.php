@@ -3,7 +3,7 @@
 class GalleryController extends Controller
 {
     protected $gallerylimit = 50;
-    public $layout = '//layouts/static';
+    public $layout          = '//layouts/static';
 
     /**
      * @return array action filters
@@ -51,15 +51,25 @@ class GalleryController extends Controller
         /**
          * Parameter Object
          */
-        $param             = new stdClass();
-        $param->status     = "approved";
-        $param->fields     = ['share_url'];
-        $page              = Yii::app()->getRequest()->getParam('page', 1);
-        $ajaxRequest       = Yii::app()->getRequest()->getParam('isAjaxRequest',
-            0);
+        $page        = Yii::app()->getRequest()->getParam('page', 1);
+        $option      = Yii::app()->getRequest()->getParam('option', '');
+        $ajaxRequest = Yii::app()->getRequest()->getParam('isAjaxRequest', 0);
+
+        $param         = new stdClass();
+        $param->status = "approved";
+        $param->fields = ['share_url'];
+
+        if ($option) {
+            $param->media_category = $option;
+        }
+
         $galleryVideosJson = $this->loadGalleryVideos($param, $page);
         $galleryVideos     = json_decode($galleryVideosJson, true);
 
+        if ($ajaxRequest) {
+           echo $this->renderPartial('_partialGalleryVideos',array('galleries' => $galleryVideos),true);
+           exit;
+        }
 
         /**
          * Normal Loading of the view ,and pass the partial view as String
@@ -209,11 +219,18 @@ class GalleryController extends Controller
         /**
          * Criteria Conditions
          */
+        $params['status'] = $paramObject->status;
+        $condition        = 'status=:status';
+        if (isset($paramObject->media_category)) {
+            $condition.='   AND media_category=:media_category';
+            $params['media_category'] = $paramObject->media_category;
+        }
         $Criteria            = new CDbCriteria;
-        $Criteria->condition = 'status=:status';
-        $Criteria->params    = array('status' => $paramObject->status);
+        $Criteria->condition = $condition;
+        $Criteria->params    = $params;
         $Criteria->order     = 'date_created DESC';
 
+      
         //if no limit is passed .. use galleryLimit as limit
         if (isset($limit)) {
             $limit = $limit;
@@ -223,7 +240,6 @@ class GalleryController extends Controller
 
         $Criteria->limit  = $limit;
         $Criteria->offset = (($page - 1) * $limit);
-
         if (Content::model()->count($Criteria)) {
             $GalleryVideos = Content::model()->findAll($Criteria);
             foreach ($GalleryVideos as $videoRow) {

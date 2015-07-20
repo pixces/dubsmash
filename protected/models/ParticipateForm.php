@@ -45,7 +45,7 @@ class ParticipateForm extends CFormModel
 
     public function getAllCategories()
     {
-        return ['All' => 'All', 'Humor' => 'Humor', 'Action' => 'Action', 'Songs' => 'Songs',
+        return ['All' => 'All', 'Humour' => 'Humour', 'Action' => 'Action', 'Songs' => 'Songs',
             'Drama' => 'Drama'];
     }
 }

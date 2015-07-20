@@ -1,66 +1,69 @@
 <div class="container">
-<header>
-<div class="row lilita tagLn">
-    <div class="col-md-12 text-center"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/fnIcn1.png"/>Get more votes, get more likes</div>
-</div>
-<div class="container ">
-<div class="row">
-<div class="col-md-12" style=" color:#fff;">
-
-<div class="row topVdesHdr topVdesHdrDtdln lilita">
-    <div class="col-md-7">
-        <div class="row">
-            <div class="col-md-4">Gallery<span class="SmlTxt">(all 136)</span></div>
-            <div class="col-md-3">
-                <select class="GlrySlct" id="selectbox1">
-                    <option>All</option>
-                    <option>Humour</option>
-                    <option>Action</option>
-                    <option>Songs</option>
-                    <option>Drama</option>
-                </select>
-            </div>
-            <div class="col-md-3">
-                <select class="GlrySlct">
-                    <option>Latest</option>
-                    <option>Humour</option>
-                    <option>Action</option>
-                    <option>Songs</option>
-                    <option>Drama</option>
-                </select>
-            </div>
+    <header>
+        <div class="row lilita tagLn">
+            <div class="col-md-12 text-center"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/fnIcn1.png"/>Get more votes, get more likes</div>
         </div>
-    </div>
-    <div class="col-md-3 text-right pull-right topVdescnt">
-        <input type="text" class="GlrySlct GlrySInpct " placeholder="Search Videos"/></div>
-</div>
+        <div class="container ">
+            <div class="row">
+                <div class="col-md-12" style=" color:#fff;">
 
-<div class="row glryCntr">
+                    <div class="row topVdesHdr topVdesHdrDtdln lilita">
+                        <div class="col-md-7">
+                            <div class="row">
+                                <div class="col-md-4">Gallery<span class="SmlTxt">(all 136)</span></div>
+                                <div class="col-md-3">
+                                    <select class="GlrySlct categoryOptionBox" id="selectbox1" >
+                                        <option>All</option>
+                                        <option>Humour</option>
+                                        <option>Action</option>
+                                        <option>Songs</option>
+                                        <option>Drama</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <select class="GlrySlct">
+                                        <option>Latest</option>
+                                        <option>Humour</option>
+                                        <option>Action</option>
+                                        <option>Songs</option>
+                                        <option>Drama</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 text-right pull-right topVdescnt">
+                            <input type="text" class="GlrySlct GlrySInpct " placeholder="Search Videos"/></div>
+                    </div>
 
-<?php $this->renderPartial('_partialGalleryVideos', array('galleries'=>$galleries)); ?>
+                    <div class="row glryCntr" id="dynamic-content-gallery">
+
+                        <?php
+                        $this->renderPartial('_partialGalleryVideos',
+                            array('galleries' => $galleries));
+                        ?>
 
 
-</div>
-<div class="glryBtn glryLoad lilita">Load More</div>
-</div>
-<span class="lilita clr1 fntsz25">#Bnatural #Dubfest</span>
-</div>
+                    </div>
+                    <div class="glryBtn glryLoad lilita">Load More</div>
+                </div>
+                <span class="lilita clr1 fntsz25">#Bnatural #Dubfest</span>
+            </div>
 
-</div>
+        </div>
 </div>
 <script>
-    $(document).ready(function () {
-        $(".univrslPoupClose").click(function () {
+    $(document).ready(function() {
+        $(".univrslPoupClose").click(function() {
             $(".UnivrslPoupup").addClass("hide");
         });
 
-        $(".vdoethmb").click(function () {
+        $(".vdoethmb").click(function() {
             $(".UnivrslPoupup").removeClass("hide");
             $(".videoSctn").removeClass("hide");
             $(".cntct").addClass("hide");
         });
 
-        $("#contact").click(function () {
+        $("#contact").click(function() {
             $(".UnivrslPoupup").removeClass("hide");
             $(".videoSctn").addClass("hide");
             $(".cntct").removeClass("hide");
@@ -68,11 +71,11 @@
 
 
         // Iterate over each select element
-        $('select').each(function () {
+        $('select').each(function() {
 
             // Cache the number of options
             var $this = $(this),
-                numberOfOptions = $(this).children('option').length;
+                    numberOfOptions = $(this).children('option').length;
 
             // Hides the select element
             $this.addClass('s-hidden');
@@ -106,9 +109,9 @@
             var $listItems = $list.children('li');
 
             // Show the unordered list when the styled div is clicked (also hides it if the div is clicked again)
-            $styledSelect.click(function (e) {
+            $styledSelect.click(function(e) {
                 e.stopPropagation();
-                $('div.styledSelect.active').each(function () {
+                $('div.styledSelect.active').each(function() {
                     $(this).removeClass('active').next('ul.options').hide();
                 });
                 $(this).toggleClass('active').next('ul.options').toggle();
@@ -116,20 +119,50 @@
 
             // Hides the unordered list when a list item is clicked and updates the styled div to show the selected list item
             // Updates the select element to have the value of the equivalent option
-            $listItems.click(function (e) {
+            $listItems.click(function(e) {
                 e.stopPropagation();
                 $styledSelect.text($(this).text()).removeClass('active');
                 $this.val($(this).attr('rel'));
                 $list.hide();
-                /* alert($this.val()); Uncomment this for demonstration! */
+                optionFilter($this.val());
             });
 
             // Hides the unordered list when clicking outside of it
-            $(document).click(function () {
+            $(document).click(function() {
                 $styledSelect.removeClass('active');
                 $list.hide();
             });
 
+            /**
+             *
+             * @param {String} option
+             * @returns {HTML}
+             */
+            var optionFilter = function(option) {
+                var queryString = {option: option, isAjaxRequest: 1};
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'html',
+                    url: '<?php echo Yii::app()->createUrl("/loadGallery"); ?>',
+                    data: queryString,
+                    success: function(data) {
+                        $("#dynamic-content-gallery").html(data);
+
+                    }, error: function(request, status, error) {
+                        alert(request.responseText);
+                    }
+                });
+
+
+            }
+
+
+
+
+
+
         });
     });
+
+
 </script>

@@ -560,7 +560,7 @@ class PagesController extends Controller
 
                 $model->media_url = CUploadedFile::getInstance($model,'media_url');
                 $newFileName=$model->username.'_'.time().'_'.str_replace(' ','_', strtolower($model->media_url));
-                $uploadFile         = $videoUploadPath.$newFileName;
+                $uploadFile         = $videoUploadPath.DIRECTORY_SEPARATOR.$newFileName;
 
                 $model->media_url->saveAs($uploadFile);
 
