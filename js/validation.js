@@ -42,7 +42,6 @@ $(document).ready(function(){
 
             if(validateName() & validatetittle() & validateMobile() & validateEmail() &  validateMessage() &  validateuploadvideo() &  validatecategory())
             {
-                alert("test");
                 var formData =  new FormData($('#customForm')[0]);
                 $.ajax({
                             url: submitUrl,
@@ -57,7 +56,7 @@ $(document).ready(function(){
 
                             },
                             success: function(data) {
-                                console.log(data);
+                                
                                 // on success do some validation or refresh the content div to display the uploaded images
                                 Obj = JSON.parse(data);
                                 $("#ajax-loader-icon").addClass("hide");
