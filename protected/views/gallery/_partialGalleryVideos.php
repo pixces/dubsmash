@@ -1,11 +1,26 @@
 <?php if (!empty($galleries)) { ?>
     <?php echo CHtml::hiddenField('loadCounter', '1',
-        array('id' => 'loadCounter')); ?>
+        array('id' => 'loadCounter'));
+    ?>
     <?php foreach ($galleries as $gallery) { ?>
-        <div class="CH-GalleryListItems">
-            <div class="CH-GalleryImage"><a href="javascript:void(0)" data-showpopup="1" class="show-popup" data-videoTitle="<?php echo $gallery['title']; ?>" data-videoURL="<?php echo $gallery['media_id']; ?>"><img src="<?php echo $gallery['thumb_image'] ?>" /></a></div>
-            <div class="CH-GalleryVideoTitle"><?php echo $gallery['title']; ?></div>
-            <div class="CH-GalleryName"><?php echo $gallery['username']; ?></div>
+        <div class="col-md-3 glryVdoSctn">
+            <?php if ($gallery['vote'] > 10){ ?><div class="certifyIcn"></div><?php } ?>
+            <div class="nxtsliders">
+                <div class="PlayIcn2"></div>
+
+                <div class="vdoethmb"><img class="img-responsive" src="/uploads<?php echo $gallery['share_url']; ?>"/></div>
+                <div class="row vdoethmbDtls">
+                    <div class="col-md-5 glryvdeoTy"><?php echo $gallery['media_category']; ?></div>
+                    <div class="col-md-4 pull-right">
+                        <div class="glryvdeoFcbk pull-left"></div>
+                        <div class="glryvdeolike pull-left"></div>
+                        <div class="vdeovwCunt pull-left"><?php echo $gallery['vote'];?></div>
+                    </div>
+                </div>
+                <div class="row vdoethmbTxt">
+                    <div class="col-md-12"><?php echo $gallery['media_title']; ?></div>
+                </div>
+            </div>
         </div>
     <?php } ?>
 <?php } else { ?>
@@ -13,7 +28,5 @@
         <span>Empty Gallery.</span>
     </div>
 <?php } ?>
-
-
 
 

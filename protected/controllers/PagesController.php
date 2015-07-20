@@ -550,7 +550,7 @@ class PagesController extends Controller
             if ($model->validate()) {
 
                 $videoUploadPath=Yii::app()->basePath.Yii::app()->params['UPLOAD']['videodir'];
-
+                $videoUploadPath=realpath($videoUploadPath);
                 /*
                  * Create The Directory if does not exist,remove in production.
                  */
@@ -559,8 +559,8 @@ class PagesController extends Controller
                 }
 
                 $model->media_url = CUploadedFile::getInstance($model,'media_url');
-
-                $uploadFile         = $videoUploadPath.$model->username.'_'.time().'_'.str_replace(' ','_', strtolower($model->media_url));
+                $newFileName=$model->username.'_'.time().'_'.str_replace(' ','_', strtolower($model->media_url));
+                $uploadFile         = $videoUploadPath.$newFileName;
 
                 $model->media_url->saveAs($uploadFile);
 
@@ -597,7 +597,7 @@ class PagesController extends Controller
                 $modelContent=new Content;
                 $modelContent->username=$model->username;
                 $modelContent->email=$model->email;
-                $modelContent->share_url=$uploadFile;
+                $modelContent->share_url=$newFileName;
                 $modelContent->message=$model->message;
                 $modelContent->media_title=$model->media_title;
                 $modelContent->media_category=$model->media_category;

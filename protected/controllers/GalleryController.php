@@ -3,9 +3,7 @@
 class GalleryController extends Controller
 {
     protected $gallerylimit = 50;
-
-    public $layout='//layouts/static';
-
+    public $layout = '//layouts/static';
 
     /**
      * @return array action filters
@@ -49,6 +47,20 @@ class GalleryController extends Controller
      */
     public function actionIndex()
     {
+
+        /**
+         * Parameter Object
+         */
+        $param             = new stdClass();
+        $param->status     = "approved";
+        $param->fields     = ['share_url'];
+        $page              = Yii::app()->getRequest()->getParam('page', 1);
+        $ajaxRequest       = Yii::app()->getRequest()->getParam('isAjaxRequest',
+            0);
+        $galleryVideosJson = $this->loadGalleryVideos($param, $page);
+        $galleryVideos     = json_decode($galleryVideosJson, true);
+
+
         /**
          * Normal Loading of the view ,and pass the partial view as String
          */
@@ -56,9 +68,9 @@ class GalleryController extends Controller
         $this->render(
             'index',
             array(
-                //'videoContent' => $videoContent,
-                //'pageName' => 'gallery',
-				//'aVideoList' => $videoPlayList
+            'galleries' => $galleryVideos,
+            'pageName' => 'gallery',
+            //'aVideoList' => $videoPlayList
             )
         );
     }
@@ -189,7 +201,8 @@ class GalleryController extends Controller
         $columns     = [];
         $galleryData = [];
         if (isset($paramObject->fields)) {
-            $columns = array_merge(Content::$defaultSelectableFields, $paramObject->fields);
+            $columns = array_merge(Content::$defaultSelectableFields,
+                $paramObject->fields);
         } else {
             $columns = Content::$defaultSelectableFields;
         }
@@ -197,25 +210,25 @@ class GalleryController extends Controller
          * Criteria Conditions
          */
         $Criteria            = new CDbCriteria;
-        $Criteria->condition = 'is_ugc=:ugc AND status=:status';
-        $Criteria->params    = array(':ugc' => $paramObject->is_ugc, 'status' => $paramObject->status);
-        $Criteria->order     ='date_created DESC';
+        $Criteria->condition = 'status=:status';
+        $Criteria->params    = array('status' => $paramObject->status);
+        $Criteria->order     = 'date_created DESC';
 
         //if no limit is passed .. use galleryLimit as limit
-        if (isset($limit)){
+        if (isset($limit)) {
             $limit = $limit;
         } else {
             $limit = $this->gallerylimit;
         }
 
-        $Criteria->limit     = $limit;
-        $Criteria->offset    = (($page - 1) * $limit);
+        $Criteria->limit  = $limit;
+        $Criteria->offset = (($page - 1) * $limit);
 
         if (Content::model()->count($Criteria)) {
             $GalleryVideos = Content::model()->findAll($Criteria);
             foreach ($GalleryVideos as $videoRow) {
                 $row = [];
-                foreach($columns as $column) {
+                foreach ($columns as $column) {
                     $row[$column] = $videoRow->$column;
                 }
                 $galleryData[] = $row;

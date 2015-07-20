@@ -33,6 +33,9 @@
 class Content extends CActiveRecord
 {
 
+     public static $defaultSelectableFields = ['id', 'username', 'media_title', 'media_image',
+        'media_id', 'media_url', 'media_alternate_url','media_category','vote'];
+
     /**
      * @return string the associated database table name
      */
