@@ -52,15 +52,15 @@ class GalleryController extends Controller
          * Parameter Object
          */
         $page        = Yii::app()->getRequest()->getParam('page', 1);
-        $option      = Yii::app()->getRequest()->getParam('option', '');
+        $category      = Yii::app()->getRequest()->getParam('category', '');
         $ajaxRequest = Yii::app()->getRequest()->getParam('isAjaxRequest', 0);
 
         $param         = new stdClass();
         $param->status = "approved";
         $param->fields = ['share_url'];
 
-        if ($option) {
-            $param->media_category = $option;
+        if ($category) {
+            $param->media_category = $category;
         }
 
         $galleryVideosJson = $this->loadGalleryVideos($param, $page);
@@ -68,7 +68,7 @@ class GalleryController extends Controller
 
         if ($ajaxRequest) {
            echo $this->renderPartial('_partialGalleryVideos',array('galleries' => $galleryVideos),true);
-           exit;
+           Yii::app()->end();
         }
 
         /**
@@ -77,11 +77,10 @@ class GalleryController extends Controller
         $this->pagename = 'gallery';
         $this->render(
             'index',
-            array(
-            'galleries' => $galleryVideos,
+            ['galleries' => $galleryVideos,
             'pageName' => 'gallery',
             //'aVideoList' => $videoPlayList
-            )
+            ]
         );
     }
 
@@ -221,14 +220,14 @@ class GalleryController extends Controller
          */
         $params['status'] = $paramObject->status;
         $condition        = 'status=:status';
-        if (isset($paramObject->media_category)) {
+        if (isset($paramObject->media_category) && ($paramObject->media_category!="All")) {
             $condition.='   AND media_category=:media_category';
             $params['media_category'] = $paramObject->media_category;
         }
         $Criteria            = new CDbCriteria;
         $Criteria->condition = $condition;
         $Criteria->params    = $params;
-        $Criteria->order     = 'date_created DESC';
+        $Criteria->order     = 'date_created ASC';
 
       
         //if no limit is passed .. use galleryLimit as limit

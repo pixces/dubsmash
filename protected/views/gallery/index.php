@@ -124,7 +124,9 @@
                 $styledSelect.text($(this).text()).removeClass('active');
                 $this.val($(this).attr('rel'));
                 $list.hide();
-                optionFilter($this.val());
+
+                var objGallery = new gallerySearch($this.val());
+                objGallery.ByCategory();
             });
 
             // Hides the unordered list when clicking outside of it
@@ -133,35 +135,65 @@
                 $list.hide();
             });
 
+
+
+        });
+
+
+
+        /**
+         *
+         * @param {String} option
+         * @returns {HTML}
+         */
+        var gallerySearch = function(param) {
+            this.param = param;
+            var selector = "#dynamic-content-gallery";
+            var Url = {
+                searchByCategory: '<?php echo Yii::app()->createUrl("/loadGallery"); ?>'
+            };
+
+
             /**
              *
-             * @param {String} option
-             * @returns {HTML}
+             * @param {String} category
+             * @returns {String}
              */
-            var optionFilter = function(option) {
-                var queryString = {option: option, isAjaxRequest: 1};
+            this.ByCategory = function() {
+                var queryString = {category: this.param, isAjaxRequest: 1};
+                var actionUrl = Url.searchByCategory;
                 $.ajax({
                     type: 'POST',
                     dataType: 'html',
-                    url: '<?php echo Yii::app()->createUrl("/loadGallery"); ?>',
+                    url: actionUrl,
                     data: queryString,
                     success: function(data) {
-                        $("#dynamic-content-gallery").html(data);
-
+                        $(selector).html(data);
                     }, error: function(request, status, error) {
                         alert(request.responseText);
                     }
                 });
 
-
             }
 
+            /**
+             * String
+             * @param {type} filter
+             * @returns {String}
+             */
+            this.ByFilter = function() {
+                queryString = {filter: filter, isAjaxRequest: 1};
+            },
+                    /**
+                     *
+                     * @param {String} keyword
+                     * @returns {String}
+                     */
 
-
-
-
-
-        });
+                    this.ByTitle = function() {
+                        queryString = {title: keyword, isAjaxRequest: 1};
+                    }
+        }
     });
 
 
