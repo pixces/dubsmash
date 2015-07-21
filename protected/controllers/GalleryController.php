@@ -2,7 +2,7 @@
 
 class GalleryController extends Controller
 {
-    protected $gallerylimit = 50;
+    protected $gallerylimit = 12 ;
     public $layout          = '//layouts/static';
 
     /**
@@ -48,27 +48,71 @@ class GalleryController extends Controller
     public function actionIndex()
     {
 
+       
+
         /**
          * Parameter Object
          */
-        $page        = Yii::app()->getRequest()->getParam('page', 1);
-        $category      = Yii::app()->getRequest()->getParam('category', '');
+        $page=1;
+        $postParam   = Yii::app()->getRequest()->getParam('param', '');
         $ajaxRequest = Yii::app()->getRequest()->getParam('isAjaxRequest', 0);
-
         $param         = new stdClass();
         $param->status = "approved";
         $param->fields = ['share_url'];
 
-        if ($category) {
-            $param->media_category = $category;
+
+        if (is_array($postParam)) {
+            if (isset($postParam['category'])) {
+                $param->media_category = $postParam['category'];
+            }
+            if (isset($postParam['sort'])) {
+                switch (strtolower($postParam['sort'])) {
+                    case "latest":
+                        $param->sort = "date_modified DESC";
+                        break;
+
+                    case "lastweek":
+                        $monday = strtotime("last monday");
+                        $monday = date('W', $monday) == date('W') ? $monday - 7 * 86400: $monday;
+
+                        $sunday       = strtotime(date("Y-m-d H:i:s", $monday)." +6 days");
+                        $this_week_sd = date("Y-m-d H:i:s", $monday);
+                        $this_week_ed = date("Y-m-d H:i:s", $sunday);
+                        $param->daterange=['startDate'=>$this_week_sd,'endDate'=>$this_week_ed];
+                        $param->sort = "date_modified DESC";
+
+                        break;
+                    case "lastmonth":
+                        $month_ini = new DateTime("first day of last month");
+                        $month_end = new DateTime("last day of last month");
+                        $lastMonthFirstDate=$month_ini->format('Y-m-d H:i:s');
+                        $lastMonthEndDate=$month_end->format('Y-m-d H:i:s');
+                        $param->daterange=['startDate'=>$lastMonthFirstDate,'endDate'=>$lastMonthEndDate];
+                        $param->sort = "date_modified DESC";
+
+                        break;
+                }
+            }
+
+            if (isset($postParam['title'])) {
+                $param->media_title = $postParam['title'];
+            }
+
+             if (isset($postParam['offset'])) {
+                $page = $postParam['offset'];
+            }
         }
+
 
         $galleryVideosJson = $this->loadGalleryVideos($param, $page);
         $galleryVideos     = json_decode($galleryVideosJson, true);
 
         if ($ajaxRequest) {
-           echo $this->renderPartial('_partialGalleryVideos',array('galleries' => $galleryVideos),true);
-           Yii::app()->end();
+            if(!empty($galleryVideos)){
+                 echo $this->renderPartial('_partialGalleryVideos',
+                array('galleries' => $galleryVideos), true);
+            }
+            Yii::app()->end();
         }
 
         /**
@@ -220,16 +264,34 @@ class GalleryController extends Controller
          */
         $params['status'] = $paramObject->status;
         $condition        = 'status=:status';
-        if (isset($paramObject->media_category) && ($paramObject->media_category!="All")) {
+
+        if (isset($paramObject->media_category) && (strtolower($paramObject->media_category) != 'all')) {
             $condition.='   AND media_category=:media_category';
-            $params['media_category'] = $paramObject->media_category;
+            $params['media_category'] = strtolower($paramObject->media_category);
         }
+
+        if (isset($paramObject->media_title)) {
+            $media_title           = addcslashes($paramObject->media_title, '%_');
+            $condition.="   AND media_title LIKE :media_title";
+            $params['media_title'] = "%$media_title%";
+        }
+
+        if (!isset($paramObject->sort)) {
+            $paramObject->sort = "date_created DESC";
+        }
+
         $Criteria            = new CDbCriteria;
         $Criteria->condition = $condition;
         $Criteria->params    = $params;
-        $Criteria->order     = 'date_created ASC';
+        $Criteria->order     = $paramObject->sort;
 
-      
+
+        if (isset($paramObject->daterange) && is_array($paramObject->daterange)) {
+            $Criteria->addBetweenCondition('date_modified', $paramObject->daterange['startDate'], $paramObject->daterange['endDate']);
+        }
+
+       
+
         //if no limit is passed .. use galleryLimit as limit
         if (isset($limit)) {
             $limit = $limit;
@@ -249,6 +311,9 @@ class GalleryController extends Controller
                 $galleryData[] = $row;
             }
         }
+
+      
         return json_encode($galleryData);
     }
+
 }
