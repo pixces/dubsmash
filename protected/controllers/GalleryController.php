@@ -285,8 +285,8 @@ class GalleryController extends Controller
         }
 
         if (isset($paramObject->media_title)) {
-            $media_title           = addcslashes($paramObject->media_title, '%_');
-            $condition.="   AND media_title LIKE :media_title";
+            $media_title    = addcslashes($paramObject->media_title, '%_');
+            $condition      .= " AND media_title LIKE :media_title";
             $params['media_title'] = "%$media_title%";
         }
 

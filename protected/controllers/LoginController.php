@@ -79,6 +79,7 @@ class LoginController extends Controller{
                             throw new Exception($msg);
                         }
                     }
+                    break;
                 case "google":
                      if (!isset(Yii::app()->session['eauth_profile'])){
                         $oParams              = new stdClass();
@@ -95,13 +96,10 @@ class LoginController extends Controller{
                             throw new Exception($msg);
                         }
                     }
-
+                    break;
                 default:
-
-                $this->redirect('/register');
-
-
-
+                $this->redirect($this->createAbsoluteUrl('/register'));
+                    break;
             }
         }
         

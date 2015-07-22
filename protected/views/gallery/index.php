@@ -34,7 +34,7 @@
                     </div>
 
                     <div class="row glryCntr" id="dynamic-content-gallery">
-
+                        <?php echo CHtml::hiddenField('galleryCnt', '1', array('id' => 'galleryCnt')); ?>
                         <?php
                         $this->renderPartial('_partialGalleryVideos',
                             array('galleries' => $galleries));
