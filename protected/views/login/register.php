@@ -92,7 +92,7 @@
                     <div class="col-sm-4"><img class="img-responsive" src="<?php echo Yii::app()->request->baseUrl; ?>/images/thankCrtn.png"/></div>
                     <div class="col-sm-7 thankTxt lilita">Thank you for your submission!Your entry will be live after
                         moderation.</br></br>
-                        <a href="dubfestGallery.html">Click here</a>to check out how others have fared!
+                        <a href="<?=Yii::app()->createAbsoluteUrl('/gallery/'); ?>">Click here</a> to check out how others have fared!
                     </div>
                 </div>
             </div>
@@ -136,8 +136,8 @@
                     <div class="col-xs-6 form-group">
                         <?php echo $form->labelEx($model, 'media_category'); ?>
                         <?php
-                        echo CHtml::dropDownList('ParticipateForm[media_category]', array('All' => 'All'),
-                            $model->getAllCategories(), array('class' => 'GlrySlct', 'id' => 'category'));
+                        echo CHtml::dropDownList('ParticipateForm[media_category]', array('Select One' => ''),
+                            $model->getAllCategories(), array('empty' => '(Select a Category)', 'class' => 'GlrySlct', 'id' => 'category'));
                         ?>
                         <span id='categoryInfo'></span>
                     </div>

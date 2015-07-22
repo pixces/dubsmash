@@ -17,21 +17,14 @@ class PagesController extends Controller
      */
     protected $oYoutube = null;
 
-    /**
-     *
-     * @var integer
-     */
-    protected $VideoLimit = 20;
-
-    public function actionIndex()
-    {
+    public function actionIndex(){
         $this->render('index');
     }
 
-    public function actionTvc()
-    {
+    public function actionTvc(){
         $this->render('tvc');
     }
+
 
     /**
      * This is the default 'index' action that is invoked
@@ -513,43 +506,144 @@ class PagesController extends Controller
         exit;
     }
 
-    public function actionGetVideoCarousel($limit = null)
+    /**
+     * Action For Regsitration
+     */
+    public function actionParticipateForm()
     {
-        $response = [];
-        if (isset($limit)) {
-            $limit = $limit;
-        } else {
-            $limit = $this->VideoLimit;
-        }
 
-        $Criteria        = new CDbCriteria;
-        $Criteria->order = "date_created DESC";
-        $Criteria->limit = $limit;
-        try {
-            $result = Content::model()->findAll($Criteria);
-            if (count($result)) {
-                $videoArray = [];
-                foreach ($result as $row) {
-                    $videoArray[] = [
-                                        'id' => $row->id,
-                                        'media_url' => $row->media_url,
-                                        'media_image' => $row->media_image,
-                                        'alternate_image' => $row->alternate_image,
-                                        'media_title' => $row->media_title
-                                    ];
-                }
-                $response['error']  = 0;
-                $response['videos'] = $videoArray;
-            } else {
-                $response['error']  = 0;
-                $response['videos'] = '';
+       // print_r($_FILES);exit;
+        $aSocialNetworkInfo=[];
+        
+        if (isset(Yii::app()->session['eauth_profile'])) {
+            
+            $session = Yii::app()->session['eauth_profile'];
+            /**
+         * Facebook
+         */
+            if(isset(Yii::app()->session['eauth_profile']['first_name'])){
+                $socialNetworkUsername=Yii::app()->session['eauth_profile']['first_name'].' '.Yii::app()->session['eauth_profile']['last_name'];
             }
-        } catch (Exception $e) {
-            $response['error']  = 1;
-            $response['videos'] = '';
-        }
+            /**
+         * Google
+         */
+            else if(isset(Yii::app()->session['eauth_profile']['name'])){
+              $socialNetworkUsername=Yii::app()->session['eauth_profile']['name'];
 
-        echo json_encode($response);
-        Yii::app()->end();
+            }
+
+            $socialNetworkEmail=Yii::app()->session['eauth_profile']['email'];
+            $aSocialNetworkInfo['name']=$socialNetworkUsername;
+            $aSocialNetworkInfo['email']=$socialNetworkEmail;
+            unset(Yii::app()->session['eauth_profile']);
+
+        }
+        $bucketUpload=false;
+        $model    = new ParticipateForm();
+        if (isset($_POST['ParticipateForm'])) {
+
+            $model->attributes = $_POST['ParticipateForm'];
+
+            $model->media_category=isset($_POST['ParticipateForm']['media_category']) ? $_POST['ParticipateForm']['media_category'] : 'All';
+            $model->media_url=$_FILES['ParticipateForm']['name']['media_url'];
+
+            if ($model->validate()) {
+
+                $videoUploadPath=Yii::app()->basePath.Yii::app()->params['UPLOAD']['videodir'];
+                $videoUploadPath=realpath($videoUploadPath);
+                /*
+                 * Create The Directory if does not exist,remove in production.
+                 */
+                if (!file_exists($videoUploadPath)) {
+                    mkdir($videoUploadPath, 0777, true);
+                }
+
+                $model->media_url = CUploadedFile::getInstance($model,'media_url');
+                $newFileName=$model->username.'_'.time().'_'.str_replace(' ','_', strtolower($model->media_url));
+                $uploadFile         = $videoUploadPath.DIRECTORY_SEPARATOR.$newFileName;
+
+                $model->media_url->saveAs($uploadFile);
+
+                $actual_image_name = time().'_'.baseName($uploadFile);
+
+                $fileSize = $model->media_url->getSize();
+
+                $fileType = $model->media_url->getType();
+
+
+
+                /**
+                 * Upload File To S3 Bucket
+                 */
+                if($bucketUpload){
+
+                     $s3 = new S3(Yii::app()->params['S3']['awsAccessKey'], Yii::app()->params['S3']['awsSecretKey']);
+
+                    $s3bucketName=Yii::app()->params['S3']['bucket'];
+
+                    try{
+                         $s3->putObjectFile($uploadFile,$s3bucketName,$actual_image_name,S3::ACL_PUBLIC_READ);
+                    }
+                    catch(Exception $e){
+                        $msg = $e->getMessage();
+                        throw new Exception($msg);
+                    }
+
+                }
+
+                /**
+                 * Save To Db: Content
+                 */
+                $modelContent=new Content;
+                $modelContent->username=$model->username;
+                $modelContent->email=$model->email;
+                $modelContent->share_url=$newFileName;
+                $modelContent->message=$model->message;
+                $modelContent->media_title=$model->media_title;
+                $modelContent->media_category=$model->media_category;
+                $modelContent->mobile=$model->mobile;
+
+                $transaction = Yii::app()->db->beginTransaction();
+
+                try {
+                    if ($modelContent->save()) {
+                        $transaction->commit();
+                        $aResponse=array('error'=>0,'message'=>'Successfully Registered');
+                        echo json_encode($aResponse);
+                        Yii::app()->end();
+                    }else{
+                        $aResponse=array('error'=>0,'message'=>$modelContent->getErrors());
+                        echo json_encode($aResponse);
+                         //CVarDumper::dump($modelContent->getErrors(), 56789, true);
+                        exit;
+                    }
+
+
+                } catch (Exception $e) {
+                    $transaction->rollBack();
+                    $msg = $e->getMessage();
+                    $aResponse=array('error'=>0,'message'=>$msg);
+                    echo json_encode($aResponse);
+                    exit;
+                   // throw new Exception($msg);
+                }
+            }
+        }
+        $this->pagename = "register";
+        $this->render(
+            $this->pagename, array(
+            'model' => $model,
+            'socialNetworkInfo'=>$aSocialNetworkInfo
+            )
+        );
+    }
+
+    public function actionLoginOptions(){
+
+        $this->pagename = "//login/index";
+        $this->render(
+            $this->pagename
+        );
+
     }
 }
