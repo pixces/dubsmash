@@ -10,7 +10,7 @@
                     <div class="row topVdesHdr topVdesHdrDtdln lilita">
                         <div class="col-md-7">
                             <div class="row">
-                                <div class="col-md-4">Gallery<span class="SmlTxt">(all 136)</span></div>
+                                <div class="col-md-4">Gallery<span class="SmlTxt">(<span id="selectcategory"><?php echo $selectedcategory;?></span>&nbsp;&nbsp;<span id="categorycount"><?php echo $totalvideos;?></span>)</span></div>
                                 <div class="col-md-3">
                                     <select class="GlrySlct categoryOptionBox" id="selectboxCategory" >
                                         <option>All</option>
@@ -211,7 +211,8 @@
                     success: function(data) {
                        (typeof param.append==="undefined") ?  $(selector).html(data.template) :  $(selector).append(data.template);
                        data.loader===0 ?  $("#loadmorevideos").addClass("hide") : $("#loadmorevideos").removeClass("hide");
-                    
+                       $("#categorycount").html(data.totalvideos);
+                       $("#selectcategory").html(data.selectedcategory);
                        
                     }, error: function(request, status, error) {
                         console.log(request.responseText)

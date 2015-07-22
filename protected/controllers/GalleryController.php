@@ -111,9 +111,11 @@ class GalleryController extends Controller
 
         if ($ajaxRequest) {
             if (!empty($galleryVideosArray)) {
-                $response['template'] = $this->renderPartial('_partialGalleryVideos',
+                $response['template']    = $this->renderPartial('_partialGalleryVideos',
                     array('galleries' => $galleryVideosArray['data']), true);
-                $response['loader']   = $galleryVideosArray['loader'];
+                $response['loader']      = $galleryVideosArray['loader'];
+                $response['totalvideos'] = $galleryVideosArray['totalvideos'];
+                $response['selectedcategory']=$galleryVideosArray['selectedcategory'];
                 echo json_encode($response);
             }
             Yii::app()->end();
@@ -128,6 +130,8 @@ class GalleryController extends Controller
             [
             'galleries' => $galleryVideosArray['data'],
             'loader' => $galleryVideosArray['loader'],
+            'totalvideos' => $galleryVideosArray['totalvideos'],
+             'selectedcategory'=> $galleryVideosArray['selectedcategory'],
             'pageName' => 'gallery',
             //'aVideoList' => $videoPlayList
             ]
@@ -258,7 +262,8 @@ class GalleryController extends Controller
     protected function loadGalleryVideos($paramObject, $page = 1, $limit = 0)
     {
         $columns       = [];
-        $totalRowCount = 0;
+        $totalvideos = 0;
+        $selectedCategory=null;
         $galleryData   = [];
         if (isset($paramObject->fields)) {
             $columns = array_merge(Content::$defaultSelectableFields,
@@ -271,11 +276,12 @@ class GalleryController extends Controller
          */
         $params['status'] = $paramObject->status;
         $condition        = 'status=:status';
-
+        $selectedCategory="all";
         if (isset($paramObject->media_category) && (strtolower($paramObject->media_category)
             != 'all')) {
             $condition.='   AND media_category=:media_category';
             $params['media_category'] = strtolower($paramObject->media_category);
+            $selectedCategory=strtolower($paramObject->media_category);
         }
 
         if (isset($paramObject->media_title)) {
@@ -299,24 +305,24 @@ class GalleryController extends Controller
                 $paramObject->daterange['startDate'],
                 $paramObject->daterange['endDate']);
         }
-       
+
         $contentResult    = Content::model()->findAll($Criteria);
-        $totalRowCount    = count($contentResult);
-        
-       
+        $totalVideosCount = count($contentResult);
+
+
         //if no limit is passed .. use galleryLimit as limit
         if (!empty($limit)) {
             $limit = $limit;
         } else {
             $limit = $this->gallerylimit;
         }
-        $loaderVisibility = ($totalRowCount > $limit) ? 1 : 0;
+        $loaderVisibility = ($totalVideosCount > $limit) ? 1 : 0;
         $Criteria->limit  = $limit;
         $Criteria->offset = (($page - 1) * $limit);
         if (Content::model()->count($Criteria)) {
             $GalleryVideos = Content::model()->findAll($Criteria);
-          
-            if (count($GalleryVideos) == 0 ) {
+
+            if (count($GalleryVideos) == 0) {
                 $loaderVisibility = 0;
             }
             foreach ($GalleryVideos as $videoRow) {
@@ -327,7 +333,7 @@ class GalleryController extends Controller
                 $galleryData[] = $row;
             }
         }
-        $response = ['data' => $galleryData, 'loader' => $loaderVisibility];
+        $response = ['data' => $galleryData, 'loader' => $loaderVisibility, 'totalvideos' => $totalVideosCount,'selectedcategory'=>$selectedCategory];
         return json_encode($response);
     }
 }
