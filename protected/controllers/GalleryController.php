@@ -2,7 +2,7 @@
 
 class GalleryController extends Controller
 {
-    protected $gallerylimit = 12 ;
+    protected $gallerylimit = 12;
     public $layout          = '//layouts/static';
 
     /**
@@ -48,18 +48,18 @@ class GalleryController extends Controller
     public function actionIndex()
     {
 
-       
-
         /**
          * Parameter Object
          */
-        $page=1;
-        $postParam   = Yii::app()->getRequest()->getParam('param', '');
-        $ajaxRequest = Yii::app()->getRequest()->getParam('isAjaxRequest', 0);
-        $param         = new stdClass();
-        $param->status = "approved";
-        $param->fields = ['share_url'];
-
+        $page              = 1;
+        $postParam         = Yii::app()->getRequest()->getParam('param', '');
+        $ajaxRequest       = Yii::app()->getRequest()->getParam('isAjaxRequest',
+            0);
+        $param             = new stdClass();
+        $param->status     = "approved";
+        $param->fields     = ['share_url'];
+        $galleryVideosJson = null;
+        $galleryVideos     = null;
 
         if (is_array($postParam)) {
             if (isset($postParam['category'])) {
@@ -72,23 +72,25 @@ class GalleryController extends Controller
                         break;
 
                     case "lastweek":
-                        $monday = strtotime("last monday");
-                        $monday = date('W', $monday) == date('W') ? $monday - 7 * 86400: $monday;
-
-                        $sunday       = strtotime(date("Y-m-d H:i:s", $monday)." +6 days");
-                        $this_week_sd = date("Y-m-d H:i:s", $monday);
-                        $this_week_ed = date("Y-m-d H:i:s", $sunday);
-                        $param->daterange=['startDate'=>$this_week_sd,'endDate'=>$this_week_ed];
-                        $param->sort = "date_modified DESC";
+                        $monday           = strtotime("last monday");
+                        $monday           = date('W', $monday) == date('W') ? $monday
+                            - 7 * 86400 : $monday;
+                        $sunday           = strtotime(date("Y-m-d H:i:s",
+                                $monday)." +6 days");
+                        $this_week_sd     = date("Y-m-d H:i:s", $monday);
+                        $this_week_ed     = date("Y-m-d H:i:s", $sunday);
+                        $param->daterange = ['startDate' => $this_week_sd, 'endDate' => $this_week_ed];
+                        $param->sort      = "date_modified DESC";
 
                         break;
                     case "lastmonth":
-                        $month_ini = new DateTime("first day of last month");
-                        $month_end = new DateTime("last day of last month");
-                        $lastMonthFirstDate=$month_ini->format('Y-m-d H:i:s');
-                        $lastMonthEndDate=$month_end->format('Y-m-d H:i:s');
-                        $param->daterange=['startDate'=>$lastMonthFirstDate,'endDate'=>$lastMonthEndDate];
-                        $param->sort = "date_modified DESC";
+                        $month_ini          = new DateTime("first day of last month");
+                        $month_end          = new DateTime("last day of last month");
+                        $lastMonthFirstDate = $month_ini->format('Y-m-d H:i:s');
+                        $lastMonthEndDate   = $month_end->format('Y-m-d H:i:s');
+                        $param->daterange   = ['startDate' => $lastMonthFirstDate,
+                            'endDate' => $lastMonthEndDate];
+                        $param->sort        = "date_modified DESC";
 
                         break;
                 }
@@ -98,19 +100,21 @@ class GalleryController extends Controller
                 $param->media_title = $postParam['title'];
             }
 
-             if (isset($postParam['offset'])) {
+            if (isset($postParam['offset'])) {
                 $page = $postParam['offset'];
             }
         }
 
 
-        $galleryVideosJson = $this->loadGalleryVideos($param, $page);
-        $galleryVideos     = json_decode($galleryVideosJson, true);
+        $galleryVideosJson  = $this->loadGalleryVideos($param, $page);
+        $galleryVideosArray = json_decode($galleryVideosJson, true);
 
         if ($ajaxRequest) {
-            if(!empty($galleryVideos)){
-                 echo $this->renderPartial('_partialGalleryVideos',
-                array('galleries' => $galleryVideos), true);
+            if (!empty($galleryVideosArray)) {
+                $response['template'] = $this->renderPartial('_partialGalleryVideos',
+                    array('galleries' => $galleryVideosArray['data']), true);
+                $response['loader']   = $galleryVideosArray['loader'];
+                echo json_encode($response);
             }
             Yii::app()->end();
         }
@@ -121,7 +125,9 @@ class GalleryController extends Controller
         $this->pagename = 'gallery';
         $this->render(
             'index',
-            ['galleries' => $galleryVideos,
+            [
+            'galleries' => $galleryVideosArray['data'],
+            'loader' => $galleryVideosArray['loader'],
             'pageName' => 'gallery',
             //'aVideoList' => $videoPlayList
             ]
@@ -249,10 +255,11 @@ class GalleryController extends Controller
      * @param int $limit
      * @return Object /protected/models/Content
      */
-    protected function loadGalleryVideos($paramObject, $page = 1, $limit = null)
+    protected function loadGalleryVideos($paramObject, $page = 1, $limit = 0)
     {
-        $columns     = [];
-        $galleryData = [];
+        $columns       = [];
+        $totalRowCount = 0;
+        $galleryData   = [];
         if (isset($paramObject->fields)) {
             $columns = array_merge(Content::$defaultSelectableFields,
                 $paramObject->fields);
@@ -265,7 +272,8 @@ class GalleryController extends Controller
         $params['status'] = $paramObject->status;
         $condition        = 'status=:status';
 
-        if (isset($paramObject->media_category) && (strtolower($paramObject->media_category) != 'all')) {
+        if (isset($paramObject->media_category) && (strtolower($paramObject->media_category)
+            != 'all')) {
             $condition.='   AND media_category=:media_category';
             $params['media_category'] = strtolower($paramObject->media_category);
         }
@@ -287,22 +295,30 @@ class GalleryController extends Controller
 
 
         if (isset($paramObject->daterange) && is_array($paramObject->daterange)) {
-            $Criteria->addBetweenCondition('date_modified', $paramObject->daterange['startDate'], $paramObject->daterange['endDate']);
+            $Criteria->addBetweenCondition('date_modified',
+                $paramObject->daterange['startDate'],
+                $paramObject->daterange['endDate']);
         }
-
        
-
+        $contentResult    = Content::model()->findAll($Criteria);
+        $totalRowCount    = count($contentResult);
+        
+       
         //if no limit is passed .. use galleryLimit as limit
-        if (isset($limit)) {
+        if (!empty($limit)) {
             $limit = $limit;
         } else {
             $limit = $this->gallerylimit;
         }
-
+        $loaderVisibility = ($totalRowCount > $limit) ? 1 : 0;
         $Criteria->limit  = $limit;
         $Criteria->offset = (($page - 1) * $limit);
         if (Content::model()->count($Criteria)) {
             $GalleryVideos = Content::model()->findAll($Criteria);
+          
+            if (count($GalleryVideos) == 0 ) {
+                $loaderVisibility = 0;
+            }
             foreach ($GalleryVideos as $videoRow) {
                 $row = [];
                 foreach ($columns as $column) {
@@ -311,9 +327,7 @@ class GalleryController extends Controller
                 $galleryData[] = $row;
             }
         }
-
-      
-        return json_encode($galleryData);
+        $response = ['data' => $galleryData, 'loader' => $loaderVisibility];
+        return json_encode($response);
     }
-
 }

@@ -42,7 +42,9 @@
                         
 
                     </div>
+                    <?php if($loader){ ?>
                     <div class="glryBtn glryLoad lilita" id="loadmorevideos">Load More</div>
+                    <?php } ?>
                 </div>
                 <span class="lilita clr1 fntsz25">#Bnatural #Dubfest</span>
             </div>
@@ -189,7 +191,7 @@
            
             var selector = "#dynamic-content-gallery";
             var Url = {
-                searchByCategory: '<?php echo Yii::app()->createUrl("/loadGallery"); ?>',
+                searchByCategory: '<?php echo Yii::app()->createUrl("/gallery/index"); ?>',
             };
 
 
@@ -203,12 +205,13 @@
                 var actionUrl = Url.searchByCategory;
                 $.ajax({
                     type: 'POST',
-                    dataType: 'html',
+                    dataType: 'json',
                     url: actionUrl,
                     data: queryString,
                     success: function(data) {
-                       (typeof param.append==="undefined") ?  $(selector).html(data) :  $(selector).append(data);
-                     
+                       (typeof param.append==="undefined") ?  $(selector).html(data.template) :  $(selector).append(data.template);
+                       data.loader===0 ?  $("#loadmorevideos").addClass("hide") : $("#loadmorevideos").removeClass("hide");
+                    
                        
                     }, error: function(request, status, error) {
                         console.log(request.responseText)

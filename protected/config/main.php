@@ -39,9 +39,6 @@ return array(
             'rules' => array(
                 '/' => 'pages/index',
                 '/watch-tvc' => 'pages/tvc',
-                '/loadGallery'=>'/gallery/index',
-                '/register' => '/pages/participateForm',
-                '/login'=>'/pages/loginOptions',
                 '/pages/index/<code:\w+>' => '/pages/index',
                 '/authenticate/?<code:\w+>' => '/pages/authenticate',
                 '/authenticate/' => '/pages/authenticate',
