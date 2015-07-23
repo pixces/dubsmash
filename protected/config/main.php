@@ -5,7 +5,7 @@
 // CWebApplication properties can be configured here.
 return array(
     'basePath' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-    'name' => 'Comedy Hunt',
+    'name' => 'B Natural DUBFEST | powered by Sangram Singh',
     'defaultController' => 'pages',
     // preloading 'log' component
     'preload' => array('log'),

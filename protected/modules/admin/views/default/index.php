@@ -14,11 +14,11 @@ $this->breadcrumbs = array(
         </div>
     <?php endif; ?>
     <span class="pull-left">Content List</span>
-    <div style="float:right;">
+    <!--div style="float:right;">
         <span><?php echo CHtml::link('All Content',array('/admin/default/downloadCsv','status'=>'all')); ?></span>
         <span>&nbsp;|&nbsp;</span>
         <span><?php echo CHtml::link('Approved Content',array('/admin/default/downloadCsv','status'=>'approved')); ?></span>
-    </div>
+    </div -->
 
     <span class="clearfix"></span>
 </h1>
@@ -30,8 +30,8 @@ $this->breadcrumbs = array(
             'dataProvider' => $dataProvider,
             'itemView' => '_list',
             'sortableAttributes' => array(
-                'author',
-                'title',
+                'username',
+                'media_title',
                 'status'
             ),
         ));
