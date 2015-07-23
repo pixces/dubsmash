@@ -1,6 +1,5 @@
 <script>
-    var submitUrl = '<?php echo Yii::app()->createUrl("login/register"); ?>';
-
+    var submitUrl = '<?php echo Yii::app()->createUrl("/pages/register"); ?>';
 </script>
 <script type="text/javascript" src="/js/validation.js"></script>
 <script type="text/javascript" src="/js/bootstrap-filestyle.min.js"></script>
