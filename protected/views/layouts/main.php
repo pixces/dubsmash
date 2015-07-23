@@ -9,7 +9,7 @@
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.min.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/dubfest.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/modernizr.custom.js"></script>
-    <title>B Naturals Dubfest | powered by Sangram Singh</title>
+    <title><?=$this->pageTitle=Yii::app()->name; ?></title>
 </head>
 <body>
 <div class="topShrIcn Shricn"></div>
