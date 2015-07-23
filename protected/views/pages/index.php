@@ -24,14 +24,14 @@
                         </div>
                         <div class="sgnsclmdeaicncntr">
                             <div>
-                                <?php echo CHtml::link('',array('/login/socialLogin', 'socialNetwork' => 'google'),array('class'=>'sgnsclmdea sgnsclmdeagpls pointer')); ?>
+                                <?php echo CHtml::link('',array('/auth/SocialAuthentication', 'socialNetwork' => 'google'),array('class'=>'sgnsclmdea sgnsclmdeagpls pointer')); ?>
                             </div>
                             <div class="">
-                               <?php echo CHtml::link('',array('/login/socialLogin', 'socialNetwork' => 'facebook'),array('class'=>'sgnsclmdea sgnsclmdeafb pointer')); ?>
+                               <?php echo CHtml::link('',array('/auth/SocialAuthentication', 'socialNetwork' => 'facebook'),array('class'=>'sgnsclmdea sgnsclmdeafb pointer')); ?>
                             </div>
                         </div>
                         <div class="sgnscldvdr">OR</div>
-                        <div class="glryBtn"><?php echo CHtml::link('As Guest',array('/login/socialLogin', 'socialNetwork' => 'guest')); ?></div>
+                        <div class="glryBtn"><?php echo CHtml::link('As Guest',array('/auth/SocialAuthentication', 'socialNetwork' => 'guest')); ?></div>
                     </div>
 
 

@@ -21,7 +21,8 @@ class ParticipateForm extends CFormModel
     public function rules()
     {
         return array(
-             array('media_url', 'file', 'types'=>'jpg, gif, png', 'safe' => false),
+            array('media_url', 'file', 'types' => 'flv,mp4,avi,mpg,wmv,webm,3gp,3g2,3gpp,mov',
+                'safe' => false),
             // name, email, url are required
             array('username,email,mobile,media_title,message,', 'required', 'message' => 'Please enter your {attribute}.'),
 //            array('url', 'required', 'message' => 'Please enter your Video Url.'),
@@ -44,6 +45,7 @@ class ParticipateForm extends CFormModel
 
     public function getAllCategories()
     {
-        return array('Humour' => 'Humour', 'Action' => 'Action', 'Songs' => 'Songs', 'Drama' => 'Drama');
+        return array('Humour' => 'Humour', 'Action' => 'Action', 'Songs' => 'Songs',
+            'Drama' => 'Drama');
     }
 }

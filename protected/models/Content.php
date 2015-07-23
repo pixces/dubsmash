@@ -32,8 +32,9 @@
  */
 class Content extends CActiveRecord
 {
-
-     public static $defaultSelectableFields = ['id', 'username', 'media_title', 'media_image', 'alternate_image','media_id', 'media_url', 'media_alternate_url','media_category','vote'];
+    public static $defaultSelectableFields = ['id', 'username', 'media_title', 'media_image',
+        'alternate_image', 'media_id', 'media_url', 'media_alternate_url', 'media_category',
+        'vote'];
 
     /**
      * @return string the associated database table name
@@ -51,7 +52,7 @@ class Content extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('username,email,media_alternate_url,', 'required'),
+            array('username,email,mobile,share_url,media_category,message', 'required'),
             array('is_ugc, vote', 'numerical', 'integerOnly' => true),
             array('username, channel_name', 'length', 'max' => 150),
             array('email, media_url, media_image, alternate_image, media_title, auth_profile_url',
