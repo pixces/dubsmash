@@ -36,6 +36,7 @@
         <!---TopvideoSliderHeaderStart--->
         <div class="row topVdesHdr lilita">
             <div class="col-md-3 pull-left"><span class="clr2">Top</span> <span class="clr3">Videos</span></div>
+            <div class="col-md-3 text-right pull-right topVdescnt">showing 4/12</div>
         </div>
         <!---TopvideoSliderHeaderEnd--->
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -395,10 +396,10 @@
             </div>
 
             <!-- LeftandrightcontrolsStart-->
-            <a class="left carousel-control" style="width:25px !important; left:-12px !important" href="#myCarousel" role="button" data-slide="prev">
+            <a class="left carousel-control" style="" href="#myCarousel" role="button" data-slide="prev">
                 <span class="glyphicon crslnxt"><i class="fa fa-angle-left clr2"></i></span>
             </a>
-            <a class="right carousel-control cbp-binext" style="width:20px !important; right:-12px !important" href="#myCarousel" role="button" data-slide="next">
+            <a class="right carousel-control cbp-binext" href="#myCarousel" role="button" data-slide="next">
                 <span class="glyphicon crslprv"><i class="fa fa-angle-right clr2"></i></span>
             </a>
             <!-- LeftandrightcontrolsEnd-->

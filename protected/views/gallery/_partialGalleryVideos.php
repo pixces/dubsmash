@@ -7,6 +7,7 @@
             <?php if ($gallery['vote'] > 10) { ?><div class="certifyIcn"></div><?php } ?>
             <div class="nxtsliders">
                 <div class="PlayIcn2"></div>
+
                 <div class="vdoethmb"><img class="img-responsive" data-media-url="<?php echo $gallery['media_url'];?>" src="<?php echo $dispImage; ?>" /></div>
                 <div class="row vdoethmbDtls">
                     <div class="col-md-5 glryvdeoTy"><?php echo ucfirst($gallery['media_category']); ?></div>
