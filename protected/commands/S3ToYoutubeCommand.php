@@ -55,7 +55,17 @@ class S3ToYoutubeCommand extends CConsoleCommand
 
     public function run($argv)
     {
+        if (empty($argv)) {
+            print "###############################################".PHP_EOL;
+            print "Error : No Argument Found.".PHP_EOL;
 
+            print "1. To initialize/re-initilize google authentication code.".PHP_EOL." php S3ToYoutubeCron.php  s3toyoutube --refreshtoken=1".PHP_EOL;
+
+            print "2. To upload videos to youtube.".PHP_EOL." php S3ToYoutubeCron.php  s3toyoutube --youtubeupload=1".PHP_EOL;
+
+            print "###############################################".PHP_EOL;
+            die;
+        }
         foreach ($argv as $arg) {
             if (ereg('--([^=]+)=(.*)', $arg, $reg)) {
                 $_ARG[$reg[1]] = $reg[2];
