@@ -21,6 +21,7 @@ class S3ToYoutubeCommand extends CConsoleCommand
     protected $sBucket             = null;
     protected $sS3FilesDownloadDir = null;
     protected $aAllowedFileTypes   = null;
+    protected $aProcessedVideoList = null;
 
     const TOKEN_FILE_NAME = "client_token.json";
     const S3_DOWNLOAD_DIR = "downloads";
@@ -28,6 +29,7 @@ class S3ToYoutubeCommand extends CConsoleCommand
     public function init()
     {
 
+        $this->aProcessedVideoList = $this->__getProcessedVideos();
         /**
          * S3 Instance 
          */
@@ -81,9 +83,6 @@ class S3ToYoutubeCommand extends CConsoleCommand
             == 1) {
             $action = "youtubeUpload";
         }
-
-
-
 
         if (isset($this->oGoogleService)) {
             $this->_setYoutubeService();
@@ -184,92 +183,96 @@ class S3ToYoutubeCommand extends CConsoleCommand
 
     private function _uploadVideoToYoutube()
     {
-
+        $aVideoList = null;
+        $uri        = null;
         if (!$this->oGoogleService->getAccessToken()) {
             $this->_getGoogleRefreshToken();
         }
 
-
         try {
-            $uri        = "All_1437668186_SampleVideo_1080x720_1mb.mp4";
-            $S3JsonInfo = $this->_downloadFilesFromS3($uri);
-            $aS3Info    = json_decode($S3JsonInfo, true);
-            if ($aS3Info['error'] == 1) {
+            $aVideoList = $this->aProcessedVideoList;
+            foreach ($aVideoList as $video) {
+                //$uri        = "All_1437668186_SampleVideo_1080x720_1mb.mp4";
+                $uri        = $video['media_url'];
+                $S3JsonInfo = $this->_downloadFilesFromS3($uri);
+                $aS3Info    = json_decode($S3JsonInfo, true);
+                if ($aS3Info['error'] == 1) {
 
-                print "Error: ".$aS3Info['message'];
-                die;
-            }
+                    print "Error: ".$aS3Info['message'];
+                    die;
+                }
 
-            /**
-             * Check File Type Before Uploading To Youtube.
-             */
-            $extension = pathinfo($aS3Info['filePath'], PATHINFO_EXTENSION);
-            if (!in_array($extension, $this->aAllowedFileTypes)) {
-                $message = "Invalid File Extension.".PHP_EOL."Allowed File Types ".implode(',',
-                        $this->aAllowedFileTypes).PHP_EOL;
-                print $message;
-                die;
-            }
-            ##################End Of File Extension Check ##########################
-
-
-            $videoPath = $aS3Info['filePath'];
-
-            // REPLACE this value with the path to the file you are uploading.
-            //  $videoPath = Yii::app()->params['S3DOWNLOADSDIR'].DIRECTORY_SEPARATOR."test1.mp4";
-
-            $fileSize = filesize($videoPath);
-
-            $snippet = new Google_Service_YouTube_VideoSnippet();
-            $snippet->setTitle("Demo Video 1");
-            $snippet->setDescription("Demo Demo Demo DEmo");
-            $snippet->setTags(array("Demo status", "PHP", "demo", "oauth"));
-            $snippet->setCategoryId("27"); //category - education
+                /**
+                 * Check File Type Before Uploading To Youtube.
+                 */
+                $extension = pathinfo($aS3Info['filePath'], PATHINFO_EXTENSION);
+                if (!in_array($extension, $this->aAllowedFileTypes)) {
+                    $message = "Invalid File Extension.".PHP_EOL."Allowed File Types ".implode(',',
+                            $this->aAllowedFileTypes).PHP_EOL;
+                    print $message;
+                    die;
+                }
+                ##################End Of File Extension Check ##########################
 
 
-            $status                = new Google_Service_YouTube_VideoStatus();
-            $status->privacyStatus = "public"; //public,private or unlisted
-            // Associate the snippet and status objects with a new video resource.
-            $video                 = new Google_Service_YouTube_Video();
-            $video->setSnippet($snippet);
-            $video->setStatus($status);
+                $videoPath = $aS3Info['filePath'];
+
+                // REPLACE this value with the path to the file you are uploading.
+                //  $videoPath = Yii::app()->params['S3DOWNLOADSDIR'].DIRECTORY_SEPARATOR."test1.mp4";
+
+                $fileSize = filesize($videoPath);
+
+                $snippet = new Google_Service_YouTube_VideoSnippet();
+                $snippet->setTitle("Demo Video 1");
+                $snippet->setDescription("Demo Demo Demo DEmo");
+                $snippet->setTags(array("Demo status", "PHP", "demo", "oauth"));
+                $snippet->setCategoryId("27"); //category - education
+
+
+                $status                = new Google_Service_YouTube_VideoStatus();
+                $status->privacyStatus = "public"; //public,private or unlisted
+                // Associate the snippet and status objects with a new video resource.
+                $video                 = new Google_Service_YouTube_Video();
+                $video->setSnippet($snippet);
+                $video->setStatus($status);
 
 // Specify the size of each chunk of data, in bytes. Set a higher value for
-            // reliable connection as fewer chunks lead to faster uploads. Set a lower
-            // value for better recovery on less reliable connections.
-            $chunkSizeBytes = 1 * 1024 * 1024;
+                // reliable connection as fewer chunks lead to faster uploads. Set a lower
+                // value for better recovery on less reliable connections.
+                $chunkSizeBytes = 1 * 1024 * 1024;
 
 // Setting the defer flag to true tells the client to return a request which can be called
-            // with ->execute(); instead of making the API call immediately.
-            $this->oGoogleService->setDefer(true);
+                // with ->execute(); instead of making the API call immediately.
+                $this->oGoogleService->setDefer(true);
 
 // Create a request for the API's videos.insert method to create and upload the video.
-            $insertRequest = $this->oYoutubeService->videos->insert("status,snippet",
-                $video);
+                $insertRequest = $this->oYoutubeService->videos->insert("status,snippet",
+                    $video);
 
 // Create a MediaFileUpload object for resumable uploads.
-            $media = new Google_Http_MediaFileUpload(
-                $this->oGoogleService, $insertRequest, 'video/*', null, true,
-                $chunkSizeBytes
-            );
-            $media->setFileSize($fileSize);
+                $media = new Google_Http_MediaFileUpload(
+                    $this->oGoogleService, $insertRequest, 'video/*', null,
+                    true, $chunkSizeBytes
+                );
+                $media->setFileSize($fileSize);
 
 
-            // Read the media file and upload it chunk by chunk.
+                // Read the media file and upload it chunk by chunk.
 
-            print "Please wait uploading initiated".PHP_EOL;
-            $status = false;
-            $handle = fopen($videoPath, "rb");
-            while (!$status && !feof($handle)) {
-                print "$chunkSizeBytes uploaded ........".PHP_EOL;
-                $chunk  = fread($handle, $chunkSizeBytes);
-                $status = $media->nextChunk($chunk);
+                print "Please wait uploading initiated".PHP_EOL;
+                $status = false;
+                $handle = fopen($videoPath, "rb");
+                while (!$status && !feof($handle)) {
+                    print "$chunkSizeBytes uploaded ........".PHP_EOL;
+                    $chunk  = fread($handle, $chunkSizeBytes);
+                    $status = $media->nextChunk($chunk);
+                }
+                print "Uploading ".basename($videoPath)." completed.".PHP_EOL;
+                fclose($handle);
+
+                // If you want to make other calls after the file upload, set setDefer back to false
+                $this->oGoogleService->setDefer(false);
             }
-            print "Uploading ".basename($videoPath)." completed.".PHP_EOL;
-            fclose($handle);
-
-            // If you want to make other calls after the file upload, set setDefer back to false
-            $this->oGoogleService->setDefer(false);
         } catch (Google_ServiceException $e) {
             throw new Exception($e->getMessage());
             die;
@@ -302,6 +305,27 @@ class S3ToYoutubeCommand extends CConsoleCommand
         }
 
         return json_encode($response);
+    }
+
+    private function __getProcessedVideos($status = "approved")
+    {
+        $condition           = 'status=:status';
+        $params['status']    = $status;
+        $Criteria            = new CDbCriteria;
+        $Criteria->condition = $condition;
+        $Criteria->params    = $params;
+        $Criteria->order     = "date_modified DESC";
+        $oContent            = Content::model()->findAll($Criteria);
+        if (empty($oContent)) {
+            print "Empty Resultset no content information".PHP_EOL;
+            die;
+        }
+
+        $aResult = [];
+        foreach ($oContent as $row) {
+            $aResult[] = ['email' => $row['email'], 'id' => $row['id'], 'media_url' => $row['media_url']];
+        }
+        return $aResult;
     }
 }
 ?>
