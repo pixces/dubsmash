@@ -2,7 +2,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/style.css"/>
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap.css"/>
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap.min.css"/>
+	<!--<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap.min.css"/>-->
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/font-awesome.min.css">
     <!--link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap-glyphicons.css" -->
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/component.css"/>
@@ -10,15 +10,18 @@
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.min.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/dubfest.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/modernizr.custom.js"></script>
+	<script>
+	var host='<?php echo Yii::app()->request->baseUrl; ?>';
+	</script>
     <title><?=$this->pageTitle=Yii::app()->name; ?></title>
 </head>
 <body>
 <!---universalPoupupStart--->
 <div class="UnivrslPoupup hide">
 <div class="">
-
 <!--VideoPoupupContentStart--->
 <div class="videoSctn hide">
+<div class="subVideo hide">
 <div class="univrslPoupClose"><i class="fa fa-times"></i></div>
 <div class="row">
 	<div class="col-md-9 noPaddng">
@@ -31,7 +34,7 @@
 <div  style="overflow-x:hidden; overflow-y:auto; height:350px">
 <div class="row">
 	<div class="col-md-8 noPaddng">
-	<iframe width="100%" height="90%" src="https://www.youtube.com/embed/Ap2rVl_KP2Y" frameborder="0" allowfullscreen></iframe>
+	<iframe id="YourIFrameID" width="100%" height="95%" src="https://www.youtube.com/embed/Ap2rVl_KP2Y" frameborder="0" allowfullscreen></iframe>
 	</div>
 	<div class="col-md-4 clr1 noPaddng">
 		<div class="votNowFrm pull-left">
@@ -49,7 +52,26 @@
 		</div>
 		<div class="ShareSctn pull-left lilita" style="font-size:21px;">Share it On<img src="images/fbicn.png" /></div>
 	</div>
-</div></div>
+</div>
+</div>
+</div>
+<div class="mainVideo hide">
+<div class="univrslPoupClose"><i class="fa fa-times"></i></div>
+<div class="row">
+	<div class="col-md-9" style="margin-left:10px;">
+		<h4 class="lilita clr2">Title</h4>
+	</div>
+<!-- 	<div class="col-md-12 noPaddng">
+		<p>Morbi viverra mattis leo vitae faucibus. Sed vel quam pellentesque felis hendrerit mollis. Fusce elementum laoreet efficitur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames #Bnatural #Dubfest.</p>
+	</div> -->
+</div>
+<div class="row">
+	<div class="col-md-12"  style="margin-bottom:25px; margin-right:10px">
+	<iframe id="YourIFrameID_1" width="100%" height="70%" src="https://www.youtube.com/embed/Ap2rVl_KP2Y" frameborder="0" allowfullscreen></iframe>
+	</div>
+
+</div>
+</div>
 </div>
 <!--VideoPoupupContentEnd--->
 
@@ -76,7 +98,7 @@
 <!---universalPoupupStart--->
 <div class="topShrIcn Shricn"></div>
 <div class="container bgAnmtn">
-    <div class="main">
+    <div>
         <ul id="cbp-bislideshow" class="cbp-bislideshow">
             <li><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/1.jpg" alt="image01"/></li>
             <li><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/2.jpg" alt="image02"/></li>
@@ -91,7 +113,7 @@
         <div class="row hdrSctn">
             <div class="col-md-1 lilita pull-right itc"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/itcLogo.png"/></div>
             <div class="col-md-1 lilita pull-right itcNtrlLogo"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/smdvcitcLogo.png"/></div>
-            <div class="col-md-4 lilita pull-right">
+            <div class="col-md-4 lilita pull-right forMobile">
                 <div class="row">
                     <div class="navbar">
                         <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
@@ -118,10 +140,10 @@
 <!-- Content : End //-->
 <div class="row footer">
     <div class="container">
-        <div class="col-md-5">
+        <div class="col-md-4">
             <div class="cpyrght">Copyright 2015 at ITC B Natural. All Rights Reserved</div>
         </div>
-        <div class="col-md-7 pull-right ScndrMenu">
+        <div class="col-md-8 pull-right ScndrMenu">
             <ul class="">
                 <li><a href="<?=Yii::app()->createAbsoluteUrl('/'); ?>"  style="color:#fff">Contact Us</a></li>
                 <li><a href="<?=Yii::app()->createAbsoluteUrl('/site/page?view=privacy-policy'); ?>"  style="color:#fff">Privacy</a></li>

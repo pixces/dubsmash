@@ -72,7 +72,7 @@ header{}
 .glryLoad:hover { background: #fff; color:#3d8fbe; }
 .SmlTxt { font-size:13px; margin:0px 0px 0px 10px;}
 .GlrySlct {color: #333; font-size:18px; padding: 6px 0;width: 100%; border-radius:30px; text-indent:6px; }
-.GlrySInpct { background:url(../images/srchIcn.png) right no-repeat #fff;}
+.GlrySInpct { background:url(../images/srchIcn.png) right no-repeat #fff;cursor:pointer;}
 .topVdesHdrDtdln  {  border-bottom: 4px dotted #fff;margin: 22px 0;}
 .vdeoFcbk { width:12px; cursor:pointer; height:20px; background:url(../images/vdeshrlk.png) 0px 0px no-repeat;}
 .vdeovwCunt { line-height:13px;}
@@ -263,7 +263,9 @@ bottom: -20px;
     bottom: -45% !important;
 	border: 0px solid red; 
   }
- .glryBtn{ margin: 160px auto 0px;border:0px solid red;} 
+  .forMobile{margin-top:40px}
+  /* .univrslPoupClose{margin-top:25px} */
+ .glryBtn{ margin: 60px  auto 0px;border:0px solid red;} 
  .lernmore{position:relative; bottom: 0px; margin: 0 auto;}
   .Shricn{ margin-top: -21px !important; margin-bottom: -3px; }
   .goBck{margin-top: -20px;}

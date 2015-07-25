@@ -22,13 +22,6 @@
                                     </select>
 
                                 </div>
-                                <div class="col-md-3">
-                                    <select class="GlrySlct" id="gallerySort">
-                                        <option value="latest">Latest</option>
-                                        <option value="lastweek">Latest Last Week</option>
-                                        <option value="lastmonth">Last Month</option>
-                                    </select>
-                                </div>
                               
 
                             </div>

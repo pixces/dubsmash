@@ -2,7 +2,7 @@
     <div class="row lilita tagLn">
         <div class="col-md-12 text-center">Terms & Conditions</div>
     </div>
-    <div class="goBck lilita pull-right clr1"><i class="fa fa-chevron-left"></i>Go Back</div>
+    <div class="goBck lilita pull-right clr1" onclick="goBack()"><i class="fa fa-chevron-left"></i>Go Back</div>
     <div class="row">
         <div class="col-md-12 temsDsgn1">
             <div class="temsDsgnBg">
