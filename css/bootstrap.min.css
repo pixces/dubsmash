@@ -1364,10 +1364,10 @@ button,input,select,textarea{
 	line-height:inherit
 }
 
-/*a{
+a{
 	color:#337ab7;
 	text-decoration:none
-}*/
+}
 
 a:focus,a:hover{
 	color:#23527c;
