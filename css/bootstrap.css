@@ -6253,33 +6253,7 @@ button.close {
 .carousel-caption .btn {
   text-shadow: none;
 }
-@media screen and (min-width: 768px) {
-  .carousel-control .glyphicon-chevron-left,
-  .carousel-control .glyphicon-chevron-right,
-  .carousel-control .icon-prev,
-  .carousel-control .icon-next {
-    width: 30px;
-    height: 30px;
-    margin-top: -15px;
-    font-size: 30px;
-  }
-  .carousel-control .glyphicon-chevron-left,
-  .carousel-control .icon-prev {
-    margin-left: -15px;
-  }
-  .carousel-control .glyphicon-chevron-right,
-  .carousel-control .icon-next {
-    margin-right: -15px;
-  }
-  .carousel-caption {
-    right: 20%;
-    left: 20%;
-    padding-bottom: 30px;
-  }
-  .carousel-indicators {
-    bottom: -20px;
-  }
-}
+
 .clearfix:before,
 .clearfix:after,
 .dl-horizontal dd:before,
@@ -6605,7 +6579,7 @@ button.close {
 .crslprv, .crslnxt { display:none !important;}
 .carousel-indicators { display:block;}
 .bgAnmtn { display:none;}
-.videoThb {float: none;margin: 0 auto;width: 100% !important;}
+.videoThb {float: none;margin: 0 auto;width: 100% !important; text-align: center;}
 .prtcptSctnCntr  { float:none;}
 .bntrl { display:none;}
 .prtcptSctn { margin-bottom:30px;}

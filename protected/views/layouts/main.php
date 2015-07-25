@@ -2,6 +2,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/style.css"/>
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap.css"/>
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/font-awesome.min.css">
     <!--link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap-glyphicons.css" -->
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/component.css"/>
@@ -12,6 +13,67 @@
     <title><?=$this->pageTitle=Yii::app()->name; ?></title>
 </head>
 <body>
+<!---universalPoupupStart--->
+<div class="UnivrslPoupup hide">
+<div class="">
+
+<!--VideoPoupupContentStart--->
+<div class="videoSctn hide">
+<div class="univrslPoupClose"><i class="fa fa-times"></i></div>
+<div class="row">
+	<div class="col-md-9 noPaddng">
+		<h3 class="lilita clr2">Contact Us</h3>
+	</div>
+	<div class="col-md-12 noPaddng">
+		<p>Morbi viverra mattis leo vitae faucibus. Sed vel quam pellentesque felis hendrerit mollis. Fusce elementum laoreet efficitur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames #Bnatural #Dubfest.</p>
+	</div>
+</div>
+<div  style="overflow-x:hidden; overflow-y:auto; height:350px">
+<div class="row">
+	<div class="col-md-8 noPaddng">
+	<iframe width="100%" height="90%" src="https://www.youtube.com/embed/Ap2rVl_KP2Y" frameborder="0" allowfullscreen></iframe>
+	</div>
+	<div class="col-md-4 clr1 noPaddng">
+		<div class="votNowFrm pull-left">
+			<div class="col-xs-12 form-group">
+				<label>Your Name*</label>
+				<input class="form-control" type="text"/>
+			</div>
+			<div class="col-xs-12 form-group">
+				<label>Your Email*</label>
+				<input class="form-control" type="text"/>
+			</div>
+			<div class="col-xs-12 form-group">
+				<div class="glryBtn glryLoad lilita clr4"><i class="fa fa-heart"></i>Vote Now</div>
+			</div>		
+		</div>
+		<div class="ShareSctn pull-left lilita" style="font-size:21px;">Share it On<img src="images/fbicn.png" /></div>
+	</div>
+</div></div>
+</div>
+<!--VideoPoupupContentEnd--->
+
+<!--ContctFormPoupupContentStart--->
+<div class="cntct hide">
+<div class="univrslPoupClose"><i class="fa fa-times"></i></div>
+<form method="post" id="customForm">
+<h3 class="lilita clr2">Contact Us</h3>
+    <label for="name">Name:*</label>
+    <input id="name" name="name" type="text">
+    <label for="name">Contact No:*</label>
+    <input id="mobile" name="mobile" type="text">
+    <label for="email">E-mail:*</label>
+    <input id="email" name="email" type="text">
+    <label for="message">Type your message here...</label>
+    <textarea id="message" name="message" cols="8" rows="5"></textarea>  
+    <input id="send" name="send" type="submit" class="lilita" value="Submit">
+ </form>	
+</div>
+<!--ContctFormPoupupContentEnd--->
+
+</div>
+</div>
+<!---universalPoupupStart--->
 <div class="topShrIcn Shricn"></div>
 <div class="container bgAnmtn">
     <div class="main">
@@ -39,9 +101,9 @@
                         </button>
                         <div class="collapse navbar-collapse navHeaderCollapse">
                             <ul class="nav navbar-nav navbar-right menu">
-                                <a href="<?=Yii::app()->createAbsoluteUrl('/'); ?>" class="navbar-link"><div class="col-md-4 navMenu text-center">Home</div></a>
-                                <a href="<?=Yii::app()->createAbsoluteUrl('/gallery/'); ?>" class="navbar-link"><div class="col-md-4 navMenu text-center">Gallery</div></a>
-                                <a href="<?=Yii::app()->createAbsoluteUrl('/watch-tvc/'); ?>" class="navbar-link"><div class="col-md-4 navMenu2 text-center">Watch TVC</div></a>
+                                <a href="<?=Yii::app()->createAbsoluteUrl('/'); ?>" class="navbar-link"><div class="col-md-4 navMenu text-center" style="color:#fff">Home</div></a>
+                                <a href="<?=Yii::app()->createAbsoluteUrl('/gallery/'); ?>" class="navbar-link"><div class="col-md-4 navMenu text-center" style="color:#fff">Gallery</div></a>
+                                <a href="<?=Yii::app()->createAbsoluteUrl('/watch-tvc/'); ?>" class="navbar-link"><div class="col-md-4 navMenu2 text-center" style="color:#fff">Watch TVC</div></a>
                             </ul>
                         </div>
                     </div>
@@ -61,11 +123,11 @@
         </div>
         <div class="col-md-7 pull-right ScndrMenu">
             <ul class="">
-                <li><a href="<?=Yii::app()->createAbsoluteUrl('/'); ?>">Contact Us</a></li>
-                <li><a href="<?=Yii::app()->createAbsoluteUrl('/site/page?view=privacy-policy'); ?>">Privacy</a></li>
-                <li><a href="<?=Yii::app()->createAbsoluteUrl('/site/page?view=terms-conditions'); ?>">terms & conditions</a></li>
-                <li><a href="<?=Yii::app()->createAbsoluteUrl('/site/page?view=rules'); ?>">Contest terms & conditions</a></li>
-                <li><a href="<?=Yii::app()->createAbsoluteUrl('/'); ?>">ITC Portal</a></li>
+                <li><a href="<?=Yii::app()->createAbsoluteUrl('/'); ?>"  style="color:#fff">Contact Us</a></li>
+                <li><a href="<?=Yii::app()->createAbsoluteUrl('/site/page?view=privacy-policy'); ?>"  style="color:#fff">Privacy</a></li>
+                <li><a href="<?=Yii::app()->createAbsoluteUrl('/site/page?view=terms-conditions'); ?>"  style="color:#fff">terms & conditions</a></li>
+                <li><a href="<?=Yii::app()->createAbsoluteUrl('/site/page?view=rules'); ?>"  style="color:#fff">Contest terms & conditions</a></li>
+                <li><a href="<?=Yii::app()->createAbsoluteUrl('/'); ?>"  style="color:#fff">ITC Portal</a></li>
             </ul>
         </div>
     </div>

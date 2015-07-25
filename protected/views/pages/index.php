@@ -39,20 +39,20 @@
                 <div class="text-center clr1 bntrl">#Bnatural #Dubfest</div>
             </div>
             <div class="col-xs-5 videoThb">
-                <div><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/vdoImg2.png"/></div>
+                <div class="sangramSingVideo"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/vdoImg2.png"/></div>
                 <div class="row VdoeThumSngram">
-                    <div class="col-sm-3 MinvdoThmb">
+                    <div class="col-sm-3 MinvdoThmb sangramSingVideo">
                         <div class="PlayIcn3"></div>
-                        <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/thmb1a.png"/></div>
-                    <div class="col-sm-3 MinvdoThmb">
+                        <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/thmb1a.png" id="sangramSingVideo1"/></div>
+                    <div class="col-sm-3 MinvdoThmb sangramSingVideo">
                         <div class="PlayIcn3"></div>
-                        <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/thmb2a.png"/></div>
-                    <div class="col-sm-3 MinvdoThmb">
+                        <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/thmb2a.png" id="sangramSingVideo2"/></div>
+                    <div class="col-sm-3 MinvdoThmb sangramSingVideo">
                         <div class="PlayIcn3"></div>
-                        <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/thmb3a.png"/></div>
-                    <div class="col-sm-3 MinvdoThmb">
+                        <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/thmb3a.png" id="sangramSingVideo3"/></div>
+                    <div class="col-sm-3 MinvdoThmb sangramSingVideo">
                         <div class="PlayIcn3"></div>
-                        <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/thmb4a.png"/></div>
+                        <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/thmb4a.png" id="sangramSingVideo4"/></div>
 
                 </div>
             </div>

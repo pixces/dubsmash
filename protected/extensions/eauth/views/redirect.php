@@ -19,6 +19,7 @@
 	</script>
 </head>
 <body>
+
 <h2 id="title" style="display:none;">Redirecting back to the application...</h2>
 
 <h3 id="link"><a href="<?php echo $url; ?>">Click here to return to the application.</a></h3>
