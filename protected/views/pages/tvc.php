@@ -10,26 +10,39 @@
             <div class="glryLoad UpldBtn  pointer">Participate Now</div>
         </div>
 
+<div class="row">
+<div class="col-xs-3 prtcptSctnCntr lilita">
+<div class="prtcptSctn">
 
-        <div class="row">
-            <div class="col-xs-3 prtcptSctnCntr lilita">
-                <div class="prtcptSctn">
-                    <div class="prtcptSctnCont">
+<div class="participateprceCntr">
+<div class="prtcptSctnCont">
+<span class="fntSctn1"><img class="iPhnImage" src="<?php echo Yii::app()->request->baseUrl; ?>/images/prtcptMbl.png" />Come be a part of the country's biggest dubfest and get a chance to <span class="fntSctn2">win an iPhone 6!</span></span>
+</div>
+<div class="hmprcptBtn prcptBtn">Participate Now</div>
+</div>
 
-                        <span class="fntSctn1"><img class="iPhnImage" src="<?php echo Yii::app()->request->baseUrl; ?>/images/prtcptMbl.png" />Come be a part of the country's biggest dubfest and get a chance to <span class="fntSctn2">win an iPhone 6!</span></span>
-                    </div>
-                    <div class="prcptBtn">Participate Now</div>
-                </div>
-                <div class="text-center clr1 bntrl">#Bnatural #Dubfest</div>
-            </div>
+<div class="participatelgnCntr hide">
+<div class="bntrl">Sign In <i class="fa fa-times pull-right pointer participatelgncls"></i></div>
+<div class="sgnsclmdeaicncntr">
+<div class="sgnsclmdea sgnsclmdeagpls pointer"></div>
+<div class="sgnsclmdea sgnsclmdeafb pointer"></div>
+</div>
+<div class="sgnscldvdr">OR</div>
+<a href="dubfestSubmit.html"><div class="glryBtn"><?php echo CHtml::link('As Guest',array('/login/socialLogin', 'socialNetwork' => 'guest')); ?></div></a>
+</div>
 
-            <div class="col-xs-5">
-                <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/vdoImg.png" />
-            </div>
-            <div class="col-xs-4 Mndit">
-                <!--<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/mnditImg.png" />-->
-            </div>
-    </header>
+
+</div>
+<div class="text-center clr1 bntrl">#Bnatural #Dubfest</div>
+</div>
+
+<div class="col-xs-5 sangramSingVideo">
+<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/vdoImg.png" />
+</div>
+<div class="col-xs-4 Mndit">
+<!--<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/mnditImg.png" />-->
+</div>
+</header>
 </div>
 <div class="row wtchTVCMobile">
     <div class="topVdesHdr clr1 lilita"><img class="iPhnImage" src="<?php echo Yii::app()->request->baseUrl; ?>/images/wtchTvcIcn.png" />Watch Now </div>

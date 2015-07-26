@@ -40,9 +40,7 @@ class PagesController extends Controller
     public function actionRegister()
     {
 
-        // print_r($_FILES);exit;
         $aSocialNetworkInfo = [];
-
         if (isset(Yii::app()->session['eauth_profile'])) {
 
             $session = Yii::app()->session['eauth_profile'];
@@ -68,40 +66,19 @@ class PagesController extends Controller
 
             $model->attributes = $_POST['ParticipateForm'];
 
-            $model->media_category = isset($_POST['ParticipateForm']['media_category'])
-                    ? $_POST['ParticipateForm']['media_category'] : 'All';
-            $model->media_url      = $_FILES['ParticipateForm']['name']['media_url'];
+            $model->media_category = isset($_POST['ParticipateForm']['media_category'])? $_POST['ParticipateForm']['media_category'] : 'All';
+
+            $model->media_url = $_FILES['file_0']['name'];
 
             if ($model->validate()) {
-
-                $videoUploadPath = Yii::app()->basePath.Yii::app()->params['UPLOAD']['videodir'];
-                $videoUploadPath = realpath($videoUploadPath);
-                /*
-                 * Create The Directory if does not exist,remove in production.
-                 */
-                if (!file_exists($videoUploadPath)) {
-                    mkdir($videoUploadPath, 0777, true);
-                }
-
-                $model->media_url = CUploadedFile::getInstance($model,
-                        'media_url');
-                $newFileName      = $model->username.'_'.time().'_'.str_replace(' ',
-                        '_', strtolower($model->media_url));
-                $uploadFile       = $videoUploadPath.DIRECTORY_SEPARATOR.$newFileName;
-
-                $model->media_url->saveAs($uploadFile);
-
-                $actual_image_name = time().'_'.baseName($uploadFile);
-
-                $fileSize = $model->media_url->getSize();
-
-                $fileType = $model->media_url->getType();
-
-
 
                 /**
                  * Upload File To S3 Bucket
                  */
+                /**
+                 * Replace it with original file url from S3 Bucket
+                 */
+                $share_url = "http://s3.amazonaws.com/p2-data/p2-slice/All_1437668186_SampleVideo_1080x720_1mb.mp4";
                 if ($bucketUpload) {
 
                     $s3 = new S3(Yii::app()->params['S3']['awsAccessKey'],
@@ -124,7 +101,7 @@ class PagesController extends Controller
                 $modelContent                 = new Content;
                 $modelContent->username       = $model->username;
                 $modelContent->email          = $model->email;
-                $modelContent->share_url      = $newFileName;
+                $modelContent->share_url      = $share_url;
                 $modelContent->message        = $model->message;
                 $modelContent->media_title    = $model->media_title;
                 $modelContent->media_category = $model->media_category;
@@ -148,7 +125,7 @@ class PagesController extends Controller
                         foreach ($errors as $key => $error) {
                             $message .=$error[0].PHP_EOL;
                         }
-                        $aResponse = array('error' => 1, 'message' => $message);
+                        $aResponse = array('error' => 1, 'message' => $modelContent->getErrors(),);
                         echo json_encode($aResponse);
                         //CVarDumper::dump($modelContent->getErrors(), 56789, true);
                         exit;
@@ -163,12 +140,15 @@ class PagesController extends Controller
                 }
             } else {
 
+
+                // CVarDumper::dump($model->getErrors(), 56789, true);
+                //exit;
                 $errors  = $model->getErrors();
                 $message = null;
                 foreach ($errors as $key => $error) {
                     $message .=$error[0].PHP_EOL;
                 }
-                $aResponse = array('error' => 1, 'message' => $message);
+                $aResponse = array('error' => 1, 'message' => $model->getErrors());
                 echo json_encode($aResponse);
                 exit;
             }
@@ -181,5 +161,12 @@ class PagesController extends Controller
             'socialNetworkInfo' => $aSocialNetworkInfo
             )
         );
+    }
+
+    public function actionRegister2()
+    {
+        print_r($_POST);
+        print_r($_FILES);
+        exit;
     }
 }

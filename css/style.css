@@ -25,8 +25,7 @@ body {
     margin: 0px;
     padding: 0px;
     list-style: none;
-    overflow-x;
-    hidden;
+    overflow-x: hidden;
 }
 
 @font-face {
@@ -39,7 +38,6 @@ body {
 
 .lilita {
     font-family: 'Conv_LilitaOne-Regular', Sans-Serif;
-    tex
 }
 
 .clear {
@@ -280,8 +278,8 @@ header {
 }
 
 .glryVdoSctn {
+    margin: 30px 0px 15px 0px;
     height: 280px;
-    margin: 5px 0px 15px 0px;
 }
 
 .glryBtn {
@@ -333,6 +331,20 @@ header {
 
 .GlrySInpct {
     background: url(../images/srchIcn.png) right no-repeat #fff;
+}
+
+.videoUpload {
+    color: #333;
+    font-size: 18px;
+    padding: 6px 0;
+    width: 100%;
+    border-radius: 30px;
+    text-indent: 6px;
+    background-color: #fff;
+}
+
+.GlrySInpct1 {
+    background-color: #fff;
 }
 
 .topVdesHdrDtdln {
@@ -444,7 +456,7 @@ header {
 }
 
 .ScndrMenu li:hover {
-    color: #ffbb3;
+    color: #ffbb33;
 }
 
 .cpyrght {
@@ -494,7 +506,7 @@ header {
 }
 
 .temsDsgnBg li {
-    list-style: round;
+    list-style: circle;
     padding-left: 10px;
     margin-bottom: 10px;
 }
@@ -527,7 +539,7 @@ header {
     position: relative;
     width: 20px;
     cursor: pointer;
-    margin: 0px -14px 0px 0px;
+    margin: 15px -14px 0px 0px;
     height: 20px;
 }
 
@@ -591,10 +603,16 @@ header {
 
 .PlayIcn1 {
     background-position: 0px 0px;
+    cursor: pointer;
 }
 
 .PlayIcn2 {
     background-position: -58px 0px;
+    cursor: pointer;
+}
+
+.sangramSingVideo {
+    cursor: pointer;
 }
 
 .PlayIcn3 {
@@ -1035,6 +1053,118 @@ label {
     border: none;
 }
 
+.carousel-indicators {
+    bottom: -20px;
+}
+
 img.img-responsive {
     height: 180px;
 }
+
+.videoUpload {
+    color: #333;
+    font-size: 18px;
+    padding: 6px 0;
+    width: 100%;
+    border-radius: 30px;
+    text-indent: 6px;
+    background: url(../images/shreit.png) 0px -92px no-repeat #FFF;
+    border: none;
+}
+
+/*.glryBtn{margin: 0px !important;}*/
+
+@media screen and (max-width: 768px) {
+    .carousel-control .glyphicon-chevron-left,
+    .carousel-control .glyphicon-chevron-right,
+    .carousel-control .icon-prev,
+    .carousel-control .icon-next {
+        width: 30px;
+        height: 30px;
+        margin-top: -15px;
+        font-size: 30px;
+    }
+
+    .carousel-control .glyphicon-chevron-left,
+    .carousel-control .icon-prev {
+        margin-left: -15px;
+    }
+
+    .carousel-control .glyphicon-chevron-right,
+    .carousel-control .icon-next {
+        margin-right: -15px;
+    }
+
+    .carousel-caption {
+        right: 20%;
+        left: 20%;
+        padding-bottom: 30px;
+    }
+
+    .carousel-caption {
+        right: 20%;
+        left: 20%;
+        padding-bottom: 30px;
+    }
+
+    .carousel-indicators {
+        bottom: -108% !important;
+        border: 0px solid red;
+    }
+
+    .glryBtn {
+        margin: 380px auto 0px;
+        border: 0px solid red;
+    }
+
+    .pull-right {
+        top: -12px;
+    }
+
+    .ScndrMenu {
+        width: 100% !important;
+        margin: 13px auto !important;
+    }
+
+    .lernmore {
+        position: relative;
+        bottom: 0px;
+        margin: 0 auto;
+    }
+
+    .goBck {
+        margin-top: -18px;
+    }
+}
+
+@media screen and (min-width: 360px ) and (max-width: 767px) {
+    .carousel-indicators {
+        bottom: -45% !important;
+        border: 0px solid red;
+    }
+
+    .forMobile {
+        margin-top: 40px
+    }
+
+    /* .univrslPoupClose{margin-top:25px} */
+    .glryBtn {
+        margin: 60px auto 0px;
+        border: 0px solid red;
+    }
+
+    .lernmore {
+        position: relative;
+        bottom: 0px;
+        margin: 0 auto;
+    }
+
+    .Shricn {
+        margin-top: -21px !important;
+        margin-bottom: -3px;
+    }
+
+    .goBck {
+        margin-top: -20px;
+    }
+} 

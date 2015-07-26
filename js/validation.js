@@ -8,19 +8,19 @@
 $(document).ready(function() {
     //global vars
     var form = $("#customForm");
-    var name = $("#name");
+    var name = $("#username");
     var nameInfo = $("#nameInfo");
-    var tittle = $("#tittle");
+    var tittle = $("#mediatittle");
     var tittleInfo = $("#tittleInfo");
-    var mobile = $("#mobile");
+    var mobile = $("#usermobile");
     var mobileInfo = $("#mobileInfo");
-    var email = $("#email");
+    var email = $("#useremail");
     var emailInfo = $("#emailInfo");
-    var uploadvideo = $("#uploadvideo");
-    var uploadvideoInfo = $("#uploadvideoInfo");
-    var category = $("#category");
+    var uploadvideo = $("#uploadmedia");
+    var uploadvideoInfo = $("#uploadmediaInfo");
+    var category = $("#mediacategory");
     var categoryInfo = $("#categoryInfo");
-    var message = $("#message");
+    var message = $("#messagebox");
     var messageInfo = $("#messageInfo");
 
     //On blur
@@ -37,23 +37,28 @@ $(document).ready(function() {
 
 
     $("form#customForm").on('submit', function(event) {
-        event.preventDefault(event);
+        event.preventDefault();
         $(this).find(":submit").hide();
 
         if (validateName() & validatetittle() & validateMobile() & validateEmail() & validateMessage() & validateuploadvideo() & validatecategory())
         {
-            var formData = new FormData($('#customForm')[0]);
+            var fd = new FormData();
+            var file_data = $('input[type="file"]')[0].files; // for multiple files
+            for (var i = 0; i < file_data.length; i++) {
+                fd.append("file_" + i, file_data[i]);
+            }
+            var other_data = $('form').serializeArray();
+            $.each(other_data, function(key, input) {
+                fd.append(input.name, input.value);
+            });
             $.ajax({
                 url: submitUrl,
                 type: 'POST',
-                data: formData,
+                data: fd,
                 beforeSend: function() {
                     // do some loading options
-
-                    //$(this).find(":submit").show();
+                    $(this).find(":submit").show();
                     $("#ajax-loader-icon").removeClass("hide");
-
-
                 },
                 success: function(data) {
                     // on success do some validation or refresh the content div to display the uploaded images
@@ -62,7 +67,7 @@ $(document).ready(function() {
                     if (Obj.error == 0) {
                         $(".formResponse").removeClass("hide");
                         $(".Sbmtfrm").addClass("hide");
-                    } else if (Obj.error === 1) {
+                    } else if (Obj.error == 1) {
                         $("#ajax-loader-icon").removeClass("hide");
                         $("#send").show();
                         alert("Error:" + Obj.message);
@@ -74,9 +79,6 @@ $(document).ready(function() {
                 },
                 error: function(xhr, textStatus, error) {
                     $("#ajax-loader-icon").addClass("hide");
-                    alert(error);
-                    console.log(xhr.statusText);
-                    console.log(textStatus);
                     console.log(error);
                     $(this).find(":submit").show();
                 },
@@ -99,6 +101,7 @@ $(document).ready(function() {
 
     function validateName() {
         //if it's NOT valid
+
         if (name.val().length < 3) {
             name.addClass("error");
             nameInfo.text("We want names with more than 2 letters!");
@@ -150,9 +153,9 @@ $(document).ready(function() {
 
     function validateuploadvideo() {
         //if it's NOT valid
-        if (uploadvideo.val().length < 3) {
+        if (uploadvideo.val() == '') {
             uploadvideo.addClass("error");
-            uploadvideo.text("We want names with more than 2 letters!");
+            uploadvideoInfo.text("We want a video!");
             uploadvideoInfo.addClass("error");
             return false;
         }
@@ -168,7 +171,7 @@ $(document).ready(function() {
     //validation functions
     function validateMobile() {
         //testing regular expression
-        var a = $("#mobile").val();
+        var a = $("#usermobile").val();
         var filter = /^[0-9-+]+$/;
         //if it's valid email
         if (filter.test(a)) {
@@ -189,7 +192,7 @@ $(document).ready(function() {
     //validation functions
     function validateEmail() {
         //testing regular expression
-        var a = $("#email").val();
+        var a = $("#useremail").val();
         var filter = /^[a-zA-Z0-9]+[a-zA-Z0-9_.-]+[a-zA-Z0-9_-]+@[a-zA-Z0-9]+[a-zA-Z0-9.-]+[a-zA-Z0-9]+.[a-z]{2,4}$/;
         //if it's valid email
         if (filter.test(a)) {

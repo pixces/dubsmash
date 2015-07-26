@@ -107,7 +107,7 @@
                         'htmlOptions' => array('enctype' => 'multipart/form-data'),
                     ));
                 ?>
-
+				
                 <div class="row clr1">
                     <div class="col-xs-12 form-group">
 
@@ -128,7 +128,7 @@
                     </div>
                     <div class="col-xs-6 form-group">
                         <?php echo $form->labelEx($model, 'media_url'); ?>
-                        <?php echo $form->fileField($model, 'media_url', array('class' => 'filestyle', 'data-buttonName' => "btn-primary", 'id' => 'uploadvideo')); ?>
+                        <?php echo $form->fileField($model, 'media_url', array('class' => 'filestyle videoUpload', 'data-buttonName' => "btn-primary", 'id' => 'uploadvideo')); ?>
                         <span id='uploadvideoInfo'></span>
 
                     </div>

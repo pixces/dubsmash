@@ -38,24 +38,17 @@
                 </div>
                 <div class="text-center clr1 bntrl">#Bnatural #Dubfest</div>
             </div>
-            <div class="col-xs-5 videoThb">
-                <div><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/vdoImg2.png"/></div>
-                <div class="row VdoeThumSngram">
-                    <div class="col-sm-3 MinvdoThmb">
-                        <div class="PlayIcn3"></div>
-                        <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/thmb1a.png"/></div>
-                    <div class="col-sm-3 MinvdoThmb">
-                        <div class="PlayIcn3"></div>
-                        <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/thmb2a.png"/></div>
-                    <div class="col-sm-3 MinvdoThmb">
-                        <div class="PlayIcn3"></div>
-                        <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/thmb3a.png"/></div>
-                    <div class="col-sm-3 MinvdoThmb">
-                        <div class="PlayIcn3"></div>
-                        <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/thmb4a.png"/></div>
+			<div class="col-xs-5 videoThb">
+			<div class="sangramSingVideo"><img id="sangramSingVideo" src="<?php echo Yii::app()->request->baseUrl; ?>/images/vdoImg2.png"/></div>
+			<div class="row VdoeThumSngram">
+			<div class="col-sm-3  MinvdoThmb sangramSingVideo" id="sangramSingVideo1"><div class="PlayIcn3"></div><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/thmb1a.png"  /></div>
+			<div class="col-sm-3 MinvdoThmb sangramSingVideo" id="sangramSingVideo2"><div class="PlayIcn3"></div><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/thmb2a.png" /></div>
+			<div class="col-sm-3 MinvdoThmb sangramSingVideo" id="sangramSingVideo3"><div class="PlayIcn3"></div><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/thmb3a.png"/></div>
+			<div class="col-sm-3 MinvdoThmb sangramSingVideo" id="sangramSingVideo4"><div class="PlayIcn3"></div><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/thmb4a.png"/></div>
 
-                </div>
-            </div>
+			</div>
+			</div>
+			
             <div class="col-xs-4 Mndit">
                 <!--<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/mnditImg.png" />-->
             </div>
