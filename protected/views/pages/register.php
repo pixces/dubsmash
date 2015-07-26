@@ -112,43 +112,43 @@
                     <div class="col-xs-12 form-group">
 
                         <?php echo $form->labelEx($model, 'username'); ?>
-                        <?php echo $form->textField($model, 'username', array('value' => isset($socialNetworkInfo['name']) ? $socialNetworkInfo['name'] : '', 'id' => 'name')); ?>
+                        <?php echo $form->textField($model, 'username', array('value' => isset($socialNetworkInfo['name']) ? $socialNetworkInfo['name'] : '', 'id' => 'username')); ?>
                         <span id='nameInfo'></span>
 
                     </div>
                     <div class="col-xs-6 form-group">
                         <?php echo $form->labelEx($model, 'email'); ?>
-                        <?php echo $form->textField($model, 'email', array('value' => isset($socialNetworkInfo['email']) ? $socialNetworkInfo['email'] : '', 'id' => 'email')); ?>
+                        <?php echo $form->textField($model, 'email', array('value' => isset($socialNetworkInfo['email']) ? $socialNetworkInfo['email'] : '', 'id' => 'useremail')); ?>
                         <span id='emailInfo'></span>
                     </div>
                     <div class="col-xs-6 form-group">
                         <?php echo $form->labelEx($model, 'mobile'); ?>
-                        <?php echo $form->textField($model, 'mobile', array('id' => 'mobile')); ?>
+                        <?php echo $form->textField($model, 'mobile', array('id' => 'usermobile')); ?>
                         <span id='mobileInfo'></span>
                     </div>
                     <div class="col-xs-6 form-group">
                         <?php echo $form->labelEx($model, 'media_url'); ?>
-                        <?php echo $form->fileField($model, 'media_url', array('class' => 'filestyle', 'data-buttonName' => "btn-primary", 'id' => 'uploadvideo')); ?>
-                        <span id='uploadvideoInfo'></span>
+                        <?php echo $form->fileField($model, 'media_url', array('class' => 'filestyle', 'data-buttonName' => "btn-primary", 'id' => 'uploadmedia')); ?>
+                        <span id='uploadmediaInfo'></span>
 
                     </div>
                     <div class="col-xs-6 form-group">
                         <?php echo $form->labelEx($model, 'media_category'); ?>
                         <?php
                         echo CHtml::dropDownList('ParticipateForm[media_category]', array('Select One' => ''),
-                            $model->getAllCategories(), array('empty' => '(Select a Category)', 'class' => 'GlrySlct', 'id' => 'category'));
+                            $model->getAllCategories(), array('empty' => '(Select a Category)', 'class' => 'GlrySlct', 'id' => 'mediacategory'));
                         ?>
                         <span id='categoryInfo'></span>
                     </div>
                     <div class="col-xs-12 form-group">
                         <?php echo $form->labelEx($model, 'media_title'); ?>
-                        <?php echo $form->textField($model, 'media_title', array('id' => 'tittle')); ?>
+                        <?php echo $form->textField($model, 'media_title', array('id' => 'mediatittle')); ?>
                         <span id='tittleInfo'></span>
 
                     </div>
                     <div class="col-xs-12 form-group">
                         <?php echo $form->labelEx($model, 'message'); ?>
-                        <?php echo $form->textArea($model, 'message', array('id' => 'message', 'rows' => "5", 'cols' => "8")); ?>
+                        <?php echo $form->textArea($model, 'message', array('id' => 'messagebox', 'rows' => "5", 'cols' => "8")); ?>
                         <span id='messageInfo'></span>
                     </div>
                     <div class="col-xs-8 frmTerms">By choosing to participate in the B Natural Dubfest, you acknowledge
