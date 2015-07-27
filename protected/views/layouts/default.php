@@ -21,6 +21,9 @@
         width: 70%;
         margin: auto;
     }
+    .left {
+        display: none;
+    }
 </style>
 
 <!-- Start: action views -->
@@ -41,50 +44,37 @@
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <?php for($x=0; $x < $this->dCarouselPageCount; $x++) { ?>
+                    <li data-target="#myCarousel" data-slide-to="<?php echo $x; ?>" class="<?php echo (($x == 0) ? 'active' : ''); ?>"></li>
+                <?php } ?>
+                <!--
                 <li data-target="#myCarousel" data-slide-to="1"></li>
                 <li data-target="#myCarousel" data-slide-to="2"></li>
-                <li data-target="#myCarousel" data-slide-to="3"></li>
+                <li data-target="#myCarousel" data-slide-to="3"></li> -->
             </ol>
 
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
 
+            <?php for($x=0; $x < $this->dCarouselPageCount; $x++) { ?>
+
             <!---TopvideoSliderrowStart--->
-                <div class="item active" style="width:100%;background:#fff;">
+                <div class="item <?php echo (($x == 0) ? 'active' : ''); ?>" style="width:100%;background:#fff;">
+                    <?php for($t=0; $t < 4 ; $t++) { ?>
                     <!---TopvideosingleSliderstart--->
                     <div class="col-md-3 glryVdoSctn">
-                        <div class="PlayIcn2"></div>
-                        <div class="nxtsliders">
-                            <div class="PlayIcn1"></div>
-                            <div class="vdoethmb"><img class="img-responsive" src="<?php echo Yii::app()->request->baseUrl; ?>/images/thumb-1.png"/></div>
-                            <div class="row vdoethmbDtls">
-                                <div class="col-md-5 glryvdeoTy">Humour</div>
-                                <div class="col-md-4 pull-right">
-                                    <div class="vdeoFcbk pull-left"></div>
-                                    <div class="vdeolike pull-left"></div>
-                                    <div class="vdeovwCunt pull-left">60</div>
-                                </div>
-                            </div>
-                            <div class="row vdoethmbTxt">
-                                <div class="col-md-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!---TopvideosingleSliderEnd--->
-
-                    <!---TopvideosingleSliderstart--->
-                    <div class="col-md-3 glryVdoSctn">
+                        <?php if ($this->aCarasouleData[$x+$t]->vote >= 0 ) { ?>
                         <div class="certifyIcn"></div>
+                        <?php } ?>
                         <div class="nxtsliders">
                             <div class="PlayIcn1"></div>
-                            <div class="vdoethmb"><img class="img-responsive" src="<?php echo Yii::app()->request->baseUrl; ?>/images/thumb-1.png"/></div>
+                            <div class="vdoethmb"><img class="img-responsive" src="<?=$this->aCarasouleData[$x+$t]->alternate_image; ?>" data-media_url="<?=$this->aCarasouleData[$x+$t]->media_url; ?>" data-media_id="<?=$this->aCarasouleData[$x+$t]->media_id; ?>" /></div>
                             <div class="row vdoethmbDtls">
-                                <div class="col-md-5 glryvdeoTy">Humour</div>
+                                <div class="col-md-5 glryvdeoTy"><?=$this->aCarasouleData[$x+$t]->media_category; ?></div>
                                 <div class="col-md-4 pull-right">
                                     <div class="vdeoFcbk pull-left"></div>
                                     <div class="vdeolike pull-left"></div>
-                                    <div class="vdeovwCunt pull-left">60</div>
+                                    <div class="vdeovwCunt pull-left"><?=$this->aCarasouleData[$x+$t]->vote; ?></div>
                                 </div>
                             </div>
                             <div class="row vdoethmbTxt">
@@ -93,305 +83,10 @@
                         </div>
                     </div>
                     <!---TopvideosingleSliderEnd--->
-
-                    <!---TopvideosingleSliderstart--->
-                    <div class="col-md-3 glryVdoSctn">
-                        <div class="certifyIcn"></div>
-                        <div class="nxtsliders">
-                            <div class="PlayIcn1"></div>
-                            <div class="vdoethmb"><img class="img-responsive" src="<?php echo Yii::app()->request->baseUrl; ?>/images/thumb-1.png"/></div>
-                            <div class="row vdoethmbDtls">
-                                <div class="col-md-5 glryvdeoTy">Humour</div>
-                                <div class="col-md-4 pull-right">
-                                    <div class="vdeoFcbk pull-left"></div>
-                                    <div class="vdeolike pull-left"></div>
-                                    <div class="vdeovwCunt pull-left">60</div>
-                                </div>
-                            </div>
-                            <div class="row vdoethmbTxt">
-                                <div class="col-md-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!---TopvideosingleSliderEnd--->
-
-                    <!---TopvideosingleSliderstart--->
-                    <div class="col-md-3 glryVdoSctn">
-                        <div class="nxtsliders">
-                            <div class="PlayIcn1"></div>
-                            <div class="vdoethmb"><img class="img-responsive" src="<?php echo Yii::app()->request->baseUrl; ?>/images/thumb-1.png"/></div>
-                            <div class="row vdoethmbDtls">
-                                <div class="col-md-5 glryvdeoTy">Humour</div>
-                                <div class="col-md-4 pull-right">
-                                    <div class="vdeoFcbk pull-left"></div>
-                                    <div class="vdeolike pull-left"></div>
-                                    <div class="vdeovwCunt pull-left">60</div>
-                                </div>
-                            </div>
-                            <div class="row vdoethmbTxt">
-                                <div class="col-md-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!---TopvideosingleSliderEnd--->
+                    <?php } ?>
                 </div>
                 <!---TopvideoSliderrowEnd--->
-
-                <!---TopvideoSliderrowStart--->
-                <div class="item" style="width:100%;background:#fff;  ">
-                    <!---TopvideosingleSliderstart--->
-                    <div class="col-md-3 glryVdoSctn">
-                        <div class="certifyIcn"></div>
-                        <div class="nxtsliders">
-                            <div class="PlayIcn1"></div>
-                            <div class="vdoethmb"><img class="img-responsive"
-                                                       src="<?php echo Yii::app()->request->baseUrl; ?>/images/thumb-1.png"/></div>
-                            <div class="row vdoethmbDtls">
-                                <div class="col-md-5 glryvdeoTy">Humour</div>
-                                <div class="col-md-4 pull-right">
-                                    <div class="vdeoFcbk pull-left"></div>
-                                    <div class="vdeolike pull-left"></div>
-                                    <div class="vdeovwCunt pull-left">60</div>
-                                </div>
-                            </div>
-                            <div class="row vdoethmbTxt">
-                                <div class="col-md-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!---TopvideosingleSliderEnd--->
-                    <!---TopvideosingleSliderstart--->
-                    <div class="col-md-3 glryVdoSctn">
-                        <div class="nxtsliders">
-                            <div class="PlayIcn1"></div>
-                            <div class="vdoethmb"><img class="img-responsive"
-                                                       src="<?php echo Yii::app()->request->baseUrl; ?>/images/thumb-1.png"/></div>
-                            <div class="row vdoethmbDtls">
-                                <div class="col-md-5 glryvdeoTy">Humour</div>
-                                <div class="col-md-4 pull-right">
-                                    <div class="vdeoFcbk pull-left"></div>
-                                    <div class="vdeolike pull-left"></div>
-                                    <div class="vdeovwCunt pull-left">60</div>
-                                </div>
-                            </div>
-                            <div class="row vdoethmbTxt">
-                                <div class="col-md-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!---TopvideosingleSliderEnd--->
-                    <!---TopvideosingleSliderstart--->
-                    <div class="col-md-3 glryVdoSctn">
-                        <div class="nxtsliders">
-                            <div class="PlayIcn1"></div>
-                            <div class="vdoethmb"><img class="img-responsive"
-                                                       src="<?php echo Yii::app()->request->baseUrl; ?>/images/thumb-1.png"/></div>
-                            <div class="row vdoethmbDtls">
-                                <div class="col-md-5 glryvdeoTy">Humour</div>
-                                <div class="col-md-4 pull-right">
-                                    <div class="vdeoFcbk pull-left"></div>
-                                    <div class="vdeolike pull-left"></div>
-                                    <div class="vdeovwCunt pull-left">60</div>
-                                </div>
-                            </div>
-                            <div class="row vdoethmbTxt">
-                                <div class="col-md-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!---TopvideosingleSliderEnd--->
-                    <!---TopvideosingleSliderstart--->
-                    <div class="col-md-3 glryVdoSctn">
-                        <div class="nxtsliders">
-                            <div class="PlayIcn1"></div>
-                            <div class="vdoethmb"><img class="img-responsive"
-                                                       src="<?php echo Yii::app()->request->baseUrl; ?>/images/thumb-1.png"/></div>
-                            <div class="row vdoethmbDtls">
-                                <div class="col-md-5 glryvdeoTy">Humour</div>
-                                <div class="col-md-4 pull-right">
-                                    <div class="vdeoFcbk pull-left"></div>
-                                    <div class="vdeolike pull-left"></div>
-                                    <div class="vdeovwCunt pull-left">60</div>
-                                </div>
-                            </div>
-                            <div class="row vdoethmbTxt">
-                                <div class="col-md-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!---TopvideosingleSliderEnd--->
-                </div>
-                <!---TopvideoSliderrowEnd--->
-
-                <!---TopvideoSliderrowStart--->
-                <div class="item" style="width:100%;background:#fff;  ">
-                    <!---TopvideosingleSliderstart--->
-                    <div class="col-md-3 glryVdoSctn">
-                        <div class="nxtsliders">
-                            <div class="PlayIcn1"></div>
-                            <div class="vdoethmb"><img class="img-responsive"
-                                                       src="<?php echo Yii::app()->request->baseUrl; ?>/images/thumb-1.png"/></div>
-                            <div class="row vdoethmbDtls">
-                                <div class="col-md-5 glryvdeoTy">Humour</div>
-                                <div class="col-md-4 pull-right">
-                                    <div class="vdeoFcbk pull-left"></div>
-                                    <div class="vdeolike pull-left"></div>
-                                    <div class="vdeovwCunt pull-left">60</div>
-                                </div>
-                            </div>
-                            <div class="row vdoethmbTxt">
-                                <div class="col-md-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!---TopvideosingleSliderEnd--->
-                    <!---TopvideosingleSliderstart--->
-                    <div class="col-md-3 glryVdoSctn">
-                        <div class="nxtsliders">
-                            <div class="PlayIcn1"></div>
-                            <div class="vdoethmb"><img class="img-responsive"
-                                                       src="<?php echo Yii::app()->request->baseUrl; ?>/images/thumb-1.png"/></div>
-                            <div class="row vdoethmbDtls">
-                                <div class="col-md-5 glryvdeoTy">Humour</div>
-                                <div class="col-md-4 pull-right">
-                                    <div class="vdeoFcbk pull-left"></div>
-                                    <div class="vdeolike pull-left"></div>
-                                    <div class="vdeovwCunt pull-left">60</div>
-                                </div>
-                            </div>
-                            <div class="row vdoethmbTxt">
-                                <div class="col-md-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!---TopvideosingleSliderEnd--->
-                    <!---TopvideosingleSliderstart--->
-                    <div class="col-md-3 glryVdoSctn">
-                        <div class="nxtsliders">
-                            <div class="PlayIcn1"></div>
-                            <div class="vdoethmb"><img class="img-responsive"
-                                                       src="<?php echo Yii::app()->request->baseUrl; ?>/images/thumb-1.png"/></div>
-                            <div class="row vdoethmbDtls">
-                                <div class="col-md-5 glryvdeoTy">Humour</div>
-                                <div class="col-md-4 pull-right">
-                                    <div class="vdeoFcbk pull-left"></div>
-                                    <div class="vdeolike pull-left"></div>
-                                    <div class="vdeovwCunt pull-left">60</div>
-                                </div>
-                            </div>
-                            <div class="row vdoethmbTxt">
-                                <div class="col-md-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!---TopvideosingleSliderEnd--->
-                    <!---TopvideosingleSliderstart--->
-                    <div class="col-md-3 glryVdoSctn">
-                        <div class="nxtsliders">
-                            <div class="PlayIcn1"></div>
-                            <div class="vdoethmb"><img class="img-responsive"
-                                                       src="<?php echo Yii::app()->request->baseUrl; ?>/images/thumb-1.png"/></div>
-                            <div class="row vdoethmbDtls">
-                                <div class="col-md-5 glryvdeoTy">Humour</div>
-                                <div class="col-md-4 pull-right">
-                                    <div class="vdeoFcbk pull-left"></div>
-                                    <div class="vdeolike pull-left"></div>
-                                    <div class="vdeovwCunt pull-left">60</div>
-                                </div>
-                            </div>
-                            <div class="row vdoethmbTxt">
-                                <div class="col-md-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!---TopvideosingleSliderEnd--->
-                </div>
-                <!---TopvideoSliderrowEnd--->
-
-                <!---TopvideoSliderrowStart--->
-                <div class="item" style="width:100%; background:#fff; ">
-                    <!---TopvideosingleSliderstart--->
-                    <div class="col-md-3 glryVdoSctn">
-                        <div class="nxtsliders">
-                            <div class="PlayIcn1"></div>
-                            <div class="vdoethmb"><img class="img-responsive"
-                                                       src="<?php echo Yii::app()->request->baseUrl; ?>/images/thumb-1.png"/></div>
-                            <div class="row vdoethmbDtls">
-                                <div class="col-md-5 glryvdeoTy">Humour</div>
-                                <div class="col-md-4 pull-right">
-                                    <div class="vdeoFcbk pull-left"></div>
-                                    <div class="vdeolike pull-left"></div>
-                                    <div class="vdeovwCunt pull-left">60</div>
-                                </div>
-                            </div>
-                            <div class="row vdoethmbTxt">
-                                <div class="col-md-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!---TopvideosingleSliderEnd--->
-                    <!---TopvideosingleSliderstart--->
-                    <div class="col-md-3 glryVdoSctn">
-                        <div class="nxtsliders">
-                            <div class="PlayIcn1"></div>
-                            <div class="vdoethmb"><img class="img-responsive"
-                                                       src="<?php echo Yii::app()->request->baseUrl; ?>/images/thumb-1.png"/></div>
-                            <div class="row vdoethmbDtls">
-                                <div class="col-md-5 glryvdeoTy">Humour</div>
-                                <div class="col-md-4 pull-right">
-                                    <div class="vdeoFcbk pull-left"></div>
-                                    <div class="vdeolike pull-left"></div>
-                                    <div class="vdeovwCunt pull-left">60</div>
-                                </div>
-                            </div>
-                            <div class="row vdoethmbTxt">
-                                <div class="col-md-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!---TopvideosingleSliderEnd--->
-                    <!---TopvideosingleSliderstart--->
-                    <div class="col-md-3 glryVdoSctn">
-                        <div class="nxtsliders">
-                            <div class="PlayIcn1"></div>
-                            <div class="vdoethmb"><img class="img-responsive"
-                                                       src="<?php echo Yii::app()->request->baseUrl; ?>/images/thumb-1.png"/></div>
-                            <div class="row vdoethmbDtls">
-                                <div class="col-md-5 glryvdeoTy">Humour</div>
-                                <div class="col-md-4 pull-right">
-                                    <div class="vdeoFcbk pull-left"></div>
-                                    <div class="vdeolike pull-left"></div>
-                                    <div class="vdeovwCunt pull-left">60</div>
-                                </div>
-                            </div>
-                            <div class="row vdoethmbTxt">
-                                <div class="col-md-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!---TopvideosingleSliderEnd--->
-                    <!---TopvideosingleSliderstart--->
-                    <div class="col-md-3 glryVdoSctn">
-                        <div class="nxtsliders">
-                            <div class="PlayIcn1"></div>
-                            <div class="vdoethmb"><img class="img-responsive"
-                                                       src="<?php echo Yii::app()->request->baseUrl; ?>/images/thumb-1.png"/></div>
-                            <div class="row vdoethmbDtls">
-                                <div class="col-md-5 glryvdeoTy">Humour</div>
-                                <div class="col-md-4 pull-right">
-                                    <div class="vdeoFcbk pull-left"></div>
-                                    <div class="vdeolike pull-left"></div>
-                                    <div class="vdeovwCunt pull-left">60</div>
-                                </div>
-                            </div>
-                            <div class="row vdoethmbTxt">
-                                <div class="col-md-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!---TopvideosingleSliderEnd--->
-                </div>
-                <!---TopvideoSliderrowEnd--->
+            <?php } ?>
             </div>
 
             <!-- LeftandrightcontrolsStart-->

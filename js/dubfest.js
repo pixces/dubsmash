@@ -3,11 +3,29 @@
  */
 
 $( document ).ready(function() {
-	
-$('.carousel').carousel({
-    pause: true,
-    interval: false
-});
+
+    /* Carousel */
+
+    $('.carousel').carousel({
+        pause: true,
+        interval: false,
+        wrap: false
+    }).on('slid.bs.carousel', function () {
+        curSlide = $('.active');
+        if(curSlide.is( ':first-child' )) {
+            $('.left').hide();
+            return;
+        } else {
+            $('.left').show();
+        }
+        if (curSlide.is( ':last-child' )) {
+            $('.right').hide();
+            return;
+        } else {
+            $('.right').show();
+        }
+    });
+
 	$('#sangramSingVideo1').click(function(){
 		
     $('#sangramSingVideo').attr('src', host + '/images/Mainthum1.png');
@@ -50,23 +68,31 @@ $('.carousel').carousel({
 	$(".subVideo").addClass("hide");
 	$(".cntct").addClass("hide");
 	});
-	
-	
-	$(".PlayIcn2").click(function(){
-	$(".UnivrslPoupup").removeClass("hide");
-	$(".subVideo").removeClass("hide");
-	$(".mainVideo").addClass("hide");
-	
-	$(".cntct").addClass("hide");
+
+
+
+    $(".PlayIcn2").click(function(){
+	    $(".UnivrslPoupup").removeClass("hide");
+	    $(".subVideo").removeClass("hide");
+	    $(".mainVideo").addClass("hide");
+	    $(".cntct").addClass("hide");
 	});
 		
 	$(".vdoethmb").click(function(){
-	$(".UnivrslPoupup").removeClass("hide");
-	$(".videoSctn").removeClass("hide");
-	$(".subVideo").removeClass("hide");
-	$(".mainVideo").addClass("hide");
-	$(".cntct").addClass("hide");
+	    $(".UnivrslPoupup").removeClass("hide");
+	    $(".videoSctn").removeClass("hide");
+	    $(".subVideo").removeClass("hide");
+	    $(".mainVideo").addClass("hide");
+	    $(".cntct").addClass("hide");
 	});
+
+    $(".PlayIcn1").click(function(){
+        $(".UnivrslPoupup").removeClass("hide");
+        $(".videoSctn").removeClass("hide");
+        $(".subVideo").removeClass("hide");
+        $(".mainVideo").addClass("hide");
+        $(".cntct").addClass("hide");
+    });
 	
 		$(".hmprcptBtn").click(function(){
 		$(".participateprceCntr").addClass("hide");
@@ -89,6 +115,11 @@ $('.carousel').carousel({
 		
 		
 		});
-			function goBack() {
-    window.history.back();
+function goBack() {
+       window.history.back();
 }
+
+
+
+
+

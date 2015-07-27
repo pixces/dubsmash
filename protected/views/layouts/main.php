@@ -25,16 +25,16 @@
 <div class="univrslPoupClose"><i class="fa fa-times"></i></div>
 <div class="row">
 	<div class="col-md-9 noPaddng">
-		<h3 class="lilita clr2">Contact Us</h3>
+		<h3 class="lilita clr2">{Video Title}</h3>
 	</div>
 	<div class="col-md-12 noPaddng">
-		<p>Morbi viverra mattis leo vitae faucibus. Sed vel quam pellentesque felis hendrerit mollis. Fusce elementum laoreet efficitur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames #Bnatural #Dubfest.</p>
+		<p>{Video message}</p>
 	</div>
 </div>
-<div  style="overflow-x:hidden; overflow-y:auto; height:350px">
+<div style="overflow-x:hidden; overflow-y:auto; height:350px">
 <div class="row">
 	<div class="col-md-8 noPaddng">
-	<iframe id="YourIFrameID" width="100%" height="95%" src="https://www.youtube.com/embed/Ap2rVl_KP2Y" frameborder="0" allowfullscreen></iframe>
+	<iframe id="YourIFrameID" width="100%" height="95%" src="https://www.youtube.com/embed/{videoId}" frameborder="0" allowfullscreen></iframe>
 	</div>
 	<div class="col-md-4 clr1 noPaddng">
 		<div class="votNowFrm pull-left">
@@ -164,10 +164,10 @@
             <div class="univrslPoupClose"><i class="fa fa-times"></i></div>
             <div class="row">
                 <div class="col-md-9">
-                    <h3 class="lilita clr2">Contact Us</h3>
+                    <h3 class="lilita clr2">{Video title}</h3>
                 </div>
                 <div class="col-md-12">
-                    <p>Morbi viverra mattis leo vitae faucibus. Sed vel quam pellentesque felis hendrerit mollis. Fusce elementum laoreet efficitur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames #Bnatural #Dubfest.</p>
+                    <p>{Video message}</p>
                 </div>
             </div>
             <div class="row">

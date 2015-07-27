@@ -261,7 +261,7 @@ class GalleryController extends Controller
      */
     protected function loadGalleryVideos($paramObject, $page = 1, $limit = 0)
     {
-        $columns       = [];
+        $columns       = array();
         $totalvideos = 0;
         $selectedCategory=null;
         $galleryData   = [];

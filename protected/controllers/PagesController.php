@@ -18,11 +18,23 @@ class PagesController extends Controller
     protected $oYoutube = null;
 
     /**
+     * @var int
+     */
+    protected $dCarouselPageCount = 0;
+
+    /**
+     * @var array
+     */
+    protected $aCarasouleData = array();
+
+    /**
      * Index Action
      * To display the Home Page of the application
      */
     public function actionIndex()
     {
+        $this->getCarouselContent();
+
         $this->render('index');
     }
 
@@ -168,5 +180,40 @@ class PagesController extends Controller
         print_r($_POST);
         print_r($_FILES);
         exit;
+    }
+
+    /**
+     * Method to get list of Viode
+     * to be displayed on the Casousel for the Index page
+     * @param null $params
+     * @return array
+     */
+    protected function getCarouselContent($params = null)
+    {
+
+        $galleryData = array();
+        $columns     = Content::$defaultSelectableFields;
+
+        $Criteria           = new CDbCriteria;
+        $Criteria->condition= 'is_ugc=:ugc AND status=:status';
+        $Criteria->params   = array(':ugc' => 1, 'status' => 'approved');
+        $Criteria->order    = 'vote DESC';
+        $Criteria->limit    = 20;
+        $Criteria->offset   = 0;
+
+        if ( Content::model()->count($Criteria) ){
+            $content = Content::model()->findAll($Criteria);
+            $this->dCarouselPageCount = floor(count($content)/4);
+
+            foreach ($content as $video) {
+                $row = new stdClass();
+                foreach ($columns as $column) {
+                    $row->$column = $video->$column;
+                }
+                $galleryData[] = $row;
+            }
+        }
+        $this->aCarasouleData = $galleryData;
+        return $galleryData;
     }
 }

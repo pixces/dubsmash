@@ -64,5 +64,16 @@ return array(
     'params' => array(
         // this is used in contact page
         'adminEmail' => 'webmaster@example.com',
+        'extensions' => array(
+            'MP4',
+            'MPEG4',
+            'AVI',
+            'MOV',
+            'JPG',
+            'GIF',
+            'PNG',
+            'JPEG'
+        ),
+        'uploadMaxSize' => 10,
     ),
 );
