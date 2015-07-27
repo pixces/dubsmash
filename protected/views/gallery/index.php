@@ -63,7 +63,8 @@
             var videoId = $(this).parent().parent().attr('data-media-id');
             var totalVoteCnt = $(this).parent().parent().attr('data-media-vote-count');
             var mediaUrl=$(this).find(".img-responsive").attr("data-media-url");
-            $("#YourIFrameID").attr('src',mediaUrl);
+             mediaUrl=mediaUrl.replace("watch?v=", "v/");
+            $("#YourIFrameID").attr('src',mediaUrl+"&output=embed");
             $(".votNowFrm").find(".votenow").attr("data-video-id", videoId);
             $(".votNowFrm").find(".totalVoteCount").html('<span>' + totalVoteCnt + '</span>');
             $(".votNowFrm").find(".votingMessage").addClass("hide");
@@ -76,8 +77,8 @@
             var videoId = $(this).parent().parent().attr('data-media-id');
             var totalVoteCnt = $(this).parent().parent().attr('data-media-vote-count');
             var mediaUrl=$(this).parent().find(".img-responsive").attr("data-media-url");
-
-            $("#YourIFrameID").attr('src',mediaUrl);
+            mediaUrl=mediaUrl.replace("watch?v=", "v/");
+            $("#YourIFrameID").attr('src',mediaUrl+"&output=embed");
             $(".votNowFrm").find(".votenow").attr("data-video-id", videoId);
             $(".votNowFrm").find(".totalVoteCount").html('<span>' + totalVoteCnt + '</span>');
             $(".votNowFrm").find(".votingMessage").addClass("hide");
