@@ -66,7 +66,8 @@ class PagesController extends Controller
 
             $model->attributes = $_POST['ParticipateForm'];
 
-            $model->media_category = isset($_POST['ParticipateForm']['media_category'])? $_POST['ParticipateForm']['media_category'] : 'All';
+            $model->media_category = isset($_POST['ParticipateForm']['media_category'])
+                    ? $_POST['ParticipateForm']['media_category'] : 'All';
 
             $model->media_url = $_FILES['file_0']['name'];
 
@@ -163,10 +164,111 @@ class PagesController extends Controller
         );
     }
 
-    public function actionRegister2()
+    public function actionVoting()
     {
-        print_r($_POST);
-        print_r($_FILES);
-        exit;
+
+        if (Yii::app()->request->isAjaxRequest) {
+            $response    = ['error' => 1, 'message' => '', 'votecount' => 0];
+            $cookieIsSet = Yii::app()->getRequest()->getParam('cookieSet');
+            $contentId   = Yii::app()->getRequest()->getParam('videoId', '');
+            if ($cookieIsSet) {
+                $encryptedUserInfo = $_COOKIE["USERINFO"];
+                $userDecryptInfo   = Utility::mc_decrypt($encryptedUserInfo,
+                        Yii::app()->params['ENCRYPTION_KEY']);
+                $userInfo          = json_decode($userDecryptInfo, true);
+                $email             = $userInfo['email'];
+                $name              = $userInfo['name'];
+            } else {
+                $name              = Yii::app()->getRequest()->getParam('name',
+                    '');
+                $email             = Yii::app()->getRequest()->getParam('email',
+                    '');
+                $data              = json_encode(['name' => $name, 'email' => $email]);
+                $encryptedUserInfo = Utility::mc_encrypt($data,
+                        Yii::app()->params['ENCRYPTION_KEY']);
+                ob_start();
+                setcookie("USERINFO", $encryptedUserInfo,
+                    time() + (10 * 365 * 24 * 60 * 60), '/');
+                ob_end_flush();
+            }
+            $dVotingStatus          = $this->_checkIfUserVoted($contentId,
+                $email, $name);
+            $dTotalContentVote      = 0;
+            $dTotalContentVoteCount = 0;
+            if ($dVotingStatus == 0) {
+                try {
+                    $model             = new ContentVotes();
+                    $model->content_id = $contentId;
+                    $model->email      = $email;
+                    $model->username   = $name;
+                    $model->user_ip    = Yii::app()->request->getUserHostAddress();
+                    $model->date       = new CDbExpression('NOW()');
+                    if ($model->save()) {
+                        $dTotalContentVote      = $this->_getContentTotalVote($contentId);
+                        $dTotalContentVoteCount = ($dTotalContentVote) ? $dTotalContentVote
+                            + 1 : 1;
+
+                        Content::model()->updateByPk($contentId,
+                            array("vote" => $dTotalContentVoteCount));
+
+
+                        $response['error']     = 0;
+                        $response['message']   = 'Voted';
+                        $response['id']        = $contentId;
+                        $response['votecount'] = $dTotalContentVoteCount;
+                    } else {
+
+                        $response['error']   = 1;
+                        $response['message'] = $model->getErrors();
+                    }
+                } catch (Exception $e) {
+
+                    $response['error']   = 1;
+                    $response['message'] = $e->getMessage();
+                }
+            } else {
+                $response['error']   = 1;
+                $response['message'] = "Already Voted";
+            }
+
+            echo json_encode($response);
+            Yii::app()->end();
+        }
+    }
+
+    private function _checkIfUserVoted($contentId, $email, $username)
+    {
+        $response            = [];
+        $params['id']        = $contentId;
+        $params['email']     = $email;
+        $params['username']  = $username;
+        $count               = 0;
+        $condition           = 'content_id=:id AND email=:email AND username=:username';
+        $Criteria            = new CDbCriteria();
+        $Criteria->condition = $condition;
+        $Criteria->params    = $params;
+
+        $result = ContentVotes::model()->find($Criteria);
+        $count  = count($result);
+
+        return $count;
+    }
+
+    private function _getContentTotalVote($contentId)
+    {
+        $response            = [];
+        $count               = 0;
+        $params['id']        = $contentId;
+        $condition           = 'id=:id ';
+        $Criteria            = new CDbCriteria();
+        $Criteria->condition = $condition;
+        $Criteria->params    = $params;
+
+        $result = Content::model()->find($Criteria);
+        if (count($result)) {
+            $count = (int) $result->vote;
+        }
+
+        return $count;
     }
 }

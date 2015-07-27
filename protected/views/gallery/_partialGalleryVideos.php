@@ -3,7 +3,7 @@
     <?php foreach ($galleries as $gallery) {
         $dispImage = (isset($gallery['alternate_image']) && $gallery['alternate_image'] != 'null' && $gallery['alternate_image'] != '') ? $gallery['alternate_image'] : 'https://i1.ytimg.com/vi/xi3UlWG3RK0/hqdefault.jpg';
     ?>
-        <div class="col-md-3 glryVdoSctn" id="media-<?php echo $gallery['id'];?>">
+        <div class="col-md-3 glryVdoSctn" id="media-<?php echo $gallery['id'];?>" data-media-id="<?php echo $gallery['id'];?>" data-media-vote-count='<?php echo $gallery['vote'];?>'>
             <?php if ($gallery['vote'] > 10) { ?><div class="certifyIcn"></div><?php } ?>
             <div class="nxtsliders">
                 <div class="PlayIcn2"></div>

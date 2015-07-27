@@ -44,7 +44,7 @@
                     </div>
                     <?php if ($loader) { ?>
                         <div class="glryBtn glryLoad lilita" id="loadmorevideos">Load More</div>
-<?php } ?>
+                    <?php } ?>
                 </div>
                 <span class="lilita clr1 fntsz25">#Bnatural #Dubfest</span>
             </div>
@@ -53,19 +53,29 @@
 </div>
 <script>
 
-   $(document).ready(function() {
+    $(document).ready(function() {
 
-         $(".univrslPoupClose").click(function() {
+        $(".univrslPoupClose").click(function() {
             $(".UnivrslPoupup").addClass("hide");
         });
 
         $(".vdoethmb").click(function() {
+            var videoId = $(this).parent().parent().attr('data-media-id');
+            var totalVoteCnt = $(this).parent().parent().attr('data-media-vote-count');
+            $(".votNowFrm").find(".votenow").attr("data-video-id", videoId);
+            $(".votNowFrm").find(".totalVoteCount").html('<span>' + totalVoteCnt + '</span>');
+            $(".votNowFrm").find(".votingMessage").addClass("hide");
             $(".UnivrslPoupup").removeClass("hide");
             $(".videoSctn").removeClass("hide");
             $(".cntct").addClass("hide");
         });
 
         $(".PlayIcn2").click(function() {
+            var videoId = $(this).parent().parent().attr('data-media-id');
+            var totalVoteCnt = $(this).parent().parent().attr('data-media-vote-count');
+            $(".votNowFrm").find(".votenow").attr("data-video-id", videoId);
+            $(".votNowFrm").find(".totalVoteCount").html('<span>' + totalVoteCnt + '</span>');
+            $(".votNowFrm").find(".votingMessage").addClass("hide");
             $(".UnivrslPoupup").removeClass("hide");
             $(".videoSctn").removeClass("hide");
             $(".cntct").addClass("hide");
@@ -91,10 +101,10 @@
             var title = $(this).val();
             var categoryFilter = $("#selectboxCategory").val();
             var sortingFilter = $("#gallerySort").val();
-            var offset  = $("#galleryCnt").val();
-            var loaderTrack= parseInt(offset) + 1;
+            var offset = $("#galleryCnt").val();
+            var loaderTrack = parseInt(offset) + 1;
             $("#galleryCnt").val(loaderTrack);
-            var param = {'title': title, 'category': categoryFilter, sort: sortingFilter, 'offset': loaderTrack,'append':true};
+            var param = {'title': title, 'category': categoryFilter, sort: sortingFilter, 'offset': loaderTrack, 'append': true};
             var objGallery = new gallerySearch(param);
             objGallery.Search();
 
@@ -216,10 +226,10 @@
                     url: actionUrl,
                     data: queryString,
                     success: function(data) {
-                       (typeof param.append==="undefined") ?  $(selector).html(data.template) :  $(selector).append(data.template);
-                       data.loader===0 ?  $("#loadmorevideos").addClass("hide") : $("#loadmorevideos").removeClass("hide");
-                       $("#categorycount").html(data.totalvideos);
-                       $("#selectcategory").html(data.selectedcategory);
+                        (typeof param.append === "undefined") ? $(selector).html(data.template) : $(selector).append(data.template);
+                        data.loader === 0 ? $("#loadmorevideos").addClass("hide") : $("#loadmorevideos").removeClass("hide");
+                        $("#categorycount").html(data.totalvideos);
+                        $("#selectcategory").html(data.selectedcategory);
 
                     }, error: function(request, status, error) {
                         console.log(request.responseText)
