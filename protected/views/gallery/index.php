@@ -62,6 +62,8 @@
         $(".vdoethmb").click(function() {
             var videoId = $(this).parent().parent().attr('data-media-id');
             var totalVoteCnt = $(this).parent().parent().attr('data-media-vote-count');
+            var mediaUrl=$(this).find(".img-responsive").attr("data-media-url");
+            $("#YourIFrameID").attr('src',mediaUrl);
             $(".votNowFrm").find(".votenow").attr("data-video-id", videoId);
             $(".votNowFrm").find(".totalVoteCount").html('<span>' + totalVoteCnt + '</span>');
             $(".votNowFrm").find(".votingMessage").addClass("hide");
@@ -73,6 +75,9 @@
         $(".PlayIcn2").click(function() {
             var videoId = $(this).parent().parent().attr('data-media-id');
             var totalVoteCnt = $(this).parent().parent().attr('data-media-vote-count');
+            var mediaUrl=$(this).parent().find(".img-responsive").attr("data-media-url");
+
+            $("#YourIFrameID").attr('src',mediaUrl);
             $(".votNowFrm").find(".votenow").attr("data-video-id", videoId);
             $(".votNowFrm").find(".totalVoteCount").html('<span>' + totalVoteCnt + '</span>');
             $(".votNowFrm").find(".votingMessage").addClass("hide");
