@@ -34,7 +34,6 @@ class PagesController extends Controller
     public function actionIndex()
     {
         $this->getCarouselContent();
-
         $this->render('index');
     }
 
@@ -43,6 +42,7 @@ class PagesController extends Controller
      */
     public function actionTvc()
     {
+        $this->getCarouselContent();
         $this->render('tvc');
     }
 

@@ -26,16 +26,16 @@
                         <div class="univrslPoupClose"><i class="fa fa-times"></i></div>
                         <div class="row">
                             <div class="col-md-9 noPaddng">
-                                <h3 class="lilita clr2">Contact Us</h3>
+                                <h3 class="lilita clr2 VideoTitle">Contact Us</h3>
                             </div>
-                            <div class="col-md-12 noPaddng">
+                            <div class="col-md-12 noPaddng VideoMessage">
                                 <p>Morbi viverra mattis leo vitae faucibus. Sed vel quam pellentesque felis hendrerit mollis. Fusce elementum laoreet efficitur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames #Bnatural #Dubfest.</p>
                             </div>
                         </div>
                         <div  style="overflow-x:hidden; overflow-y:auto; height:350px">
                             <div class="row">
                                 <div class="col-md-8 noPaddng">
-                                    <iframe id="YourIFrameID" width="100%" height="95%" src="https://www.youtube.com/embed/Ap2rVl_KP2Y" frameborder="0" allowfullscreen></iframe>
+                                    <iframe id="YourIFrameID" width="100%" height="95%" src="" frameborder="0" allowfullscreen></iframe>
                                 </div>
                                 <div class="col-md-4 clr1 noPaddng" id>
                                     <div class="votNowFrm pull-left">
@@ -47,15 +47,13 @@
                                             <label>Your Email*</label>
                                             <input class="form-control" name="email" id="email" type="text"/>
                                         </div>
-                                        <div class="col-xs-12 form-group voteInfo hide">
-                                            Total Vote : <h3 class='totalVoteCount'></h3>
+                                        <div class="col-xs-12 form-group voteInfo hide" style="text-align:center;">
+                                            <span class="voteHead" style="border-bottom:1px dotted #efefef">Total Votes</span><br>
+                                            <span class='totalVoteCount'>32</span>
+                                            <div class="col-xs-12 form-group votingMessage hide" style="color:red;"></div>
                                         </div>
-                                        <div class="col-xs-12 form-group votingMessage hide">
-
-                                        </div>
-
                                         <div class="col-xs-12 form-group">
-                                            <div class="glryBtn glryLoad lilita clr4 votenow" data-video-id="0"><i class="fa fa-heart"></i>Vote Now</div>
+                                            <div class="glryBtn glryLoad lilita clr4 votenow" data-content_id="0"><i class="fa fa-heart"></i>Vote Now</div>
                                         </div>
                                     </div>
                                     <div class="ShareSctn pull-left lilita" style="font-size:21px;">Share it On<img src="images/fbicn.png" /></div>
@@ -228,99 +226,8 @@
 
             $(document).ready(function() {
 
-                var cookieExist = null;
-                var userInfo = null;
-
-
-                var vote = function(data) {
-                    var url = {
-                        'votingAction': '<?php echo Yii::app()->createUrl("/pages/voting"); ?>'
-                    };
-                    $.ajax({
-                        url: url.votingAction,
-                        type: 'POST',
-                        data: data,
-                        dataType: 'json',
-                        beforeSend: function() {
-
-                        },
-                        success: function(data) {
-                            if (data.error == 0) {
-                                var votecount = data.votecount;
-                                $(".userInfo").addClass("hide");
-                                $(".totalVoteCount").removeClass("hide");
-                                $(".totalVoteCount").html('<span>' + votecount + '<span>');
-                                $("#media-" + data.id).attr("data-media-vote-count", votecount);
-                            } else {
-                                $(".votingMessage").removeClass("hide");
-                                $(".votingMessage").html(data.message);
-                            }
-                        },
-                        complete: function() {
-                        },
-                        error: function(xhr, textStatus, error) {
-
-                        },
-                    });
-
-
-                };
-
-                var checkCookieExist = function() {
-                    userInfo = $.cookie("USERINFO");
-                    if (typeof userInfo !== "undefined") {
-                        return true;
-                    }
-                    return false;
-
-                }
-
-                $(".votenow").on("click", function(e) {
-
-                    var videoId = $(this).attr('data-video-id');
-                    var params = null;
-                    if (cookieExist === false) {
-                        var userName = $("#username").val();
-                        var emailId = $("#email").val();
-
-                        if ($("#username").val() == '') {
-                            alert("Please Enter Username ");
-                            return false;
-                        }
-                        if ($("#email").val() == '') {
-                            alert("Please Enter Email Address. ");
-                            return false;
-                        }
-
-                        var filter = /^[a-zA-Z0-9]+[a-zA-Z0-9_.-]+[a-zA-Z0-9_-]+@[a-zA-Z0-9]+[a-zA-Z0-9.-]+[a-zA-Z0-9]+.[a-z]{2,4}$/;
-                        //if it's valid email
-                        if (!filter.test($("#email").val())) {
-                            alert("Please Enter Valid Email Address. ");
-                            return false;
-                        }
-
-
-                        params = {'name': userName, 'email': emailId, 'videoId': videoId, 'cookieSet': 0};
-                    } else {
-                        params = {'videoId': videoId, 'cookieSet': 1};
-                    }
-
-                    if (typeof params !== 'undefined' && Object.keys(params).length !== 0) {
-                        vote(params);
-                    }
-
-
-                });
-
-                cookieExist = checkCookieExist();
-                if (cookieExist) {
-                    $(".userInfo").addClass("hide");
-                    $(".voteInfo").removeClass("hide");
-                }
-
 
             });
-
         </script>
     </body>
 </html>

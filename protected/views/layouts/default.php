@@ -63,12 +63,12 @@
                     <?php for($t=0; $t < 4 ; $t++) { ?>
                     <!---TopvideosingleSliderstart--->
                     <div class="col-md-3 glryVdoSctn">
-                        <?php if ($this->aCarasouleData[$x+$t]->vote >= 0 ) { ?>
+                        <?php if ($this->aCarasouleData[$x+$t]->vote >= 1 ) { ?>
                         <div class="certifyIcn"></div>
                         <?php } ?>
-                        <div class="nxtsliders">
-                            <div class="PlayIcn1"></div>
-                            <div class="vdoethmb"><img class="img-responsive" src="<?=$this->aCarasouleData[$x+$t]->alternate_image; ?>" data-media_url="<?=$this->aCarasouleData[$x+$t]->media_url; ?>" data-media_id="<?=$this->aCarasouleData[$x+$t]->media_id; ?>" /></div>
+                        <div id="video-<?=$this->aCarasouleData[$x+$t]->id; ?>" class="nxtsliders" data-content_id="<?=$this->aCarasouleData[$x+$t]->id; ?>" data-media_id="<?=$this->aCarasouleData[$x+$t]->media_id; ?>" data-media_url="<?=$this->aCarasouleData[$x+$t]->media_url; ?>" data-vote="<?=$this->aCarasouleData[$x+$t]->vote; ?>" data-title="<?=$this->aCarasouleData[$x+$t]->media_title; ?>">
+                            <div class="PlayIcn1 VideoPlayBtn"></div>
+                            <div class="vdoethmb VideoPlayBtn"><img class="img-responsive" src="<?=$this->aCarasouleData[$x+$t]->alternate_image; ?>" /></div>
                             <div class="row vdoethmbDtls">
                                 <div class="col-md-5 glryvdeoTy"><?=$this->aCarasouleData[$x+$t]->media_category; ?></div>
                                 <div class="col-md-4 pull-right">
@@ -78,7 +78,7 @@
                                 </div>
                             </div>
                             <div class="row vdoethmbTxt">
-                                <div class="col-md-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                                <div class="col-md-12 videoMessage" data-media_message="<?=substr($this->aCarasouleData[$x+$t]->message, 0, 250); ?>"><?=(strlen($this->aCarasouleData[$x+$t]->message) > 60) ? substr($this->aCarasouleData[$x+$t]->message, 0, 60)." [..]" : $this->aCarasouleData[$x+$t]->message; ?></div>
                             </div>
                         </div>
                     </div>

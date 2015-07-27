@@ -1,4 +1,3 @@
-
 <div class="container">
     <header>
         <div class="row lilita tagLn">
@@ -20,10 +19,7 @@
                                         <option>Songs</option>
                                         <option>Drama</option>
                                     </select>
-
                                 </div>
-
-
                             </div>
                         </div>
                         <div class="col-md-3 text-right pull-right topVdescnt">
