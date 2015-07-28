@@ -63,7 +63,7 @@ $( document ).ready(function() {
 
 
     //LightBox Open Action for Carousel & Gallery
-    $(".VideoPlayBtn").on('click', function(){
+    $(document).on('click', ".VideoPlayBtn", function(){
         var $obj = $(this).parent();
         openLightBox($obj);
     });

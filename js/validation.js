@@ -8,7 +8,9 @@
 $(document).ready(function() {
     //global vars
     var form = $("#customForm");
-    var name = $("#username");
+    //var name = $("#username");
+	var name = $("#customForm #username");
+	
     var nameInfo = $("#nameInfo");
     var tittle = $("#mediatittle");
     var tittleInfo = $("#tittleInfo");
@@ -101,17 +103,18 @@ $(document).ready(function() {
 
     function validateName() {
         //if it's NOT valid
-
         if (name.val().length < 3) {
             name.addClass("error");
-            nameInfo.text("We want names with more than 2 letters!");
+            //nameInfo.text("We want names with more than 2 letters!");
+			nameInfo.text("Please enter your username");
             nameInfo.addClass("error");
             return false;
         }
         //if it's valid
         else {
             name.removeClass("error");
-            nameInfo.text("What's your name?");
+			//nameInfo.text("What's your name?");
+            nameInfo.text(" ");
             nameInfo.removeClass("error");
             return true;
         }
@@ -121,14 +124,14 @@ $(document).ready(function() {
         //if it's NOT valid
         if (tittle.val().length < 3) {
             tittle.addClass("error");
-            tittleInfo.text("We want names with more than 2 letters!");
+            tittleInfo.text("Please enter your media title");
             tittleInfo.addClass("error");
             return false;
         }
         //if it's valid
         else {
             tittle.removeClass("error");
-            //tittleInfo.text("What's your name?");
+            tittleInfo.text(" ");
             tittleInfo.removeClass("error");
             return true;
         }
@@ -138,14 +141,14 @@ $(document).ready(function() {
         //if it's NOT valid
         if (category.val().length < 3) {
             category.addClass("error");
-            categoryInfo.text("We want names with more than 2 letters!");
+            categoryInfo.text("Please select your media category");
             categoryInfo.addClass("error");
             return false;
         }
         //if it's valid
         else {
             category.removeClass("error");
-            //categoryInfo.text("What's your name?");
+            categoryInfo.text(" ");
             categoryInfo.removeClass("error");
             return true;
         }
@@ -155,14 +158,14 @@ $(document).ready(function() {
         //if it's NOT valid
         if (uploadvideo.val() == '') {
             uploadvideo.addClass("error");
-            uploadvideoInfo.text("We want a video!");
+            uploadvideoInfo.text("Upload a Dubsmash Video");
             uploadvideoInfo.addClass("error");
             return false;
         }
         //if it's valid
         else {
             uploadvideo.removeClass("error");
-            //uploadvideoInfo.text("What's your name?");
+            uploadvideoInfo.text(" ");
             uploadvideoInfo.removeClass("error");
             return true;
         }
@@ -176,13 +179,14 @@ $(document).ready(function() {
         //if it's valid email
         if (filter.test(a)) {
             mobile.removeClass("error");
+			mobileInfo.text(" ");
             mobileInfo.removeClass("error");
             return true;
         }
 
         else {
             mobile.addClass("error");
-            mobileInfo.text("Type a valid mobile no. please");
+            mobileInfo.text("Please enter your mobile number");
             mobileInfo.addClass("error");
             return false;
         }
@@ -197,14 +201,15 @@ $(document).ready(function() {
         //if it's valid email
         if (filter.test(a)) {
             email.removeClass("error");
-            emailInfo.text("Valid E-mail please, you will need it to log in!");
+            //emailInfo.text("Valid E-mail please, you will need it to log in!");
+			emailInfo.text(" ");
             emailInfo.removeClass("error");
             return true;
         }
         //if it's NOT valid
         else {
             email.addClass("error");
-            emailInfo.text("Type a valid e-mail please");
+            emailInfo.text("Please enter your email address");
             emailInfo.addClass("error");
             return false;
         }
@@ -214,7 +219,7 @@ $(document).ready(function() {
         //it's NOT valid
         if (message.val().length < 5) {
             message.addClass("error");
-            messageInfo.text("Minimum 5 char");
+            messageInfo.text("Please enter your message");
             messageInfo.addClass("error");
             return false;
         }
