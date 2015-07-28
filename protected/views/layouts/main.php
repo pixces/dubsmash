@@ -56,7 +56,7 @@
                                             <div class="glryBtn glryLoad lilita clr4 votenow" data-content_id="0"><i class="fa fa-heart"></i>Vote Now</div>
                                         </div>
                                     </div>
-                                    <div class="ShareSctn pull-left lilita" style="font-size:21px;">Share it On<img src="images/fbicn.png" /></div>
+                                    <div class="ShareSctn pull-left lilita" style="font-size:21px;" data-content_id="0">Share it On<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/fbicn.png" /></div>
                                 </div>
                             </div>
                         </div>

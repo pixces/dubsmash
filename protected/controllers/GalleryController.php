@@ -25,7 +25,7 @@ class GalleryController extends Controller
     {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view'),
+                'actions' => array('index', 'view','share'),
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -230,6 +230,25 @@ class GalleryController extends Controller
         ));
     }
 
+    public function actionShare($dContentId){
+
+        echo $dContentId = Yii::app()->getRequest()->getParam('content_id', '');
+        exit;
+
+        if ($dContentId && !empty($dContentId)){
+            $redirect_uri = Yii::app()->createAbsoluteUrl('/gallery/')."?content=".$dContentId."&lightbox=true";
+            $details = $this->getContent($dContentId);
+
+            $fb_base_url = 'https://www.facebook.com/dialog/feed?app_id=110238615987902';
+
+            $title = "I really liked " . $details['username'] . "'s entry on B Natural's Dubfest" ;
+            $description = $details['message'];
+            $url = $fb_base_url . "&link=" . $redirect_uri . "&name=" . urlencode($title) . "&description=" . urlencode($description) . "&picture=" . $details['message'] . "&redirect_uri=" . $redirect_uri;
+
+            $this->redirect($url);
+        }
+    }
+
     /**
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
@@ -343,6 +362,10 @@ class GalleryController extends Controller
         return json_encode($response);
     }
 
+    /**
+     * @param $id
+     * @return array
+     */
     protected function getContent($id){
 
         $aDetails = array();

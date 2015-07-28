@@ -86,6 +86,9 @@ $( document ).ready(function() {
 		$(".votNowFrm").find(".totalVoteCount").html('<span>' + vote + '</span>');
 		$(".votNowFrm").find(".votingMessage").addClass("hide");
 
+        //add content to share link
+        $(".ShareSctn").attr("data-content_id", content_id);
+
 		//show the popup now
 		$(".videoSctn").removeClass("hide");
 		$(".subVideo").removeClass("hide");
@@ -141,7 +144,7 @@ $( document ).ready(function() {
         }
 
         if (typeof params !== 'undefined' && Object.keys(params).length !== 0) {
-            vote(params);
+            doVote(params);
         }
 
 
@@ -216,6 +219,9 @@ function openLightBox(obj){
     $(".votNowFrm").find(".totalVoteCount").html('<span>' + vote + '</span>');
     $(".votNowFrm").find(".votingMessage").addClass("hide");
 
+    //add content to share link
+    $(".ShareSctn").attr("data-content_id", content_id);
+
     //show the popup now
     $(".videoSctn").removeClass("hide");
     $(".subVideo").removeClass("hide");
@@ -230,10 +236,13 @@ function closeLightBox(){
 }
 
 function shareTrigger(){
-	alert("share button clicked");
+    var content_id = $(".ShareSctn").attr("data-content_id");
+    var href = host + "/gallery/share/?content_id="+content_id;
+    window.open(href, '_blank' ,'toolbar=no, scrollbars=yes, resizable=yes, top=0, left=0, width=800, height=400');
+    return false;
 }
 
-var vote = function(data) {
+var doVote = function(data) {
     var url = {
         'votingAction': host + '/pages/voting'
     };
