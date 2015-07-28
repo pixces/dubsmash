@@ -94,6 +94,10 @@ $( document ).ready(function() {
 		$(".UnivrslPoupup").removeClass("hide");
 	}
 	/* show light box on page load when parameter lightbox = true with content id */
+	
+	$(document).on('click','.ShareSctn', function(){
+		shareTrigger();
+    });
 
     //LightBox Open Action for Carousel & Gallery
     $(document).on('click', ".VideoPlayBtn", function(){
@@ -223,6 +227,10 @@ function openLightBox(obj){
 function closeLightBox(){
     $('#YourIFrameID').attr('src', defaultVideoEmbed);
     $(".UnivrslPoupup").addClass("hide");
+}
+
+function shareTrigger(){
+	alert("share button clicked");
 }
 
 var vote = function(data) {
