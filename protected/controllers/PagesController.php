@@ -110,7 +110,7 @@ class PagesController extends Controller
                         $modelContent->is_ugc               = 1;
                         $modelContent->status               = 'pending';
                         $modelContent->workflow_status      = 'pending';
-                        $modelContent->share_url            = Yii::app()->createAbsoluteUrl('/galley/?videoId=');
+                        $modelContent->share_url            = Yii::app()->createAbsoluteUrl('/galley/?content=');
 
                         $transaction = Yii::app()->db->beginTransaction();
 

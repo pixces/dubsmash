@@ -247,4 +247,7 @@
     });
 
 </script>
+<script>
+    var SelectedVideo = <?php echo json_encode($SelectedVideoDetails); ?>;
+</script>
 

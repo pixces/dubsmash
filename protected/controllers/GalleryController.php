@@ -61,6 +61,12 @@ class GalleryController extends Controller
         $galleryVideosJson = null;
         $galleryVideos     = null;
 
+
+        //get the details of selectedVideo is provided
+        $dSelectedContentId = Yii::app()->getRequest()->getParam('content', '');
+
+        $aSelectedVideoDetails = $this->getContent($dSelectedContentId);
+
         if (is_array($postParam)) {
             if (isset($postParam['category'])) {
                 $param->media_category = $postParam['category'];
@@ -131,9 +137,9 @@ class GalleryController extends Controller
             'galleries' => $galleryVideosArray['data'],
             'loader' => $galleryVideosArray['loader'],
             'totalvideos' => $galleryVideosArray['totalvideos'],
-             'selectedcategory'=> $galleryVideosArray['selectedcategory'],
+            'selectedcategory'=> $galleryVideosArray['selectedcategory'],
             'pageName' => 'gallery',
-            //'aVideoList' => $videoPlayList
+            'SelectedVideoDetails' => $aSelectedVideoDetails
             ]
         );
     }
@@ -335,5 +341,28 @@ class GalleryController extends Controller
         }
         $response = ['data' => $galleryData, 'loader' => $loaderVisibility, 'totalvideos' => $totalVideosCount,'selectedcategory'=>$selectedCategory];
         return json_encode($response);
+    }
+
+    protected function getContent($id){
+
+        $aDetails = array();
+
+        if (!$id || empty($id)){
+            return $aDetails;
+        }
+
+        $content = Content::model()->findByPk($id);
+        $columns = Content::$defaultSelectableFields;
+        if ($content){
+            foreach($columns as $key){
+                if ($key == 'message'){
+                    $aDetails[$key] = strlen($content->$key) > 250 ? substr($content->$key,0,250)." [..]" : $content->$key;
+                } else {
+                    $aDetails[$key] = $content->$key;
+                }
+
+            }
+        }
+        return $aDetails;
     }
 }
