@@ -211,6 +211,7 @@ var vote = function(data) {
                 $(".totalVoteCount").removeClass("hide");
                 $(".totalVoteCount").html('<span>' + votecount + '</span>');
                 $("#video-" + data.id).attr("data-vote", votecount);
+                $(".voteInfo").removeClass("hide");
             } else {
                 $(".votingMessage").removeClass("hide");
                 $(".votingMessage").html(data.message);
