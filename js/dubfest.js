@@ -60,7 +60,40 @@ $( document ).ready(function() {
 	$(".subVideo").addClass("hide");
 	$(".cntct").addClass("hide");
 	});
+	
+	/* show light box on page load when parameter lightbox = true with content id */
+	if(getUrlParameter('lightbox') == "true"){
+		var content_id = getUrlParameter('content');
+		var media_id = SelectedVideo.media_id;
+		var media_url = SelectedVideo.media_url;
+		var vote = SelectedVideo.vote;
+		var title = SelectedVideo.media_title;
+		var message = SelectedVideo.message;
 
+		var embedUrl = "https://www.youtube.com/embed/"+media_id;
+
+		$lightBoxObj = $(".UnivrslPoupup");
+
+		//replace all data with placeholders in the lightbox
+		$("#YourIFrameID").attr('src',embedUrl);
+		$($lightBoxObj).find('.VideoTitle').html(title);
+		if (undefined !== message){
+			$($lightBoxObj).find('.VideoMessage').html('<p>' + message + '</p>');
+		}
+
+		//voting form
+		$(".votNowFrm").find(".votenow").attr("data-content_id", content_id);
+		$(".votNowFrm").find(".totalVoteCount").html('<span>' + vote + '</span>');
+		$(".votNowFrm").find(".votingMessage").addClass("hide");
+
+		//show the popup now
+		$(".videoSctn").removeClass("hide");
+		$(".subVideo").removeClass("hide");
+		$(".mainVideo").addClass("hide");
+		$(".cntct").addClass("hide");
+		$(".UnivrslPoupup").removeClass("hide");
+	}
+	/* show light box on page load when parameter lightbox = true with content id */
 
     //LightBox Open Action for Carousel & Gallery
     $(document).on('click', ".VideoPlayBtn", function(){
@@ -235,4 +268,19 @@ var checkCookieExist = function() {
 
 }
 
+/* Getting URL Parameter */
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+};
 
