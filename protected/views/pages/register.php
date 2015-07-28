@@ -110,11 +110,9 @@
 				
                 <div class="row clr1">
                     <div class="col-xs-12 form-group">
-
                         <?php echo $form->labelEx($model, 'username'); ?>
-                        <?php echo $form->textField($model, 'username', array('value' => isset($socialNetworkInfo['name']) ? $socialNetworkInfo['name'] : '', 'id' => 'username')); ?>
+                        <?php echo $form->textField($model, 'username', array('value' => isset($socialNetworkInfo['name']) ? $socialNetworkInfo['name'] : '', 'id' => 'userName')); ?>
                         <span id='nameInfo'></span>
-
                     </div>
                     <div class="col-xs-6 form-group">
                         <?php echo $form->labelEx($model, 'email'); ?>

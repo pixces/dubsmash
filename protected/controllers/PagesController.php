@@ -51,20 +51,19 @@ class PagesController extends Controller
      */
     public function actionRegister()
     {
+        $this->layout = '//layouts/static';
 
-        $aSocialNetworkInfo = [];
+        //check and populate the auth details from
+        //facebook or Google is exists
+        $aSocialNetworkInfo = array();
         if (isset(Yii::app()->session['eauth_profile'])) {
-
             $session = Yii::app()->session['eauth_profile'];
-            /**
-             * Facebook
-             */
+
+            /** Facebook */
             if (isset(Yii::app()->session['eauth_profile']['first_name'])) {
                 $socialNetworkUsername = Yii::app()->session['eauth_profile']['first_name'].' '.Yii::app()->session['eauth_profile']['last_name'];
-            }
-            /**
-             * Google
-             */ else if (isset(Yii::app()->session['eauth_profile']['name'])) {
+            } else if (isset(Yii::app()->session['eauth_profile']['name'])) {
+                /** Google */
                 $socialNetworkUsername = Yii::app()->session['eauth_profile']['name'];
             }
 
@@ -72,100 +71,107 @@ class PagesController extends Controller
             $aSocialNetworkInfo['name']  = $socialNetworkUsername;
             $aSocialNetworkInfo['email'] = $socialNetworkEmail;
         }
-        $bucketUpload = false;
-        $model        = new ParticipateForm();
+
+        //setup participate form Model
+        //for validation rules and form display
+        $model = new ParticipateForm();
+
         if (isset($_POST['ParticipateForm'])) {
 
             $model->attributes = $_POST['ParticipateForm'];
-
-            $model->media_category = isset($_POST['ParticipateForm']['media_category'])
-                    ? $_POST['ParticipateForm']['media_category'] : 'All';
-
+            $model->media_category = isset($_POST['ParticipateForm']['media_category']) ? $_POST['ParticipateForm']['media_category'] : 'all';
             $model->media_url = $_FILES['file_0']['name'];
 
             if ($model->validate()) {
 
-                /**
-                 * Upload File To S3 Bucket
-                 */
-                /**
-                 * Replace it with original file url from S3 Bucket
-                 */
-                $share_url = "http://s3.amazonaws.com/p2-data/p2-slice/All_1437668186_SampleVideo_1080x720_1mb.mp4";
-                if ($bucketUpload) {
+                $fileName = $model->media_url;
+                $size = $_FILES['file_0']['size'];
+                $tmpFileName = $_FILES['file_0']['tmp_name'];
 
-                    $s3 = new S3(Yii::app()->params['S3']['awsAccessKey'],
-                        Yii::app()->params['S3']['awsSecretKey']);
+                $actualFileName = $model->username.'_'.time().'_'.str_replace(' ','_', strtolower($fileName));
 
-                    $s3bucketName = Yii::app()->params['S3']['bucket'];
-
-                    try {
-                        $s3->putObjectFile($uploadFile, $s3bucketName,
-                            $actual_image_name, S3::ACL_PUBLIC_READ);
-                    } catch (Exception $e) {
-                        $msg = $e->getMessage();
-                        throw new Exception($msg);
-                    }
-                }
-
-                /**
-                 * Save To Db: Content,if any attributes removed from here then please remove from Content model requyire rule also
-                 */
-                $modelContent                 = new Content;
-                $modelContent->username       = $model->username;
-                $modelContent->email          = $model->email;
-                $modelContent->share_url      = $share_url;
-                $modelContent->message        = $model->message;
-                $modelContent->media_title    = $model->media_title;
-                $modelContent->media_category = $model->media_category;
-                $modelContent->mobile         = $model->mobile;
-
-                $transaction = Yii::app()->db->beginTransaction();
+                $s3 = new S3(Yii::app()->params['S3']['awsAccessKey'], Yii::app()->params['S3']['awsSecretKey'], false);
+                $s3bucketName = Yii::app()->params['S3']['bucket'];
 
                 try {
-                    if ($modelContent->save()) {
-                        $transaction->commit();
-                        if (isset(Yii::app()->session['eauth_profile'])) {
-                            unset(Yii::app()->session['eauth_profile']);
+                    if (  $s3->putObjectFile($tmpFileName, $s3bucketName, $actualFileName, S3::ACL_PUBLIC_READ) ){
+
+                        $s3FileName = 'http://'.$s3bucketName.'.s3.amazonaws.com/'.$actualFileName;
+
+                        //save all to the database for further processing
+                        $modelContent                       = new Content;
+                        $modelContent->username             = $model->username;
+                        $modelContent->email                = $model->email;
+                        $modelContent->mobile               = $model->mobile;
+                        $modelContent->media_category       = $model->media_category;
+                        $modelContent->media_title          = $model->media_title;
+                        $modelContent->message              = $model->message;
+                        $modelContent->media_alternate_url  = $s3FileName;
+                        $modelContent->is_ugc               = 1;
+                        $modelContent->status               = 'pending';
+                        $modelContent->workflow_status      = 'pending';
+                        $modelContent->share_url            = Yii::app()->createAbsoluteUrl('/galley/?videoId=');
+
+                        $transaction = Yii::app()->db->beginTransaction();
+
+                        try {
+                            if ($modelContent->save()) {
+                                $transaction->commit();
+                                if (isset(Yii::app()->session['eauth_profile'])) {
+                                    unset(Yii::app()->session['eauth_profile']);
+                                }
+
+                                //send confirmation email to the user
+                                Mailer::SendAcknowledgement(array(
+                                    'to' => $modelContent->email,
+                                    'name' => $modelContent->username
+                                ));
+
+                                $aResponse = array('error' => 0, 'message' => 'Successfully Registered');
+                                echo json_encode($aResponse);
+                                Yii::app()->end();
+                            } else {
+                                $message = null;
+                                $errors  = $modelContent->getErrors();
+                                foreach ($errors as $key => $error) {
+                                    $message .=$error[0].PHP_EOL;
+                                }
+
+                                Yii::log(__FILE__."".__LINE__." Error: " . $message);
+
+                                $aResponse = array('error' => 1, 'message' => $modelContent->getErrors(),);
+                                echo json_encode($aResponse);
+                                exit;
+                            }
+                        } catch (Exception $e) {
+                            $transaction->rollBack();
+                            $message = $e->getMessage();
+                            Yii::log(__FILE__."".__LINE__." Error: " . $message);
+                            $aResponse = array('error' => 1, 'message' => $message);
+                            echo json_encode($aResponse);
+                            exit;
                         }
 
-                        $aResponse = array('error' => 0, 'message' => 'Successfully Registered');
-                        echo json_encode($aResponse);
-                        Yii::app()->end();
-                    } else {
-                        $message = null;
-                        $errors  = $modelContent->getErrors();
-                        foreach ($errors as $key => $error) {
-                            $message .=$error[0].PHP_EOL;
-                        }
-                        $aResponse = array('error' => 1, 'message' => $modelContent->getErrors(),);
-                        echo json_encode($aResponse);
-                        //CVarDumper::dump($modelContent->getErrors(), 56789, true);
-                        exit;
                     }
                 } catch (Exception $e) {
-                    $transaction->rollBack();
-                    $msg       = $e->getMessage();
-                    $aResponse = array('error' => 1, 'message' => $msg);
-                    echo json_encode($aResponse);
-                    exit;
-                    // throw new Exception($msg);
+                    $message = $e->getMessage();
+                    Yii::log(__FILE__."".__LINE__." Error: " . $message);
+                    throw new Exception($message);
                 }
             } else {
-
-
-                // CVarDumper::dump($model->getErrors(), 56789, true);
-                //exit;
                 $errors  = $model->getErrors();
                 $message = null;
                 foreach ($errors as $key => $error) {
                     $message .=$error[0].PHP_EOL;
                 }
+                Yii::log(__FILE__."".__LINE__." Error: " . $message);
                 $aResponse = array('error' => 1, 'message' => $model->getErrors());
                 echo json_encode($aResponse);
                 exit;
             }
         }
+
+        //display registration form
         $this->pagename = "register";
         $this->render(
             $this->pagename,

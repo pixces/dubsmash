@@ -63,7 +63,7 @@
                     <?php for($t=0; $t < 4 ; $t++) { ?>
                     <!---TopvideosingleSliderstart--->
                     <div class="col-md-3 glryVdoSctn">
-                        <?php if ($this->aCarasouleData[$x+$t]->vote >= 1 ) { ?>
+                        <?php if ($this->aCarasouleData[$x+$t]->vote >= 15 ) { ?>
                         <div class="certifyIcn"></div>
                         <?php } ?>
                         <div id="video-<?=$this->aCarasouleData[$x+$t]->id; ?>" class="nxtsliders" data-content_id="<?=$this->aCarasouleData[$x+$t]->id; ?>" data-media_id="<?=$this->aCarasouleData[$x+$t]->media_id; ?>" data-media_url="<?=$this->aCarasouleData[$x+$t]->media_url; ?>" data-vote="<?=$this->aCarasouleData[$x+$t]->vote; ?>" data-title="<?=$this->aCarasouleData[$x+$t]->media_title; ?>">
