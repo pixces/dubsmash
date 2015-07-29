@@ -239,7 +239,7 @@ class GalleryController extends Controller
         switch($dType){
             case 'page':
                 $redirect_uri = Yii::app()->createAbsoluteUrl('/');
-                $picture = Yii::app()->createAbsoluteUrl('/').'images/logo.png';
+                $picture = Yii::app()->createAbsoluteUrl('/').'/images/logo.png';
                 $description = "Be Cool, Be Funny or just #BNatural at the #BNatural Dubfest and you can win an iPhone 6!";
                 $title = "BNatural Dubfest | powered by Sangram Singh";
                 $link = $redirect_uri;
