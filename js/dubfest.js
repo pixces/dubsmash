@@ -98,8 +98,8 @@ $( document ).ready(function() {
 	}
 	/* show light box on page load when parameter lightbox = true with content id */
 	
-	$(document).on('click','.ShareSctn', function(){
-		shareTrigger();
+	$(document).on('click','.shareBtn', function(){
+		shareTrigger(this);
     });
 
     //LightBox Open Action for Carousel & Gallery
@@ -235,10 +235,11 @@ function closeLightBox(){
     $(".UnivrslPoupup").addClass("hide");
 }
 
-function shareTrigger(){
-    var content_id = $(".ShareSctn").attr("data-content_id");
-    var href = host + "/gallery/share/?content_id="+content_id;
-    window.open(href, '_blank' ,'toolbar=no, scrollbars=yes, resizable=yes, top=0, left=0, width=800, height=400');
+function shareTrigger($obj){
+    var content_id = $($obj).attr("data-content_id");
+    var type = $($obj).attr("data-content_type");
+    var href = host + "/gallery/share?contentId="+content_id+"&type="+type;
+    window.open(href, '_blank' ,'toolbar=no, scrollbars=yes, resizable=yes, location=no, top=0, left=0, width=800, height=400');
     return false;
 }
 
