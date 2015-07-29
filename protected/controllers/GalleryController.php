@@ -25,7 +25,7 @@ class GalleryController extends Controller
     {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view','share'),
+                'actions' => array('index', 'view','share','redirect'),
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -235,31 +235,35 @@ class GalleryController extends Controller
         $dType = Yii::app()->getRequest()->getParam('type', 'page');
 
         $fb_base_url = 'https://www.facebook.com/dialog/feed?app_id=110238615987902';
+        $redirect_uri = Yii::app()->createAbsoluteUrl('/gallery/redirect/');
 
         switch($dType){
             case 'page':
-                $redirect_uri = Yii::app()->createAbsoluteUrl('/');
                 $picture = Yii::app()->createAbsoluteUrl('/').'/images/logo.png';
                 $description = "Be Cool, Be Funny or just #BNatural at the #BNatural Dubfest and you can win an iPhone 6!";
                 $title = "BNatural Dubfest | powered by Sangram Singh";
-                $link = $redirect_uri;
+                $link = Yii::app()->createAbsoluteUrl('/');
                 break;
             case 'gallery':
                 if ($dContentId && !empty($dContentId)){
 
                     $details = $this->getContent($dContentId);
 
-                    $redirect_uri = Yii::app()->createAbsoluteUrl('/gallery/')."?content=".$dContentId."&lightbox=true";
+                    $link = Yii::app()->createAbsoluteUrl('/gallery/')."?content=".$dContentId."&lightbox=true";
                     $title = "I really liked " . $details['username'] . "'s entry on #BNatural Dubfest" ;
                     $description = $details['message'];
                     $picture = $details['alternate_image'];
-                    $link = Yii::app()->createAbsoluteUrl('/gallery/')."?content=".$dContentId."&lightbox=true";
+                    //$link = Yii::app()->createAbsoluteUrl('/gallery/')."?content=".$dContentId."&lightbox=true";
                 }
                 break;
         }
 
             $url = $fb_base_url . "&link=" . $link . "&name=" . urlencode($title) . "&description=" . urlencode($description) . "&picture=" . $picture . "&redirect_uri=" . $redirect_uri;
             $this->redirect($url);
+    }
+
+    public function actionRedirect(){
+        echo "<script>window.close();</script>";
     }
 
     /**
