@@ -26,10 +26,10 @@
                         <div class="univrslPoupClose"><i class="fa fa-times"></i></div>
                         <div class="row">
                             <div class="col-md-9 noPaddng">
-                                <h3 class="lilita clr2 VideoTitle">Contact Us</h3>
+                                <p class="lilita clr2 VideoTitle">Contact Us</p>
                             </div>
                             <div class="col-md-12 noPaddng VideoMessage">
-                                <p>Morbi viverra mattis leo vitae faucibus. Sed vel quam pellentesque felis hendrerit mollis. Fusce elementum laoreet efficitur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames #Bnatural #Dubfest.</p>
+                                <p class="videoTag">Morbi viverra mattis leo vitae faucibus. Sed vel quam pellentesque felis hendrerit mollis. Fusce elementum laoreet efficitur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames #BNatural #Dubfest.</p>
                             </div>
                         </div>
                         <div  style="overflow-x:hidden; overflow-y:auto; height:350px">
@@ -68,7 +68,7 @@
                                 <h4 class="lilita clr2">Title</h4>
                             </div>
                             <!-- 	<div class="col-md-12 noPaddng">
-                                            <p>Morbi viverra mattis leo vitae faucibus. Sed vel quam pellentesque felis hendrerit mollis. Fusce elementum laoreet efficitur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames #Bnatural #Dubfest.</p>
+                                            <p>Morbi viverra mattis leo vitae faucibus. Sed vel quam pellentesque felis hendrerit mollis. Fusce elementum laoreet efficitur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames #BNatural #Dubfest.</p>
                                     </div> -->
                         </div>
                         <div class="row">
@@ -137,7 +137,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 col-md-push-4 logo"><img class="text-center" src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo.png"/></div>
+                        <div class="col-md-3 col-md-push-4 logo"><img class="text-center img-responsive"  src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo.png"/></div>
                     </div>
                 </header>
             </div>
@@ -173,7 +173,7 @@
                             <h3 class="lilita clr2">Contact Us</h3>
                         </div>
                         <div class="col-md-12">
-                            <p>Morbi viverra mattis leo vitae faucibus. Sed vel quam pellentesque felis hendrerit mollis. Fusce elementum laoreet efficitur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames #Bnatural #Dubfest.</p>
+                            <p>Morbi viverra mattis leo vitae faucibus. Sed vel quam pellentesque felis hendrerit mollis. Fusce elementum laoreet efficitur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames #BNatural #Dubfest.</p>
                         </div>
                     </div>
                     <div class="row">

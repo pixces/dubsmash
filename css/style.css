@@ -210,7 +210,7 @@ header {
 }
 
 .UpldBtn {
-    padding: 15px 0px;
+    padding: 25px 0px;
     border-radius: 16px !important;
     color: #00364b !important;
 }
@@ -539,7 +539,7 @@ header {
     position: relative;
     width: 20px;
     cursor: pointer;
-    margin: 15px -14px 0px 0px;
+    /*margin: 15px -14px 0px 0px;*/
     height: 20px;
 }
 
@@ -549,6 +549,7 @@ header {
 
 .univrslPoupClose .fa {
     font-size: 20px !important;
+	margin-left:9px;
 }
 
 .cntct {
@@ -563,10 +564,10 @@ header {
 .videoSctn {
     background: #fff;
     padding: 0px 30px;
-    width: 60%;
     margin: 0px auto;
     margin-top: 7%;
     border-radius: 10px;
+	width: 60%;
 }
 
 .certifyIcn {
@@ -595,7 +596,7 @@ header {
 
 .PlayIcn1, .PlayIcn2, .PlayIcn3 {
     height: 60px;
-    margin: 25% 0 0 34%;
+    margin: 20% 0 0 34%;
     position: absolute;
     width: 56px;
     background: url(../images/playIcns.png) no-repeat;
@@ -692,8 +693,8 @@ header {
 }
 
 .PrtcptNwMoble .glryLoad {
-    width: 30%;
-    margin: 0px auto;
+    width: 44%;
+    margin: 30px auto;
 }
 
 .Shricn {
@@ -1069,9 +1070,13 @@ label {
     bottom: -20px;
 }
 
-img.img-responsive {
+/* img.img-responsive {
     height: 180px;
-}
+}  */
+
+ img.img-responsive {
+    margin: 0 auto;
+} 
 
 .videoUpload {
     color: #333;
@@ -1151,10 +1156,10 @@ img.img-responsive {
 
 @media screen and (min-width: 360px ) and (max-width: 767px) {
     .carousel-indicators {
-        bottom: -45% !important;
+        bottom: -25% !important;
         border: 0px solid red;
     }
-
+	
     .forMobile {
         margin-top: 40px
     }
@@ -1172,7 +1177,7 @@ img.img-responsive {
     }
 
     .Shricn {
-        margin-top: -21px !important;
+        margin-top: 13px !important;
         margin-bottom: -3px;
     }
 
@@ -1180,3 +1185,213 @@ img.img-responsive {
         margin-top: -20px;
     }
 } 
+
+
+/*========================================================Responsive View 29-07-2015================================================*/
+
+/*==================================================
+=            Bootstrap 3 Media Queries             =
+==================================================*/
+
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+	  
+	  
+
+}
+
+
+    /*==========  Mobile First Method  ==========*/
+
+	
+	
+	
+    /* Custom, iPhone Retina */ 
+    @media screen and (min-width: 320px ) and (max-width: 480px){
+        
+		.carousel-indicators {
+        bottom: -65px !important;
+        border: 0px solid red;
+    }
+		
+		.UpldBtn {
+    padding: 3px 0px;
+    border-radius: 16px !important;
+    color: #00364B !important;
+		}
+		
+	.UpldBtn p{
+		font-size:20px;
+		margin-top: 6px;
+	}
+	.PrtcptNwMoble .glryLoad {
+    width: 66%;
+    margin: 30px auto;
+	}
+	
+	.sgnsclmdeaicncntr {
+    height: 50px;
+	margin: 17px auto;
+	margin-left: 15%;
+	background: #fff;
+	border-radius: 10px;
+	}
+	.sgnsclmdea {
+    width: 45px;
+    height: 45px;
+    float: left;
+    margin-left: 39px;
+	margin-top:2px;
+	}
+	.glryBtn {
+    margin: 19px auto 0px;
+	border: 0px solid #F00;
+	margin-bottom: 10px;
+	background:#FFBB37 none repeat scroll 0% 0%;
+	}	
+
+/* video responsive */
+	.videoSctn {
+    background: #FFF none repeat scroll 0% 0%;
+    padding: 0px 30px;
+
+    margin: 7% auto 0px;
+    border-radius: 10px;
+	}
+	/* css for registeration */
+	
+	.frmistrctnBg {
+    padding: 21px;
+    background: #FFF none repeat scroll 0% 0%;
+    color: #000;
+    border-radius: 10px;
+	}
+	
+	.UpldBtnCntr {
+    margin: 25px auto 0px !important;
+    width: 50%;
+	}
+	
+	
+    }
+    
+
+    / *Extra Small Devices, Phones / 
+    @media only screen and (min-width : 480px) {
+
+    }
+
+    /*  */
+    @media screen and (min-width: 768px ) and (max-width:1024px) {
+	.carousel-indicators {
+        bottom: -65px !important;
+        border: 0px solid red;
+    }
+	
+	.UpldBtn {
+    padding: 3px 0px;
+    border-radius: 16px !important;
+    color: #00364B !important;
+		}
+		
+	.UpldBtn p{
+		font-size:20px;
+		margin-top: 6px;
+	}
+	.PrtcptNwMoble .glryLoad {
+    width: 66%;
+    margin: 30px auto;
+	}
+	
+	.sgnsclmdeaicncntr {
+    height: 50px;
+	margin: 17px auto;
+	margin-left: 15%;
+	background: #fff;
+	border-radius: 10px;
+	}
+	.sgnsclmdea {
+    width: 45px;
+    height: 45px;
+    float: left;
+    margin-left: 133px;
+	margin-top:2px;
+	}
+	.glryBtn {
+    margin: 19px auto 0px;
+	border: 0px solid #F00;
+	margin-bottom: 10px;
+	background:#FFBB37 none repeat scroll 0% 0%;
+	}	
+
+	
+	
+	
+	
+    }
+
+    / Medium Devices, Desktops /
+    @media only screen and (min-width : 992px) {
+
+    }
+
+    / Large Devices, Wide Screens /
+    @media only screen and (min-width : 1200px) {
+
+    }
+
+
+
+    /*==========  Non-Mobile First Method  ==========*/
+
+    / Large Devices, Wide Screens /
+    @media only screen and (max-width : 1200px) {
+
+    }
+
+    / Medium Devices, Desktops /
+    @media only screen and (max-width : 992px) {
+
+    }
+
+    / Small Devices, Tablets /
+    @media only screen and (max-width : 768px) {
+
+    }
+
+    / Extra Small Devices, Phones / 
+    @media only screen and (max-width : 480px) {
+
+    }
+
+    / Custom, iPhone Retina / 
+    @media only screen and (max-width : 320px) {
+        
+    }
+
+
+/* ==========================responsive video============================ */
+
+.embed-responsive {
+    position: absolute;
+    left: 0; right: 0;
+    top: 50%;
+    margin-top: -28.1%;
+    /* video height / video width */
+    padding-bottom: 56.2%;
+    height: 0;
+    overflow: hidden;
+}
+.embed-responsive iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glryHeight{
+	margin-top:75px;
+}

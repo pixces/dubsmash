@@ -6,7 +6,7 @@
         </div>
         <div class="row PrtcptNwMoble text-center lilita">
             <div class="topVdesHdr clr1">Submissions open</div>
-            <div class="glryLoad UpldBtn  pointer">Participate Now</div>
+            <div class="glryLoad UpldBtn  pointer"><p>Participate Now</p></div>
         </div>
         <div class="row">
             <div class="col-xs-3 prtcptSctnCntr lilita">
@@ -36,10 +36,10 @@
 
 
                 </div>
-                <div class="text-center clr1 bntrl">#Bnatural #Dubfest</div>
+                <div class="text-center clr1 bntrl">#BNatural #Dubfest</div>
             </div>
 			<div class="col-xs-5 videoThb">
-			<div class="sangramSingVideo"><img id="sangramSingVideo" src="<?php echo Yii::app()->request->baseUrl; ?>/images/vdoImg2.png"/></div>
+			<div class="sangramSingVideo"><img class="img-responsive" id="sangramSingVideo" src="<?php echo Yii::app()->request->baseUrl; ?>/images/vdoImg2.png"/></div>
 			<div class="row VdoeThumSngram">
 			<div class="col-sm-3  MinvdoThmb sangramSingVideo" id="sangramSingVideo1"><div class="PlayIcn3"></div><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/thmb1a.png"  /></div>
 			<div class="col-sm-3 MinvdoThmb sangramSingVideo" id="sangramSingVideo2"><div class="PlayIcn3"></div><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/thmb2a.png" /></div>

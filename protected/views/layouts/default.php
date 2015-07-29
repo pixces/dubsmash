@@ -62,7 +62,7 @@
                 <div class="item <?php echo (($x == 0) ? 'active' : ''); ?>" style="width:100%;background:#fff;">
                     <?php for($t=0; $t < 4 ; $t++) { ?>
                     <!---TopvideosingleSliderstart--->
-                    <div class="col-md-3 glryVdoSctn">
+                    <div class="col-sm-6 col-md-3 glryVdoSctn1">
                         <?php if ($this->aCarasouleData[$x+$t]->vote >= 15 ) { ?>
                         <div class="certifyIcn"></div>
                         <?php } ?>
@@ -99,7 +99,7 @@
             <!-- LeftandrightcontrolsEnd-->
         </div>
 
-        <a href="<?= Yii::app()->createAbsoluteUrl('/gallery/'); ?>"><div class="glryBtn lilita">View Gallery</div></a>
+        <a href="<?= Yii::app()->createAbsoluteUrl('/gallery/'); ?>"><div class="glryBtn lilita glryHeight">View Gallery</div></a>
         <div class="row lilita mblbtmTxt clr2">
             <div class="col-md-5 pull-left">#Bnatural #Dubfest</div>
             <div class="col-md-2 pull-right btmShrIcn Shricn"></div>

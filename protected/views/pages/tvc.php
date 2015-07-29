@@ -33,11 +33,11 @@
 
 
 </div>
-<div class="text-center clr1 bntrl">#Bnatural #Dubfest</div>
+<div class="text-center clr1 bntrl">#BNatural #Dubfest</div>
 </div>
 
-<div class="col-xs-5 sangramSingVideo">
-<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/vdoImg.png" />
+<div class="col-xs-5 videoThb">
+<div class="sangramSingVideo"><img class="img-responsive" src="<?php echo Yii::app()->request->baseUrl; ?>/images/vdoImg.png" /></div>
 </div>
 <div class="col-xs-4 Mndit">
 <!--<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/mnditImg.png" />-->

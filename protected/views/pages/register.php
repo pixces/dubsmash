@@ -97,7 +97,8 @@
             </div>
         </div>
         <div class="row thankYouCntr Sbmtfrm row thankYouCntr Sbmtfrm">
-            <div class="col-sm-7">
+        
+            <div class="col-md-6">
                 <?php
                 $form = $this->beginWidget('CActiveForm',
                     array(
@@ -109,28 +110,28 @@
                 ?>
 				
                 <div class="row clr1">
-                    <div class="col-xs-12 form-group">
+                    <div class="col-md-12 form-group">
                         <?php echo $form->labelEx($model, 'username'); ?>
                         <?php echo $form->textField($model, 'username', array('value' => isset($socialNetworkInfo['name']) ? $socialNetworkInfo['name'] : '', 'id' => 'userName')); ?>
                         <span id='nameInfo'></span>
                     </div>
-                    <div class="col-xs-6 form-group">
+                    <div class="col-md-6 form-group">
                         <?php echo $form->labelEx($model, 'email'); ?>
                         <?php echo $form->textField($model, 'email', array('value' => isset($socialNetworkInfo['email']) ? $socialNetworkInfo['email'] : '', 'id' => 'useremail')); ?>
                         <span id='emailInfo'></span>
                     </div>
-                    <div class="col-xs-6 form-group">
+                    <div class="col-md-6 form-group">
                         <?php echo $form->labelEx($model, 'mobile'); ?>
                         <?php echo $form->textField($model, 'mobile', array('id' => 'usermobile')); ?>
                         <span id='mobileInfo'></span>
                     </div>
-                    <div class="col-xs-6 form-group">
+                    <div class="col-md-6 form-group">
                         <?php echo $form->labelEx($model, 'media_url'); ?>
                         <?php echo $form->fileField($model, 'media_url', array('class' => 'filestyle', 'data-buttonName' => "btn-primary", 'id' => 'uploadmedia')); ?>
                         <span id='uploadmediaInfo'></span>
 
                     </div>
-                    <div class="col-xs-6 form-group">
+                    <div class="col-md-6 form-group">
                         <?php echo $form->labelEx($model, 'media_category'); ?>
                         <?php
                         echo CHtml::dropDownList('ParticipateForm[media_category]', array('Select One' => ''),
@@ -138,22 +139,22 @@
                         ?>
                         <span id='categoryInfo'></span>
                     </div>
-                    <div class="col-xs-12 form-group">
+                    <div class="col-md-12 form-group">
                         <?php echo $form->labelEx($model, 'media_title'); ?>
                         <?php echo $form->textField($model, 'media_title', array('id' => 'mediatittle')); ?>
                         <span id='tittleInfo'></span>
 
                     </div>
-                    <div class="col-xs-12 form-group">
+                    <div class="col-md-12 form-group">
                         <?php echo $form->labelEx($model, 'message'); ?>
                         <?php echo $form->textArea($model, 'message', array('id' => 'messagebox', 'rows' => "5", 'cols' => "8")); ?>
                         <span id='messageInfo'></span>
                     </div>
-                    <div class="col-xs-8 frmTerms">By choosing to participate in the B Natural Dubfest, you acknowledge
+                    <div class="col-md-8 frmTerms">By choosing to participate in the B Natural Dubfest, you acknowledge
                         that you have read & agreed to the
                         <a href="dubfestTerms.html">terms and conditions.</a>
                     </div>
-                    <div class="col-xs-3 form-group pull-right text-center UpldBtnCntr">
+                    <div class="col-md-3 form-group pull-right text-center UpldBtnCntr">
                         <?php echo CHtml::submitButton('Upload', array('class' => 'lilita glryLoad UpldBtn', 'id' => 'send')); ?>
                         <span class='hide' id='ajax-loader-icon'>
                                 <h5> Please wait uploading...</h5>
@@ -162,7 +163,8 @@
                 </div>
                 <?php $this->endWidget(); ?>
             </div>
-            <div class="col-sm-5 pull-right prtcptSctnfrstCntr">
+            <!--side text begin-->
+            <div class="col-md-6">
                 <div class="prtcptSctnCntr">
                     <div class="frmistrctnBg">
                         <h3 class="lilita clr2 topVdesHdr ">Instructions</h3>
@@ -178,6 +180,7 @@
                     </div>
                 </div>
             </div>
+            <!--side text end-->
         </div>
     </header>
 </div>
