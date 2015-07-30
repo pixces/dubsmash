@@ -7,7 +7,7 @@
             <?php if ($gallery['vote'] >= 15) { ?><div class="certifyIcn"></div><?php } ?>
             <div class="nxtsliders" id="video-<?php echo $gallery['id'];?>" data-content_id="<?php echo $gallery['id'];?>" data-media_id="<?php echo $gallery['media_id'];?>" data-media_url="<?php echo $gallery['media_url'];?>" data-vote='<?php echo $gallery['vote'];?>' data-title="<?php echo $gallery['media_title'];?>">
                 <div class="PlayIcn2 VideoPlayBtn"></div>
-                <div class="vdoethmb VideoPlayBtn"><img class="img-responsive" data-media-url="<?php echo $gallery['media_url'];?>" src="<?php echo $dispImage; ?>" /></div>
+                <div class="vdoethmb VideoPlayBtn"><img class="img-responsive imgMaxheight" data-media-url="<?php echo $gallery['media_url'];?>" src="<?php echo $dispImage; ?>" /></div>
                 <div class="row vdoethmbDtls">
                     <div class="col-md-5 glryvdeoTy"><?php echo ucfirst($gallery['media_category']); ?></div>
                     <div class="col-md-4 pull-right">

@@ -98,7 +98,7 @@
         </div>
         <div class="row thankYouCntr Sbmtfrm row thankYouCntr Sbmtfrm">
         
-            <div class="col-md-6">
+            <div class="col-md-7">
                 <?php
                 $form = $this->beginWidget('CActiveForm',
                     array(
@@ -164,7 +164,7 @@
                 <?php $this->endWidget(); ?>
             </div>
             <!--side text begin-->
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <div class="prtcptSctnCntr">
                     <div class="frmistrctnBg">
                         <h3 class="lilita clr2 topVdesHdr ">Instructions</h3>
@@ -172,8 +172,8 @@
                             <li>Go to the Dubsmash app on your phone</li>
                             <li>Record your video & save it to your gallery</li>
                             <li>Fill in your details on this page and upload your video along with your message</li>
-                            <li>Message should include the hashtags</br> #Bnatural and #Dubfest </li>
-                            <li>Share with friends using the hashtags</br> #Bnatural and #Dubfest </li>
+                            <li>Message should include the hashtags</br> #BNatural and #Dubfest </li>
+                            <li>Share with friends using the hashtags</br> #BNatural and #Dubfest </li>
                             <li>Get your friends to vote!</li>
                             <li>The entry with the highest number of votes wins! </li>
                         </ul>

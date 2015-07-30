@@ -28,7 +28,7 @@
 <div class="sgnsclmdea sgnsclmdeafb pointer"></div>
 </div>
 <div class="sgnscldvdr">OR</div>
-<a href="dubfestSubmit.html"><div class="glryBtn"><?php echo CHtml::link('As Guest',array('/login/socialLogin', 'socialNetwork' => 'guest')); ?></div></a>
+<a href="dubfestSubmit.html"><div class="glryBtn"><?php echo CHtml::link('As Guest',array('/auth/SocialAuthentication', 'socialNetwork' => 'guest')); ?></div></a>
 </div>
 
 

@@ -233,6 +233,8 @@ function openLightBox(obj){
 function closeLightBox(){
     $('#YourIFrameID').attr('src', defaultVideoEmbed);
     $(".UnivrslPoupup").addClass("hide");
+	$('#YourIFrameID_1').attr('src', defaultVideoEmbed);
+    $(".UnivrslPoupup").addClass("hide");
 }
 
 function shareTrigger($obj){

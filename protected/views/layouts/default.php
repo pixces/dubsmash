@@ -68,7 +68,7 @@
                         <?php } ?>
                         <div id="video-<?=$this->aCarasouleData[$x+$t]->id; ?>" class="nxtsliders" data-content_id="<?=$this->aCarasouleData[$x+$t]->id; ?>" data-media_id="<?=$this->aCarasouleData[$x+$t]->media_id; ?>" data-media_url="<?=$this->aCarasouleData[$x+$t]->media_url; ?>" data-vote="<?=$this->aCarasouleData[$x+$t]->vote; ?>" data-title="<?=$this->aCarasouleData[$x+$t]->media_title; ?>">
                             <div class="PlayIcn1 VideoPlayBtn"></div>
-                            <div class="vdoethmb VideoPlayBtn"><img class="img-responsive" src="<?=$this->aCarasouleData[$x+$t]->alternate_image; ?>" /></div>
+                            <div class="vdoethmb VideoPlayBtn"><img class="img-responsive imgMaxheight" src="<?=$this->aCarasouleData[$x+$t]->alternate_image; ?>" /></div>
                             <div class="row vdoethmbDtls">
                                 <div class="col-md-5 glryvdeoTy"><?=$this->aCarasouleData[$x+$t]->media_category; ?></div>
                                 <div class="col-md-4 pull-right">

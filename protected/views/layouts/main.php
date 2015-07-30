@@ -1,5 +1,12 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<meta name="description" content="">
+		<meta name="author" content="">
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/style.css"/>
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap.css"/>
             <!--<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap.min.css"/>-->
@@ -35,7 +42,7 @@
                         <div  style="overflow-x:hidden; overflow-y:auto; height:350px">
                             <div class="row">
                                 <div class="col-md-8 noPaddng">
-                                    <iframe id="YourIFrameID" width="100%" height="95%" src="" frameborder="0" allowfullscreen></iframe>
+                                    <iframe id="YourIFrameID" width="100%" height="350" src="" frameborder="0" allowfullscreen></iframe>
                                 </div>
                                 <div class="col-md-4 clr1 noPaddng" id>
                                     <div class="votNowFrm pull-left">
@@ -62,10 +69,10 @@
                         </div>
                     </div>
                     <div class="mainVideo hide">
-                        <div class="univrslPoupClose"><i class="fa fa-times"></i></div>
+                        
                         <div class="row">
                             <div class="col-md-9" style="margin-left:10px;">
-                                <h4 class="lilita clr2">Title</h4>
+                                <p class="lilita clr2">Title</p>
                             </div>
                             <!-- 	<div class="col-md-12 noPaddng">
                                             <p>Morbi viverra mattis leo vitae faucibus. Sed vel quam pellentesque felis hendrerit mollis. Fusce elementum laoreet efficitur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames #BNatural #Dubfest.</p>
@@ -73,10 +80,14 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12"  style="margin-bottom:25px; margin-right:10px">
-                                <iframe id="YourIFrameID_1" width="100%" height="70%" src="https://www.youtube.com/embed/Ap2rVl_KP2Y" frameborder="0" allowfullscreen></iframe>
+                                <iframe id="YourIFrameID_1" width="100%" height="350" src="https://www.youtube.com/embed/Ap2rVl_KP2Y" frameborder="0" allowfullscreen></iframe>
                             </div>
 
                         </div>
+							<div class="univrslPoupClose">
+							<!--<i class="fa fa-times"></i>-->Close
+							</div>
+							
                     </div>
                 </div>
                 <!--VideoPoupupContentEnd--->
@@ -137,7 +148,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 col-md-push-4 logo"><img class="text-center img-responsive"  src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo.png"/></div>
+                        <div class="col-md-6 col-md-offset-3 logo"><img class="text-center img-responsive"  src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo.png"/></div>
                     </div>
                 </header>
             </div>
