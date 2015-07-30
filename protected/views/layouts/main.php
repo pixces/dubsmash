@@ -30,12 +30,12 @@
                 <!--VideoPoupupContentStart--->
                 <div class="videoSctn hide">
                     <div class="subVideo hide">
-                        <div class="univrslPoupClose"><i class="fa fa-times"></i></div>
+                        
                         <div class="row">
-                            <div class="col-md-9 noPaddng">
+                            <div class="col-md-9 ">
                                 <p class="lilita clr2 VideoTitle">Contact Us</p>
                             </div>
-                            <div class="col-md-12 noPaddng VideoMessage">
+                            <div class="col-md-12 noPaddng VideoMessage hidden-xs">
                                 <p class="videoTag">Morbi viverra mattis leo vitae faucibus. Sed vel quam pellentesque felis hendrerit mollis. Fusce elementum laoreet efficitur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames #BNatural #Dubfest.</p>
                             </div>
                         </div>
@@ -67,6 +67,7 @@
                                 </div>
                             </div>
                         </div>
+						<div class="univrslPoupClose">Close</div>
                     </div>
                     <div class="mainVideo hide">
                         

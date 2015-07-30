@@ -14,7 +14,9 @@
 
                     <div class="participateprceCntr">
                         <div class="prtcptSctnCont">
-                            <span class="fntSctn1"><img class="iPhnImage" src="images/prtcptMbl.png"/>Come be a part of the country's biggest dubfest and get a chance to <span class="fntSctn2">win an iPhone 6!</span></span>
+                           <span class="fntSctn1"><img class="iPhnImage" src="<?php echo Yii::app()->request->baseUrl; ?>/images/prtcptMbl.png" />Be a part of the country's whackiest Dubsmash contest & <span class="fntSctn2">win an iPhone 6!</span><p style="font-size: 14px;
+    font-weight: 400 !important;
+    color: rgb(78, 56, 98);">100 consolation prizes to be won!</p></span>
                         </div>
                         <div class="hmprcptBtn prcptBtn">Participate Now</div>
                     </div>

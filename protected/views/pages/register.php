@@ -170,7 +170,7 @@
                         <h3 class="lilita clr2 topVdesHdr ">Instructions</h3>
                         <ul>
                             <li>Go to the Dubsmash app on your phone</li>
-                            <li>Record your video & save it to your gallery</li>
+                            <li>Record your video & save it to your gallery. Ensure it is not longer than 60 seconds.</li>
                             <li>Fill in your details on this page and upload your video along with your message</li>
                             <li>Message should include the hashtags</br> #BNatural and #Dubfest </li>
                             <li>Share with friends using the hashtags</br> #BNatural and #Dubfest </li>

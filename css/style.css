@@ -542,6 +542,7 @@ header {
     margin: 15px 36px 0px 0px;
     height: 20px;
     margin-top: -23px;
+	color:#0090bc;
     /* text-align: center; */
     /* background-color: #000; */
 }
@@ -1528,10 +1529,10 @@ text-align: justify;
         bottom: -65px !important;
         border: 0px solid red;
     }
-		.PlayIcn1, .PlayIcn2, .PlayIcn3 {
-    margin: 15% 0px 0px 34%;
-	
+	.PlayIcn2, .PlayIcn3 {
+    margin: 10% 0px 0px 34%;
 		}
+		
 		.UpldBtn {
     padding: 3px 0px;
     border-radius: 16px !important;
@@ -1636,7 +1637,13 @@ text-align: justify;
   and (min-device-width: 375px) 
   and (max-device-width: 667px) 
   and (-webkit-min-device-pixel-ratio: 2) { 
-	
+	.navbar-collapse {
+    padding-right: 15px;
+    padding-left: 15px;
+    overflow-x: visible;
+    border-top: 1px solid transparent;
+    margin-top: 40px !important;
+}
 }
 
 /* Portrait */

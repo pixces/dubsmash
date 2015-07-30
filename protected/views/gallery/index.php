@@ -18,6 +18,7 @@
                                         <option>Action</option>
                                         <option>Songs</option>
                                         <option>Drama</option>
+											 <option>Just Like That</option>
                                     </select>
                                 </div>
                             </div>
