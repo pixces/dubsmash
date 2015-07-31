@@ -1,5 +1,12 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<meta name="description" content="">
+		<meta name="author" content="">
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/style.css"/>
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap.css"/>
             <!--<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap.min.css"/>-->
@@ -23,21 +30,31 @@
                 <!--VideoPoupupContentStart--->
                 <div class="videoSctn hide">
                     <div class="subVideo hide">
-                        <div class="univrslPoupClose"><i class="fa fa-times"></i></div>
                         <div class="row">
-                            <div class="col-md-9 noPaddng">
-                                <h3 class="lilita clr2 VideoTitle">Contact Us</h3>
+								<div class="modal-header">
+									 <button type="button" class="close univrslPoupClose" data-dismiss="modal" aria-hidden="true">×</button>
+									 <p class="lilita clr2 VideoTitle">Contact Us</p>
+								</div>
+                            <!--<div class="col-md-9 ">
+									<p class="lilita clr2 VideoTitle">Contact Us</p>
+								</div>
+								<div class="univrslPoupClose pull-right">
+									<button type="button">Close</button>
+								</div>-->
+							
+                            <div class="col-md-12 noPaddng VideoMessage hidden-xs">
+                                <p class="videoTag">Morbi viverra mattis leo vitae faucibus. Sed vel quam pellentesque felis hendrerit mollis. Fusce elementum laoreet efficitur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames #BNatural #Dubfest.</p>
                             </div>
-                            <div class="col-md-12 noPaddng VideoMessage">
-                                <p>Morbi viverra mattis leo vitae faucibus. Sed vel quam pellentesque felis hendrerit mollis. Fusce elementum laoreet efficitur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames #Bnatural #Dubfest.</p>
-                            </div>
+							
+							
                         </div>
                         <div  style="overflow-x:hidden; overflow-y:auto; height:350px">
                             <div class="row">
                                 <div class="col-md-8 noPaddng">
-                                    <iframe id="YourIFrameID" width="100%" height="95%" src="" frameborder="0" allowfullscreen></iframe>
+                                    <iframe id="YourIFrameID" width="100%" height="350" src="" frameborder="0" allowfullscreen></iframe>
                                 </div>
-                                <div class="col-md-4 clr1 noPaddng" id>
+								
+                                <div class="col-md-4 clr1 noPaddng">
                                     <div class="votNowFrm pull-left">
                                         <div class="col-xs-12 form-group userInfo">
                                             <label>Your Name*</label>
@@ -56,28 +73,39 @@
                                             <div class="glryBtn glryLoad lilita clr4 votenow" data-content_id="0"><i class="fa fa-heart"></i>Vote Now</div>
                                         </div>
                                     </div>
-                                    <div class="ShareSctn pull-left lilita" style="font-size:21px;" data-content_id="0">Share it On<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/fbicn.png" /></div>
+                                    <div class="ShareSctn pull-left lilita shareBtn" style="font-size:21px;" data-content_id="0"  data-content_type="gallery">Share it On<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/fbicn.png" /></div>
                                 </div>
+								
                             </div>
                         </div>
+							<div class="modal-footer">
+								<div id="scroll_me_bro"></div>
+						    </div>
+						
                     </div>
+					
+															
                     <div class="mainVideo hide">
-                        <div class="univrslPoupClose"><i class="fa fa-times"></i></div>
+                        
                         <div class="row">
-                            <div class="col-md-9" style="margin-left:10px;">
-                                <h4 class="lilita clr2">Title</h4>
-                            </div>
+                           <div class="modal-header">
+									 <button type="button" class="close univrslPoupClose" data-dismiss="modal" aria-hidden="true">×</button>
+									 <p class="lilita clr2 VideoTitle_1" style="margin-left: 10px;">Title</p>
+							  </div>
+							
                             <!-- 	<div class="col-md-12 noPaddng">
-                                            <p>Morbi viverra mattis leo vitae faucibus. Sed vel quam pellentesque felis hendrerit mollis. Fusce elementum laoreet efficitur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames #Bnatural #Dubfest.</p>
+                                            <p>Morbi viverra mattis leo vitae faucibus. Sed vel quam pellentesque felis hendrerit mollis. Fusce elementum laoreet efficitur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames #BNatural #Dubfest.</p>
                                     </div> -->
                         </div>
                         <div class="row">
                             <div class="col-md-12"  style="margin-bottom:25px; margin-right:10px">
-                                <iframe id="YourIFrameID_1" width="100%" height="70%" src="https://www.youtube.com/embed/Ap2rVl_KP2Y" frameborder="0" allowfullscreen></iframe>
+                                <iframe id="YourIFrameID_1" width="100%" height="350" src="" frameborder="0" allowfullscreen></iframe>
                             </div>
 
                         </div>
+							
                     </div>
+					
                 </div>
                 <!--VideoPoupupContentEnd--->
 
@@ -102,7 +130,7 @@
             </div>
         </div>
         <!---universalPoupupStart--->
-        <div class="topShrIcn Shricn"></div>
+        <div class="topShrIcn Shricn shareBtn" data-content_id="0"  data-content_type="page"></div>
         <div class="container bgAnmtn">
             <div>
                 <ul id="cbp-bislideshow" class="cbp-bislideshow">
@@ -137,7 +165,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 col-md-push-4 logo"><img class="text-center" src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo.png"/></div>
+                        <div class="col-md-6 col-md-offset-3 logo"><img class="text-center img-responsive"  src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo.png"/></div>
                     </div>
                 </header>
             </div>
@@ -151,11 +179,11 @@
                     </div>
                     <div class="col-md-8 pull-right ScndrMenu">
                         <ul class="">
-                            <li><a href="<?= Yii::app()->createAbsoluteUrl('/'); ?>"  style="color:#fff">Contact Us</a></li>
-                            <li><a href="<?= Yii::app()->createAbsoluteUrl('/site/page?view=privacy-policy'); ?>"  style="color:#fff">Privacy</a></li>
-                            <li><a href="<?= Yii::app()->createAbsoluteUrl('/site/page?view=terms-conditions'); ?>"  style="color:#fff">terms & conditions</a></li>
+                            <li><a href="http://bnatural.in/contact.aspx" target="_blank" style="color:#fff">Contact Us</a></li>
+                            <li><a href="http://www.itcportal.com/about-itc/policies/privacy-policy.aspx"  target="_blank" style="color:#fff">Privacy</a></li>
+                            <li><a href="http://www.itcportal.com/terms-of-use.aspx" target="_blank" style="color:#fff">terms & conditions</a></li>
                             <li><a href="<?= Yii::app()->createAbsoluteUrl('/site/page?view=rules'); ?>"  style="color:#fff">Contest terms & conditions</a></li>
-                            <li><a href="<?= Yii::app()->createAbsoluteUrl('/'); ?>"  style="color:#fff">ITC Portal</a></li>
+                            <li><a href="http://www.itcportal.com/" target="_blank"  style="color:#fff">ITC Portal</a></li>
                         </ul>
                     </div>
                 </div>
@@ -173,7 +201,7 @@
                             <h3 class="lilita clr2">Contact Us</h3>
                         </div>
                         <div class="col-md-12">
-                            <p>Morbi viverra mattis leo vitae faucibus. Sed vel quam pellentesque felis hendrerit mollis. Fusce elementum laoreet efficitur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames #Bnatural #Dubfest.</p>
+                            <p>Morbi viverra mattis leo vitae faucibus. Sed vel quam pellentesque felis hendrerit mollis. Fusce elementum laoreet efficitur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames #BNatural #Dubfest.</p>
                         </div>
                     </div>
                     <div class="row">
@@ -197,6 +225,7 @@
                             <div class="ShareSctn pull-left lilita" style="font-size:21px;">Share it On<img src="images/fbicn.png" /></div>
                         </div>
                     </div>
+					
                 </div>
                 <!--VideoPoupupContentEnd--->
 

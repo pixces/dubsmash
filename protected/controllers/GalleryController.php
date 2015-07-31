@@ -25,11 +25,11 @@ class GalleryController extends Controller
     {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view','share'),
+                'actions' => array('index', 'view','share','redirect'),
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update'),
+                'actions' => array('create', 'update','share'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -47,7 +47,6 @@ class GalleryController extends Controller
      */
     public function actionIndex()
     {
-
         /**
          * Parameter Object
          */
@@ -230,23 +229,41 @@ class GalleryController extends Controller
         ));
     }
 
-    public function actionShare($dContentId){
+    public function actionShare($contentId,$type){
 
-        echo $dContentId = Yii::app()->getRequest()->getParam('content_id', '');
-        exit;
+        $dContentId = Yii::app()->getRequest()->getParam('contentId', '');
+        $dType = Yii::app()->getRequest()->getParam('type', 'page');
 
-        if ($dContentId && !empty($dContentId)){
-            $redirect_uri = Yii::app()->createAbsoluteUrl('/gallery/')."?content=".$dContentId."&lightbox=true";
-            $details = $this->getContent($dContentId);
+        $fb_base_url = 'https://www.facebook.com/dialog/feed?app_id=110238615987902';
+        $redirect_uri = Yii::app()->createAbsoluteUrl('/gallery/redirect/');
 
-            $fb_base_url = 'https://www.facebook.com/dialog/feed?app_id=110238615987902';
+        switch($dType){
+            case 'page':
+                $picture = Yii::app()->createAbsoluteUrl('/').'/images/logo.png';
+                $description = "Be Cool, Be Funny or just #BNatural at the #BNatural Dubfest and you can win an iPhone 6!";
+                $title = "BNatural Dubfest | powered by Sangram Singh";
+                $link = Yii::app()->createAbsoluteUrl('/');
+                break;
+            case 'gallery':
+                if ($dContentId && !empty($dContentId)){
 
-            $title = "I really liked " . $details['username'] . "'s entry on B Natural's Dubfest" ;
-            $description = $details['message'];
-            $url = $fb_base_url . "&link=" . $redirect_uri . "&name=" . urlencode($title) . "&description=" . urlencode($description) . "&picture=" . $details['message'] . "&redirect_uri=" . $redirect_uri;
+                    $details = $this->getContent($dContentId);
 
-            $this->redirect($url);
+                    $link = Yii::app()->createAbsoluteUrl('/gallery/')."?content=".$dContentId."&lightbox=true";
+                    $title = "I really liked " . $details['username'] . "'s entry on #BNatural Dubfest" ;
+                    $description = $details['message'];
+                    $picture = $details['alternate_image'];
+                    //$link = Yii::app()->createAbsoluteUrl('/gallery/')."?content=".$dContentId."&lightbox=true";
+                }
+                break;
         }
+
+            $url = $fb_base_url . "&link=" . $link . "&name=" . urlencode($title) . "&description=" . urlencode($description) . "&picture=" . $picture . "&redirect_uri=" . $redirect_uri;
+            $this->redirect($url);
+    }
+
+    public function actionRedirect(){
+        echo "<script>window.close();</script>";
     }
 
     /**

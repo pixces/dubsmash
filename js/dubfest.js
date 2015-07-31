@@ -28,27 +28,47 @@ $( document ).ready(function() {
         }
     });
 
+$('#sangramSingtvcVideo').click(function(){
+	$("#YourIFrameID_1").attr('src', 'https://www.youtube.com/embed/oXCr1VLZgAI');
+	$(".UnivrslPoupup").find('.VideoTitle_1').html("B Natural TVC");
+	});
+	
+	$('#sangramSingVideo').click(function(){
+    $('#sangramSingVideo').attr('src', host + '/images/masterShehnsah.png');
+	$("#YourIFrameID_1").attr('src', 'https://www.youtube.com/embed/-tjezAmL31A?rel=0&amp;showinfo=0');
+	$(".UnivrslPoupup").find('.VideoTitle_1').html("Sangram Singh- Shahenshah Dubsmash");
+	});
+	
 	$('#sangramSingVideo1').click(function(){
 		
-    $('#sangramSingVideo').attr('src', host + '/images/Mainthum1.png');
+    $('#sangramSingVideo').attr('src', host + '/images/masterShehnsah.png');
+	$("#YourIFrameID_1").attr('src', 'https://www.youtube.com/embed/-tjezAmL31A?rel=0&amp;showinfo=0');
+	$(".UnivrslPoupup").find('.VideoTitle_1').html("Sangram Singh- Shahenshah Dubsmash");
+	
 	$(".mainVideo").removeClass("hide");
 	$(".subVideo").addClass("hide");
     });
 	
 	$('#sangramSingVideo2').click(function(){
-    $('#sangramSingVideo').attr('src', host + '/images/Mainthum2.png');
+    $('#sangramSingVideo').attr('src', host + '/images/masterRajni.png');
+	$("#YourIFrameID_1").attr('src', 'https://www.youtube.com/embed/BLkwr8Akj6I?rel=0&amp;showinfo=0');
+	$(".UnivrslPoupup").find('.VideoTitle_1').html("Sangram Singh- Rajinikanth Dubsmash");
 	$(".mainVideo").removeClass("hide");
 	$(".subVideo").addClass("hide");
     });
 	
 	$('#sangramSingVideo3').click(function(){
-    $('#sangramSingVideo').attr('src', host + '/images/Mainthum3.png');
+    $('#sangramSingVideo').attr('src', host + '/images/masterRadhe.png');
+	$("#YourIFrameID_1").attr('src', 'https://www.youtube.com/embed/Xedg93txyKo?rel=0&amp;showinfo=0');
+	$(".UnivrslPoupup").find('.VideoTitle_1').html("Sangram Singh- Wanted Dubsmash");
 	$(".mainVideo").removeClass("hide");
 	$(".subVideo").addClass("hide");
     });
 	
 	$('#sangramSingVideo4').click(function(){
-    $('#sangramSingVideo').attr('src', host + '/images/Mainthum4.png');
+    $('#sangramSingVideo').attr('src', host + '/images/masterShehnsah.png');
+	$("#YourIFrameID_1").attr('src', 'https://www.youtube.com/embed/-tjezAmL31A?rel=0&amp;showinfo=0');
+	$(".UnivrslPoupup").find('.VideoTitle_1').html("Sangram Singh- Shahenshah Dubsmash");
 	$(".mainVideo").removeClass("hide");
 	$(".subVideo").addClass("hide");
     });
@@ -98,8 +118,8 @@ $( document ).ready(function() {
 	}
 	/* show light box on page load when parameter lightbox = true with content id */
 	
-	$(document).on('click','.ShareSctn', function(){
-		shareTrigger();
+	$(document).on('click','.shareBtn', function(){
+		shareTrigger(this);
     });
 
     //LightBox Open Action for Carousel & Gallery
@@ -233,12 +253,15 @@ function openLightBox(obj){
 function closeLightBox(){
     $('#YourIFrameID').attr('src', defaultVideoEmbed);
     $(".UnivrslPoupup").addClass("hide");
+	$('#YourIFrameID_1').attr('src', defaultVideoEmbed);
+    $(".UnivrslPoupup").addClass("hide");
 }
 
-function shareTrigger(){
-    var content_id = $(".ShareSctn").attr("data-content_id");
-    var href = host + "/gallery/share/?content_id="+content_id;
-    window.open(href, '_blank' ,'toolbar=no, scrollbars=yes, resizable=yes, top=0, left=0, width=800, height=400');
+function shareTrigger($obj){
+    var content_id = $($obj).attr("data-content_id");
+    var type = $($obj).attr("data-content_type");
+    var href = host + "/gallery/share?contentId="+content_id+"&type="+type;
+    window.open(href, '_blank' ,'toolbar=no, scrollbars=yes, resizable=yes, location=no, top=0, left=0, width=800, height=400');
     return false;
 }
 

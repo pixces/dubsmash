@@ -122,7 +122,7 @@ class PagesController extends Controller
                                 }
 
                                 //send confirmation email to the user
-                                Mailer::SendAcknowledgement(array(
+                                Mailer::Acknowledgement(array(
                                     'to' => $modelContent->email,
                                     'name' => $modelContent->username
                                 ));

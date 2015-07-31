@@ -3,7 +3,7 @@
     $displayImage = isset($data->media_image) ? $data->media_image : Yii::app()->baseUrl."/images/video.png";
     //set the media URL
 ?>
-<div class="row" id="user-<?=$data->id; ?>">
+<div class="row" id="asset-<?=$data->id; ?>">
     <div class="media-head image-thumb">
         <a target="_blank" href="<?=$data->media_alternate_url;?>" class="img-modal thumbnail-img" data-channelId="" data-channelName="<?=$data->channel_name;?>" data-title="" >
             <img src="<?=$displayImage;?>">
@@ -28,14 +28,15 @@
 
         <span class="btn-bar">
         <?php if ($data->status != 'pending'){ ?>
-            <div id="<?=$data->id; ?>" class="pill pill-<?=$data->status; ?>"  data-value="<?=$data->status; ?>" data-id="<?=$data->id; ?>"><?=ucfirst($data->status); ?></div>
+            <div id="btn-status-<?=$data->id; ?>" class="pill pill-<?=$data->status; ?>"  data-value="<?=$data->status; ?>" data-id="<?=$data->id; ?>"><?=ucfirst($data->status); ?></div>
         <?php } else { ?>
-            <?php if ($data->status=="pending") { ?>
+            <div id="btn-status-<?=$data->id; ?>" class="pill pill-<?=$data->status; ?> hide"  data-value="<?=$data->status; ?>" data-id="<?=$data->id; ?>"><?=ucfirst($data->status); ?></div>
+        <?php } ?>
+        <?php if ($data->status=="pending") { ?>
                 <div id="btn-bar-<?=$data->id; ?>" class="action-btn button-bar">
                     <a id="<?=$data->id; ?>" class="admin-action btn"  data-value="1" data-id="<?=$data->id; ?>" data-action="approve" href="#">Approve</a>
                     <a id="<?=$data->id; ?>" class="admin-action btn red"  data-value="0" data-id="<?=$data->id; ?>" data-action="reject" href="#">Reject</a>
                 </div>
-            <?php } ?>
         <?php } ?>
         </span>
     </div>

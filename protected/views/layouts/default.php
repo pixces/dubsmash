@@ -62,13 +62,13 @@
                 <div class="item <?php echo (($x == 0) ? 'active' : ''); ?>" style="width:100%;background:#fff;">
                     <?php for($t=0; $t < 4 ; $t++) { ?>
                     <!---TopvideosingleSliderstart--->
-                    <div class="col-md-3 glryVdoSctn">
+                    <div class="col-sm-6 col-md-3 glryVdoSctn1">
                         <?php if ($this->aCarasouleData[$x+$t]->vote >= 15 ) { ?>
                         <div class="certifyIcn"></div>
                         <?php } ?>
                         <div id="video-<?=$this->aCarasouleData[$x+$t]->id; ?>" class="nxtsliders" data-content_id="<?=$this->aCarasouleData[$x+$t]->id; ?>" data-media_id="<?=$this->aCarasouleData[$x+$t]->media_id; ?>" data-media_url="<?=$this->aCarasouleData[$x+$t]->media_url; ?>" data-vote="<?=$this->aCarasouleData[$x+$t]->vote; ?>" data-title="<?=$this->aCarasouleData[$x+$t]->media_title; ?>">
                             <div class="PlayIcn1 VideoPlayBtn"></div>
-                            <div class="vdoethmb VideoPlayBtn"><img class="img-responsive" src="<?=$this->aCarasouleData[$x+$t]->alternate_image; ?>" /></div>
+                            <div class="vdoethmb VideoPlayBtn"><img class="img-responsive imgMaxheight" src="<?=$this->aCarasouleData[$x+$t]->alternate_image; ?>" /></div>
                             <div class="row vdoethmbDtls">
                                 <div class="col-md-5 glryvdeoTy"><?=$this->aCarasouleData[$x+$t]->media_category; ?></div>
                                 <div class="col-md-4 pull-right">
@@ -99,9 +99,9 @@
             <!-- LeftandrightcontrolsEnd-->
         </div>
 
-        <a href="<?= Yii::app()->createAbsoluteUrl('/gallery/'); ?>"><div class="glryBtn lilita">View Gallery</div></a>
+        <a href="<?= Yii::app()->createAbsoluteUrl('/gallery/'); ?>"><div class="glryBtn lilita glryHeight">View Gallery</div></a>
         <div class="row lilita mblbtmTxt clr2">
-            <div class="col-md-5 pull-left">#Bnatural #Dubfest</div>
+            <div class="col-md-5 pull-left">#BNatural #Dubfest</div>
             <div class="col-md-2 pull-right btmShrIcn Shricn"></div>
         </div>
     </div>

@@ -193,6 +193,7 @@ header {
     line-height: 35px;
     text-align: center;
     cursor: pointer;
+	margin-top: -10px;
 }
 
 .prcptBtn:hover {
@@ -210,7 +211,7 @@ header {
 }
 
 .UpldBtn {
-    padding: 15px 0px;
+    padding: 25px 0px;
     border-radius: 16px !important;
     color: #00364b !important;
 }
@@ -278,7 +279,7 @@ header {
 }
 
 .glryVdoSctn {
-    margin: 30px 0px 15px 0px;
+    margin: 0px 0px 0px 0px;
     height: 280px;
 }
 
@@ -517,7 +518,7 @@ header {
     margin: 0 7px;
     overflow: hidden;
     padding: 0px !important;
-    width: 22% !important;
+    /* width: 22% !important; */
 }
 
 .fntsz25 {
@@ -539,8 +540,12 @@ header {
     position: relative;
     width: 20px;
     cursor: pointer;
-    margin: 15px -14px 0px 0px;
+    /* margin: 15px 36px 0px 0px; */
     height: 20px;
+    margin-top: 0px;
+	color:#0090bc;
+    /* text-align: center; */
+    /* background-color: #000; */
 }
 
 .univrslPoupClose:hover {
@@ -549,6 +554,7 @@ header {
 
 .univrslPoupClose .fa {
     font-size: 20px !important;
+	margin-left:4px;
 }
 
 .cntct {
@@ -563,10 +569,10 @@ header {
 .videoSctn {
     background: #fff;
     padding: 0px 30px;
-    width: 60%;
     margin: 0px auto;
     margin-top: 7%;
     border-radius: 10px;
+	width: 46%;
 }
 
 .certifyIcn {
@@ -595,7 +601,7 @@ header {
 
 .PlayIcn1, .PlayIcn2, .PlayIcn3 {
     height: 60px;
-    margin: 25% 0 0 34%;
+    margin: 20% 0 0 34%;
     position: absolute;
     width: 56px;
     background: url(../images/playIcns.png) no-repeat;
@@ -626,7 +632,7 @@ header {
     background: #0093be;
     padding: 11px;
     width:100%;
-    height:235px
+    height:235px;
 }
 
 .votNowFrm label {
@@ -692,8 +698,8 @@ header {
 }
 
 .PrtcptNwMoble .glryLoad {
-    width: 30%;
-    margin: 0px auto;
+    width: 44%;
+    margin: 30px auto;
 }
 
 .Shricn {
@@ -1069,9 +1075,13 @@ label {
     bottom: -20px;
 }
 
-img.img-responsive {
-    height: 180px;
-}
+ img.imgMaxheight{
+    max-height: 180px;
+}  
+
+ img.img-responsive {
+    margin: 0 auto;
+} 
 
 .videoUpload {
     color: #333;
@@ -1097,10 +1107,6 @@ img.img-responsive {
         font-size: 30px;
     }
 
-    .carousel-control .glyphicon-chevron-left,
-    .carousel-control .icon-prev {
-        margin-left: -15px;
-    }
 
     .carousel-control .glyphicon-chevron-right,
     .carousel-control .icon-next {
@@ -1149,34 +1155,688 @@ img.img-responsive {
     }
 }
 
-@media screen and (min-width: 360px ) and (max-width: 767px) {
-    .carousel-indicators {
-        bottom: -45% !important;
+
+
+
+
+/*========================================================Responsive View 29072015================================================*/
+
+    @media screen and (min-width: 768px ) and (max-width:1024px) {
+	.carousel-indicators {
+        bottom: -65px !important;
         border: 0px solid red;
     }
+	
+	.UpldBtn {
+    padding: 10px 0px;
+    border-radius: 16px !important;
+    color: #00364B !important;
+		}
+		
+	.UpldBtn p{
+		font-size:20px;
+		margin-top: 6px;
+	}
+	.PrtcptNwMoble .glryLoad {
+    width: 66%;
+    margin: 30px auto;
+	}
+	
+	.sgnsclmdeaicncntr {
+    height: 50px;
+	margin: 17px auto;
+	margin-left: 15%;
+	background: #fff;
+	border-radius: 10px;
+	}
+	.sgnsclmdea {
+    width: 45px;
+    height: 45px;
+    float: left;
+    margin-left: 133px;
+	margin-top:2px;
+	}
+	.glryBtn {
+    margin: 19px auto 0px;
+	border: 0px solid #F00;
+	margin-bottom: 10px;
+	background:#FFBB37 none repeat scroll 0% 0%;
+	}	
 
-    .forMobile {
-        margin-top: 40px
+	.glryHeight {
+    margin-top: 59px !important;
+}
+	
+	
+	
     }
+	
+	
+    
+    
 
-    /* .univrslPoupClose{margin-top:25px} */
-    .glryBtn {
-        margin: 60px auto 0px;
+	
+    /* Extra Small Devices, Phones */ 
+    @media only screen and (max-width : 640px) {
+	
+	.carousel-indicators {
+        bottom: -65px !important;
         border: 0px solid red;
     }
+	
+	.PlayIcn1, .PlayIcn2, .PlayIcn3 {
+    margin: 10% 0px 0px 34%;
+	
+		}
+		
+		.UpldBtn {
+    padding: 3px 0px;
+    border-radius: 16px !important;
+    color: #00364B !important;
+		}
+		
+	.UpldBtn p{
+		font-size:20px;
+		margin-top: 6px;
+	}
+	.PrtcptNwMoble .glryLoad {
+    width: 66%;
+    margin: 30px auto;
+	}
+	
+	.sgnsclmdeaicncntr {
+    height: 50px;
+	margin: 17px auto;
+	margin-left: 15%;
+	background: #fff;
+	border-radius: 10px;
+	}
+	.sgnsclmdea {
+    width: 45px;
+    height: 45px;
+    float: left;
+    margin-left: 39px;
+	margin-top:2px;
+	}
+	.glryBtn {
+    margin: 19px auto 0px;
+	border: 0px solid #F00;
+	margin-bottom: 10px;
+	background:#FFBB37 none repeat scroll 0% 0%;
+	}	
 
-    .lernmore {
-        position: relative;
-        bottom: 0px;
-        margin: 0 auto;
-    }
+/* video responsive */
+	.videoSctn {
+    background: #FFF none repeat scroll 0% 0%;
+    padding: 0px 30px;
 
-    .Shricn {
-        margin-top: -21px !important;
-        margin-bottom: -3px;
+    margin: 7% auto 0px;
+    border-radius: 10px;
+	}
+	/* css for registeration */
+	
+	.frmistrctnBg {
+    padding: 21px;
+    background: #FFF none repeat scroll 0% 0%;
+    color: #000;
+    border-radius: 10px;
+	}
+	
+	.UpldBtnCntr {
+    margin: 25px auto 0px !important;
+    width: 50%;
+	}
+	
+	.glryHeight {
+    margin-top: 70px !important;	
+	}
+	
+	
+	.navbar-toggle {
+    position: relative;
+    float: right;
+    padding: 1px 10px;
+    margin-top: -36px ;
+    margin-right: 15px;
+    margin-bottom: 8px;
+    background-color: transparent;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+	
+	
+	
     }
+	
 
-    .goBck {
-        margin-top: -20px;
+/* ==========================responsive video============================ */
+
+
+
+.glryHeight{
+	margin-top:10px;
+}
+
+.videoTag{
+	font-size: 12px;
+line-height: 14px;
+text-align: justify;
+}
+
+.glryVdoSctn1{
+	max-width:300px;
+}
+
+
+/* ----------- iPhone 4 and 4S ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+	
+	.carousel-indicators {
+        bottom: -65px !important;
+        border: 0px solid red;
     }
+		.PlayIcn1, .PlayIcn2, .PlayIcn3 {
+    margin: 20% 0px 0px 34%;
+	
+		}
+		.UpldBtn {
+    padding: 3px 0px;
+    border-radius: 16px !important;
+    color: #00364B !important;
+		}
+		
+	.UpldBtn p{
+		font-size:20px;
+		margin-top: 6px;
+	}
+	.PrtcptNwMoble .glryLoad {
+    width: 66%;
+    margin: 30px auto;
+	}
+	
+	.sgnsclmdeaicncntr {
+    height: 50px;
+	margin: 17px auto;
+	margin-left: 15%;
+	background: #fff;
+	border-radius: 10px;
+	}
+	.sgnsclmdea {
+    width: 45px;
+    height: 45px;
+    float: left;
+    margin-left: 39px;
+	margin-top:2px;
+	}
+	.glryBtn {
+    margin: 19px auto 0px;
+	border: 0px solid #F00;
+	margin-bottom: 10px;
+	background:#FFBB37 none repeat scroll 0% 0%;
+	}	
+
+	/* video responsive */
+	.videoSctn {
+    background: #FFF none repeat scroll 0% 0%;
+    padding: 0px 30px;
+    margin: 7% auto 0px;
+    border-radius: 10px;
+	}
+	.videoSctn {
+    background: #fff;
+    padding: 0px 30px;
+    margin: 0px auto;
+    margin-top: 7%;
+    border-radius: 10px;
+    width: 100%;
+}
+	
+	
+	
+	/* css for registeration */
+	
+	.frmistrctnBg {
+    padding: 21px;
+    background: #FFF none repeat scroll 0% 0%;
+    color: #000;
+    border-radius: 10px;
+	}
+	
+	.UpldBtnCntr {
+    margin: 25px auto 0px !important;
+    width: 50%;
+	}
+	
+	
+	
+}
+
+/* Portrait */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+	  
+	  .carousel-indicators {
+        bottom: -65px !important;
+        border: 0px solid red;
+    }
+		.PlayIcn1, .PlayIcn2, .PlayIcn3 {
+    margin: 20% 0px 0px 34%;
+	
+		}
+		.UpldBtn {
+    padding: 3px 0px;
+    border-radius: 16px !important;
+    color: #00364B !important;
+		}
+		
+	.UpldBtn p{
+		font-size:20px;
+		margin-top: 6px;
+	}
+	.PrtcptNwMoble .glryLoad {
+    width: 66%;
+    margin: 30px auto;
+	}
+	
+	.sgnsclmdeaicncntr {
+    height: 50px;
+	margin: 17px auto;
+	margin-left: 15%;
+	background: #fff;
+	border-radius: 10px;
+	}
+	.sgnsclmdea {
+    width: 45px;
+    height: 45px;
+    float: left;
+    margin-left: 39px;
+	margin-top:2px;
+	}
+	.glryBtn {
+    margin: 19px auto 0px;
+	border: 0px solid #F00;
+	margin-bottom: 10px;
+	background:#FFBB37 none repeat scroll 0% 0%;
+	}	
+
+/* video responsive */
+	.videoSctn {
+    background: #FFF none repeat scroll 0% 0%;
+    padding: 0px 30px;
+
+    margin: 7% auto 0px;
+    border-radius: 10px;
+	}
+	/* css for registeration */
+	
+	.frmistrctnBg {
+    padding: 21px;
+    background: #FFF none repeat scroll 0% 0%;
+    color: #000;
+    border-radius: 10px;
+	}
+	
+	.UpldBtnCntr {
+    margin: 25px auto 0px !important;
+    width: 50%;
+	}
+	  
+	.carousel-inner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+	}
+	
+	.btmShrIcn {
+    width: 102px !important;
+    height: 35px;
+    margin-top: 20px !important;
+}
+	  
+}
+
+/* Landscape */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) {
+	.carousel-inner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+	margin-left:60px;
+	}
+}
+
+/* ----------- iPhone 5 and 5S ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+   .carousel-indicators {
+        bottom: -65px !important;
+        border: 0px solid red;
+    }
+	.PlayIcn2, .PlayIcn3 {
+    margin: 10% 0px 0px 34%;
+		}
+		
+		.UpldBtn {
+    padding: 3px 0px;
+    border-radius: 16px !important;
+    color: #00364B !important;
+		}
+		
+	.UpldBtn p{
+		font-size:20px;
+		margin-top: 6px;
+	}
+	.PrtcptNwMoble .glryLoad {
+    width: 66%;
+    margin: 30px auto;
+	}
+	
+	.sgnsclmdeaicncntr {
+    height: 50px;
+	margin: 17px auto;
+	margin-left: 15%;
+	background: #fff;
+	border-radius: 10px;
+	}
+	.sgnsclmdea {
+    width: 45px;
+    height: 45px;
+    float: left;
+    margin-left: 39px;
+	margin-top:2px;
+	}
+	.glryBtn {
+    margin: 19px auto 0px;
+	border: 0px solid #F00;
+	margin-bottom: 10px;
+	background:#FFBB37 none repeat scroll 0% 0%;
+	}	
+
+/* video responsive */
+	.videoSctn {
+    background: #FFF none repeat scroll 0% 0%;
+    padding: 0px 10px;
+    margin: 7% auto 0px;
+    border-radius: 10px;
+	}
+	/* css for registeration */
+	
+	.frmistrctnBg {
+    padding: 21px;
+    background: #FFF none repeat scroll 0% 0%;
+    color: #000;
+    border-radius: 10px;
+	}
+	
+	.UpldBtnCntr {
+    margin: 25px auto 0px !important;
+    width: 50%;
+	}
+	  
+	.carousel-inner {
+    position: relative;
+    width: 100%;
+
+    overflow: hidden;
+	}
+	
+	.btmShrIcn {
+    width: 102px !important;
+    height: 35px;
+    margin-top: 20px !important;
+}
+	  
+}
+
+/* Portrait */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+	  
+	.carousel-inner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+	
+	}
+	  
+}
+
+/* Landscape */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) {
+
+}
+
+/* ----------- iPhone 6 ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2) { 
+	.navbar-collapse {
+    padding-right: 15px;
+    padding-left: 15px;
+    overflow-x: visible;
+    border-top: 1px solid transparent;
+    margin-top: 40px !important;
+}
+}
+
+/* Portrait */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) { 
+
+}
+
+/* Landscape */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) { 
+
+}
+
+/* ----------- iPhone 6+ ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 414px) 
+  and (max-device-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3) { 
+
+}
+
+/* Portrait */
+@media only screen 
+  and (min-device-width: 414px) 
+  and (max-device-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: portrait) { 
+
+}
+
+/* Landscape */
+@media only screen 
+  and (min-device-width: 414px) 
+  and (max-device-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: landscape) { 
+
+}
+
+
+/* Desktops and laptops ----------- */
+@media only screen 
+and (min-width : 1224px) {
+   .topVdesdsgn {
+    height: 10px;
+    background: url(../images/tpBls.png) top repeat-x;
+    margin-top: 0px;
 } 
+}
+
+/* Large screens ----------- */
+@media only screen 
+and (min-width : 1824px) {
+  .topVdesdsgn {
+    height: 10px;
+    background: url(../images/tpBls.png) top repeat-x;
+    margin-top: 150px;
+}
+}
+
+
+
+
+
+
+@media screen and (min-width: 320px ) and (max-width: 767px) {
+    /*Global Declareation*/
+
+	html,body {
+    background: url(../images/mainBg.jpg) no-repeat #3d8fbe !important;
+    overflow-x: hidden;
+}
+	
+ .modal-header .close {
+    margin-top: 4px;
+    margin-right: 15px;
+}
+
+.videoSctn {
+    background: #FFF none repeat scroll 0% 0%;
+    padding: 16px 10px;
+    margin: 4% auto 0px;
+    border-radius: 0px;
+}
+
+/* css for scroll_down_to_vote */
+#scroll_me_bro
+{
+	display:block !important;
+}
+	
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+.embed-responsive {
+    position: absolute;
+    left: 0; right: 0;
+    top: 50%;
+    margin-top: -28.1%;
+    /* video height / video width */
+    padding-bottom: 56.2%;
+    height: 0;
+    overflow: hidden;
+}
+.embed-responsive iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* css for scroll_down_to_vote */
+
+#scroll_me_bro
+{
+	display:none;
+}
+
+@-webkit-keyframes circleBounce {
+  0% {-webkit-transform: scale(0.9); opacity: 0;}
+  20% {opacity: 0.5;}
+  50% {opacity: 1;}
+  80% {opacity: 0.5;}
+  100% {-webkit-transform: scale(1.1); opacity:0;}
+}
+
+#scroll_me_bro {
+  position: relative;
+    top: 7px;
+    left: calc(50% - 3px);
+    width: 15px;
+    height: 15px;
+    border: 3px solid #0090BC;
+    border-top: none;
+    border-left: none;
+    cursor: pointer;
+    -webkit-transform: rotate(45deg);
+    -webkit-transform-origin: 50% 50%;
+}
+
+#scroll_me_bro:after {
+  content: "";
+    display: block;
+    position: absolute;
+    top: calc(50% - 17px);
+    left: calc(50% - 17px);
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255,255,255,.8);
+    border: 1px solid #0090BC;
+    border-radius: 50%;
+    -webkit-animation: circleBounce 1.2s linear infinite; 
+}
+
+div:hover:after {
+  background-color: rgba(255,0,0,.15);
+}
+
+.frame {
+    height: 35px;      /* equals max image height */
+    width: 160px;
+    border: 0px solid red;
+    text-align: center; 
+    margin: 1em 0;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.thumbnail_img {
+    display: block;
+    max-height: 205px;
+    max-width: 160px;
+}

@@ -403,6 +403,12 @@ blockquote p{
     color: #FFF;
 }
 
+.pill-processing{
+    background-color: #cccccc;
+    border: 1px solid #c6c6c6;
+    color: #FFF;
+}
+
 .status-btn{
     width: 100px;
     float: left;
