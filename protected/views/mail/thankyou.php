@@ -70,7 +70,7 @@
           </table></td>
         </tr>
         <tr>
-          <td width="450" height="50" align="left" valign="top"><img src="https://dubfest.bnatural.in/images/mailers/image18.jpg" width="450" height="50" style="border:0 none;display:block"/></td>
+          <td width="450" height="50" align="left" valign="top"><img src="https://dubfest.bnatural.in/images/mailers/message_thankyou.jpg" width="450" height="50" style="border:0 none;display:block"/></td>
         </tr>
         <tr>
           <td width="450" height="186" align="left" valign="top"><table width="450" border="0" cellspacing="0" cellpadding="0">
