@@ -40,7 +40,7 @@
 </div>
 
 <div class="col-xs-5 videoThb">
-<div class="sangramSingVideo"><img class="img-responsive" src="<?php echo Yii::app()->request->baseUrl; ?>/images/vdoImg.png" /></div>
+<div class="sangramSingVideo"><img id="sangramSingtvcVideo" class="img-responsive" src="<?php echo Yii::app()->request->baseUrl; ?>/images/vdoImg.png" /></div>
 </div>
 <div class="col-xs-4 Mndit">
 <!--<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/mnditImg.png" />-->

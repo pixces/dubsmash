@@ -28,28 +28,47 @@ $( document ).ready(function() {
         }
     });
 
+$('#sangramSingtvcVideo').click(function(){
+	$("#YourIFrameID_1").attr('src', 'https://www.youtube.com/embed/oXCr1VLZgAI');
+	$(".UnivrslPoupup").find('.VideoTitle_1').html("Title Text1");
+	});
+	
+	$('#sangramSingVideo').click(function(){
+    $('#sangramSingVideo').attr('src', host + '/images/vdoImg2.png');
+	$("#YourIFrameID_1").attr('src', 'https://www.youtube.com/embed/oXCr1VLZgAI');
+	$(".UnivrslPoupup").find('.VideoTitle_1').html("Title Text1");
+	});
+	
 	$('#sangramSingVideo1').click(function(){
 		
     $('#sangramSingVideo').attr('src', host + '/images/Mainthum1.png');
-
+	$("#YourIFrameID_1").attr('src', 'https://www.youtube.com/embed/oXCr1VLZgAI');
+	$(".UnivrslPoupup").find('.VideoTitle_1').html("Title Text2");
+	
 	$(".mainVideo").removeClass("hide");
 	$(".subVideo").addClass("hide");
     });
 	
 	$('#sangramSingVideo2').click(function(){
     $('#sangramSingVideo').attr('src', host + '/images/Mainthum2.png');
+	$("#YourIFrameID_1").attr('src', 'https://www.youtube.com/embed/oXCr1VLZgAI');
+	$(".UnivrslPoupup").find('.VideoTitle_1').html("Title Text3");
 	$(".mainVideo").removeClass("hide");
 	$(".subVideo").addClass("hide");
     });
 	
 	$('#sangramSingVideo3').click(function(){
     $('#sangramSingVideo').attr('src', host + '/images/Mainthum3.png');
+	$("#YourIFrameID_1").attr('src', 'https://www.youtube.com/embed/oXCr1VLZgAI');
+	$(".UnivrslPoupup").find('.VideoTitle_1').html("Title Text4");
 	$(".mainVideo").removeClass("hide");
 	$(".subVideo").addClass("hide");
     });
 	
 	$('#sangramSingVideo4').click(function(){
     $('#sangramSingVideo').attr('src', host + '/images/Mainthum4.png');
+	$("#YourIFrameID_1").attr('src', 'https://www.youtube.com/embed/oXCr1VLZgAI');
+	$(".UnivrslPoupup").find('.VideoTitle_1').html("Title Text5");
 	$(".mainVideo").removeClass("hide");
 	$(".subVideo").addClass("hide");
     });

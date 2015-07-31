@@ -30,12 +30,17 @@
                 <!--VideoPoupupContentStart--->
                 <div class="videoSctn hide">
                     <div class="subVideo hide">
-                        
                         <div class="row">
-                            <div class="col-md-9 ">
-                                <p class="lilita clr2 VideoTitle">Contact Us</p>
-                            </div>
-							<div class="univrslPoupClose">Close</div>
+								<div class="modal-header">
+									 <button type="button" class="close univrslPoupClose" data-dismiss="modal" aria-hidden="true">×</button>
+									 <p class="lilita clr2 VideoTitle">Contact Us</p>
+								</div>
+                            <!--<div class="col-md-9 ">
+									<p class="lilita clr2 VideoTitle">Contact Us</p>
+								</div>
+								<div class="univrslPoupClose pull-right">
+									<button type="button">Close</button>
+								</div>-->
 							
                             <div class="col-md-12 noPaddng VideoMessage hidden-xs">
                                 <p class="videoTag">Morbi viverra mattis leo vitae faucibus. Sed vel quam pellentesque felis hendrerit mollis. Fusce elementum laoreet efficitur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames #BNatural #Dubfest.</p>
@@ -71,16 +76,15 @@
                         </div>
 						
                     </div>
+					
+															
                     <div class="mainVideo hide">
                         
                         <div class="row">
-                            <div class="col-md-9" style="margin-left:10px;">
-                                <p class="lilita clr2 VideoTitle_1">Title</p>
-									
-                            </div>
-								<div class="univrslPoupClose pull-right">
-									<!--<i class="fa fa-times"></i>-->Close
-								</div>
+                           <div class="modal-header">
+									 <button type="button" class="close univrslPoupClose" data-dismiss="modal" aria-hidden="true">×</button>
+									 <p class="lilita clr2 VideoTitle_1">Title</p>
+							  </div>
 							
                             <!-- 	<div class="col-md-12 noPaddng">
                                             <p>Morbi viverra mattis leo vitae faucibus. Sed vel quam pellentesque felis hendrerit mollis. Fusce elementum laoreet efficitur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames #BNatural #Dubfest.</p>
@@ -88,13 +92,13 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12"  style="margin-bottom:25px; margin-right:10px">
-                                <iframe id="YourIFrameID_1" width="100%" height="350" src="https://www.youtube.com/embed/Ap2rVl_KP2Y" frameborder="0" allowfullscreen></iframe>
+                                <iframe id="YourIFrameID_1" width="100%" height="350" src="" frameborder="0" allowfullscreen></iframe>
                             </div>
 
                         </div>
 							
-							
                     </div>
+					
                 </div>
                 <!--VideoPoupupContentEnd--->
 
