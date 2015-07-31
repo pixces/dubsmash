@@ -101,7 +101,7 @@
 
         <a href="<?= Yii::app()->createAbsoluteUrl('/gallery/'); ?>"><div class="glryBtn lilita glryHeight">View Gallery</div></a>
         <div class="row lilita mblbtmTxt clr2">
-            <div class="col-md-5 pull-left">#Bnatural #Dubfest</div>
+            <div class="col-md-5 pull-left">#BNatural #Dubfest</div>
             <div class="col-md-2 pull-right btmShrIcn Shricn"></div>
         </div>
     </div>

@@ -35,6 +35,8 @@
                             <div class="col-md-9 ">
                                 <p class="lilita clr2 VideoTitle">Contact Us</p>
                             </div>
+							<div class="univrslPoupClose">Close</div>
+							
                             <div class="col-md-12 noPaddng VideoMessage hidden-xs">
                                 <p class="videoTag">Morbi viverra mattis leo vitae faucibus. Sed vel quam pellentesque felis hendrerit mollis. Fusce elementum laoreet efficitur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames #BNatural #Dubfest.</p>
                             </div>
@@ -67,14 +69,19 @@
                                 </div>
                             </div>
                         </div>
-						<div class="univrslPoupClose">Close</div>
+						
                     </div>
                     <div class="mainVideo hide">
                         
                         <div class="row">
                             <div class="col-md-9" style="margin-left:10px;">
-                                <p class="lilita clr2">Title</p>
+                                <p class="lilita clr2 VideoTitle_1">Title</p>
+									
                             </div>
+								<div class="univrslPoupClose pull-right">
+									<!--<i class="fa fa-times"></i>-->Close
+								</div>
+							
                             <!-- 	<div class="col-md-12 noPaddng">
                                             <p>Morbi viverra mattis leo vitae faucibus. Sed vel quam pellentesque felis hendrerit mollis. Fusce elementum laoreet efficitur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames #BNatural #Dubfest.</p>
                                     </div> -->
@@ -85,9 +92,7 @@
                             </div>
 
                         </div>
-							<div class="univrslPoupClose">
-							<!--<i class="fa fa-times"></i>-->Close
-							</div>
+							
 							
                     </div>
                 </div>
@@ -167,7 +172,7 @@
                             <li><a href="<?= Yii::app()->createAbsoluteUrl('/site/page?view=privacy-policy'); ?>"  style="color:#fff">Privacy</a></li>
                             <li><a href="<?= Yii::app()->createAbsoluteUrl('/site/page?view=terms-conditions'); ?>"  style="color:#fff">terms & conditions</a></li>
                             <li><a href="<?= Yii::app()->createAbsoluteUrl('/site/page?view=rules'); ?>"  style="color:#fff">Contest terms & conditions</a></li>
-                            <li><a href="<?= Yii::app()->createAbsoluteUrl('/'); ?>"  style="color:#fff">ITC Portal</a></li>
+                            <li><a href="http://www.itcportal.com/" target="_blank"  style="color:#fff">ITC Portal</a></li>
                         </ul>
                     </div>
                 </div>

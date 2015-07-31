@@ -31,6 +31,7 @@ $( document ).ready(function() {
 	$('#sangramSingVideo1').click(function(){
 		
     $('#sangramSingVideo').attr('src', host + '/images/Mainthum1.png');
+
 	$(".mainVideo").removeClass("hide");
 	$(".subVideo").addClass("hide");
     });

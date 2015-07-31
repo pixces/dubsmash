@@ -129,7 +129,7 @@ p {
 }
 
 /*Global Declareation*/
-html,body {
+body {
     background: url(../images/mainBg.jpg) no-repeat #3d8fbe !important;
     overflow-x: hidden;
 }
@@ -534,14 +534,14 @@ header {
 }
 
 .univrslPoupClose {
-        float: right;
+    float: right;
     height: 0px;
     position: relative;
     width: 20px;
     cursor: pointer;
     margin: 15px 36px 0px 0px;
     height: 20px;
-    margin-top: -23px;
+    margin-top: 0px;
 	color:#0090bc;
     /* text-align: center; */
     /* background-color: #000; */
@@ -1693,7 +1693,25 @@ text-align: justify;
 }
 
 
+/* Desktops and laptops ----------- */
+@media only screen 
+and (min-width : 1224px) {
+   .topVdesdsgn {
+    height: 10px;
+    background: url(../images/tpBls.png) top repeat-x;
+    margin-top: 0px;
+} 
+}
 
+/* Large screens ----------- */
+@media only screen 
+and (min-width : 1824px) {
+  .topVdesdsgn {
+    height: 10px;
+    background: url(../images/tpBls.png) top repeat-x;
+    margin-top: 150px;
+}
+}
 
 .embed-responsive {
     position: absolute;

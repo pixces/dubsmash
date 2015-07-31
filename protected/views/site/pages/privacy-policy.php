@@ -15,7 +15,7 @@
                     <li>Steps to Participate in the Contest:
                         <ul>
                             <li>Stage 1 - Use the Dubsmash app to create a Dubsmash video under any of the following three categories Comedy, Action & Drama.</li>
-                            <li>Stage 2 - Upload your Dubsmash video entry through the site sangramsingh.bnatural.in along with your details.</li>
+                            <li>Stage 2 - Upload your Dubsmash video entry through the site sangramsingh.BNatural.in along with your details.</li>
                             <li>Stage 3 - Once approved share your entry with your friends and spread the word to receive maximum number of Re-tweets, favorites, votes, likes, comments or shares. Use the hashtags #BNatural and #Dubfest in all your communication.</li>
                         </ul>
                     </li>
