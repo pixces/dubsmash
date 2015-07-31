@@ -34,16 +34,16 @@ $('#sangramSingtvcVideo').click(function(){
 	});
 	
 	$('#sangramSingVideo').click(function(){
-    $('#sangramSingVideo').attr('src', host + '/images/masterRadhe.png');
-	$("#YourIFrameID_1").attr('src', 'https://www.youtube.com/embed/oXCr1VLZgAI');
-	$(".UnivrslPoupup").find('.VideoTitle_1').html("Title Text1");
+    $('#sangramSingVideo').attr('src', host + '/images/masterShehnsah.png');
+	$("#YourIFrameID_1").attr('src', 'https://www.youtube.com/embed/-tjezAmL31A?rel=0&amp;showinfo=0');
+	$(".UnivrslPoupup").find('.VideoTitle_1').html("Sangram Singh- Shahenshah Dubsmash");
 	});
 	
 	$('#sangramSingVideo1').click(function(){
 		
-    $('#sangramSingVideo').attr('src', host + '/images/masterRadhe.png');
-	$("#YourIFrameID_1").attr('src', 'https://www.youtube.com/embed/oXCr1VLZgAI');
-	$(".UnivrslPoupup").find('.VideoTitle_1').html("Title Text2");
+    $('#sangramSingVideo').attr('src', host + '/images/masterShehnsah.png');
+	$("#YourIFrameID_1").attr('src', 'https://www.youtube.com/embed/-tjezAmL31A?rel=0&amp;showinfo=0');
+	$(".UnivrslPoupup").find('.VideoTitle_1').html("Sangram Singh- Shahenshah Dubsmash");
 	
 	$(".mainVideo").removeClass("hide");
 	$(".subVideo").addClass("hide");
@@ -51,24 +51,24 @@ $('#sangramSingtvcVideo').click(function(){
 	
 	$('#sangramSingVideo2').click(function(){
     $('#sangramSingVideo').attr('src', host + '/images/masterRajni.png');
-	$("#YourIFrameID_1").attr('src', 'https://www.youtube.com/embed/oXCr1VLZgAI');
-	$(".UnivrslPoupup").find('.VideoTitle_1').html("Title Text3");
+	$("#YourIFrameID_1").attr('src', 'https://www.youtube.com/embed/BLkwr8Akj6I?rel=0&amp;showinfo=0');
+	$(".UnivrslPoupup").find('.VideoTitle_1').html("Sangram Singh- Rajinikanth Dubsmash");
 	$(".mainVideo").removeClass("hide");
 	$(".subVideo").addClass("hide");
     });
 	
 	$('#sangramSingVideo3').click(function(){
-    $('#sangramSingVideo').attr('src', host + '/images/masterShehnsah.png');
-	$("#YourIFrameID_1").attr('src', 'https://www.youtube.com/embed/oXCr1VLZgAI');
-	$(".UnivrslPoupup").find('.VideoTitle_1').html("Title Text4");
+    $('#sangramSingVideo').attr('src', host + '/images/masterRadhe.png');
+	$("#YourIFrameID_1").attr('src', 'https://www.youtube.com/embed/Xedg93txyKo?rel=0&amp;showinfo=0');
+	$(".UnivrslPoupup").find('.VideoTitle_1').html("Sangram Singh- Wanted Dubsmash");
 	$(".mainVideo").removeClass("hide");
 	$(".subVideo").addClass("hide");
     });
 	
 	$('#sangramSingVideo4').click(function(){
-    $('#sangramSingVideo').attr('src', host + '/images/masterRadhe.png');
-	$("#YourIFrameID_1").attr('src', 'https://www.youtube.com/embed/oXCr1VLZgAI');
-	$(".UnivrslPoupup").find('.VideoTitle_1').html("Title Text5");
+    $('#sangramSingVideo').attr('src', host + '/images/masterShehnsah.png');
+	$("#YourIFrameID_1").attr('src', 'https://www.youtube.com/embed/-tjezAmL31A?rel=0&amp;showinfo=0');
+	$(".UnivrslPoupup").find('.VideoTitle_1').html("Sangram Singh- Shahenshah Dubsmash");
 	$(".mainVideo").removeClass("hide");
 	$(".subVideo").addClass("hide");
     });

@@ -1,7 +1,7 @@
 <div class="container header-body">
     <header>
         <div class="row lilita tagLn">
-            <div class="col-md-12 text-center">Be funny, Be mad, Be cool.</br>Show your many sides,<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/gif.gif" />
+            <div class="col-md-12 text-center">Be funny. Be mad. Be cool.</br>Show us your many sides,<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/gif.gif" />
             </div>
         </div>
         <div class="row PrtcptNwMoble text-center lilita">
@@ -14,9 +14,9 @@
 
                     <div class="participateprceCntr">
                         <div class="prtcptSctnCont">
-                           <span class="fntSctn1"><img class="iPhnImage" src="<?php echo Yii::app()->request->baseUrl; ?>/images/prtcptMbl.png" />Be a part of the country's whackiest Dubsmash contest & <span class="fntSctn2">win an iPhone 6!</span><p style="font-size: 14px;
-    font-weight: 400 !important;
-    color: rgb(78, 56, 98);">100 consolation prizes to be won!</p></span>
+                           <span class="fntSctn1"><img class="iPhnImage" src="<?php echo Yii::app()->request->baseUrl; ?>/images/prtcptMbl.png" />Be a part of the #BNatural Dubfest and <span class="fntSctn2">win an iPhone 6!</span><br></br><p style="font-size: 15px;
+    font-weight: 400 !important; margin-top:15px; 
+    color: rgb(78, 56, 98);">100 BNatural Gift Hampers to be won too!</p></span>
                         </div>
                         <div class="hmprcptBtn prcptBtn">Participate Now</div>
                     </div>
@@ -41,15 +41,35 @@
                 <div class="text-center clr1 bntrl">#BNatural #Dubfest</div>
             </div>
 			<div class="col-xs-5 videoThb">
-			<div class="sangramSingVideo"><img class="img-responsive" id="sangramSingVideo" src="<?php echo Yii::app()->request->baseUrl; ?>/images/masterRadhe.png"/></div>
+			<div class="sangramSingVideo"><img class="img-responsive" id="sangramSingVideo" src="<?php echo Yii::app()->request->baseUrl; ?>/images/masterShehnsah.png"/></div>
+			<!--<div class="row VdoeThumSngram">
+			<div class="col-sm-3  MinvdoThmb sangramSingVideo" id="sangramSingVideo1"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/smallRadhe.png" class="img-responsive" /></div>
+			<div class="col-sm-3 MinvdoThmb sangramSingVideo" id="sangramSingVideo2"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/smallRajni.png" class="img-responsive" /></div>
+			<div class="col-sm-3 MinvdoThmb sangramSingVideo" id="sangramSingVideo3"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/smallShehnsah.png" class="img-responsive" /></div>
+			<div class="col-sm-3 MinvdoThmb sangramSingVideo" id="sangramSingVideo4"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/smallRadhe.png" class="img-responsive" /></div>
+	
+			</div>-->
+			
 			<div class="row VdoeThumSngram">
-			<div class="col-sm-3  MinvdoThmb sangramSingVideo" id="sangramSingVideo1"><div class="PlayIcn3"></div><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/smallRadhe.png"  /></div>
-			<div class="col-sm-3 MinvdoThmb sangramSingVideo" id="sangramSingVideo2"><div class="PlayIcn3"></div><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/smallRajni.png" /></div>
-			<div class="col-sm-3 MinvdoThmb sangramSingVideo" id="sangramSingVideo3"><div class="PlayIcn3"></div><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/smallShehnsah.png"/></div>
-			<div class="col-sm-3 MinvdoThmb sangramSingVideo" id="sangramSingVideo4"><div class="PlayIcn3"></div><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/smallRadhe.png"/></div>
-
+					<div class="frame">
+					  <div class="MinvdoThmb sangramSingVideo" id="sangramSingVideo1"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/smallShehnsah.png" class="img-responsive thumbnail_img " /></div>
+					</div>
+					<div class="frame">
+					 <div class="MinvdoThmb sangramSingVideo" id="sangramSingVideo2"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/smallRajni.png" class="img-responsive thumbnail_img " /></div>
+					</div>
+					<div class="frame">
+					<div class="MinvdoThmb sangramSingVideo" id="sangramSingVideo3"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/smallRadhe.png" class="img-responsive thumbnail_img " /></div>
+					</div>
+					<div class="frame">
+					<div class="MinvdoThmb sangramSingVideo" id="sangramSingVideo4"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/smallShehnsah.png" class="img-responsive thumbnail_img " /></div>
+					</div>
+					
 			</div>
+			
+			
+			
 			</div>
+			
 			
             <div class="col-xs-4 Mndit">
                 <!--<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/mnditImg.png" />-->

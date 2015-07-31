@@ -45,13 +45,16 @@
                             <div class="col-md-12 noPaddng VideoMessage hidden-xs">
                                 <p class="videoTag">Morbi viverra mattis leo vitae faucibus. Sed vel quam pellentesque felis hendrerit mollis. Fusce elementum laoreet efficitur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames #BNatural #Dubfest.</p>
                             </div>
+							
+							
                         </div>
                         <div  style="overflow-x:hidden; overflow-y:auto; height:350px">
                             <div class="row">
                                 <div class="col-md-8 noPaddng">
                                     <iframe id="YourIFrameID" width="100%" height="350" src="" frameborder="0" allowfullscreen></iframe>
                                 </div>
-                                <div class="col-md-4 clr1 noPaddng" id>
+								
+                                <div class="col-md-4 clr1 noPaddng">
                                     <div class="votNowFrm pull-left">
                                         <div class="col-xs-12 form-group userInfo">
                                             <label>Your Name*</label>
@@ -72,8 +75,12 @@
                                     </div>
                                     <div class="ShareSctn pull-left lilita shareBtn" style="font-size:21px;" data-content_id="0"  data-content_type="gallery">Share it On<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/fbicn.png" /></div>
                                 </div>
+								
                             </div>
                         </div>
+							<div class="modal-footer">
+								<div id="scroll_me_bro"></div>
+						    </div>
 						
                     </div>
 					
@@ -83,7 +90,7 @@
                         <div class="row">
                            <div class="modal-header">
 									 <button type="button" class="close univrslPoupClose" data-dismiss="modal" aria-hidden="true">×</button>
-									 <p class="lilita clr2 VideoTitle_1">Title</p>
+									 <p class="lilita clr2 VideoTitle_1" style="margin-left: 10px;">Title</p>
 							  </div>
 							
                             <!-- 	<div class="col-md-12 noPaddng">
@@ -218,6 +225,7 @@
                             <div class="ShareSctn pull-left lilita" style="font-size:21px;">Share it On<img src="images/fbicn.png" /></div>
                         </div>
                     </div>
+					
                 </div>
                 <!--VideoPoupupContentEnd--->
 

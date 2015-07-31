@@ -517,7 +517,7 @@ header {
     margin: 0 7px;
     overflow: hidden;
     padding: 0px !important;
-    width: 22% !important;
+    /* width: 22% !important; */
 }
 
 .fntsz25 {
@@ -631,7 +631,7 @@ header {
     background: #0093be;
     padding: 11px;
     width:100%;
-    height:235px
+    height:235px;
 }
 
 .votNowFrm label {
@@ -1737,6 +1737,12 @@ and (min-width : 1824px) {
     margin: 4% auto 0px;
     border-radius: 0px;
 }
+
+/* css for scroll_down_to_vote */
+#scroll_me_bro
+{
+	display:block !important;
+}
 	
 } 
 
@@ -1771,4 +1777,65 @@ and (min-width : 1824px) {
 }
 
 
+/* css for scroll_down_to_vote */
 
+#scroll_me_bro
+{
+	display:none;
+}
+
+@-webkit-keyframes circleBounce {
+  0% {-webkit-transform: scale(0.9); opacity: 0;}
+  20% {opacity: 0.5;}
+  50% {opacity: 1;}
+  80% {opacity: 0.5;}
+  100% {-webkit-transform: scale(1.1); opacity:0;}
+}
+
+#scroll_me_bro {
+  position: relative;
+    top: 7px;
+    left: calc(50% - 3px);
+    width: 15px;
+    height: 15px;
+    border: 3px solid #0090BC;
+    border-top: none;
+    border-left: none;
+    cursor: pointer;
+    -webkit-transform: rotate(45deg);
+    -webkit-transform-origin: 50% 50%;
+}
+
+#scroll_me_bro:after {
+  content: "";
+    display: block;
+    position: absolute;
+    top: calc(50% - 17px);
+    left: calc(50% - 17px);
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255,255,255,.8);
+    border: 1px solid #0090BC;
+    border-radius: 50%;
+    -webkit-animation: circleBounce 1.2s linear infinite; 
+}
+
+div:hover:after {
+  background-color: rgba(255,0,0,.15);
+}
+
+.frame {
+    height: 35px;      /* equals max image height */
+    width: 160px;
+    border: 0px solid red;
+    text-align: center; 
+    margin: 1em 0;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.thumbnail_img {
+    display: block;
+    max-height: 205px;
+    max-width: 160px;
+}
