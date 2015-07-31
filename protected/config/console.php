@@ -2,16 +2,14 @@
 // This is the configuration for yiic console application.
 // Any writable CConsoleApplication properties can be configured here.
 return array(
-
     'basePath' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-    'name' => 'Comedy Hunt',
+    'name' => 'Dubsmash',
     // preloading 'log' component
     'preload' => array('log'),
     'import' => array(
         'application.models.*',
         'application.components.*',
         'application.vendor.*',
-
     ),
     // application components
     'components' => array(
@@ -23,7 +21,6 @@ return array(
             'charset' => 'utf8',
             'enableParamLogging' => true,
         ),
-
 //        'log' => array(
 //            'class' => 'CLogRouter',
 //            'routes' => array(
@@ -35,7 +32,7 @@ return array(
 //        ),
     ),
     'params' => array(
-        'S3DOWNLOADSDIR' =>  dirname(__FILE__) . DIRECTORY_SEPARATOR.'../../s3downloads',
+        'S3DOWNLOADSDIR' => dirname(__FILE__).DIRECTORY_SEPARATOR.'../../s3downloads',
         'GOOGLE' => array(
             'CLIENT_ID' => '175405591801-tc1sk4ith79vphrtudmpeuk8t63n2soa.apps.googleusercontent.com',
             'SECRET' => 'mzSmanpW3W3g-WoN7xrYyrtX',
@@ -44,10 +41,9 @@ return array(
         ),
         //S3 Buckets Credentials
         'S3' => array(
-            'awsAccessKey' => 'AKIAJH5ZGO6NVLVOUS4A',
-            'awsSecretKey' => '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',
-            'bucket' => '/p2-data/p2-slice',
+            'awsAccessKey' => 'AKIAIBZQI3223G5NK5KQ',
+            'awsSecretKey' => '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',
+            'bucket' => 'bnatural',
         ),
-
     ),
 );
