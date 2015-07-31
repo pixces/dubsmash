@@ -41,12 +41,12 @@
                 <div class="text-center clr1 bntrl">#BNatural #Dubfest</div>
             </div>
 			<div class="col-xs-5 videoThb">
-			<div class="sangramSingVideo"><img class="img-responsive" id="sangramSingVideo" src="<?php echo Yii::app()->request->baseUrl; ?>/images/vdoImg2.png"/></div>
+			<div class="sangramSingVideo"><img class="img-responsive" id="sangramSingVideo" src="<?php echo Yii::app()->request->baseUrl; ?>/images/masterRadhe.png"/></div>
 			<div class="row VdoeThumSngram">
-			<div class="col-sm-3  MinvdoThmb sangramSingVideo" id="sangramSingVideo1"><div class="PlayIcn3"></div><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/thmb1a.png"  /></div>
-			<div class="col-sm-3 MinvdoThmb sangramSingVideo" id="sangramSingVideo2"><div class="PlayIcn3"></div><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/thmb2a.png" /></div>
-			<div class="col-sm-3 MinvdoThmb sangramSingVideo" id="sangramSingVideo3"><div class="PlayIcn3"></div><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/thmb3a.png"/></div>
-			<div class="col-sm-3 MinvdoThmb sangramSingVideo" id="sangramSingVideo4"><div class="PlayIcn3"></div><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/thmb4a.png"/></div>
+			<div class="col-sm-3  MinvdoThmb sangramSingVideo" id="sangramSingVideo1"><div class="PlayIcn3"></div><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/smallRadhe.png"  /></div>
+			<div class="col-sm-3 MinvdoThmb sangramSingVideo" id="sangramSingVideo2"><div class="PlayIcn3"></div><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/smallRajni.png" /></div>
+			<div class="col-sm-3 MinvdoThmb sangramSingVideo" id="sangramSingVideo3"><div class="PlayIcn3"></div><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/smallShehnsah.png"/></div>
+			<div class="col-sm-3 MinvdoThmb sangramSingVideo" id="sangramSingVideo4"><div class="PlayIcn3"></div><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/smallRadhe.png"/></div>
 
 			</div>
 			</div>
@@ -56,6 +56,6 @@
             </div>
     </header>
 </div>
-<div class="row wtchTVCMobile">
+<!--<div class="row wtchTVCMobile">
     <div class="topVdesHdr clr1 lilita"><img class="iPhnImage" src="<?php echo Yii::app()->request->baseUrl; ?>/images/wtchTvcIcn.png"/>Watch Now</div>
-</div>
+</div>-->
