@@ -9,7 +9,7 @@ $(document).ready(function() {
     //global vars
     var form = $("#customForm");
     //var name = $("#username");
-	var name = $("#customForm #username");
+	var name = $("#customForm #userName");
 	
     var nameInfo = $("#nameInfo");
     var tittle = $("#mediatittle");
