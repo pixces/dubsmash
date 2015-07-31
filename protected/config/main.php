@@ -20,6 +20,7 @@ return array(
         'ext.eauth.*',
         'ext.eauth.services.*',
         'application.extensions.s3upload.*',//S3 Bucket Plugin
+        'ext.YiiMailer.YiiMailer',      //mailer component
     ),
     'modules' => array(
         'admin'
@@ -63,7 +64,7 @@ return array(
     // using Yii::app()->params['paramName']
     'params' => array(
         // this is used in contact page
-        'adminEmail' => 'webmaster@example.com',
+        'adminEmail' => 'support@dubfest.bnatural.in',
         'extensions' => array(
             'MP4',
             'MPEG4',
@@ -75,5 +76,15 @@ return array(
             'JPEG'
         ),
         'uploadMaxSize' => 10,
+        'mailConfig' => array(
+            'senderEmail' => 'zainul.a@position2.com',
+            'senderName' => 'Dubfest Support',
+            'SubjectPrefix' => '[Dubfest at BNaturals] ',
+            'SMTPAuth' => true,
+            'SMTPHost' => 'smtp.gmail.com',
+            'SMTPPort' => '587',
+            'SMTPUser' => 'zainul.a@position2.com',
+            'SMTPPass' => 'newp@ssw0rd'
+        )
     ),
 );

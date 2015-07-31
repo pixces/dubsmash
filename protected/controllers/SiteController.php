@@ -71,4 +71,14 @@ class SiteController extends Controller
     {
         $this->redirect('/site/login');
     }
+
+    public function actionMail(){
+
+        Mailer::SendAcknowledgement(array(
+            'to' => 'sherin@position2.com',
+            'data' => array(
+                'name' => 'Sherin Jacob'
+            )
+        ));
+    }
 }
