@@ -129,7 +129,7 @@ p {
 }
 
 /*Global Declareation*/
-html,body {
+body {
     background: url(../images/mainBg.jpg) no-repeat #3d8fbe !important;
     overflow-x: hidden;
 }
@@ -534,14 +534,14 @@ header {
 }
 
 .univrslPoupClose {
-        float: right;
+    float: right;
     height: 0px;
     position: relative;
     width: 20px;
     cursor: pointer;
-    margin: 15px 36px 0px 0px;
+    /* margin: 15px 36px 0px 0px; */
     height: 20px;
-    margin-top: -23px;
+    margin-top: 0px;
 	color:#0090bc;
     /* text-align: center; */
     /* background-color: #000; */
@@ -553,7 +553,7 @@ header {
 
 .univrslPoupClose .fa {
     font-size: 20px !important;
-	margin-left:9px;
+	margin-left:4px;
 }
 
 .cntct {
@@ -1691,6 +1691,57 @@ text-align: justify;
   and (orientation: landscape) { 
 
 }
+
+
+/* Desktops and laptops ----------- */
+@media only screen 
+and (min-width : 1224px) {
+   .topVdesdsgn {
+    height: 10px;
+    background: url(../images/tpBls.png) top repeat-x;
+    margin-top: 0px;
+} 
+}
+
+/* Large screens ----------- */
+@media only screen 
+and (min-width : 1824px) {
+  .topVdesdsgn {
+    height: 10px;
+    background: url(../images/tpBls.png) top repeat-x;
+    margin-top: 150px;
+}
+}
+
+
+
+
+
+
+@media screen and (min-width: 320px ) and (max-width: 767px) {
+    /*Global Declareation*/
+
+	html,body {
+    background: url(../images/mainBg.jpg) no-repeat #3d8fbe !important;
+    overflow-x: hidden;
+}
+	
+ .modal-header .close {
+    margin-top: 4px;
+    margin-right: 15px;
+}
+	
+	
+} 
+
+
+
+
+
+
+
+
+
 
 
 

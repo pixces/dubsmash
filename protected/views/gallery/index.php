@@ -43,7 +43,7 @@
                         <div class="glryBtn glryLoad lilita" id="loadmorevideos">Load More</div>
                     <?php } ?>
                 </div>
-                <span class="lilita clr1 fntsz25">#Bnatural #Dubfest</span>
+                <span class="lilita clr1 fntsz25">#BNatural #Dubfest</span>
             </div>
 
         </div>
