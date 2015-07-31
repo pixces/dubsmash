@@ -34,9 +34,8 @@ return array(
     'params' => array(
         'S3DOWNLOADSDIR' => dirname(__FILE__).DIRECTORY_SEPARATOR.'../../s3downloads',
         'GOOGLE' => array(
-            'CLIENT_ID' => '175405591801-tc1sk4ith79vphrtudmpeuk8t63n2soa.apps.googleusercontent.com',
-            'SECRET' => 'mzSmanpW3W3g-WoN7xrYyrtX',
-            'DEVELOPER_KEY' => 'AIzaSyA7rybq4972tbwJ3zlTVe_CLkSlil-pwGQ',
+            'CLIENT_ID' => '680270956746-s007puv4sfv2cb0c5sl735osekkj87tu.apps.googleusercontent.com',
+            'SECRET' => 'ev_m6L6F8Y4BDcnABdpcby40',
             'REDIRECT_URI' => 'urn:ietf:wg:oauth:2.0:oob',
         ),
         //S3 Buckets Credentials
