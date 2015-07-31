@@ -73,8 +73,7 @@ class SiteController extends Controller
     }
 
     public function actionMail(){
-
-        Mailer::SendAcknowledgement(array(
+        Mailer::Acknowledgement(array(
             'to' => 'pixces@yahoo.com',
             'data' => array(
                 'name' => 'Zainul Abdeen'

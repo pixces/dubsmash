@@ -77,14 +77,14 @@ return array(
         ),
         'uploadMaxSize' => 10,
         'mailConfig' => array(
-            'senderEmail' => 'zainul.a@position2.com',
+            'senderEmail' => 'bnatural.in@gmail.com',
             'senderName' => 'Dubfest Support',
-            'SubjectPrefix' => '[Dubfest at BNaturals] ',
+            'SubjectPrefix' => '[Dubfest] ',
             'SMTPAuth' => true,
             'SMTPHost' => 'smtp.gmail.com',
             'SMTPPort' => '587',
-            'SMTPUser' => 'zainul.a@position2.com',
-            'SMTPPass' => 'newp@ssw0rd'
+            'SMTPUser' => 'bnatural.in@gmail.com',
+            'SMTPPass' => 'login@123'
         )
     ),
 );

@@ -10,7 +10,7 @@ class Mailer {
 
     private static $mailer = null;
 
-    public static function SendAcknowledgement($aParams){
+    public static function Approved($aParams){
 
         if ($aParams && is_array($aParams)){
 
@@ -25,7 +25,61 @@ class Mailer {
                 $data = $aParams['data'];
             }
 
-            $subject = (isset($aParams['subject'])) ? Yii::app()->params['mailConfig']['SubjectPrefix'].trim($aParams['subject']) : Yii::app()->params['mailConfig']['SubjectPrefix']." Entry Submission Successful";
+            $subject = (isset($aParams['subject'])) ? Yii::app()->params['mailConfig']['SubjectPrefix'].trim($aParams['subject']) : Yii::app()->params['mailConfig']['SubjectPrefix']." Your submission is approved.";
+            $template = 'thankyou';
+            $to = $aParams['to'];
+
+            return self::SendMail($to,$data,$subject,$template);
+
+        } else {
+            Yii::log("Mail Error: All mandatory params missing. Cannot send email.");
+            return false;
+        }
+    }
+
+    public static function Rejected($aParams){
+
+        if ($aParams && is_array($aParams)){
+
+            if (!$aParams['to']){
+                Yii::log("Mail Error: Recepient email address not provided.");
+                return false;
+            }
+
+            if (!$aParams['data']){
+                $data = array();
+            } else {
+                $data = $aParams['data'];
+            }
+
+            $subject = (isset($aParams['subject'])) ? Yii::app()->params['mailConfig']['SubjectPrefix'].trim($aParams['subject']) : Yii::app()->params['mailConfig']['SubjectPrefix']." Your submission is rejected.";
+            $template = 'thankyou';
+            $to = $aParams['to'];
+
+            return self::SendMail($to,$data,$subject,$template);
+
+        } else {
+            Yii::log("Mail Error: All mandatory params missing. Cannot send email.");
+            return false;
+        }
+    }
+
+    public static function Acknowledgement($aParams){
+
+        if ($aParams && is_array($aParams)){
+
+            if (!$aParams['to']){
+                Yii::log("Mail Error: Recepient email address not provided.");
+                return false;
+            }
+
+            if (!$aParams['data']){
+                $data = array();
+            } else {
+                $data = $aParams['data'];
+            }
+
+            $subject = (isset($aParams['subject'])) ? Yii::app()->params['mailConfig']['SubjectPrefix'].trim($aParams['subject']) : Yii::app()->params['mailConfig']['SubjectPrefix']." Thank you for your submission.";
             $template = 'thankyou';
             $to = $aParams['to'];
 
@@ -55,7 +109,7 @@ class Mailer {
             $mail->Port = $mailConfig['SMTPPort'];
             $mail->Username = $mailConfig['SMTPUser'];
             $mail->Password = $mailConfig['SMTPPass'];
-            $mail->SMTPDebug = 2;
+            //$mail->SMTPDebug = 2;
             $mail->SMTPSecure = 'tls';
 
 
