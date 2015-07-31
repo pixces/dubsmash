@@ -129,7 +129,7 @@ p {
 }
 
 /*Global Declareation*/
-body {
+html,body {
     background: url(../images/mainBg.jpg) no-repeat #3d8fbe !important;
     overflow-x: hidden;
 }
