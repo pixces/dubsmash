@@ -9,7 +9,7 @@ $(document).ready(function() {
     //global vars
     var form = $("#customForm");
     //var name = $("#username");
-	var name = $("#customForm #username");
+	var name = $("#customForm #userName");
 	
     var nameInfo = $("#nameInfo");
     var tittle = $("#mediatittle");
@@ -155,13 +155,29 @@ $(document).ready(function() {
     }
 
     function validateuploadvideo() {
-        //if it's NOT valid
-        if (uploadvideo.val() == '') {
+		var ext = uploadvideo.val().split('.').pop().toLowerCase();
+		var f = document.getElementById('uploadmedia').files[0];
+		
+		//if it's NOT valid
+		if (uploadvideo.val() == '') {
             uploadvideo.addClass("error");
             uploadvideoInfo.text("Upload a Dubsmash Video");
             uploadvideoInfo.addClass("error");
             return false;
         }
+		else if($.inArray(ext, ['MOV','MPEG4','MP4','AVI','WMV','MPEGPS','FLV','3GPP','WebM','mov','mpeg4','mp4','avi','wmv','mpegps','flv','3gpp','webm']) == -1) {
+			uploadvideo.addClass("error");
+            uploadvideoInfo.text("Only Video Accepted");
+            uploadvideoInfo.addClass("error");
+            return false;
+		}
+		//here I CHECK if the FILE SIZE is bigger than 10 MB (numbers below are in bytes in binary format)
+		else if(f.size > 10485760 || f.fileSize > 10485760){
+			uploadvideo.addClass("error");
+            uploadvideoInfo.text("Allowed file size exceeded. (Max. 10 MB)");
+            uploadvideoInfo.addClass("error");
+            return false;
+		}
         //if it's valid
         else {
             uploadvideo.removeClass("error");
