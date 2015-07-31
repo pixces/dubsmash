@@ -30,18 +30,18 @@ $( document ).ready(function() {
 
 $('#sangramSingtvcVideo').click(function(){
 	$("#YourIFrameID_1").attr('src', 'https://www.youtube.com/embed/oXCr1VLZgAI');
-	$(".UnivrslPoupup").find('.VideoTitle_1').html("Title Text1");
+	$(".UnivrslPoupup").find('.VideoTitle_1').html("B Natural TVC");
 	});
 	
 	$('#sangramSingVideo').click(function(){
-    $('#sangramSingVideo').attr('src', host + '/images/vdoImg2.png');
+    $('#sangramSingVideo').attr('src', host + '/images/masterRadhe.png');
 	$("#YourIFrameID_1").attr('src', 'https://www.youtube.com/embed/oXCr1VLZgAI');
 	$(".UnivrslPoupup").find('.VideoTitle_1').html("Title Text1");
 	});
 	
 	$('#sangramSingVideo1').click(function(){
 		
-    $('#sangramSingVideo').attr('src', host + '/images/Mainthum1.png');
+    $('#sangramSingVideo').attr('src', host + '/images/masterRadhe.png');
 	$("#YourIFrameID_1").attr('src', 'https://www.youtube.com/embed/oXCr1VLZgAI');
 	$(".UnivrslPoupup").find('.VideoTitle_1').html("Title Text2");
 	
@@ -50,7 +50,7 @@ $('#sangramSingtvcVideo').click(function(){
     });
 	
 	$('#sangramSingVideo2').click(function(){
-    $('#sangramSingVideo').attr('src', host + '/images/Mainthum2.png');
+    $('#sangramSingVideo').attr('src', host + '/images/masterRajni.png');
 	$("#YourIFrameID_1").attr('src', 'https://www.youtube.com/embed/oXCr1VLZgAI');
 	$(".UnivrslPoupup").find('.VideoTitle_1').html("Title Text3");
 	$(".mainVideo").removeClass("hide");
@@ -58,7 +58,7 @@ $('#sangramSingtvcVideo').click(function(){
     });
 	
 	$('#sangramSingVideo3').click(function(){
-    $('#sangramSingVideo').attr('src', host + '/images/Mainthum3.png');
+    $('#sangramSingVideo').attr('src', host + '/images/masterShehnsah.png');
 	$("#YourIFrameID_1").attr('src', 'https://www.youtube.com/embed/oXCr1VLZgAI');
 	$(".UnivrslPoupup").find('.VideoTitle_1').html("Title Text4");
 	$(".mainVideo").removeClass("hide");
@@ -66,7 +66,7 @@ $('#sangramSingtvcVideo').click(function(){
     });
 	
 	$('#sangramSingVideo4').click(function(){
-    $('#sangramSingVideo').attr('src', host + '/images/Mainthum4.png');
+    $('#sangramSingVideo').attr('src', host + '/images/masterRadhe.png');
 	$("#YourIFrameID_1").attr('src', 'https://www.youtube.com/embed/oXCr1VLZgAI');
 	$(".UnivrslPoupup").find('.VideoTitle_1').html("Title Text5");
 	$(".mainVideo").removeClass("hide");

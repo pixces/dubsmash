@@ -6859,7 +6859,7 @@ border-radius: 10px;
 .topVdesHdrDtdln .topVdescnt { float:none !important;}
 .container { width:95%;}
 .glryVdoSctn {
-	/* width: 50%; */
+	 width: 100%;
 	float:left;
 	}
 }

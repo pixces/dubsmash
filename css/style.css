@@ -1730,7 +1730,13 @@ and (min-width : 1824px) {
     margin-top: 4px;
     margin-right: 15px;
 }
-	
+
+.videoSctn {
+    background: #FFF none repeat scroll 0% 0%;
+    padding: 16px 10px;
+    margin: 4% auto 0px;
+    border-radius: 0px;
+}
 	
 } 
 

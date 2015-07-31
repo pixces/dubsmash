@@ -172,9 +172,9 @@
                     </div>
                     <div class="col-md-8 pull-right ScndrMenu">
                         <ul class="">
-                            <li><a href="<?= Yii::app()->createAbsoluteUrl('/'); ?>"  style="color:#fff">Contact Us</a></li>
-                            <li><a href="<?= Yii::app()->createAbsoluteUrl('/site/page?view=privacy-policy'); ?>"  style="color:#fff">Privacy</a></li>
-                            <li><a href="<?= Yii::app()->createAbsoluteUrl('/site/page?view=terms-conditions'); ?>"  style="color:#fff">terms & conditions</a></li>
+                            <li><a href="http://bnatural.in/contact.aspx" target="_blank" style="color:#fff">Contact Us</a></li>
+                            <li><a href="http://www.itcportal.com/about-itc/policies/privacy-policy.aspx"  target="_blank" style="color:#fff">Privacy</a></li>
+                            <li><a href="http://www.itcportal.com/terms-of-use.aspx" target="_blank" style="color:#fff">terms & conditions</a></li>
                             <li><a href="<?= Yii::app()->createAbsoluteUrl('/site/page?view=rules'); ?>"  style="color:#fff">Contest terms & conditions</a></li>
                             <li><a href="http://www.itcportal.com/" target="_blank"  style="color:#fff">ITC Portal</a></li>
                         </ul>
