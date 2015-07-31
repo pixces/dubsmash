@@ -16,8 +16,8 @@
 
 <div class="participateprceCntr">
 <div class="prtcptSctnCont">
-<span class="fntSctn1"><img class="iPhnImage" src="<?php echo Yii::app()->request->baseUrl; ?>/images/prtcptMbl.png" />Be a part of the #BNatural Dubfest and <span class="fntSctn2">win an iPhone 6!</span><br></br><p style="font-size: 15px;
-    font-weight: 400 !important; margin-top:15px; 
+<span class="fntSctn1"><img class="iPhnImage" src="<?php echo Yii::app()->request->baseUrl; ?>/images/prtcptMbl.png" />Be a part of the #BNatural Dubfest and <span class="fntSctn2">win an iPhone 6!</span><p style="font-size: 15px;
+    font-weight: 400 !important; margin-top:10px; 
     color: rgb(78, 56, 98);">100 BNatural Gift Hampers to be won too!</p></span>
 </div>
 <div class="hmprcptBtn prcptBtn">Participate Now</div>
