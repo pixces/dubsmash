@@ -2,7 +2,7 @@
 // This is the configuration for yiic console application.
 // Any writable CConsoleApplication properties can be configured here.
 return array(
-   
+
     'basePath' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
     'name' => 'Comedy Hunt',
     // preloading 'log' component
@@ -11,7 +11,7 @@ return array(
         'application.models.*',
         'application.components.*',
         'application.vendor.*',
-        
+
     ),
     // application components
     'components' => array(
@@ -23,7 +23,7 @@ return array(
             'charset' => 'utf8',
             'enableParamLogging' => true,
         ),
-       
+
 //        'log' => array(
 //            'class' => 'CLogRouter',
 //            'routes' => array(
@@ -48,7 +48,6 @@ return array(
             'awsSecretKey' => 'TS+QnFacTvVL1j1LPdFv/DkbJ7LHyqXP61B/G1+U',
             'bucket' => '/p2-data/p2-slice',
         ),
-       
+
     ),
 );
-

@@ -10,7 +10,7 @@
                     <div class="row topVdesHdr topVdesHdrDtdln lilita">
                         <div class="col-md-7">
                             <div class="row">
-                                <div class="col-md-4">Gallery<span class="SmlTxt">(<span id="selectcategory"><?php echo $selectedcategory;?></span>&nbsp;&nbsp;<span id="categorycount"><?php echo $totalvideos;?></span>)</span></div>
+                                <div class="col-md-4">Gallery<span class="SmlTxt">(<span id="selectcategory"><?php echo $selectedcategory; ?></span>&nbsp;&nbsp;<span id="categorycount"><?php echo $totalvideos; ?></span>)</span></div>
                                 <div class="col-md-3">
                                     <select class="GlrySlct categoryOptionBox" id="selectboxCategory" >
                                         <option>All</option>
@@ -18,13 +18,7 @@
                                         <option>Action</option>
                                         <option>Songs</option>
                                         <option>Drama</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-3">
-                                    <select class="GlrySlct" id="gallerySort">
-                                        <option value="latest">Latest</option>
-                                        <option value="lastweek">Latest Last Week</option>
-                                        <option value="lastmonth">Last Month</option>
+											 <option>Just Like That</option>
                                     </select>
                                 </div>
                             </div>
@@ -34,31 +28,57 @@
                     </div>
 
                     <div class="row glryCntr" id="dynamic-content-gallery">
-                        <?php echo CHtml::hiddenField('galleryCnt', '1', array('id' => 'galleryCnt')); ?>
+                        <?php
+                        echo CHtml::hiddenField('galleryCnt', '1',
+                            array('id' => 'galleryCnt'));
+                        ?>
                         <?php
                         $this->renderPartial('_partialGalleryVideos',
                             array('galleries' => $galleries));
                         ?>
-                        
+
 
                     </div>
-                    <?php if($loader){ ?>
-                    <div class="glryBtn glryLoad lilita" id="loadmorevideos">Load More</div>
+                    <?php if ($loader) { ?>
+                        <div class="glryBtn glryLoad lilita" id="loadmorevideos">Load More</div>
                     <?php } ?>
                 </div>
-                <span class="lilita clr1 fntsz25">#Bnatural #Dubfest</span>
+                <span class="lilita clr1 fntsz25">#BNatural #Dubfest</span>
             </div>
 
         </div>
 </div>
 <script>
+
     $(document).ready(function() {
-        
+
         $(".univrslPoupClose").click(function() {
             $(".UnivrslPoupup").addClass("hide");
         });
 
         $(".vdoethmb").click(function() {
+            var videoId = $(this).parent().parent().attr('data-media-id');
+            var totalVoteCnt = $(this).parent().parent().attr('data-media-vote-count');
+            var mediaUrl=$(this).find(".img-responsive").attr("data-media-url");
+             mediaUrl=mediaUrl.replace("watch?v=", "v/");
+            $("#YourIFrameID").attr('src',mediaUrl+"&output=embed");
+            $(".votNowFrm").find(".votenow").attr("data-video-id", videoId);
+            $(".votNowFrm").find(".totalVoteCount").html('<span>' + totalVoteCnt + '</span>');
+            $(".votNowFrm").find(".votingMessage").addClass("hide");
+            $(".UnivrslPoupup").removeClass("hide");
+            $(".videoSctn").removeClass("hide");
+            $(".cntct").addClass("hide");
+        });
+
+        $(".PlayIcn2").click(function() {
+            var videoId = $(this).parent().parent().attr('data-media-id');
+            var totalVoteCnt = $(this).parent().parent().attr('data-media-vote-count');
+            var mediaUrl=$(this).parent().find(".img-responsive").attr("data-media-url");
+            mediaUrl=mediaUrl.replace("watch?v=", "v/");
+            $("#YourIFrameID").attr('src',mediaUrl+"&output=embed");
+            $(".votNowFrm").find(".votenow").attr("data-video-id", videoId);
+            $(".votNowFrm").find(".totalVoteCount").html('<span>' + totalVoteCnt + '</span>');
+            $(".votNowFrm").find(".votingMessage").addClass("hide");
             $(".UnivrslPoupup").removeClass("hide");
             $(".videoSctn").removeClass("hide");
             $(".cntct").addClass("hide");
@@ -84,10 +104,10 @@
             var title = $(this).val();
             var categoryFilter = $("#selectboxCategory").val();
             var sortingFilter = $("#gallerySort").val();
-            var offset  = $("#galleryCnt").val();
-            var loaderTrack= parseInt(offset) + 1;
+            var offset = $("#galleryCnt").val();
+            var loaderTrack = parseInt(offset) + 1;
             $("#galleryCnt").val(loaderTrack);
-            var param = {'title': title, 'category': categoryFilter, sort: sortingFilter, 'offset': loaderTrack,'append':true};
+            var param = {'title': title, 'category': categoryFilter, sort: sortingFilter, 'offset': loaderTrack, 'append': true};
             var objGallery = new gallerySearch(param);
             objGallery.Search();
 
@@ -188,7 +208,7 @@
          */
         var gallerySearch = function(param) {
             this.param = param;
-           
+
             var selector = "#dynamic-content-gallery";
             var Url = {
                 searchByCategory: '<?php echo Yii::app()->createUrl("/gallery/index"); ?>',
@@ -209,11 +229,11 @@
                     url: actionUrl,
                     data: queryString,
                     success: function(data) {
-                       (typeof param.append==="undefined") ?  $(selector).html(data.template) :  $(selector).append(data.template);
-                       data.loader===0 ?  $("#loadmorevideos").addClass("hide") : $("#loadmorevideos").removeClass("hide");
-                       $("#categorycount").html(data.totalvideos);
-                       $("#selectcategory").html(data.selectedcategory);
-                       
+                        (typeof param.append === "undefined") ? $(selector).html(data.template) : $(selector).append(data.template);
+                        data.loader === 0 ? $("#loadmorevideos").addClass("hide") : $("#loadmorevideos").removeClass("hide");
+                        $("#categorycount").html(data.totalvideos);
+                        $("#selectcategory").html(data.selectedcategory);
+
                     }, error: function(request, status, error) {
                         console.log(request.responseText)
                         // alert(request.responseText);
@@ -227,5 +247,8 @@
         }
     });
 
-
 </script>
+<script>
+    var SelectedVideo = <?php echo json_encode($SelectedVideoDetails); ?>;
+</script>
+

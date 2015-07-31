@@ -2,26 +2,26 @@
     <div class="row lilita tagLn">
         <div class="col-md-12 text-center">Contest Terms & Conditions</div>
     </div>
-    <div class="goBck lilita pull-right clr1"><i class="fa fa-chevron-left"></i>Go Back</div>
+    <div class="goBck lilita pull-right clr1" onclick="goBack()"><i class="fa fa-chevron-left"></i>Go Back</div>
     <div class="row">
         <div class="col-md-12 temsDsgn1">
             <div class="temsDsgnBg">
                 <ul>
                     <li>B Natural - Dubfest contest is organized by ITC Limited purely for promotional purposes and participation is purely voluntary in this limited edition contest.</li>
-                    <li>Contest is open from July 2015 to August 2015.</li>
+                    <li>Contest is open from 1st to 15th August 2015.</li>
                     <li>Contest is open only to Indian citizens residing in India.</li>
-                    <li>The participant should be at least 18 years old before 1 January 2015 to be eligible for entry in the contest. </li>
+                    <li>The participant should be at least 18 years old on or before 1 January 2015 to be eligible for entry in the contest. </li>
                     <li>Employees of ITC Limited, Position2 Marketing PVT LTD and other involved agencies and their immediate family members are not eligible to participate in this contest. </li>
-                    <li>Steps to Participate in the Contest:
+                    <li>Steps to Participate in the BNatural Dubfest:
                         <ul>
-                            <li>Stage 1 - Use the Dubsmash app to create a Dubsmash video under any of the following three categories Comedy, Action & Drama.</li>
-                            <li>Stage 2 - Upload your Dubsmash video entry through the site sangramsingh.bnatural.in along with your details.</li>
-                            <li>Stage 3 - Once approved share your entry with your friends and spread the word to receive maximum number of Re-tweets, favorites, votes, likes, comments or shares. Use the hashtags #BNatural and #Dubfest in all your communication.</li>
+                            <li>Stage 1 - Use the official Dubsmash app to create a Dubsmash video under any of the following categories Humor, Action, Songs, Drama and Just Like That.</li>
+                            <li>Stage 2 - Upload your Dubsmash video entry through the site dubfest.bnatural.in along with your details.</li>
+                            <li>Stage 3 - Once approved, share your entry with your friends and spread the word to receive maximum number of retweets, favorites, votes, likes, comments and shares. Use the hashtags #BNatural and #Dubfest in all communication.</li>
                         </ul>
                     </li>
-                    <li>The winner will win an iPhone6.
-                    <li>10 participants will win gift hampers from B Natural as consolation prizes.</li>
-                    <li>Winners will be selected based on number of votes received and number of Re-tweets, favorites, likes, comments or shares. </li>
+                    <li>One winner will win an iPhone6.
+                    <li>100 participants will win gift hampers from B Natural as consolation prizes.</li>
+                    <li>Winners will be selected based on number of votes received and number of retweets, favorites, likes, comments and shares. </li>
                     <li>An entry video MUST NOT contain, as determined by the Promoters in its sole discretion, any content that:
                         <ul>
                             <li>Is sexually explicit or suggestive, unnecessarily violent or derogatory of any ethnic, racial, gender, religious, professional or age group, is profane or pornographic, or contains nudity, profanity or obscenity;</li>
@@ -38,7 +38,6 @@
                     <li>Participants/winners agree to document their photographs, videos and write ups and share the same with ITC Limited for promotional purposes. ITC Limited reserves the right to document the journey of the participants and broadcast it on any media platform at its sole discretion. </li>
                     <li>By taking part in the B Natural Dubfest, all participants agree that their name and/or photo and/or video may appear in any advertisements / promotions of ITC Limited. No fees or other sums will be paid to the participants on account of any of the promotional activities undertaken by ITC Limited.</li>
                     <li>ITC Limited reserves the right to disqualify an entry in the event of submission of false, incorrect, misleading or fraudulent information and/or in the event of fraud practices like website or mobile system hacking, etc.</li>
-                    <li>The chance to go on a road trip will be given to the winner(s) post completion of such audit and verification process as deemed fit by ITC Limited. </li>
                     <li>ITC Limited is not responsible for any charges/levies paid by the winners or for the costs incurred for participation in this contest including sending SMS, internet data usage, mailing documents etc. </li>
                     <li>The contest is non-transferable and cannot be exchanged for cash.</li>
                     <li>ITC Limited shall not be responsible for the non-functioning of the contest website or telephone

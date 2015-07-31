@@ -5,7 +5,7 @@
 // CWebApplication properties can be configured here.
 return array(
     'basePath' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-    'name' => 'Comedy Hunt',
+    'name' => 'B Natural DUBFEST | powered by Sangram Singh',
     'defaultController' => 'pages',
     // preloading 'log' component
     'preload' => array('log'),
@@ -20,6 +20,7 @@ return array(
         'ext.eauth.*',
         'ext.eauth.services.*',
         'application.extensions.s3upload.*',//S3 Bucket Plugin
+        'ext.YiiMailer.YiiMailer',      //mailer component
     ),
     'modules' => array(
         'admin'
@@ -47,8 +48,8 @@ return array(
                 '/login/' => '/login/index',
                 '/logout/' => '/login/logout',
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
-                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '/admin/<controller:\w+>/<id:\d+>' => '/admin/<controller>/view',
                 '/admin/<controller:\w+>/<action:\w+>/<id:\d+>' => '/admin/<controller>/<action>',
                 '/admin/<controller:\w+>/<action:\w+>' => '/admin/<controller>/<action>',
@@ -63,6 +64,27 @@ return array(
     // using Yii::app()->params['paramName']
     'params' => array(
         // this is used in contact page
-        'adminEmail' => 'webmaster@example.com',
+        'adminEmail' => 'support@dubfest.bnatural.in',
+        'extensions' => array(
+            'MP4',
+            'MPEG4',
+            'AVI',
+            'MOV',
+            'JPG',
+            'GIF',
+            'PNG',
+            'JPEG'
+        ),
+        'uploadMaxSize' => 10,
+        'mailConfig' => array(
+            'senderEmail' => 'bnatural.in@gmail.com',
+            'senderName' => 'Dubfest Support',
+            'SubjectPrefix' => '[Dubfest] ',
+            'SMTPAuth' => true,
+            'SMTPHost' => 'smtp.gmail.com',
+            'SMTPPort' => '587',
+            'SMTPUser' => 'bnatural.in@gmail.com',
+            'SMTPPass' => 'login@123'
+        )
     ),
 );
