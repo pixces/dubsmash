@@ -10,6 +10,7 @@ return array(
         'application.models.*',
         'application.components.*',
         'application.vendor.*',
+        'ext.YiiMailer.YiiMailer',      //mailer component
     ),
     // application components
     'components' => array(
@@ -32,6 +33,7 @@ return array(
 //        ),
     ),
     'params' => array(
+        'adminEmail' => 'support@dubfest.bnatural.in',
         'S3DOWNLOADSDIR' => dirname(__FILE__).DIRECTORY_SEPARATOR.'../../s3downloads',
         'GOOGLE' => array(
             'CLIENT_ID' => '496126759562-g8c7h3i8lrp06doqaam9m6dlrpnd6tub.apps.googleusercontent.com',
@@ -44,5 +46,15 @@ return array(
             'awsSecretKey' => '+RyJBvsVLNcPRYObmsujg8E2bSCjGGmhMjgmvvgr',
             'bucket' => 'bnatural',
         ),
+        'mailConfig' => array(
+            'senderEmail' => 'dubfest.bnatural.in@gmail.com',
+            'senderName' => 'Dubfest Support',
+            'SubjectPrefix' => '[Dubfest] ',
+            'SMTPAuth' => true,
+            'SMTPHost' => 'smtp.gmail.com',
+            'SMTPPort' => '587',
+            'SMTPUser' => 'dubfest.bnatural.in@gmail.com',
+            'SMTPPass' => 'bnatural123#'
+        )
     ),
 );

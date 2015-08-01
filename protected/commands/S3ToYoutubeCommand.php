@@ -203,6 +203,7 @@ class S3ToYoutubeCommand extends CConsoleCommand
             $aVideoList = $this->aProcessedVideoList;
 
             foreach ($aVideoList as $video) {
+                $userName    = $video['username'];
                 $drowId      = $video['id'];
                 $userEmailId = $video['email'];
                 $uri         = trim($video['media_alternate_url']);
@@ -294,6 +295,7 @@ class S3ToYoutubeCommand extends CConsoleCommand
                 $ayoutubeUploadInfo = [];
                 if (!empty($status)) {
                     $ayoutubeUploadInfo['rowid']                = $drowId;
+                    $ayoutubeUploadInfo['username']             = $userName;
                     $ayoutubeUploadInfo['emailId']              = $userEmailId;
                     $ayoutubeUploadInfo['ytvid']                = $status->id;
                     $ayoutubeUploadInfo['ytvurl']               = "https://www.youtube.com/watch?v=".$status->id;
@@ -375,13 +377,20 @@ class S3ToYoutubeCommand extends CConsoleCommand
         return $aResult;
     }
 
+    /**
+     * Update Db content with Youtube Return Response
+     * @param Array $aYoutubeVideoInfo
+     * @return Boolean
+     */
+
     private function __updateContentInfo($aYoutubeVideoInfo)
     {
 
         if (!empty($aYoutubeVideoInfo) && is_array($aYoutubeVideoInfo)) {
 
             $drowId          = $aYoutubeVideoInfo['rowid'];
-            $semailId        = $aYoutubeVideoInfo['emailId'];
+            $emailId         = $aYoutubeVideoInfo['emailId'];
+            $name            = $aYoutubeVideoInfo['username'];
             $dvideoId        = $aYoutubeVideoInfo['ytvid'];
             $smediaUrl       = $aYoutubeVideoInfo['ytvurl'];
             $smediaImage     = $aYoutubeVideoInfo['thumbnail']['default'];
@@ -403,26 +412,29 @@ class S3ToYoutubeCommand extends CConsoleCommand
                 $data                = "Hello, ".$emailId;
                 $data.="Your Video Has Been Approved And Uploaded To Youtube.Video Url is ".$smediaUrl;
                 $subject             = "Video Upload Acknowledgement.";
-                $this->aMailToInfo[] = ['email' => $emailId, 'data' => $data, 'subject' => $subject];
+                $this->aMailToInfo[] = ['email' => $emailId, 'data' => $data, 'username' => $name];
             } catch (Exception $e) {
                 print $e->getMessage();
             }
-
         }
         return;
     }
 
+    /**
+     * Send Approval Mail
+     */
+
     private function __sendAcknowledgement()
     {
 
-        
+
         if (!empty($this->aMailToInfo)) {
 
             foreach ($this->aMailToInfo as $mailContent) {
-                Mailer::Acknowledgement(array(
+                Mailer::Approved(array(
                     'to' => $mailContent['email'],
                     'data' => $mailContent['data'],
-                    'subject' => $mailContent['subject']
+                    'subject' => array('name' => $mailContent['username'])
                 ));
             }
         }
