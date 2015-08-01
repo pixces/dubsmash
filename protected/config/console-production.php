@@ -15,10 +15,10 @@ return array(
     // application components
     'components' => array(
         'db' => array(
-            'connectionString' => 'mysql:host=127.0.0.1;port=8889;dbname=dubfest',
+            'connectionString' => 'mysql:host=myjiradb.cuqmhlcee6g7.us-east-1.rds.amazonaws.com;port=3306;dbname=dbftp2',
             'emulatePrepare' => true,
-            'username' => 'root',
-            'password' => 'root',
+            'username' => 'dbftp2',
+            'password' => '5AXB0plj0o3E',
             'charset' => 'utf8',
             'enableParamLogging' => true,
         ),
@@ -47,14 +47,14 @@ return array(
             'bucket' => 'bnatural',
         ),
         'mailConfig' => array(
-            'senderEmail' => 'dubfest.bnatural.in@gmail.com',
+            'senderEmail' => 'bnatural.in@gmail.com',
             'senderName' => 'Dubfest Support',
             'SubjectPrefix' => '[Dubfest] ',
             'SMTPAuth' => true,
             'SMTPHost' => 'smtp.gmail.com',
             'SMTPPort' => '587',
-            'SMTPUser' => 'dubfest.bnatural.in@gmail.com',
-            'SMTPPass' => 'bnatural123#'
+            'SMTPUser' => 'bnatural.in@gmail.com',
+            'SMTPPass' => 'login@123#'
         )
     ),
 );

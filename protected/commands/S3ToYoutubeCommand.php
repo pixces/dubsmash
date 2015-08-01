@@ -31,6 +31,9 @@ class S3ToYoutubeCommand extends CConsoleCommand
     public function init()
     {
 
+        //set the timezone property
+        date_default_timezone_set('UTC');
+
         $this->aProcessedVideoList = $this->__getProcessedVideos();
         /**
          * S3 Instance 
@@ -59,8 +62,7 @@ class S3ToYoutubeCommand extends CConsoleCommand
         $this->googleClientId    = Yii::app()->params['GOOGLE']['CLIENT_ID'];
         $this->googleSecretKey   = Yii::app()->params['GOOGLE']['SECRET'];
         $this->googleRedirectUri = Yii::app()->params['GOOGLE']['REDIRECT_URI'];
-        $this->googleScope       = array('https://www.googleapis.com/auth/plus.me',
-            'https://www.googleapis.com/auth/youtube');
+        $this->googleScope       = array('https://www.googleapis.com/auth/plus.me', 'https://www.googleapis.com/auth/youtube');
         $this->googleAccessType  = 'offline';
         $this->oGoogleService    = $this->_getGoogleClientService();
     }
@@ -116,8 +118,7 @@ class S3ToYoutubeCommand extends CConsoleCommand
 
         try {
 
-            Yii::import(Yii::getPathOfAlias("application.vendor.Google.Client",
-                    true));
+            Yii::import(Yii::getPathOfAlias("application.vendor.Google.Client", true));
             $client = new Google_Client();
             $client->setClientId($this->googleClientId);
             $client->setClientSecret($this->googleSecretKey);
@@ -227,8 +228,6 @@ class S3ToYoutubeCommand extends CConsoleCommand
                     die;
                 }
                 ##################End Of File Extension Check ##########################
-
-
                 $videoPath = $aS3Info['filePath'];
 
                 // REPLACE this value with the path to the file you are uploading.
@@ -238,18 +237,16 @@ class S3ToYoutubeCommand extends CConsoleCommand
 
                 $snippet = new Google_Service_YouTube_VideoSnippet();
 
-                $sTitle                = $video['media_title'];
-                $sDescription          = $video['message'];
-                $sTag                  = $video['media_category'];
-                $dCategoryId           = in_array($video['media_category'],
-                        $this->aVideoCategories) ? array_search(strtolower($video['media_category']),
-                        $this->aVideoCategories) : '24';
-                $snippet->setTitle($sTitle);
-                $snippet->setDescription($sDescription);
-                $snippet->setTags(array($sTag));
-                $snippet->setCategoryId($dCategoryId); //category - education
+                $dCategoryId           = in_array($video['media_category'], $this->aVideoCategories) ? array_search(strtolower($video['media_category']), $this->aVideoCategories) : '24';
+
+                $snippet->setTitle($video['media_title']);
+                $snippet->setDescription($video['message']);
+                $snippet->setTags(array($video['media_category']));
+                $snippet->setCategoryId($dCategoryId);
+
                 $status                = new Google_Service_YouTube_VideoStatus();
                 $status->privacyStatus = "public"; //public,private or unlisted
+
                 // Associate the snippet and status objects with a new video resource.
                 $video                 = new Google_Service_YouTube_Video();
                 $video->setSnippet($snippet);
@@ -265,13 +262,11 @@ class S3ToYoutubeCommand extends CConsoleCommand
                 $this->oGoogleService->setDefer(true);
 
                 // Create a request for the API's videos.insert method to create and upload the video.
-                $insertRequest = $this->oYoutubeService->videos->insert("status,snippet",
-                    $video);
+                $insertRequest = $this->oYoutubeService->videos->insert("status,snippet", $video);
 
                 // Create a MediaFileUpload object for resumable uploads.
                 $media = new Google_Http_MediaFileUpload(
-                    $this->oGoogleService, $insertRequest, 'video/*', null,
-                    true, $chunkSizeBytes
+                    $this->oGoogleService, $insertRequest, 'video/*', null, true, $chunkSizeBytes
                 );
                 $media->setFileSize($fileSize);
 
@@ -292,7 +287,7 @@ class S3ToYoutubeCommand extends CConsoleCommand
                 /**
                  * Youtube Video Infomation After Upload
                  */
-                $ayoutubeUploadInfo = [];
+                $ayoutubeUploadInfo = array();
                 if (!empty($status)) {
                     $ayoutubeUploadInfo['rowid']                = $drowId;
                     $ayoutubeUploadInfo['username']             = $userName;
@@ -303,11 +298,13 @@ class S3ToYoutubeCommand extends CConsoleCommand
                     $ayoutubeUploadInfo['channel']['name']      = $status['snippet']['channelTitle'];
                     $ayoutubeUploadInfo['thumbnail']['default'] = $status['snippet']['thumbnails']['default']['url'];
                     $ayoutubeUploadInfo['thumbnail']['medium']  = $status['snippet']['thumbnails']['medium']['url'];
+
+                    //update the database
+                    //send acceptance emails
                     $this->__updateContentInfo($ayoutubeUploadInfo);
                 }
                 // If you want to make other calls after the file upload, set setDefer back to false
                 $this->oGoogleService->setDefer(false);
-
                 Yii::log(__FILE__."".__LINE__." Info: ".$message);
             }
         } catch (Google_ServiceException $e) {
@@ -320,8 +317,6 @@ class S3ToYoutubeCommand extends CConsoleCommand
             die;
         }
         $this->_getGoogleRefreshToken();
-
-        $this->__sendAcknowledgement();
     }
 
     private function _downloadFilesFromS3($uri, $savelocation = null)
@@ -336,8 +331,7 @@ class S3ToYoutubeCommand extends CConsoleCommand
         try {
             $message = PHP_EOL."Downloading File :".$fileName." from  ".$uri.PHP_EOL;
 
-            if (($object = S3::getObject($this->sBucket, $fileName,
-                    $savelocation)) !== false) {
+            if (($object = S3::getObject($this->sBucket, $fileName, $savelocation)) !== false) {
                 if ($object->code == 200) {
                     $message .= "\r\nSaving File To Temporary Storage: ".$savelocation.PHP_EOL;
                     $response = ['error' => 0, 'filePath' => $savelocation, 'message' => 'Ok'];
@@ -352,9 +346,9 @@ class S3ToYoutubeCommand extends CConsoleCommand
         return json_encode($response);
     }
 
-    private function __getProcessedVideos($status = "approved")
+    private function __getProcessedVideos($status = "processing")
     {
-        $condition           = 'workflow_status=:status';
+        $condition           = 'status=:status';
         $params['status']    = $status;
         $Criteria            = new CDbCriteria;
         $Criteria->condition = $condition;
@@ -368,7 +362,7 @@ class S3ToYoutubeCommand extends CConsoleCommand
             die;
         }
 
-        $aResult = [];
+        $aResult = array();
         foreach ($oContent as $row) {
             $aResult[] = ['email' => $row['email'], 'id' => $row['id'], 'media_alternate_url' => $row['media_alternate_url'],
                 'media_title' => $row['media_title'], 'message' => $row['message'],
@@ -389,7 +383,6 @@ class S3ToYoutubeCommand extends CConsoleCommand
         if (!empty($aYoutubeVideoInfo) && is_array($aYoutubeVideoInfo)) {
 
             $drowId          = $aYoutubeVideoInfo['rowid'];
-            $emailId         = $aYoutubeVideoInfo['emailId'];
             $name            = $aYoutubeVideoInfo['username'];
             $dvideoId        = $aYoutubeVideoInfo['ytvid'];
             $smediaUrl       = $aYoutubeVideoInfo['ytvurl'];
@@ -399,20 +392,23 @@ class S3ToYoutubeCommand extends CConsoleCommand
             $status          = "approved";
             $emailId         = $aYoutubeVideoInfo['emailId'];
 
-            $aParams = ['media_id' => $dvideoId,
+            $aParams = array('media_id' => $dvideoId,
                 'media_url' => $smediaUrl,
                 'media_image' => $smediaImage,
                 'alternate_image' => $salternateImage,
                 'channel_name' => $schannelName,
                 'status' => $status
-            ];
+            );
 
             try {
                 Content::model()->updateByPk($drowId, $aParams);
-                $data                = "Hello, ".$emailId;
-                $data.="Your Video Has Been Approved And Uploaded To Youtube.Video Url is ".$smediaUrl;
-                $subject             = "Video Upload Acknowledgement.";
-                $this->aMailToInfo[] = ['email' => $emailId, 'data' => $data, 'username' => $name];
+
+                //send the acceptance email
+                Mailer::Approved(array(
+                    'to' => $emailId,
+                    'data' => array('name' => $name)
+                ));
+
             } catch (Exception $e) {
                 print $e->getMessage();
             }
@@ -426,10 +422,7 @@ class S3ToYoutubeCommand extends CConsoleCommand
 
     private function __sendAcknowledgement()
     {
-
-
         if (!empty($this->aMailToInfo)) {
-
             foreach ($this->aMailToInfo as $mailContent) {
                 Mailer::Approved(array(
                     'to' => $mailContent['email'],

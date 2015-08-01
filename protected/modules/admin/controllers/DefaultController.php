@@ -79,10 +79,27 @@ class DefaultController extends AdminController
             $status        = (int) Yii::app()->getRequest()->getParam('status',0);
             $videoStatus   = ($status) ? "processing" : "rejected";
             $colorSelector = ($status) ? "pill-processing" : "pill-rejected";
+
             if ($videoId > 0 && is_int($videoId)) {
+
                 try {
                     Content::model()->updateByPk($videoId, array('status' => $videoStatus));
+
+                    //if the video status is rejected
+                    //send the rejection email
+                    if ($videoStatus == 'rejected'){
+
+                        $videoDetails = Content::model()->findByPk($videoId);
+
+                        Mailer::Rejected(array(
+                           'to' => $videoDetails->email,
+                            'data' => array('name' => $videoDetails->username)
+                        ));
+                    }
+
                     $message   = $videoStatus;
+
+
                     $aResponse = ['error' => 0, 'status' => 1, 'message' => ucwords($message), 'selector' => $colorSelector];
                 } catch (Exception $e) {
                     $message   = $e->getMessage();

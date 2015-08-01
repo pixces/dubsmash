@@ -63,7 +63,7 @@
             <tbody>
               <tr>
                 <th width="77" height="21" align="left" valign="top" scope="row"><img src="https://dubfest.bnatural.in/images/mailers/image16.jpg" width="77" height="21" style="border:0 none;display:block"/></th>
-                <th width="356" height="21" align="left" valign="middle" scope="row" style="color:#666666;font-size:14px;font-family:Arial, sans-serif;font-weight:bold"><p style="color:#666666;font-size:14px;font-family:Arial, sans-serif;font-weight:bold;margin-left:5px;">Vikram Jayaprakash</p></th>
+                <th width="356" height="21" align="left" valign="middle" scope="row" style="color:#666666;font-size:14px;font-family:Arial, sans-serif;font-weight:bold"><p style="color:#666666;font-size:14px;font-family:Arial, sans-serif;font-weight:bold;margin-left:5px;"><?php echo $name; ?></p></th>
                 <th width="17" height="21" align="left" valign="top" scope="row"><img src="https://dubfest.bnatural.in/images/mailers/image17.jpg" width="17" height="21" style="border:0 none;display:block"/></th>
               </tr>
             </tbody>

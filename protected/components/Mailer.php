@@ -26,7 +26,7 @@ class Mailer {
             }
 
             $subject = (isset($aParams['subject'])) ? Yii::app()->params['mailConfig']['SubjectPrefix'].trim($aParams['subject']) : Yii::app()->params['mailConfig']['SubjectPrefix']." Your submission is approved.";
-            $template = 'thankyou';
+            $template = 'approval';
             $to = $aParams['to'];
 
             return self::SendMail($to,$data,$subject,$template);
@@ -53,7 +53,7 @@ class Mailer {
             }
 
             $subject = (isset($aParams['subject'])) ? Yii::app()->params['mailConfig']['SubjectPrefix'].trim($aParams['subject']) : Yii::app()->params['mailConfig']['SubjectPrefix']." Your submission is rejected.";
-            $template = 'thankyou';
+            $template = 'rejection';
             $to = $aParams['to'];
 
             return self::SendMail($to,$data,$subject,$template);
@@ -110,7 +110,7 @@ class Mailer {
             $mail->Username = $mailConfig['SMTPUser'];
             $mail->Password = $mailConfig['SMTPPass'];
             $mail->SMTPSecure = 'tls';
-            $mail->SMTPDebug = 2;
+            //$mail->SMTPDebug = 2;
 
             //assign this to the mailer instance
             self::$mailer = $mail;
