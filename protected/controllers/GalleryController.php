@@ -25,11 +25,11 @@ class GalleryController extends Controller
     {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view'),
+                'actions' => array('index', 'view','share','redirect'),
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update'),
+                'actions' => array('create', 'update','share'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -47,7 +47,6 @@ class GalleryController extends Controller
      */
     public function actionIndex()
     {
-
         /**
          * Parameter Object
          */
@@ -60,6 +59,12 @@ class GalleryController extends Controller
         $param->fields     = ['share_url'];
         $galleryVideosJson = null;
         $galleryVideos     = null;
+
+
+        //get the details of selectedVideo is provided
+        $dSelectedContentId = Yii::app()->getRequest()->getParam('content', '');
+
+        $aSelectedVideoDetails = $this->getContent($dSelectedContentId);
 
         if (is_array($postParam)) {
             if (isset($postParam['category'])) {
@@ -131,9 +136,9 @@ class GalleryController extends Controller
             'galleries' => $galleryVideosArray['data'],
             'loader' => $galleryVideosArray['loader'],
             'totalvideos' => $galleryVideosArray['totalvideos'],
-             'selectedcategory'=> $galleryVideosArray['selectedcategory'],
+            'selectedcategory'=> $galleryVideosArray['selectedcategory'],
             'pageName' => 'gallery',
-            //'aVideoList' => $videoPlayList
+            'SelectedVideoDetails' => $aSelectedVideoDetails
             ]
         );
     }
@@ -224,6 +229,43 @@ class GalleryController extends Controller
         ));
     }
 
+    public function actionShare($contentId,$type){
+
+        $dContentId = Yii::app()->getRequest()->getParam('contentId', '');
+        $dType = Yii::app()->getRequest()->getParam('type', 'page');
+
+        $fb_base_url = 'https://www.facebook.com/dialog/feed?app_id=110238615987902';
+        $redirect_uri = Yii::app()->createAbsoluteUrl('/gallery/redirect/');
+
+        switch($dType){
+            case 'page':
+                $picture = Yii::app()->createAbsoluteUrl('/').'/images/logo.png';
+                $description = "Be Cool, Be Funny or just #BNatural at the #BNatural Dubfest and you can win an iPhone 6!";
+                $title = "BNatural Dubfest | powered by Sangram Singh";
+                $link = Yii::app()->createAbsoluteUrl('/');
+                break;
+            case 'gallery':
+                if ($dContentId && !empty($dContentId)){
+
+                    $details = $this->getContent($dContentId);
+
+                    $link = Yii::app()->createAbsoluteUrl('/gallery/')."?content=".$dContentId."&lightbox=true";
+                    $title = "I really liked " . $details['username'] . "'s entry on #BNatural Dubfest" ;
+                    $description = $details['message'];
+                    $picture = $details['alternate_image'];
+                    //$link = Yii::app()->createAbsoluteUrl('/gallery/')."?content=".$dContentId."&lightbox=true";
+                }
+                break;
+        }
+
+            $url = $fb_base_url . "&link=" . $link . "&name=" . urlencode($title) . "&description=" . urlencode($description) . "&picture=" . $picture . "&redirect_uri=" . $redirect_uri;
+            $this->redirect($url);
+    }
+
+    public function actionRedirect(){
+        echo "<script>window.close();</script>";
+    }
+
     /**
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
@@ -261,7 +303,7 @@ class GalleryController extends Controller
      */
     protected function loadGalleryVideos($paramObject, $page = 1, $limit = 0)
     {
-        $columns       = [];
+        $columns       = array();
         $totalvideos = 0;
         $selectedCategory=null;
         $galleryData   = [];
@@ -335,5 +377,32 @@ class GalleryController extends Controller
         }
         $response = ['data' => $galleryData, 'loader' => $loaderVisibility, 'totalvideos' => $totalVideosCount,'selectedcategory'=>$selectedCategory];
         return json_encode($response);
+    }
+
+    /**
+     * @param $id
+     * @return array
+     */
+    protected function getContent($id){
+
+        $aDetails = array();
+
+        if (!$id || empty($id)){
+            return $aDetails;
+        }
+
+        $content = Content::model()->findByPk($id);
+        $columns = Content::$defaultSelectableFields;
+        if ($content){
+            foreach($columns as $key){
+                if ($key == 'message'){
+                    $aDetails[$key] = strlen($content->$key) > 250 ? substr($content->$key,0,250)." [..]" : $content->$key;
+                } else {
+                    $aDetails[$key] = $content->$key;
+                }
+
+            }
+        }
+        return $aDetails;
     }
 }

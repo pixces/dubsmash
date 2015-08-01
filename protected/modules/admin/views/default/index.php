@@ -69,9 +69,15 @@ $this->breadcrumbs = array(
                 success: function(data) {
 
                     if (data.error == 0 && data.status) {
-                        var rowToUpdateId = "#btn-set-" + rowId;
+
+                        var rowToUpdate = "#btn-status-"+rowId;
                         var btnBar = "#btn-bar-" + rowId;
-                        $(rowToUpdateId).closest("span").find(".pill-pending").addClass(data.selector).removeClass("pill-pending").html(data.message);
+
+                        $(rowToUpdate)
+                            .attr('data-value',data.message)
+                            .html(data.message)
+                            .addClass(data.selector)
+                            .removeClass("pill-pending hide");
                         $(btnBar).hide();
                     }
 

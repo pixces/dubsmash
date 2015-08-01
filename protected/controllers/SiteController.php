@@ -71,4 +71,13 @@ class SiteController extends Controller
     {
         $this->redirect('/site/login');
     }
+
+    public function actionMail(){
+        Mailer::Acknowledgement(array(
+            'to' => 'pixces@yahoo.com',
+            'data' => array(
+                'name' => 'Zainul Abdeen'
+            )
+        ));
+    }
 }

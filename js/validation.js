@@ -8,19 +8,21 @@
 $(document).ready(function() {
     //global vars
     var form = $("#customForm");
-    var name = $("#name");
+    //var name = $("#username");
+	var name = $("#customForm #userName");
+	
     var nameInfo = $("#nameInfo");
-    var tittle = $("#tittle");
+    var tittle = $("#mediatittle");
     var tittleInfo = $("#tittleInfo");
-    var mobile = $("#mobile");
+    var mobile = $("#usermobile");
     var mobileInfo = $("#mobileInfo");
-    var email = $("#email");
+    var email = $("#useremail");
     var emailInfo = $("#emailInfo");
-    var uploadvideo = $("#uploadvideo");
-    var uploadvideoInfo = $("#uploadvideoInfo");
-    var category = $("#category");
+    var uploadvideo = $("#uploadmedia");
+    var uploadvideoInfo = $("#uploadmediaInfo");
+    var category = $("#mediacategory");
     var categoryInfo = $("#categoryInfo");
-    var message = $("#message");
+    var message = $("#messagebox");
     var messageInfo = $("#messageInfo");
 
     //On blur
@@ -37,23 +39,28 @@ $(document).ready(function() {
 
 
     $("form#customForm").on('submit', function(event) {
-        event.preventDefault(event);
+        event.preventDefault();
         $(this).find(":submit").hide();
 
         if (validateName() & validatetittle() & validateMobile() & validateEmail() & validateMessage() & validateuploadvideo() & validatecategory())
         {
-            var formData = new FormData($('#customForm')[0]);
+            var fd = new FormData();
+            var file_data = $('input[type="file"]')[0].files; // for multiple files
+            for (var i = 0; i < file_data.length; i++) {
+                fd.append("file_" + i, file_data[i]);
+            }
+            var other_data = $('form').serializeArray();
+            $.each(other_data, function(key, input) {
+                fd.append(input.name, input.value);
+            });
             $.ajax({
                 url: submitUrl,
                 type: 'POST',
-                data: formData,
+                data: fd,
                 beforeSend: function() {
                     // do some loading options
-
-                    //$(this).find(":submit").show();
+                    $(this).find(":submit").show();
                     $("#ajax-loader-icon").removeClass("hide");
-
-
                 },
                 success: function(data) {
                     // on success do some validation or refresh the content div to display the uploaded images
@@ -62,7 +69,7 @@ $(document).ready(function() {
                     if (Obj.error == 0) {
                         $(".formResponse").removeClass("hide");
                         $(".Sbmtfrm").addClass("hide");
-                    } else if (Obj.error === 1) {
+                    } else if (Obj.error == 1) {
                         $("#ajax-loader-icon").removeClass("hide");
                         $("#send").show();
                         alert("Error:" + Obj.message);
@@ -74,9 +81,6 @@ $(document).ready(function() {
                 },
                 error: function(xhr, textStatus, error) {
                     $("#ajax-loader-icon").addClass("hide");
-                    alert(error);
-                    console.log(xhr.statusText);
-                    console.log(textStatus);
                     console.log(error);
                     $(this).find(":submit").show();
                 },
@@ -101,14 +105,16 @@ $(document).ready(function() {
         //if it's NOT valid
         if (name.val().length < 3) {
             name.addClass("error");
-            nameInfo.text("We want names with more than 2 letters!");
+            //nameInfo.text("We want names with more than 2 letters!");
+			nameInfo.text("Please enter your username");
             nameInfo.addClass("error");
             return false;
         }
         //if it's valid
         else {
             name.removeClass("error");
-            nameInfo.text("What's your name?");
+			//nameInfo.text("What's your name?");
+            nameInfo.text(" ");
             nameInfo.removeClass("error");
             return true;
         }
@@ -118,14 +124,14 @@ $(document).ready(function() {
         //if it's NOT valid
         if (tittle.val().length < 3) {
             tittle.addClass("error");
-            tittleInfo.text("We want names with more than 2 letters!");
+            tittleInfo.text("Please enter your media title");
             tittleInfo.addClass("error");
             return false;
         }
         //if it's valid
         else {
             tittle.removeClass("error");
-            //tittleInfo.text("What's your name?");
+            tittleInfo.text(" ");
             tittleInfo.removeClass("error");
             return true;
         }
@@ -135,31 +141,47 @@ $(document).ready(function() {
         //if it's NOT valid
         if (category.val().length < 3) {
             category.addClass("error");
-            categoryInfo.text("We want names with more than 2 letters!");
+            categoryInfo.text("Please select your media category");
             categoryInfo.addClass("error");
             return false;
         }
         //if it's valid
         else {
             category.removeClass("error");
-            //categoryInfo.text("What's your name?");
+            categoryInfo.text(" ");
             categoryInfo.removeClass("error");
             return true;
         }
     }
 
     function validateuploadvideo() {
-        //if it's NOT valid
-        if (uploadvideo.val().length < 3) {
+		var ext = uploadvideo.val().split('.').pop().toLowerCase();
+		var f = document.getElementById('uploadmedia').files[0];
+		
+		//if it's NOT valid
+		if (uploadvideo.val() == '') {
             uploadvideo.addClass("error");
-            uploadvideo.text("We want names with more than 2 letters!");
+            uploadvideoInfo.text("Upload a Dubsmash Video");
             uploadvideoInfo.addClass("error");
             return false;
         }
+		else if($.inArray(ext, ['MOV','MPEG4','MP4','AVI','WMV','MPEGPS','FLV','3GPP','WebM','mov','mpeg4','mp4','avi','wmv','mpegps','flv','3gpp','webm']) == -1) {
+			uploadvideo.addClass("error");
+            uploadvideoInfo.text("Only Video Accepted");
+            uploadvideoInfo.addClass("error");
+            return false;
+		}
+		//here I CHECK if the FILE SIZE is bigger than 10 MB (numbers below are in bytes in binary format)
+		else if(f.size > 10485760 || f.fileSize > 10485760){
+			uploadvideo.addClass("error");
+            uploadvideoInfo.text("Allowed file size exceeded. (Max. 10 MB)");
+            uploadvideoInfo.addClass("error");
+            return false;
+		}
         //if it's valid
         else {
             uploadvideo.removeClass("error");
-            //uploadvideoInfo.text("What's your name?");
+            uploadvideoInfo.text(" ");
             uploadvideoInfo.removeClass("error");
             return true;
         }
@@ -168,18 +190,19 @@ $(document).ready(function() {
     //validation functions
     function validateMobile() {
         //testing regular expression
-        var a = $("#mobile").val();
+        var a = $("#usermobile").val();
         var filter = /^[0-9-+]+$/;
         //if it's valid email
         if (filter.test(a)) {
             mobile.removeClass("error");
+			mobileInfo.text(" ");
             mobileInfo.removeClass("error");
             return true;
         }
 
         else {
             mobile.addClass("error");
-            mobileInfo.text("Type a valid mobile no. please");
+            mobileInfo.text("Please enter your mobile number");
             mobileInfo.addClass("error");
             return false;
         }
@@ -189,19 +212,20 @@ $(document).ready(function() {
     //validation functions
     function validateEmail() {
         //testing regular expression
-        var a = $("#email").val();
+        var a = $("#useremail").val();
         var filter = /^[a-zA-Z0-9]+[a-zA-Z0-9_.-]+[a-zA-Z0-9_-]+@[a-zA-Z0-9]+[a-zA-Z0-9.-]+[a-zA-Z0-9]+.[a-z]{2,4}$/;
         //if it's valid email
         if (filter.test(a)) {
             email.removeClass("error");
-            emailInfo.text("Valid E-mail please, you will need it to log in!");
+            //emailInfo.text("Valid E-mail please, you will need it to log in!");
+			emailInfo.text(" ");
             emailInfo.removeClass("error");
             return true;
         }
         //if it's NOT valid
         else {
             email.addClass("error");
-            emailInfo.text("Type a valid e-mail please");
+            emailInfo.text("Please enter your email address");
             emailInfo.addClass("error");
             return false;
         }
@@ -211,7 +235,7 @@ $(document).ready(function() {
         //it's NOT valid
         if (message.val().length < 5) {
             message.addClass("error");
-            messageInfo.text("Minimum 5 char");
+            messageInfo.text("Please enter your message");
             messageInfo.addClass("error");
             return false;
         }

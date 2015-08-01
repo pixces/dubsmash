@@ -76,17 +76,14 @@ class DefaultController extends AdminController
         if (Yii::app()->request->isAjaxRequest) {
             $aResponse     = ['error' => 0, 'status' => 0, 'message' => ''];
             $videoId       = (int) Yii::app()->getRequest()->getParam('id', 0);
-            $status        = (int) Yii::app()->getRequest()->getParam('status',
-                    0);
-            $videoStatus   = ($status) ? "approved" : "rejected";
-            $colorSelector = ($status) ? "pill-approved" : "pill-rejected";
+            $status        = (int) Yii::app()->getRequest()->getParam('status',0);
+            $videoStatus   = ($status) ? "processing" : "rejected";
+            $colorSelector = ($status) ? "pill-processing" : "pill-rejected";
             if ($videoId > 0 && is_int($videoId)) {
                 try {
-                    Content::model()->updateByPk($videoId,
-                        array('status' => $videoStatus));
+                    Content::model()->updateByPk($videoId, array('status' => $videoStatus));
                     $message   = $videoStatus;
-                    $aResponse = ['error' => 0, 'status' => 1, 'message' => ucwords($message),
-                        'selector' => $colorSelector];
+                    $aResponse = ['error' => 0, 'status' => 1, 'message' => ucwords($message), 'selector' => $colorSelector];
                 } catch (Exception $e) {
                     $message   = $e->getMessage();
                     $aResponse = ['error' => 1, 'status' => 0, 'message' => $message];
@@ -95,8 +92,6 @@ class DefaultController extends AdminController
                 $message   = "Invalid Id !";
                 $aResponse = ['error' => 1, 'status' => 0, 'message' => $message];
             }
-
-
             echo json_encode($aResponse);
             exit;
         }
