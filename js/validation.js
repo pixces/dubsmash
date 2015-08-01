@@ -81,7 +81,7 @@ $(document).ready(function() {
                 },
                 error: function(xhr, textStatus, error) {
                     $("#ajax-loader-icon").addClass("hide");
-                    console.log(error);
+                    //console.log(error);
                     $(this).find(":submit").show();
                 },
                 cache: false,

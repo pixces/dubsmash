@@ -73,7 +73,7 @@ class Mailer {
                 return false;
             }
 
-            if (!$aParams['data']){
+            if (!isset($aParams['data'])){
                 $data = array();
             } else {
                 $data = $aParams['data'];

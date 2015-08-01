@@ -124,7 +124,7 @@ class PagesController extends Controller
                                 //send confirmation email to the user
                                 Mailer::Acknowledgement(array(
                                     'to' => $modelContent->email,
-                                    'name' => $modelContent->username
+                                    'data'=>array('name' => $modelContent->username)
                                 ));
 
                                 $aResponse = array('error' => 0, 'message' => 'Successfully Registered');
