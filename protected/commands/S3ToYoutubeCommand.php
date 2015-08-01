@@ -40,11 +40,15 @@ class S3ToYoutubeCommand extends CConsoleCommand
         $this->oS3Instance         = new S3($awsAccessKey, $awsSecretKey);
         $this->sS3FilesDownloadDir = Yii::app()->params['S3DOWNLOADSDIR'].DIRECTORY_SEPARATOR;
 
-        $this->aAllowedFileTypes = ['flv', 'mp4', 'avi', 'mpg', 'wmv', 'webm',
-            '3gp', '3g2', '3gpp', 'mov'];
+        $this->aAllowedFileTypes = array('flv', 'mp4', 'avi', 'mpg', 'wmv', 'webm', '3gp', '3g2', '3gpp', 'mov');
 
-        $this->aVideoCategories = [23 => 'comedy', 10 => 'songs', 24 => 'action',
-            24 => 'drama', 24 => 'just like that'];
+        $this->aVideoCategories = array(
+                                    23 => 'comedy',
+                                    10 => 'songs',
+                                    24 => 'action',
+                                    24 => 'drama',
+                                    24 => 'just like that'
+                                );
 
         /*
          * Google Authentication
@@ -53,9 +57,7 @@ class S3ToYoutubeCommand extends CConsoleCommand
         $this->googleClientId    = Yii::app()->params['GOOGLE']['CLIENT_ID'];
         $this->googleSecretKey   = Yii::app()->params['GOOGLE']['SECRET'];
         $this->googleRedirectUri = Yii::app()->params['GOOGLE']['REDIRECT_URI'];
-        $this->googleScope       = ['https://www.googleapis.com/auth/plus.me',
-            'https://www.googleapis.com/auth/youtube'
-        ];
+        $this->googleScope       = array('https://www.googleapis.com/auth/plus.me', 'https://www.googleapis.com/auth/youtube');
         $this->googleAccessType  = 'offline';
         $this->oGoogleService    = $this->_getGoogleClientService();
     }
@@ -122,7 +124,7 @@ class S3ToYoutubeCommand extends CConsoleCommand
 
             return $client;
         } catch (Exception $e) {
-            throw $e->getMessage();
+            throw new Exception($e->getMessage());
         }
     }
 
@@ -182,7 +184,7 @@ class S3ToYoutubeCommand extends CConsoleCommand
                 return;
             }
         } catch (Exception $e) {
-            throw $e->getMessage();
+            throw new Exception($e->getMessage());
         }
     }
 
@@ -196,13 +198,14 @@ class S3ToYoutubeCommand extends CConsoleCommand
 
         try {
             $aVideoList = $this->aProcessedVideoList;
+
             foreach ($aVideoList as $video) {
-                //$uri        = "All_1437668186_SampleVideo_1080x720_1mb.mp4";
-                $uri        = trim($video['media_url']);
+
+                $uri        = trim($video['media_alternate_url']);
                 $S3JsonInfo = $this->_downloadFilesFromS3($uri);
                 $aS3Info    = json_decode($S3JsonInfo, true);
-                if ($aS3Info['error'] == 1) {
 
+                if ($aS3Info['error'] == 1) {
                     print "Error: ".$aS3Info['message'];
                     die;
                 }
@@ -233,9 +236,7 @@ class S3ToYoutubeCommand extends CConsoleCommand
                 $sTitle                = $video['media_title'];
                 $sDescription          = $video['message'];
                 $sTag                  = $video['media_category'];
-                $dCategoryId           = in_array($video['media_category'],
-                        $this->aVideoCategories) ? array_search(strtolower($video['media_category'],
-                            $this->aVideoCategories)) : '24';
+                $dCategoryId           = in_array($video['media_category'],$this->aVideoCategories) ? array_search(strtolower($video['media_category']),$this->aVideoCategories) : '24';
                 $snippet->setTitle($sTitle);
                 $snippet->setDescription($sDescription);
                 $snippet->setTags(array($sTag));
@@ -247,29 +248,26 @@ class S3ToYoutubeCommand extends CConsoleCommand
                 $video->setSnippet($snippet);
                 $video->setStatus($status);
 
-// Specify the size of each chunk of data, in bytes. Set a higher value for
+                // Specify the size of each chunk of data, in bytes. Set a higher value for
                 // reliable connection as fewer chunks lead to faster uploads. Set a lower
                 // value for better recovery on less reliable connections.
                 $chunkSizeBytes = 1 * 1024 * 1024;
 
-// Setting the defer flag to true tells the client to return a request which can be called
+                // Setting the defer flag to true tells the client to return a request which can be called
                 // with ->execute(); instead of making the API call immediately.
                 $this->oGoogleService->setDefer(true);
 
-// Create a request for the API's videos.insert method to create and upload the video.
-                $insertRequest = $this->oYoutubeService->videos->insert("status,snippet",
-                    $video);
+                // Create a request for the API's videos.insert method to create and upload the video.
+                $insertRequest = $this->oYoutubeService->videos->insert("status,snippet",$video);
 
-// Create a MediaFileUpload object for resumable uploads.
+                // Create a MediaFileUpload object for resumable uploads.
                 $media = new Google_Http_MediaFileUpload(
                     $this->oGoogleService, $insertRequest, 'video/*', null,
                     true, $chunkSizeBytes
                 );
                 $media->setFileSize($fileSize);
 
-
                 // Read the media file and upload it chunk by chunk.
-
                 print "\r\n Please wait uploading to youtube channel".PHP_EOL;
                 $status = false;
                 $handle = fopen($videoPath, "rb");
@@ -311,10 +309,9 @@ class S3ToYoutubeCommand extends CConsoleCommand
         try {
             $message = PHP_EOL."Downloading File :".$fileName." from  ".$uri.PHP_EOL;
 
-            if (($object = S3::getObject($this->sBucket, $fileName,
-                    $savelocation)) !== false) {
+            if (($object = S3::getObject($this->sBucket, $fileName, $savelocation)) !== false) {
                 if ($object->code == 200) {
-                    $message .= "\r\nSaving File To Temporary Storage:".$savelocation.PHP_EOL;
+                    $message .= "\r\nSaving File To Temporary Storage: ".$savelocation.PHP_EOL;
                     $response = ['error' => 0, 'filePath' => $savelocation, 'message' => 'Ok'];
                 }
             }
@@ -324,9 +321,6 @@ class S3ToYoutubeCommand extends CConsoleCommand
             Yii::log(__FILE__."".__LINE__." Error: ".$message);
             $response = ['error' => 1, 'message' => $e->getMessage()];
         }
-        print "########################";
-        print $message;
-        print "########################";
         return json_encode($response);
     }
 
@@ -348,7 +342,7 @@ class S3ToYoutubeCommand extends CConsoleCommand
 
         $aResult = [];
         foreach ($oContent as $row) {
-            $aResult[] = ['email' => $row['email'], 'id' => $row['id'], 'media_url' => $row['media_alternate_url'],
+            $aResult[] = ['email' => $row['email'], 'id' => $row['id'], 'media_alternate_url' => $row['media_alternate_url'],
                 'media_title' => $row['media_title'], 'message' => $row['message'],
                 'username' => $row['username'], 'media_category' => $row['media_category']];
         }

@@ -14,10 +14,10 @@ return array(
     // application components
     'components' => array(
         'db' => array(
-            'connectionString' => 'mysql:host=localhost;dbname=dubfest',
+            'connectionString' => 'mysql:host=127.0.0.1;port=8889;dbname=dubfest',
             'emulatePrepare' => true,
             'username' => 'root',
-            'password' => 'admin',
+            'password' => 'root',
             'charset' => 'utf8',
             'enableParamLogging' => true,
         ),
@@ -34,8 +34,8 @@ return array(
     'params' => array(
         'S3DOWNLOADSDIR' => dirname(__FILE__).DIRECTORY_SEPARATOR.'../../s3downloads',
         'GOOGLE' => array(
-            'CLIENT_ID' => '680270956746-s007puv4sfv2cb0c5sl735osekkj87tu.apps.googleusercontent.com',
-            'SECRET' => 'ev_m6L6F8Y4BDcnABdpcby40',
+            'CLIENT_ID' => '496126759562-g8c7h3i8lrp06doqaam9m6dlrpnd6tub.apps.googleusercontent.com',
+            'SECRET' => 'i1c5oB1uCWZLgJNoHhAPINHa',
             'REDIRECT_URI' => 'urn:ietf:wg:oauth:2.0:oob',
         ),
         //S3 Buckets Credentials
