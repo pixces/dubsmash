@@ -22,6 +22,7 @@ class S3ToYoutubeCommand extends CConsoleCommand
     protected $sS3FilesDownloadDir = null;
     protected $aAllowedFileTypes   = null;
     protected $aProcessedVideoList = null;
+    protected $aVideoCategories    = null;
 
     const TOKEN_FILE_NAME = "client_token.json";
     const S3_DOWNLOAD_DIR = "downloads";
@@ -41,6 +42,10 @@ class S3ToYoutubeCommand extends CConsoleCommand
 
         $this->aAllowedFileTypes = ['flv', 'mp4', 'avi', 'mpg', 'wmv', 'webm',
             '3gp', '3g2', '3gpp', 'mov'];
+
+        $this->aVideoCategories = [23 => 'comedy', 10 => 'songs', 24 => 'action',
+            24 => 'drama', 24 => 'just like that'];
+
         /*
          * Google Authentication
          */
@@ -193,7 +198,7 @@ class S3ToYoutubeCommand extends CConsoleCommand
             $aVideoList = $this->aProcessedVideoList;
             foreach ($aVideoList as $video) {
                 //$uri        = "All_1437668186_SampleVideo_1080x720_1mb.mp4";
-                $uri        = $video['media_url'];
+                $uri        = trim($video['media_url']);
                 $S3JsonInfo = $this->_downloadFilesFromS3($uri);
                 $aS3Info    = json_decode($S3JsonInfo, true);
                 if ($aS3Info['error'] == 1) {
@@ -210,6 +215,7 @@ class S3ToYoutubeCommand extends CConsoleCommand
                     $message = "Invalid File Extension.".PHP_EOL."Allowed File Types ".implode(',',
                             $this->aAllowedFileTypes).PHP_EOL;
                     print $message;
+                    Yii::log(__FILE__."".__LINE__." Error: ".$message);
                     die;
                 }
                 ##################End Of File Extension Check ##########################
@@ -223,12 +229,17 @@ class S3ToYoutubeCommand extends CConsoleCommand
                 $fileSize = filesize($videoPath);
 
                 $snippet = new Google_Service_YouTube_VideoSnippet();
-                $snippet->setTitle("Demo Video 1");
-                $snippet->setDescription("Demo Demo Demo DEmo");
-                $snippet->setTags(array("Demo status", "PHP", "demo", "oauth"));
-                $snippet->setCategoryId("27"); //category - education
 
-
+                $sTitle                = $video['media_title'];
+                $sDescription          = $video['message'];
+                $sTag                  = $video['media_category'];
+                $dCategoryId           = in_array($video['media_category'],
+                        $this->aVideoCategories) ? array_search(strtolower($video['media_category'],
+                            $this->aVideoCategories)) : '24';
+                $snippet->setTitle($sTitle);
+                $snippet->setDescription($sDescription);
+                $snippet->setTags(array($sTag));
+                $snippet->setCategoryId($dCategoryId); //category - education
                 $status                = new Google_Service_YouTube_VideoStatus();
                 $status->privacyStatus = "public"; //public,private or unlisted
                 // Associate the snippet and status objects with a new video resource.
@@ -259,7 +270,7 @@ class S3ToYoutubeCommand extends CConsoleCommand
 
                 // Read the media file and upload it chunk by chunk.
 
-                print "Please wait uploading initiated".PHP_EOL;
+                print "\r\n Please wait uploading to youtube channel".PHP_EOL;
                 $status = false;
                 $handle = fopen($videoPath, "rb");
                 while (!$status && !feof($handle)) {
@@ -267,17 +278,20 @@ class S3ToYoutubeCommand extends CConsoleCommand
                     $chunk  = fread($handle, $chunkSizeBytes);
                     $status = $media->nextChunk($chunk);
                 }
-                print "Uploading ".basename($videoPath)." completed.".PHP_EOL;
+                $message = "Uploading ".basename($videoPath)." completed.".PHP_EOL;
+                print $message;
                 fclose($handle);
-
+                @unlink($videoPath);
                 // If you want to make other calls after the file upload, set setDefer back to false
                 $this->oGoogleService->setDefer(false);
+                Yii::log(__FILE__."".__LINE__." Info: ".$message);
             }
         } catch (Google_ServiceException $e) {
+            Yii::log(__FILE__."".__LINE__." Error: ".$e->getMessage());
             throw new Exception($e->getMessage());
             die;
         } catch (Google_Exception $e) {
-
+            Yii::log(__FILE__."".__LINE__." Error: ".$e->getMessage());
             throw new Exception($e->getMessage());
             die;
         }
@@ -295,15 +309,24 @@ class S3ToYoutubeCommand extends CConsoleCommand
         $fileName = basename($uri);
         $savelocation .=$fileName;
         try {
-            if (($object = S3::getObject($this->sBucket, $uri, $savelocation)) !== false) {
+            $message = PHP_EOL."Downloading File :".$fileName." from  ".$uri.PHP_EOL;
+
+            if (($object = S3::getObject($this->sBucket, $fileName,
+                    $savelocation)) !== false) {
                 if ($object->code == 200) {
+                    $message .= "\r\nSaving File To Temporary Storage:".$savelocation.PHP_EOL;
                     $response = ['error' => 0, 'filePath' => $savelocation, 'message' => 'Ok'];
                 }
             }
+            Yii::log(__FILE__."".__LINE__." Info: ".$message);
         } catch (Exception $e) {
+            $message  = "\r\nDownloading File :".$fileName." from  ".$uri." failed.".PHP_EOL;
+            Yii::log(__FILE__."".__LINE__." Error: ".$message);
             $response = ['error' => 1, 'message' => $e->getMessage()];
         }
-
+        print "########################";
+        print $message;
+        print "########################";
         return json_encode($response);
     }
 
@@ -317,13 +340,17 @@ class S3ToYoutubeCommand extends CConsoleCommand
         $Criteria->order     = "date_modified DESC";
         $oContent            = Content::model()->findAll($Criteria);
         if (empty($oContent)) {
-            print "Empty Resultset no content information".PHP_EOL;
+            $message = "Empty Resultset no approved video contents".PHP_EOL;
+            Yii::log(__FILE__."".__LINE__." Error: ".$message);
+            print $message;
             die;
         }
 
         $aResult = [];
         foreach ($oContent as $row) {
-            $aResult[] = ['email' => $row['email'], 'id' => $row['id'], 'media_url' => $row['media_url']];
+            $aResult[] = ['email' => $row['email'], 'id' => $row['id'], 'media_url' => $row['media_alternate_url'],
+                'media_title' => $row['media_title'], 'message' => $row['message'],
+                'username' => $row['username'], 'media_category' => $row['media_category']];
         }
         return $aResult;
     }
