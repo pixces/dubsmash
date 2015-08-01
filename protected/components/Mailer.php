@@ -109,9 +109,8 @@ class Mailer {
             $mail->Port = $mailConfig['SMTPPort'];
             $mail->Username = $mailConfig['SMTPUser'];
             $mail->Password = $mailConfig['SMTPPass'];
-            //$mail->SMTPDebug = 2;
             $mail->SMTPSecure = 'tls';
-
+            $mail->SMTPDebug = 2;
 
             //assign this to the mailer instance
             self::$mailer = $mail;

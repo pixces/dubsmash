@@ -122,10 +122,11 @@ class PagesController extends Controller
                                 }
 
                                 //send confirmation email to the user
+                                /*
                                 Mailer::Acknowledgement(array(
                                     'to' => $modelContent->email,
                                     'data'=>array('name' => $modelContent->username)
-                                ));
+                                ));*/
 
                                 $aResponse = array('error' => 0, 'message' => 'Successfully Registered');
                                 echo json_encode($aResponse);
