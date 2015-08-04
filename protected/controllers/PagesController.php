@@ -83,76 +83,81 @@ class PagesController extends Controller
             
 
             if ($model->validate()) {
-                $model->media_url = $_FILES['file_0']['name'];
-                $fileName = $model->media_url;
+                $videoUploadPath = Yii::app()->basePath.Yii::app()->params['UPLOAD']['videodir'];
+                $videoUploadPath = realpath($videoUploadPath);
+
+                 /*
+                 * Create The Directory if does not exist,remove in production.
+                 */
+                if (!file_exists($videoUploadPath)) {
+                    mkdir($videoUploadPath, 0777, true);
+                }
+
+                $fileName = $_FILES['file_0']['name'];
                 $size = $_FILES['file_0']['size'];
                 $tmpFileName = $_FILES['file_0']['tmp_name'];
-
                 $actualFileName = $model->username.'_'.time().'_'.str_replace(' ','_', strtolower($fileName));
-
-                $s3 = new S3(Yii::app()->params['S3']['awsAccessKey'], Yii::app()->params['S3']['awsSecretKey'], false);
-                $s3bucketName = Yii::app()->params['S3']['bucket'];
+                $uploadFile       = $videoUploadPath.DIRECTORY_SEPARATOR.$actualFileName;
+                
 
                 try {
-                    if (  $s3->putObjectFile($tmpFileName, $s3bucketName, $actualFileName, S3::ACL_PUBLIC_READ) ){
 
-                        $s3FileName = 'http://'.$s3bucketName.'.s3.amazonaws.com/'.$actualFileName;
+                        if(move_uploaded_file($tmpFileName,$uploadFile)){
+                                $savedFilePath=DIRECTORY_SEPARATOR.'uploads/'.$actualFileName;
+                                         //save all to the database for further processing
+                                $modelContent                       = new Content;
+                                $modelContent->username             = $model->username;
+                                $modelContent->email                = $model->email;
+                                $modelContent->mobile               = $model->mobile;
+                                $modelContent->media_category       = $model->media_category;
+                                $modelContent->media_title          = $model->media_title;
+                                $modelContent->message              = $model->message;
+                                $modelContent->media_alternate_url  = $savedFilePath;
+                                $modelContent->is_ugc               = 1;
+                                $modelContent->status               = 'pending';
+                                $modelContent->workflow_status      = 'pending';
+                                $modelContent->share_url            = Yii::app()->createAbsoluteUrl('/galley/?content=');
 
-                        //save all to the database for further processing
-                        $modelContent                       = new Content;
-                        $modelContent->username             = $model->username;
-                        $modelContent->email                = $model->email;
-                        $modelContent->mobile               = $model->mobile;
-                        $modelContent->media_category       = $model->media_category;
-                        $modelContent->media_title          = $model->media_title;
-                        $modelContent->message              = $model->message;
-                        $modelContent->media_alternate_url  = $s3FileName;
-                        $modelContent->is_ugc               = 1;
-                        $modelContent->status               = 'pending';
-                        $modelContent->workflow_status      = 'pending';
-                        $modelContent->share_url            = Yii::app()->createAbsoluteUrl('/galley/?content=');
+                                $transaction = Yii::app()->db->beginTransaction();
 
-                        $transaction = Yii::app()->db->beginTransaction();
+                                try {
+                                    if ($modelContent->save()) {
+                                        $transaction->commit();
+                                        if (isset(Yii::app()->session['eauth_profile'])) {
+                                            unset(Yii::app()->session['eauth_profile']);
+                                        }
 
-                        try {
-                            if ($modelContent->save()) {
-                                $transaction->commit();
-                                if (isset(Yii::app()->session['eauth_profile'])) {
-                                    unset(Yii::app()->session['eauth_profile']);
+                                        //send confirmation email to the user
+                                        Mailer::Acknowledgement(array(
+                                            'to' => $modelContent->email,
+                                            'data'=>array('name' => $modelContent->username)
+                                        ));
+
+                                        $aResponse = array('error' => 0, 'message' => 'Successfully Registered');
+                                        echo json_encode($aResponse);
+                                        Yii::app()->end();
+                                    } else {
+                                        $message = null;
+                                        $errors  = $modelContent->getErrors();
+                                        foreach ($errors as $key => $error) {
+                                            $message .=$error[0].PHP_EOL;
+                                        }
+
+                                        Yii::log(__FILE__."".__LINE__." Error: " . $message);
+
+                                        $aResponse = array('error' => 1, 'message' => $modelContent->getErrors(),);
+                                        echo json_encode($aResponse);
+                                        exit;
+                                    }
+                                } catch (Exception $e) {
+                                    $transaction->rollBack();
+                                    $message = $e->getMessage();
+                                    Yii::log(__FILE__."".__LINE__." Error: " . $message);
+                                    $aResponse = array('error' => 1, 'message' => $message);
+                                    echo json_encode($aResponse);
+                                    exit;
                                 }
-
-                                //send confirmation email to the user
-                                Mailer::Acknowledgement(array(
-                                    'to' => $modelContent->email,
-                                    'data'=>array('name' => $modelContent->username)
-                                ));
-
-                                $aResponse = array('error' => 0, 'message' => 'Successfully Registered');
-                                echo json_encode($aResponse);
-                                Yii::app()->end();
-                            } else {
-                                $message = null;
-                                $errors  = $modelContent->getErrors();
-                                foreach ($errors as $key => $error) {
-                                    $message .=$error[0].PHP_EOL;
-                                }
-
-                                Yii::log(__FILE__."".__LINE__." Error: " . $message);
-
-                                $aResponse = array('error' => 1, 'message' => $modelContent->getErrors(),);
-                                echo json_encode($aResponse);
-                                exit;
-                            }
-                        } catch (Exception $e) {
-                            $transaction->rollBack();
-                            $message = $e->getMessage();
-                            Yii::log(__FILE__."".__LINE__." Error: " . $message);
-                            $aResponse = array('error' => 1, 'message' => $message);
-                            echo json_encode($aResponse);
-                            exit;
                         }
-
-                    }
                 } catch (Exception $e) {
                     $message = $e->getMessage();
                     Yii::log(__FILE__."".__LINE__." Error: " . $message);

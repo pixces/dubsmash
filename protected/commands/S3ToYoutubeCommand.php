@@ -19,14 +19,13 @@ class S3ToYoutubeCommand extends CConsoleCommand
     protected $sRefreshToken       = null;
     protected $oS3Instance         = null;
     protected $sBucket             = null;
-    protected $sS3FilesDownloadDir = null;
     protected $aAllowedFileTypes   = null;
     protected $aProcessedVideoList = null;
     protected $aVideoCategories    = null;
     protected $aMailToInfo         = null;
 
     const TOKEN_FILE_NAME = "client_token.json";
-    const S3_DOWNLOAD_DIR = "downloads";
+    
 
     public function init()
     {
@@ -35,14 +34,6 @@ class S3ToYoutubeCommand extends CConsoleCommand
         date_default_timezone_set('UTC');
 
         $this->aProcessedVideoList = $this->__getProcessedVideos();
-        /**
-         * S3 Instance 
-         */
-        $awsAccessKey              = Yii::app()->params['S3']['awsAccessKey'];
-        $awsSecretKey              = Yii::app()->params['S3']['awsSecretKey'];
-        $this->sBucket             = Yii::app()->params['S3']['bucket'];
-        $this->oS3Instance         = new S3($awsAccessKey, $awsSecretKey);
-        $this->sS3FilesDownloadDir = Yii::app()->params['S3DOWNLOADSDIR'].DIRECTORY_SEPARATOR;
 
         $this->aAllowedFileTypes = array('flv', 'mp4', 'avi', 'mpg', 'wmv', 'webm',
             '3gp', '3g2', '3gpp', 'mov');
@@ -202,24 +193,18 @@ class S3ToYoutubeCommand extends CConsoleCommand
 
         try {
             $aVideoList = $this->aProcessedVideoList;
-
+            
             foreach ($aVideoList as $video) {
                 $userName    = $video['username'];
                 $drowId      = $video['id'];
                 $userEmailId = $video['email'];
                 $uri         = trim($video['media_alternate_url']);
-                $S3JsonInfo  = $this->_downloadFilesFromS3($uri);
-                $aS3Info     = json_decode($S3JsonInfo, true);
-
-                if ($aS3Info['error'] == 1) {
-                    print "Error: ".$aS3Info['message'];
-                    die;
-                }
+               
 
                 /**
                  * Check File Type Before Uploading To Youtube.
                  */
-                $extension = pathinfo($aS3Info['filePath'], PATHINFO_EXTENSION);
+                $extension = pathinfo( $uri  , PATHINFO_EXTENSION);
                 if (!in_array($extension, $this->aAllowedFileTypes)) {
                     $message = "Invalid File Extension.".PHP_EOL."Allowed File Types ".implode(',',
                             $this->aAllowedFileTypes).PHP_EOL;
@@ -228,7 +213,7 @@ class S3ToYoutubeCommand extends CConsoleCommand
                     die;
                 }
                 ##################End Of File Extension Check ##########################
-                $videoPath = $aS3Info['filePath'];
+                $videoPath = dirname(__FILE__).'/../..'.$uri;
 
                 // REPLACE this value with the path to the file you are uploading.
                 //  $videoPath = Yii::app()->params['S3DOWNLOADSDIR'].DIRECTORY_SEPARATOR."test1.mp4";
@@ -319,32 +304,7 @@ class S3ToYoutubeCommand extends CConsoleCommand
         $this->_getGoogleRefreshToken();
     }
 
-    private function _downloadFilesFromS3($uri, $savelocation = null)
-    {
-        $fileName = null;
-        $response = ['error' => 1, 'filePath' => '', 'message' => ''];
-        if (is_null($savelocation)) {
-            $savelocation = $this->sS3FilesDownloadDir;
-        }
-        $fileName = basename($uri);
-        $savelocation .=$fileName;
-        try {
-            $message = PHP_EOL."Downloading File :".$fileName." from  ".$uri.PHP_EOL;
-
-            if (($object = S3::getObject($this->sBucket, $fileName, $savelocation)) !== false) {
-                if ($object->code == 200) {
-                    $message .= "\r\nSaving File To Temporary Storage: ".$savelocation.PHP_EOL;
-                    $response = ['error' => 0, 'filePath' => $savelocation, 'message' => 'Ok'];
-                }
-            }
-            Yii::log(__FILE__."".__LINE__." Info: ".$message);
-        } catch (Exception $e) {
-            $message  = "\r\nDownloading File :".$fileName." from  ".$uri." failed.".PHP_EOL;
-            Yii::log(__FILE__."".__LINE__." Error: ".$message);
-            $response = ['error' => 1, 'message' => $e->getMessage()];
-        }
-        return json_encode($response);
-    }
+   
 
     private function __getProcessedVideos($status = "processing")
     {
