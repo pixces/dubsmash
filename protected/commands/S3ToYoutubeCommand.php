@@ -213,7 +213,9 @@ class S3ToYoutubeCommand extends CConsoleCommand
                     die;
                 }
                 ##################End Of File Extension Check ##########################
-                $videoPath = dirname(__FILE__).'/../..'.$uri;
+                //$videoPath = dirname(__FILE__).'/../..'.$uri;
+                $videoPath=Yii::app()->basePath.DIRECTORY_SEPARATOR.'..'.$uri;
+
 
                 // REPLACE this value with the path to the file you are uploading.
                 //  $videoPath = Yii::app()->params['S3DOWNLOADSDIR'].DIRECTORY_SEPARATOR."test1.mp4";

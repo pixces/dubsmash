@@ -103,8 +103,9 @@ class PagesController extends Controller
                 try {
 
                         if(move_uploaded_file($tmpFileName,$uploadFile)){
-                                $savedFilePath=DIRECTORY_SEPARATOR.'uploads/'.$actualFileName;
-                                         //save all to the database for further processing
+                                $savedFilePath=Yii::app()->params['UPLOAD']['videodir'].$actualFileName;
+                                $savedFilePath=str_replace("../","",$savedFilePath);
+                                //save all to the database for further processing
                                 $modelContent                       = new Content;
                                 $modelContent->username             = $model->username;
                                 $modelContent->email                = $model->email;
