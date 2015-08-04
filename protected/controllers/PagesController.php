@@ -80,10 +80,10 @@ class PagesController extends Controller
 
             $model->attributes = $_POST['ParticipateForm'];
             $model->media_category = isset($_POST['ParticipateForm']['media_category']) ? $_POST['ParticipateForm']['media_category'] : 'all';
-            $model->media_url = $_FILES['file_0']['name'];
+            
 
             if ($model->validate()) {
-
+                $model->media_url = $_FILES['file_0']['name'];
                 $fileName = $model->media_url;
                 $size = $_FILES['file_0']['size'];
                 $tmpFileName = $_FILES['file_0']['tmp_name'];
