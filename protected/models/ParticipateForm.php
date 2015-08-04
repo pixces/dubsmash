@@ -21,6 +21,7 @@ class ParticipateForm extends CFormModel
     public function rules()
     {
         return array(
+            
             array('media_url', 'file', 'types' => 'mp4','allowEmpty' => true,'safe'=>true),
             array('media_category','safe'),
             array('username,email,mobile,media_title,message', 'required', 'message' => 'Please enter your {attribute}.'),
